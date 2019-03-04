@@ -196,6 +196,7 @@ public class AffixFileController
             return retMap;
         }
         try {
+
             Integer prefixion = null;
             String zipPath= null;
             Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -209,6 +210,7 @@ public class AffixFileController
                 return retMap;
             }
             prefixion = Integer.parseInt(projectMap.get("PREFIXION").toString());
+            final String fileName = new StringBuilder().append(prefixion).toString();
             zipPath =projectMap.get("ZIPPATH").toString();
             if (prefixion == null || StringUtils.isBlank(zipPath)) {
                 retMap.put("code", code);
@@ -219,11 +221,13 @@ public class AffixFileController
 
             //这里的路径在linux和windows上可能不一样，linux的路径结尾可能不带/
             String unzipPath=FileUtil.getRealFilePath(request.getSession().getServletContext().getRealPath("unzip/"));//将路径字符适配到不同的操作系统
-            final String basePath = Constant.BIMAPIURL;
-            final String fileName = new StringBuilder().append(prefixion).toString();
             final File svfFile = new File(String.valueOf(unzipPath) + fileName + "/3d.svf");
+            final File zipFile = new File(FileUtil.getRealFilePath(request.getSession().getServletContext().getRealPath("upload/")+ fileName + ".zip"));
+            final String basePath = Constant.BIMAPIURL;
             if (svfFile != null && svfFile.exists()) {//如果文件已经存在就不用解压了
                 msg = String.valueOf(basePath) + "/unzip/" + fileName + "/3d.svf";
+            }else if(zipFile != null && !zipFile.exists()){
+                msg = "没有找到压缩的轻量化文件";
             }
             else {
                 ZipUtil.upzipFile(zipPath + fileName + ".zip", String.valueOf(unzipPath) + fileName);
