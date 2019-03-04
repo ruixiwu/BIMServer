@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.MaterialTableMapper">
+	<resultMap id="MaterialMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="TECHDES" property="TECHDES" jdbcType="VARCHAR" />
+		<result column="AMBIENT" property="AMBIENT" jdbcType="VARCHAR" />
+		<result column="EMISSION" property="EMISSION" jdbcType="VARCHAR" />
+		<result column="SHININESS" property="SHININESS" jdbcType="VARCHAR" />
+		<result column="SPECULAR" property="SPECULAR" jdbcType="VARCHAR" />
+		<result column="DIFFUSE" property="DIFFUSE" jdbcType="VARCHAR" />
+		<result column="TEXTURE_1" property="TEXTURE_1" jdbcType="INTEGER" />
+		<result column="TEXTURE_2" property="TEXTURE_2" jdbcType="INTEGER" />
+		<result column="TEXTURE_3" property="TEXTURE_3" jdbcType="INTEGER" />
+		<result column="TEXTURE_4" property="TEXTURE_4" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectMaterialById" resultMap="MaterialMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME,t.TECHDES,t.AMBIENT,t.EMISSION,t.SHININESS,t.SPECULAR,t.DIFFUSE,t.TEXTURE_1,t.TEXTURE_2,t.TEXTURE_3,t.TEXTURE_4
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertMaterial" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into ${TABLENAME} (NAME,TECHDES,AMBIENT,EMISSION,SHININESS,SPECULAR,DIFFUSE,TEXTURE_1,TEXTURE_2,TEXTURE_3,TEXTURE_4)
+		values(#{NAME}, #{TECHDES},#{AMBIENT},#{EMISSION},#{SHININESS},#{SPECULAR},#{DIFFUSE},#{TEXTURE_1}, #{TEXTURE_2},#{TEXTURE_3}, #{TEXTURE_4})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	TECHDES varchar(128) DEFAULT NULL,
+    	AMBIENT varchar(128) DEFAULT NULL,
+    	EMISSION varchar(128) DEFAULT NULL,
+    	SHININESS varchar(128) DEFAULT NULL,
+    	SPECULAR varchar(128) DEFAULT NULL,
+    	DIFFUSE varchar(128) DEFAULT NULL,
+    	TEXTURE_1 int DEFAULT NULL,
+    	TEXTURE_2 int DEFAULT NULL,
+    	TEXTURE_3 int DEFAULT NULL,
+    	TEXTURE_4 int DEFAULT NULL, 
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME,TECHDES,AMBIENT,EMISSION,SHININESS,SPECULAR,DIFFUSE,TEXTURE_1,TEXTURE_2,TEXTURE_3,TEXTURE_4) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.TECHDES}, #{item.AMBIENT},#{item.EMISSION}, #{item.SHININESS}, #{item.SPECULAR}, #{item.DIFFUSE}, #{item.TEXTURE_1}, #{item.TEXTURE_2}, #{item.TEXTURE_3}, #{item.TEXTURE_4})
+	    </foreach>
+	</insert>
+</mapper>

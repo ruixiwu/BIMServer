@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.FamilyTableMapper">
+	<resultMap id="FamilyMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="sName" jdbcType="VARCHAR" />
+		<result column="PARENTID" property="sParentId" jdbcType="INTEGER" />
+		<result column="DESCRIBE" property="sDescribe" jdbcType="VARCHAR" />
+		<result column="parentName" property="parentName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectFamilyById" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.PARENTID , t.DESCRIBE
+		FROM  ${TABLENAME}  t 
+		where t.OBJECTID = #{OBJECTID}
+	</select>
+	
+	<select id="selectFamilyByParentId" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.PARENTID , t.DESCRIBE,t1.NAME parentName
+		FROM  ${TABLENAME}  t 
+		left join ${TABLENAME} t1 on t1.OBJECTID=t.PARENTID 
+		where t.PARENTID = #{PARENTID}
+	</select>
+	
+	<select id="selectParentFamilyById" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT t1.OBJECTID, t1.NAME, t1.PARENTID , t1.DESCRIBE 
+		FROM  ${TABLENAME}  t 
+		left join ${TABLENAME} t1 on t1.OBJECTID=t.PARENTID 
+		where t.OBJECTID = #{OBJECTID}
+	</select>
+	
+	<select id="selectFamilyByIdAndPname" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.PARENTID , t.DESCRIBE 
+		FROM  ${TABLENAME}  t 
+		left join ${TABLENAME} t1 on t1.OBJECTID=t.PARENTID 
+		where t.OBJECTID = #{OBJECTID} and t.NAME=#{NAME} and t1.NAME=#{PNAME}
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertFamily" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (NAME, PARENTID,DESCRIBE) values(#{NAME}, #{PARENTID},#{DESCRIBE})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	PARENTID int NOT NULL,
+    	DESCRIBE varchar(128) DEFAULT NULL, 
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <select id="selectFamilyByName" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME , t.PARENTID , t.DESCRIBE, t.DESCRIBE,t1.NAME parentName 
+		FROM  ${TABLENAME}  t 
+		left join ${TABLENAME} t1 on t1.OBJECTID=t.PARENTID 
+		where t.NAME = #{NAME}
+	</select>
+	
+	<select id="fuzzyQueryByName" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME , t.PARENTID , t.DESCRIBE 
+		FROM  ${TABLENAME}  t where t.NAME ~* '{NAME}'
+	</select>
+	
+	
+	<!-- 根据字段获取唯一值信息 -->
+	<select id="selectByParam" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT ${FIELDS} FROM  ${TABLENAME}   where ${CONDITION}
+	</select>
+	
+	 <select id="selectAll" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT OBJECTID, NAME , PARENTID , DESCRIBE 
+		FROM  ${TABLENAME} 
+	</select>
+	
+	<select id="selectAllFamily" resultMap="FamilyMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME , t.PARENTID , t.DESCRIBE 
+		FROM  ${TABLENAME}  t
+	</select>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, PARENTID,DESCRIBE) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.PARENTID}, #{item.DESCRIBE})
+	    </foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no"/>
+    <title>3D展示</title>
+	<link rel="stylesheet" type="text/css" href="lib/style.css">
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/jquery-ui.min.js"></script>
+	<script src="lib/BimFish3D.js"></script>
+	<link rel="stylesheet" href="Template/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="Template/bootstrap/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/final/common.css"/>
+	<link rel="stylesheet" href="Template/zTree/css/zTreeStyle/metro.css" />
+	<script type="text/javascript" src="js/jQuery-2.1.4.min.js" ></script>
+	<script type="text/javascript" src="Template/zTree/js/jquery.ztree.all-3.5.min.js" ></script>
+	<script type="text/javascript" src="js/mine/_scroll.js" ></script>
+	<script type="text/javascript" src="js/mine/attrs.js" ></script>
+    <script src="lib/TreeNodeDelegate.js"></script>
+    <script src="lib/ModeBrowerUI.js"></script>
+	<script src="lib/PropertyBrowerUI.js"></script>
+	<script src="lib/NavigationToolUI.js"></script>
+	<script src="lib/controlUI.js"></script>
+</head>
+<body style="margin:0px">
+	<div id="viewer-local">
+		<div id="cont"></div>
+		<div style="position:absolute;bottom:30px;right:50px;z-index:99999;-moz-user-select: none;-o-user-select: none;-khtml-user-select: none;-webkit-user-select: none;-ms-user-select: none;">
+			<span style="display: block; width: 50px;"> <img src="img/bim_fish.png" style="width:100%;"/></span>
+		</div>
+	</div>
+	<script>
+		function getQueryString(key) { 
+			var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i"); 
+			var r = window.location.search.substr(1).match(reg); 
+			if (r != null) return unescape(r[2]); return null; 
+		}
+		var newId = getQueryString("key");
+		
+		var ui = new controlUI('viewer-local') ;
+        ui.setProjectId('http://localhost:8080/BIMAPI/',newId);
+		//ui.setProjectId('http://localhost:8085/BIMAPI/',newId);
+        //ui.setPath();
+
+        function test_a(id,dbIdList){
+            if(id=='7')
+			{
+                var idList  = ui.getCurSceneSelectId();
+
+                for(var i=0;i<idList.length;++i)
+				{
+                    ui.getObjectGuid(idList[i],function(GUID) {
+                        ui.fitToView(idList[i]);
+                    });
+				}
+			}
+
+			if(id=='6')
+			{
+                var idList  =  ui.getCurTreeSelectId();
+
+                if(idList==null) return;
+                for(var i=0;i<idList.length;++i)
+                {
+                    ui.getObjectGuid(idList[i],function(GUID) {
+                        alert(GUID);
+                    });
+                }
+			}
+        }
+        ui.ToolbarLeftClickFun(test_a);
+	</script>
+</body>
+</html>

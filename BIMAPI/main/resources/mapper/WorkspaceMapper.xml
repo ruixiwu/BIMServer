@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.WorkspaceMapper">
+	<resultMap id="WorkspaceMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+        <result column="CODE" property="CODE" jdbcType="VARCHAR" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="USERID" property="USERID" jdbcType="VARCHAR" />
+		<result column="DESCRIBE" property="DESCRIBE" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- orders table all fields -->
+	<sql id="Base_Column_List" >
+		<![CDATA[
+                 t.OBJECTID, t.NAME, t.CODE , t.USERID, t.DESCRIBE
+                ]]>
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides="," >
+			<if test="_parameter.containsKey('OBJECTID')" >
+			    and t.OBJECTID = #{OBJECTID}
+			</if>
+			<if test="_parameter.containsKey('NAME')" >
+			    and t.NAME = #{NAME}
+			</if>
+			<if test="_parameter.containsKey('CODE')" >
+			    and t.CODE = #{CODE}
+			</if>
+			<if test="_parameter.containsKey('USERID')" >
+			    and t.USERID = #{USERID}
+			</if>
+		</trim>
+	</sql>
+
+	<!-- 根据主键查询项目 -->
+	<select id="selectWorkspaceById" resultMap="WorkspaceMap" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.CODE , t.USERID, t.DESCRIBE
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+
+	<select id="selectWorkspaceByUserId" resultMap="WorkspaceMap" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.CODE , t.USERID, t.DESCRIBE
+		FROM  WORKSPACE  t where t.USERID = #{USERID}
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertWorkspace" useGeneratedKeys="true" keyProperty="OBJECTID" parameterType="java.util.Map">
+		insert into ${TABLENAME} (NAME, CODE,USERID,DESCRIBE)
+		values(#{NAME}, #{CODE},#{USERID}, #{DESCRIBE})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+	    	"OBJECTID" SERIAL primary key,
+	    	"NAME" varchar(128) DEFAULT NULL,
+	    	"CODE" int NOT NULL,
+	    	"USERID"  varchar(128) DEFAULT NULL,
+	    	"DESCRIBE" varchar(128) DEFAULT NULL,
+    		PRIMARY KEY (OBJECTID)
+    	) 
+    </update>
+    
+    <update id="UpdateByCode" parameterType="java.util.Map">
+		update ${TABLENAME} set NAME=#{NAME},SOURCEID=#{USERID},DESCRIBE=#{DESCRIBE}
+		where CODE=#{CODE}
+    </update>
+    
+    <insert id="insertSequenceTable" useGeneratedKeys="true" keyProperty="id">
+		insert into SequenceTable (name)
+		values('')
+	</insert>
+
+    <!-- 查询 -->
+	<select id="query" resultMap="WorkspaceMap" resultType="java.util.List" parameterType="Object">
+		select <include refid="Base_Column_List" /> 
+		from WORKSPACE t
+		<include refid="Example_Where_Clause"/>
+	</select>
+
+    <!-- 左连接查询某个工作空间中的3D project 条目 -->
+	<select id="queryWithPROJECT" resultType="java.util.List" parameterType="java.util.Map">
+		select <include refid="Base_Column_List" />, a.NAME aNAME,a.PREFIXION aPREFIXION,a.ZIPKEY
+		from WORKSPACE t
+		left join PROJECT a on a.WORKSPACEID=t.OBJECTID
+		<include refid="Example_Where_Clause"/>
+	</select>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, CODE,USERID,DESCRIBE)
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.CODE}, #{item.USERID},#{item.DESCRIBE})
+	    </foreach>
+	</insert>
+
+</mapper>

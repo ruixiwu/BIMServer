@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.FmyItemTableMapper">
+	<resultMap id="FmyItemMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="SECTION" property="sSection" jdbcType="VARCHAR" />
+		<result column="NAME" property="sName" jdbcType="VARCHAR" />
+		<result column="VALUE" property="sValue" jdbcType="VARCHAR" />
+		<result column="UNIT" property="sUnit" jdbcType="VARCHAR" />
+		<result column="TYPE" property="sType" jdbcType="INTEGER" />
+		<result column="FAMILYID" property="sMainId" jdbcType="INTEGER" />
+		<result column="parentFmyName" property="parentFmyName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectFmyItemById" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.SECTION, t.NAME , t.VALUE, t.UNIT, t.TYPE, t.FAMILYID
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+	
+	<select id="selectByFamilyId" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.SECTION, t.NAME , t.VALUE, t.UNIT, t.TYPE, t.FAMILYID
+		FROM  ${TABLENAME}  t where t.FAMILYID = #{FAMILYID}
+	</select>
+	
+	<select id="selectByField" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT OBJECTID, SECTION, NAME , VALUE, UNIT, TYPE, FAMILYID
+		FROM  ${TABLENAME}  where ${FIELD} = #{FIELDVALUE}
+	</select>
+	
+	<select id="selectByField2" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT OBJECTID, SECTION, NAME , VALUE, UNIT, TYPE, FAMILYID
+		FROM  ${TABLENAME}  where ${FIELD} = #{FIELDVALUE} and ${FIELD2} = #{FIELDVALUE2} 
+	</select>
+	
+	<select id="selectAllWithParentFmyName" resultMap="FmyItemMap" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT OBJECTID, SECTION, NAME , VALUE, UNIT, TYPE, FAMILYID,f2.NAME parentFmyName
+		FROM  ${TABLENAME} t 
+		left join ${TABLENAME2} f on f.objectid=t.familyid
+		left join ${TABLENAME2} f2 on f2.objectid=f.parentid
+		where ${FIELD} = #{FIELDVALUE} and ${FIELD2} = #{FIELDVALUE2} 
+	</select>
+	
+	<select id="selectAll" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.SECTION, t.NAME , t.VALUE, t.UNIT, t.TYPE, t.FAMILYID
+		FROM  ${TABLENAME}  t
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertFmyItem" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (SECTION, NAME,VALUE, UNIT, TYPE,FAMILYID)
+		values(#{SECTION}, #{NAME}, #{VALUE},#{UNIT}, #{TYPE}, #{FAMILYID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	SECTION varchar(128) DEFAULT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	VALUE varchar(256) DEFAULT NULL,
+    	UNIT varchar(128) DEFAULT NULL,
+    	TYPE int DEFAULT NULL,
+    	FAMILYID int DEFAULT NULL, 
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <select id="selectFieldEnumByFamilyId" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT DISTINCT NAME , VALUE,FAMILYID
+		FROM  ${TABLENAME}  where FAMILYID IN #{FAMILYIDVALUE} AND NAME = #{FIELDNAME}
+	</select>
+	
+	<select id="selectAllEnumByFamilyId" resultMap="FmyItemMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT DISTINCT NAME , VALUE,FAMILYID
+		FROM  ${TABLENAME}  where FAMILYID IN ${FAMILYIDVALUE}
+	</select>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (SECTION, NAME,VALUE, UNIT, TYPE,FAMILYID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.SECTION}, #{item.NAME}, #{item.VALUE},#{item.UNIT}, #{item.TYPE}, #{item.FAMILYID})
+	    </foreach>
+	</insert>
+</mapper>

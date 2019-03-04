@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.TexImgMapper">
+	<resultMap id="TexImgMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="CONTENT" property="CONTENT" jdbcType="CLOB" />
+		<result column="OBJGUID" property="OBJGUID" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectTexImgById" resultMap="TexImgMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.CONTENT FROM  ${TABLENAME} t where t.OBJECTID = #{OBJECTID}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertTexImg" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into ${TABLENAME} (CONTENT,OBJGUID) values(#{CONTENT},#{OBJGUID})
+	</insert>
+    
+    <select id="selectByObjguid" resultMap="TexImgMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.CONTENT,t.OBJGUID FROM ${TABLENAME} t where t.OBJGUID = #{OBJGUID}
+	</select>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (CONTENT,OBJGUID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.CONTENT}, #{item.OBJGUID})
+	    </foreach>
+	</insert>
+</mapper>

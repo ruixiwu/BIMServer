@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.TexturesMapper">
+	<resultMap id="TexturesMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="sName" jdbcType="VARCHAR" />
+		<result column="FORMAT" property="sFormat" jdbcType="INTEGER" />
+		<result column="MAGFILTER" property="sMagfilter" jdbcType="INTEGER" />
+		<result column="MINFILTER" property="sMinfilter" jdbcType="INTEGER" />
+		<result column="WRAPS" property="sWraps" jdbcType="INTEGER" />
+		<result column="WRAPT" property="sWrapt" jdbcType="INTEGER" />
+		<result column="IMAGENAME" property="sImagename" jdbcType="VARCHAR" />
+		<result column="TEXIMGID" property="sImageKeyId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectTexturesById" resultMap="TexturesMap" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.FORMAT , t.MAGFILTER, t.MINFILTER,T.WRAPS,T.WRAPT,T.IMAGENAME,T.TEXIMGID
+		FROM  ${TABLENAME} t where t.OBJECTID = #{OBJECTID}
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertTextures" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (NAME, FORMAT, MAGFILTER, MINFILTER, WRAPS, WRAPT, IMAGENAME, TEXIMGID)
+		values(#{NAME}, #{FORMAT}, #{MAGFILTER},#{MINFILTER},#{WRAPS}, #{WRAPT}, #{IMAGENAME},#{TEXIMGID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	FORMAT integer DEFAULT NULL,
+    	MAGFILTER integer DEFAULT NULL,
+    	MINFILTER integer DEFAULT NULL,
+    	WRAPS integer DEFAULT NULL,
+    	WRAPT integer DEFAULT NULL,
+    	IMAGENAME varchar(128) DEFAULT NULL,
+    	TEXIMGID VARCHAR(128) DEFAULT NULL,
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, FORMAT, MAGFILTER, MINFILTER, WRAPS, WRAPT, IMAGENAME, TEXIMGID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.FORMAT}, #{item.MAGFILTER},#{item.MINFILTER}, #{item.WRAPS}, #{item.WRAPT}, #{item.IMAGENAME}, #{item.TEXIMGID})
+	    </foreach>
+	</insert>
+</mapper>

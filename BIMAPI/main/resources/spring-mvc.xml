@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	<!-- 扫描controller（controller层注入） -->
+	<context:component-scan base-package="com.yunfan.tmcc.ivr.controller" />
+	
+	<!-- 使用Annotation自动注册Bean,扫描@Controller和@ControllerAdvice-->
+	<context:component-scan base-package="com.yunfan.tmcc.ivr" use-default-filters="false">
+	    <!-- base-package 如果多个，用“,”分隔 -->
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	    <!--控制器增强，使一个Contoller成为全局的异常处理类，类中用@ExceptionHandler方法注解的方法可以处理所有Controller发生的异常-->
+	    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+	
+	<!-- 避免IE在ajax请求时，返回json出现下载 -->
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+				<!-- <value>text/html;charset=UTF-8</value> -->
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean>  <!-- 这个类里面你可以注册拦截器什么的 -->
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jacksonMessageConverter" />    <!-- 注册JSON Converter -->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 使用spring mvc -->  
+    <mvc:annotation-driven>  
+    <!-- 解决@ResponseBody返回String 中文乱码 -->  
+        <mvc:message-converters>  
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+                <!-- <constructor-arg value="UTF-8" /> -->
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    	<!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>  
+        </mvc:message-converters>  
+    </mvc:annotation-driven>
+	
+	
+	
+	<!-- Configures Handler Interceptors -->
+	<!-- <mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	    	<bean class="com.yunfan.tmcc.ivr.interceptor.ExceptionInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	
+	<!-- 静态资源解析 包括 ：js、css、img、.. -->
+	<!-- 静态资源访问方案 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 对模型视图添加前后缀 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+
+	<!-- 全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器 -->
+	<!-- <bean class="com.yunfan.tmcc.ivr.exception.CustomExceptionResolver"></bean> -->
+	
+	
+	<!-- 文件上传 -->
+	<!-- <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		设置上传文件的最大尺寸为5MB
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean> -->
+	
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- defaultEncoding表示用来解析request请求的默认编码格式，当没有指定的时候根据Servlet规范会使用默认值ISO-8859-1。当request自己指明了它的编码格式的时候就会忽略这里指定的defaultEncoding。 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常-->
+        <property name="resolveLazily" value="true"/>
+	</bean>
+
+	<!--拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器,顺序执行 登陆认证拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.yunfan.tmcc.ivr.interceptor.LoginInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+</beans>

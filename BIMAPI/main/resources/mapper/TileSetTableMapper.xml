@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.TileSetTableMapper">
+	<resultMap id="TileSetTableMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="PARENT" property="PARENT" jdbcType="INTEGER" />
+		<result column="MINX" property="MINX" jdbcType="FLOAT" />
+		<result column="MINY" property="MINY" jdbcType="FLOAT" />
+		<result column="MINZ" property="MINZ" jdbcType="FLOAT" />
+		<result column="MAXX" property="MAXX" jdbcType="FLOAT" />
+		<result column="MAXY" property="MAXY" jdbcType="FLOAT" />
+		<result column="MAXZ" property="MAXZ" jdbcType="FLOAT" />
+		<result column="CENTER" property="CENTER" jdbcType="VARCHAR" />
+		<result column="LASTUPDATETIME" property="LASTUPDATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectTileSetById" resultMap="TileSetTableMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.PARENT, t.MINX , t.MINY, t.MINZ, t.MAXX, t.MAXY, t.MAXZ , t.CENTER, t.LASTUPDATETIME
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertTileSet" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (OBJECTID,PARENT, MINX, MINY,MINZ,MAXX,MAXY, MAXZ, CENTER,LASTUPDATETIME)
+		values(#{OBJECTID},#{PARENT}, #{MINX}, #{MINY},#{MINZ},#{MAXX}, #{MAXY}, #{MAXZ},#{CENTER}, #{LASTUPDATETIME})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	PARENT int DEFAULT NULL,
+    	MINX real DEFAULT NULL,
+    	MINY real DEFAULT NULL,
+    	MINZ real DEFAULT NULL,
+    	MAXX real DEFAULT NULL,
+    	MAXY real DEFAULT NULL,
+    	MAXZ real DEFAULT NULL,
+    	CENTER varchar(128) DEFAULT NULL,
+    	LASTUPDATETIME varchar(128) DEFAULT NULL, 
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (PARENT, MINX, MINY,MINZ,MAXX,MAXY, MAXZ, CENTER,LASTUPDATETIME) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.PARENT}, #{item.MINX}, #{item.MINY},#{item.MINZ}, #{item.MAXX}, #{item.MAXY}, #{item.MAXY}, #{item.MAXZ}, #{item.CENTER}, #{item.LASTUPDATETIME})
+	    </foreach>
+	</insert>
+</mapper>

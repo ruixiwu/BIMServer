@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.GeoTableMapper">
+	<resultMap id="GeoTableMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="sName" jdbcType="VARCHAR" />
+		<result column="TILESETID" property="sTilesetId" jdbcType="INTEGER" />
+		<result column="MATRIX" property="sMatrix" jdbcType="VARCHAR" />
+		<result column="MESHIDS" property="sMeshIds" jdbcType="VARCHAR" />
+		<result column="BLOCKID" property="sBlockId" jdbcType="INTEGER" />
+		<result column="BOX" property="sBox" jdbcType="VARCHAR" />
+		<result column="FAMILYID" property="sFamilyID" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectGeoTableById" resultMap="GeoTableMap" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.TILESETID , t.MATRIX, t.MESHIDS, t.BLOCKID, t.BOX , t.FAMILYID
+		FROM  ${TABLENAME}  t where t.NAME = #{NAME}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertGeoTable" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (NAME, TILESETID, MATRIX, MESHIDS, BLOCKID, BOX, FAMILYID)
+		values(#{NAME},#{TILESETID},#{MATRIX}, #{MESHIDS},#{BLOCKID},#{BOX}, #{FAMILYID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	TILESETID int DEFAULT -1,
+    	MATRIX varchar(512) DEFAULT NULL,
+    	MESHIDS varchar(256) DEFAULT NULL,
+    	BLOCKID int DEFAULT NULL,
+    	BOX varchar(256) DEFAULT NULL,
+    	FAMILYID int DEFAULT NULL,
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <!-- 根据主键查询用户 -->
+	<select id="selectByFamilyId" resultMap="GeoTableMap" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.TILESETID , t.MATRIX, t.MESHIDS, t.BLOCKID, t.BOX , t.FAMILYID
+		FROM  ${TABLENAME}  t where t.FAMILYID = #{FAMILYID}
+	</select>
+	
+    	<!-- 根据字段获取唯一值信息 -->
+	<select id="selectByParam" resultMap="GeoTableMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT ${FIELDS} FROM  ${TABLENAME}   where ${CONDITION}
+	</select>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, TILESETID, MATRIX, MESHIDS, BLOCKID, BOX, FAMILYID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.TILESETID}, #{item.MATRIX},#{item.MESHIDS}, #{item.BLOCKID}, #{item.BOX}, #{item.FAMILYID})
+	    </foreach>
+	</insert>
+	
+	<select id="selectGeoCount" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT FAMILYID,count(FAMILYID) GEOCount FROM ${TABLENAME} group by FAMILYID
+	</select>
+</mapper>

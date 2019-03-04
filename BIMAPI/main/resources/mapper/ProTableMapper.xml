@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.ProTableMapper">
+	<resultMap id="ProMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="SECTION" property="SECTION" jdbcType="VARCHAR" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="VALUE" property="VALUE" jdbcType="VARCHAR" />
+		<result column="UNIT" property="UNIT" jdbcType="VARCHAR" />
+		<result column="TYPE" property="TYPE" jdbcType="INTEGER" />
+		<result column="GEOID" property="GEOID" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectProTableById" resultMap="ProMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.SECTION, t.NAME, t.VALUE, t.UNIT, t.TYPE
+		FROM  ${TABLENAME}  t where t.GEOID = #{GEOID}
+	</select>
+	
+	<!-- 根据value字段查询信息 -->
+	<select id="selectProTableByValue" resultMap="ProMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.SECTION, t.NAME, t.VALUE, t.UNIT, t.TYPE,t.GEOID
+		FROM  ${TABLENAME}  t where t.VALUE = #{VALUE}
+	</select>
+	
+	<!-- 根据字段获取唯一值信息 -->
+	<select id="selectByParam" resultMap="ProMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT ${FIELDS} FROM  ${TABLENAME}   where ${CONDITION}
+	</select>
+	
+	
+	<!-- 插入数据 -->
+	<insert id="insertProTable" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (SECTION, NAME,VALUE, UNIT, TYPE,GEOID)
+		values(#{SECTION}, #{NAME}, #{VALUE},#{UNIT}, #{TYPE}, #{GEOID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	SECTION varchar(128) DEFAULT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	VALUE varchar(256) DEFAULT NULL,
+    	UNIT varchar(128) DEFAULT NULL,
+    	TYPE int DEFAULT NULL,
+    	GEOID int DEFAULT NULL, 
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (SECTION, NAME,VALUE, UNIT, TYPE,GEOID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.SECTION}, #{item.NAME}, #{item.VALUE},#{item.UNIT}, #{item.TYPE}, #{item.GEOID})
+	    </foreach>
+	</insert>
+</mapper>

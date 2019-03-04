@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.AffixTableMapper">
+	<resultMap id="AffixTableMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="TYPE" property="TYPE" jdbcType="VARCHAR" />
+		<result column="AFFIXFILEID" property="AFFIXFILEID" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectAffixTableById" resultMap="AffixTableMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.TYPE , t.AFFIXFILEID 
+		FROM ${TABLENAME} t where t.OBJECTID = #{OBJECTID}
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insertAffixTable" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="com.yunfan.tmcc.ivr.model.AffixTableModel">
+		insert into ${TABLENAME} (NAME, TYPE,AFFIXFILEID)
+		values(#{NAME}, #{TYPE}, #{AFFIXFILEID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	TYPE VARCHAR(128) NOT NULL,
+    	AFFIXFILEID varchar(256) DEFAULT NULL, 
+    	PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    
+    <!-- 插入数据 -->
+	<insert id="insertAffixTable2" useGeneratedKeys="false" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into ${TABLENAME} (OBJECTID, NAME, TYPE,AFFIXFILEID)
+		values(#{OBJECTID}, #{NAME}, #{TYPE}, #{AFFIXFILEID});
+	</insert>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, TYPE,AFFIXFILEID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.TYPE}, #{item.AFFIXFILEID})
+	    </foreach>
+	</insert>
+</mapper>

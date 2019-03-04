@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.MeshTableMapper">
+	<resultMap id="MeshMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="MATERIALID" property="MATERIALID" jdbcType="INTEGER" />
+		<result column="ACCESSOR_POSTION" property="ACCESSOR_POSTION" jdbcType="INTEGER" />
+		<result column="ACCESSOR_INDEX" property="ACCESSOR_INDEX" jdbcType="INTEGER" />
+		<result column="ACCESSOR_NORMAL" property="ACCESSOR_NORMAL" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_0" property="ACCESSOR_TEXCOORD_0" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_1" property="ACCESSOR_TEXCOORD_1" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_2" property="ACCESSOR_TEXCOORD_2" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_3" property="ACCESSOR_TEXCOORD_3" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_4" property="ACCESSOR_TEXCOORD_4" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_5" property="ACCESSOR_TEXCOORD_5" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_6" property="ACCESSOR_TEXCOORD_6" jdbcType="INTEGER" />
+		<result column="ACCESSOR_TEXCOORD_7" property="ACCESSOR_TEXCOORD_7" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectMeshById" resultMap="MeshMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.NAME, t.MATERIALID , t.ACCESSOR_POSTION, t.ACCESSOR_INDEX,t.ACCESSOR_NORMAL,t.ACCESSOR_TEXCOORD_0,t.ACCESSOR_TEXCOORD_1,t.ACCESSOR_TEXCOORD_2,t.ACCESSOR_TEXCOORD_3,t.ACCESSOR_TEXCOORD_4,t.ACCESSOR_TEXCOORD_5,t.ACCESSOR_TEXCOORD_6,t.ACCESSOR_TEXCOORD_7 
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+
+	<!-- 插入数据 -->
+	<insert id="insertMesh" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (NAME, MATERIALID, ACCESSOR_POSTION,ACCESSOR_INDEX,ACCESSOR_NORMAL,ACCESSOR_TEXCOORD_0,ACCESSOR_TEXCOORD_1,ACCESSOR_TEXCOORD_2,ACCESSOR_TEXCOORD_3,ACCESSOR_TEXCOORD_4,ACCESSOR_TEXCOORD_5,ACCESSOR_TEXCOORD_6,ACCESSOR_TEXCOORD_7)
+		values(#{NAME}, #{MATERIALID}, #{ACCESSOR_POSTION},#{ACCESSOR_INDEX},#{ACCESSOR_NORMAL},#{ACCESSOR_TEXCOORD_0}, #{ACCESSOR_TEXCOORD_1},#{ACCESSOR_TEXCOORD_2},#{ACCESSOR_TEXCOORD_3}, #{ACCESSOR_TEXCOORD_4}, #{ACCESSOR_TEXCOORD_5},#{ACCESSOR_TEXCOORD_6},#{ACCESSOR_TEXCOORD_7})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	MATERIALID int DEFAULT NULL,
+    	ACCESSOR_POSTION int DEFAULT NULL,
+    	ACCESSOR_INDEX int DEFAULT NULL,
+    	ACCESSOR_NORMAL int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_0 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_1 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_2 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_3 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_4 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_5 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_6 int DEFAULT NULL,
+    	ACCESSOR_TEXCOORD_7 int DEFAULT NULL,
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, MATERIALID, ACCESSOR_POSTION,ACCESSOR_INDEX,ACCESSOR_NORMAL,ACCESSOR_TEXCOORD_0,ACCESSOR_TEXCOORD_1,ACCESSOR_TEXCOORD_2,ACCESSOR_TEXCOORD_3,ACCESSOR_TEXCOORD_4,ACCESSOR_TEXCOORD_5,ACCESSOR_TEXCOORD_6,ACCESSOR_TEXCOORD_7) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.MATERIALID}, #{item.ACCESSOR_POSTION},#{item.ACCESSOR_INDEX}, #{item.ACCESSOR_NORMAL}, #{item.ACCESSOR_TEXCOORD_0}, #{item.ACCESSOR_TEXCOORD_1}, #{item.ACCESSOR_TEXCOORD_2}, #{item.ACCESSOR_TEXCOORD_3}, #{item.ACCESSOR_TEXCOORD_4}, #{item.ACCESSOR_TEXCOORD_5}, #{item.ACCESSOR_TEXCOORD_6}, #{item.ACCESSOR_TEXCOORD_7})
+	    </foreach>
+	</insert>
+</mapper>

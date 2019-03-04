@@ -1,0 +1,75 @@
+.tool-attr{
+    .attr{
+        &.active {
+            visibility: visible;opacity: 1;right: 0;
+        }
+        .icon {font-size: 14px}
+        .title,.header_tit,.content{
+             height: 30px;line-height: 30px;padding: 0 10px
+        }
+        .title{
+             background: rgba(26, 26, 26, 0.6);font-size: 14px;border-radius: 4px 4px 0 0;
+            .close {
+                margin-top: 8px;text-decoration:none;transition: all .3s;
+                &:hover {
+                    transform: rotate(360deg)
+                }
+            } 
+        }
+       .header_tit {
+            background: #666;border-bottom: 0px #9f9f9f solid;cursor: pointer;color:#fff;box-shadow:0 0px 1px rgba(0, 0, 0, 0.5); 
+            .space {
+                transform: rotate(-45deg);display: inline-block;border: 6px transparent solid;
+                border-top-color: #fff;vertical-align: -20%;margin-right: 5px;
+            }
+            &:hover{
+                background: #333 !important;
+            }
+        }
+        .content {
+            padding: 0;display: table;width: 100%;
+            .space,span{
+                 display: table-cell;width: auto
+            }
+            .space{
+                width: 26px;background: rgba(26, 26, 26, 0.6)
+            }
+            span{
+               background: rgba(26, 26, 26, 0.4);padding: 0 10px;border-left: 1px #656565 solid;
+               border-bottom: 1px #656565 solid;color:#f2f2f2;
+               &.value,&.form-control{
+                    width: 56%
+               }
+               &.form-control {
+                    display: none;border:0px;border-radius:0;height: 26px;
+                    input {
+                        border-radius: 4px;border: 0;padding: 3px 10px;width: 100%;color:#666;
+                    }
+               }
+            }
+            &.active{
+                span{
+                    &.form-control {
+                        display: table-cell
+                    }
+                    &.value {
+                        display: none
+                    }
+                }
+            }
+            &:hover{
+                span.onespan,span.value{
+                    background:#857e7e;cursor:pointer;
+                }
+            }
+        }
+        .attr_dropDown {
+            display: none;
+            &.active {
+                display: block
+            }
+        }
+        
+    }
+}
+

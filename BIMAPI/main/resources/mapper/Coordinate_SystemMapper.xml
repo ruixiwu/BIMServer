@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.Coordinate_SystemMapper">
+	<resultMap id="CoordinateMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+		<result column="SEMIMAJORAXIS" property="SEMIMAJORAXIS" jdbcType="FLOAT" />
+		<result column="INVERSEFLATTENING" property="INVERSEFLATTENING" jdbcType="FLOAT" />
+		<result column="SCALEFACTOR" property="SCALEFACTOR" jdbcType="FLOAT" />
+		<result column="FALSE_EASTING" property="FALSE_EASTING" jdbcType="FLOAT" />
+		<result column="FALSE_NORTHING" property="FALSE_NORTHING" jdbcType="FLOAT" />
+		<result column="CENTRALMERIDIAN" property="CENTRALMERIDIAN" jdbcType="FLOAT" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectCoordinateById" resultMap="CoordinateMap" resultType="java.util.List" parameterType="java.util.Map">
+		SELECT t.OBJECTID, t.NAME, t.SEMIMAJORAXIS , t.INVERSEFLATTENING, t.SCALEFACTOR, t.FALSE_EASTING,t.FALSE_NORTHING,t.CENTRALMERIDIAN 
+		FROM  ${TABLENAME}  t where t.OBJECTID = #{OBJECTID}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertCoordinate" useGeneratedKeys="false" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (OBJECTID, NAME, SEMIMAJORAXIS , INVERSEFLATTENING, SCALEFACTOR, FALSE_EASTING,FALSE_NORTHING,CENTRALMERIDIAN)
+		values(#{OBJECTID},#{NAME}, #{SEMIMAJORAXIS}, #{INVERSEFLATTENING},#{SCALEFACTOR},#{FALSE_EASTING},#{FALSE_NORTHING}, #{CENTRALMERIDIAN})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1)  NOT NULL,
+    	NAME varchar(128) DEFAULT NULL,
+    	SEMIMAJORAXIS real DEFAULT NULL,
+    	INVERSEFLATTENING real DEFAULT NULL,
+    	SCALEFACTOR real DEFAULT NULL,
+    	FALSE_EASTING real DEFAULT NULL,
+    	FALSE_NORTHING real DEFAULT NULL,
+    	CENTRALMERIDIAN real DEFAULT NULL,
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (NAME, SEMIMAJORAXIS , INVERSEFLATTENING, SCALEFACTOR, FALSE_EASTING,FALSE_NORTHING,CENTRALMERIDIAN) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.NAME}, #{item.SEMIMAJORAXIS}, #{item.INVERSEFLATTENING},#{item.SCALEFACTOR}, #{item.FALSE_EASTING}, #{item.FALSE_NORTHING}, #{item.CENTRALMERIDIAN})
+	    </foreach>
+	</insert>
+</mapper>

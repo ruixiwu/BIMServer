@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunfan.tmcc.ivr.dao.AccessorTable">
+	<resultMap id="AccessorMap" type="java.util.HashMap">
+		<id column="OBJECTID" property="OBJECTID" jdbcType="INTEGER" />
+		<result column="TYPE" property="TYPE" jdbcType="VARCHAR" />
+		<result column="BYTEOFFSET" property="BYTEOFFSET" jdbcType="INTEGER" />
+		<result column="BYTESTRIDE" property="BYTESTRIDE" jdbcType="INTEGER" />
+		<result column="COMPONENTTYPE" property="COMPONENTTYPE" jdbcType="INTEGER" />
+		<result column="NCOUNT" property="NCOUNT" jdbcType="INTEGER" />
+		<result column="BFILEID" property="BFILEID" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据主键查询用户 -->
+	<select id="selectAccessorById" resultMap="AccessorMap" parameterType="java.util.Map">
+		SELECT t.TYPE, t.BYTEOFFSET , t.BYTESTRIDE, t.COMPONENTTYPE, t.NCOUNT, t.BFILEID
+		FROM ${TABLENAME} t where t.OBJECTID = #{OBJECTID}
+	</select>
+	<!-- 插入数据 -->
+	<insert id="insertAccessorTable" useGeneratedKeys="true" keyProperty="OBJECTID"
+		parameterType="java.util.Map">
+		insert into  ${TABLENAME} (TYPE, BYTEOFFSET,
+		BYTESTRIDE,COMPONENTTYPE,NCOUNT,BFILEID)
+		values(#{TYPE}, #{BYTEOFFSET}, #{BYTESTRIDE},#{COMPONENTTYPE},#{NCOUNT},#{BFILEID})
+	</insert>
+	
+	<update id="createTable" parameterType="String">
+		CREATE TABLE ${_parameter} (
+    	OBJECTID int IDENTITY(1,1) NOT NULL,
+    	TYPE VARCHAR(128) DEFAULT NULL,
+    	BYTEOFFSET int DEFAULT NULL,
+    	BYTESTRIDE int DEFAULT NULL,
+    	COMPONENTTYPE int DEFAULT NULL,
+    	NCOUNT int DEFAULT NULL,
+    	BFILEID VARCHAR(128) DEFAULT NULL,
+    PRIMARY KEY (OBJECTID)
+    ) 
+    </update>
+    
+    <insert id="insertBatch" parameterType="java.util.List">
+	    insert into ${TABLENAME} (TYPE, BYTEOFFSET, BYTESTRIDE,COMPONENTTYPE,NCOUNT,BFILEID) 
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.TYPE}, #{item.BYTEOFFSET}, #{item.BYTESTRIDE},#{item.COMPONENTTYPE}, #{item.NCOUNT}, #{item.BFILEID})
+	    </foreach>
+	</insert>
+</mapper>
