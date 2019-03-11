@@ -8,7 +8,7 @@ function PropertyBrowerUI(a) {
         }]
     });
     this.attrsPanel.init();
-    h.viewer.addEventListener(BimFish.Viewing.SELECTION_CHANGED_EVENT, function (b) {
+    h.viewer.addEventListener(BimKing.Viewing.SELECTION_CHANGED_EVENT, function (b) {
         b && 1 == b.dbIdArray.length && h.getPro(b.dbIdArray)
     })
 }
@@ -56,7 +56,7 @@ PropertyBrowerUI.prototype.getPro = function (a) {
             for (var d = a[e], m = {FieldName: d, value: []}, k = 0; k < b.length; k++) {
                 var c = b[k], f = b[k].displayCategory;
                 f && "string" === typeof f && "" !== f || (f = "\u5176\u5b83");
-                f == d && (f = BimFish.Viewing.Private.formatValueWithUnits(c.displayValue, c.units, c.type), m.value.push({
+                f == d && (f = BimKing.Viewing.Private.formatValueWithUnits(c.displayValue, c.units, c.type), m.value.push({
                     name: c.displayName,
                     FieldValue: f,
                     IsAmend: !0

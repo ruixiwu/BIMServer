@@ -1,27 +1,27 @@
-/* Copyright (c) 2019 BimFish Inc. */
+/* Copyright (c) 2019 BimKing Inc. */
 function getGlobal() {
     return "undefined" !== typeof window && null !== window ? window : "undefined" !== typeof self && null !== self ? self : GLOBAL
 }
 
-var BimFishNamespace = function (d) {
+var BimKingNamespace = function (d) {
     var g = getGlobal();
     d = d.split(".");
     for (var h = 0; h < d.length; ++h) g[d[h]] = g[d[h]] || {}, g = g[d[h]];
     return g
 };
-BimFishNamespace("BimFish.Viewing.Private");
-BimFishNamespace("BimFish.Viewing.Extensions");
-BimFishNamespace("BimFish.Viewing.Shaders");
-BimFishNamespace("BimFish.Viewing.UI");
-BimFishNamespace("BimFish.LMVTK");
-BimFish.Viewing.getGlobal = getGlobal;
-BimFish.Viewing.BimFishNamespace = BimFishNamespace;
+BimKingNamespace("BimKing.Viewing.Private");
+BimKingNamespace("BimKing.Viewing.Extensions");
+BimKingNamespace("BimKing.Viewing.Shaders");
+BimKingNamespace("BimKing.Viewing.UI");
+BimKingNamespace("BimKing.LMVTK");
+BimKing.Viewing.getGlobal = getGlobal;
+BimKing.Viewing.BimKingNamespace = BimKingNamespace;
 
 function getGlobal() {
     return "undefined" !== typeof window && null !== window ? window : "undefined" !== typeof self && null !== self ? self : GLOBAL
 }
 
-var av = BimFish.Viewing, avp = av.Private;
+var av = BimKing.Viewing, avp = av.Private;
 av.getGlobal = getGlobal;
 var isBrowser = av.isBrowser = "undefined" !== typeof navigator,
     isIE11 = av.isIE11 = isBrowser && !!navigator.userAgent.match(/Trident\/7\./);
@@ -111,8 +111,8 @@ var rescueFromPolymer = av.rescueFromPolymer = function () {
     var d = getGlobal();
     d.performance || (d.performance = Date)
 })();
-av = BimFish.Viewing;
-avp = BimFish.Viewing.Private;
+av = BimKing.Viewing;
+avp = BimKing.Viewing.Private;
 avp.IS_CONCAT_BUILD = !0;
 avp.BUILD_LMV_WORKER_URL = "dataload.js";
 avp.LMV_WORKER_URL = avp.BUILD_LMV_WORKER_URL;
@@ -132,7 +132,7 @@ avp.ENABLE_INLINE_WORKER = !1;
         return "undefined" !== typeof window ? encodeURI(window.location.href) : ""
     }
 
-    var h = BimFish.Viewing, c = BimFish.Viewing.Private;
+    var h = BimKing.Viewing, c = BimKing.Viewing.Private;
     c.LogLevels = {DEBUG: 5, LOG: 4, INFO: 3, WARNING: 2, ERROR: 1, NONE: 0};
     d.prototype.initialize = function (b) {
         b.eventCallback && (this.callback = b.eventCallback);
@@ -235,7 +235,7 @@ avp.ENABLE_INLINE_WORKER = !1;
             this.error = b >= f.ERROR ? console.error.bind(console) : a
         }
     };
-    BimFish.Viewing.Private.logger = new d
+    BimKing.Viewing.Private.logger = new d
 })();
 "undefined" !== typeof window && !function (d, g, h, c) {
     function b(a, f, b) {
@@ -2136,7 +2136,7 @@ LmvMatrix4.prototype = {
     }, {}, [6])(6)
 });
 (function () {
-    var d = BimFish.Viewing;
+    var d = BimKing.Viewing;
     d.EventDispatcher = function () {
     };
     d.EventDispatcher.prototype = {
@@ -2169,15 +2169,15 @@ LmvMatrix4.prototype = {
         }
     }
 })();
-BimFish.Viewing.FileLoader = function (d) {
+BimKing.Viewing.FileLoader = function (d) {
     this.viewer = d
 };
-BimFish.Viewing.FileLoader.prototype.constructor = BimFish.Viewing.FileLoader;
-BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
+BimKing.Viewing.FileLoader.prototype.constructor = BimKing.Viewing.FileLoader;
+BimKing.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
     return !1
 };
 (function () {
-    BimFish.Viewing.FileLoaderManager = new function () {
+    BimKing.Viewing.FileLoaderManager = new function () {
         var d = {};
         return {
             registerFileLoader: function (g, h, c) {
@@ -2212,7 +2212,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
         this.getMode() === c.ScreenMode.kFullScreen && d(this.bindFullscreenEventListener)
     }
 
-    var c = BimFish.Viewing, b = c.Private,
+    var c = BimKing.Viewing, b = c.Private,
         a = ["fullscreenchange", "mozfullscreenchange", "webkitfullscreenchange", "MSFullscreenChange"];
     c.ScreenMode = {kNormal: 0, kFullBrowser: 1, kFullScreen: 2};
     c.ScreenModeDelegate = h;
@@ -2291,7 +2291,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
         }, isScreenModeSupported: function (a) {
             return this.getScreenModeDelegate().isModeSupported(a)
         }, canChangeScreenMode: function () {
-            return this.isScreenModeSupported(BimFish.Viewing.ScreenMode.kNormal)
+            return this.isScreenModeSupported(BimKing.Viewing.ScreenMode.kNormal)
         }, setScreenMode: function (a) {
             b.logger.track({category: "screen_mode", value: a});
             return this.getScreenModeDelegate().setMode(a)
@@ -2317,7 +2317,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
     }
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private,
+    var d = BimKing.Viewing, g = d.Private,
         h = {METER: "m", CENTIMETER: "cm", MILLIMETER: "mm", FOOT: "ft", INCH: "in"};
     d.ModelUnits = h;
     var c = function (b) {
@@ -2469,7 +2469,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
         return this.myData ? this.myData.instancePolyCount : null
     };
     c.prototype.getLayersRoot = function () {
-        return this.is2d() ? this.myData ? this.myData.layersRoot : null : (g.logger.warn("BimFish.Viewing.Model.getLayersRoot is not yet implemented for 3D"), null)
+        return this.is2d() ? this.myData ? this.myData.layersRoot : null : (g.logger.warn("BimKing.Viewing.Model.getLayersRoot is not yet implemented for 3D"), null)
     };
     c.prototype.is2d = function () {
         return !(!this.myData || !this.myData.is2d)
@@ -2641,7 +2641,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
         f.oss_url = b.oss_url
     }
 
-    var b = BimFish.Viewing, a = b.Private;
+    var b = BimKing.Viewing, a = b.Private;
     a.inWorkerThread = "undefined" !== typeof self && "undefined" === typeof window;
     var f;
     "undefined" !== typeof XMLHttpRequest ? f = XMLHttpRequest : (f = require("xhr2"), f.prototype._restrictedHeaders.cookie = !1);
@@ -2660,7 +2660,7 @@ BimFish.Viewing.FileLoader.prototype.loadFile = function (d, g, h, c) {
         if (0 !== c.indexOf("urn:")) return c;
         b += "/";
         "items" !== f && (c = c.substr(4));
-        return b = "bubbles" === f && 0 == a.env.indexOf("BimFish") ? b + c : b + (f + "/" + c)
+        return b = "bubbles" === f && 0 == a.env.indexOf("BimKing") ? b + c : b + (f + "/" + c)
     };
     l.rawGet = function (c, d, r, p, q, t) {
         function m(a) {
@@ -2854,7 +2854,7 @@ if ("undefined" !== typeof window) {
                 case "txt":
                     if (0 == a.msg.indexOf("/nick ")) {
                         var b = F.getUserById(a.from, a.roomId), c = a.msg.slice(6);
-                        c.length && (b.name = c, b.id == t && (c = BimFish.Viewing.i18n.translate("you"), b.name += " (" + c + ")"));
+                        c.length && (b.name = c, b.id == t && (c = BimKing.Viewing.i18n.translate("you"), b.name += " (" + c + ")"));
                         F.dispatchEvent({type: "userListChange", data: a, channelId: a.roomId})
                     }
                     break;
@@ -2863,7 +2863,7 @@ if ("undefined" !== typeof window) {
                     h.logger.info("joined channel " + a.roomId);
                     b.users = a.users && a.users.length ? a.users : [];
                     for (c = 0; c < b.users.length; c++) b.users[c].name && b.users[c].name.length || (b.users[c].name = b.users[c].id.slice(0, 5));
-                    var c = f(), d = BimFish.Viewing.i18n.translate("you"),
+                    var c = f(), d = BimKing.Viewing.i18n.translate("you"),
                         d = {id: t, name: c + " (" + d + ")", isSelf: !0, status: 0};
                     b.userSet[t] || (b.users.push(d), b.userSet[t] = d);
                     0 != d.id.indexOf(c) && F.sendChatMessage("/nick " + c, a.roomId);
@@ -2970,7 +2970,7 @@ if ("undefined" !== typeof window) {
         }
     }
 
-    var g = BimFish.Viewing, h = g.Private;
+    var g = BimKing.Viewing, h = g.Private;
     h.config = {userName: ""};
     h.setUserName = function (a) {
         h.config.userName = a
@@ -2987,11 +2987,11 @@ if ("undefined" !== typeof window) {
         c = new h.MessageClient(a, f);
         return b[a[0]] = c
     };
-    BimFish.Viewing.Private.MessageClient = d
+    BimKing.Viewing.Private.MessageClient = d
 })();
-BimFishNamespace("BimFish.Viewing.Private");
+BimKingNamespace("BimKing.Viewing.Private");
 (function () {
-    var d = BimFish.Viewing.Private;
+    var d = BimKing.Viewing.Private;
     d.P2PClient = function (g) {
         function h(a) {
             try {
@@ -3112,18 +3112,18 @@ BimFishNamespace("BimFish.Viewing.Private");
         }
     };
     d.P2PClient.prototype.constructor = d.P2PClient;
-    BimFish.Viewing.EventDispatcher.prototype.apply(d.P2PClient.prototype)
+    BimKing.Viewing.EventDispatcher.prototype.apply(d.P2PClient.prototype)
 })();
 (function () {
-    var d = BimFish.Viewing.Private;
-    BimFish.Viewing.Private.LiveReviewClient = function (d) {
+    var d = BimKing.Viewing.Private;
+    BimKing.Viewing.Private.LiveReviewClient = function (d) {
         this.viewer = d;
         this.interceptor = this.viewtx = this.p2p = this.presenceChannelId = this.messageClient = null
     };
-    BimFish.Viewing.Private.LiveReviewClient.prototype.destroy = function () {
+    BimKing.Viewing.Private.LiveReviewClient.prototype.destroy = function () {
         this.leaveLiveReviewSession()
     };
-    BimFish.Viewing.Private.LiveReviewClient.prototype.joinLiveReviewSession = function (h) {
+    BimKing.Viewing.Private.LiveReviewClient.prototype.joinLiveReviewSession = function (h) {
         this.messageClient || (this.messageClient = d.MessageClient.GetInstance());
         this.presenceChannelId || (this.presenceChannelId = window.location.host);
         this.messageClient.isConnected() || this.messageClient.connect(h);
@@ -3136,14 +3136,14 @@ BimFishNamespace("BimFish.Viewing.Private");
         this.viewer.toolController.registerTool(this.interceptor);
         this.viewer.toolController.activateTool(this.interceptor.getName())
     };
-    BimFish.Viewing.Private.LiveReviewClient.prototype.leaveLiveReviewSession = function () {
+    BimKing.Viewing.Private.LiveReviewClient.prototype.leaveLiveReviewSession = function () {
         this.p2p && this.p2p.hangup();
         this.viewtx && this.viewtx.detach(this.viewer);
         this.messageClient && this.messageClient.disconnect();
         this.interceptor && this.viewer.toolController.deactivateTool(this.interceptor.getName());
         this.interceptor = this.messageClient = this.viewtx = this.p2p = null
     };
-    var g = BimFish.Viewing, d = g.Private;
+    var g = BimKing.Viewing, d = g.Private;
     d.InteractionInterceptor = function (d) {
         this.getNames = function () {
             return ["intercept"]
@@ -3281,9 +3281,9 @@ BimFishNamespace("BimFish.Viewing.Private");
         }
     };
     d.ViewTransceiver.prototype.constructor = d.ViewTransceiver;
-    BimFish.Viewing.EventDispatcher.prototype.apply(d.ViewTransceiver.prototype)
+    BimKing.Viewing.EventDispatcher.prototype.apply(d.ViewTransceiver.prototype)
 })();
-avp = BimFish.Viewing.Private;
+avp = BimKing.Viewing.Private;
 avp.Autocam = avp.Autocam || function (d, g) {
     function h(a) {
         n = !0;
@@ -3967,7 +3967,7 @@ avp.Autocam = avp.Autocam || function (d, g) {
             for (var g = 0, n = 0, r = 0; r < a.length; r++) {
                 var p;
                 if (null === a[r]) p = document.createElement("li"), p.style.height = "1px", g += 1, p.style.backgroundColor = "#E0E0E0"; else {
-                    var q = BimFish.Viewing.i18n.translate(a[r]), n = q.length > n ? q.length : n;
+                    var q = BimKing.Viewing.i18n.translate(a[r]), n = q.length > n ? q.length : n;
                     if (f[r]) {
                         p = document.createElement("div");
                         var t = document.createElement("input"), u = document.createElement("label");
@@ -4341,7 +4341,7 @@ avp.Autocam = avp.Autocam || function (d, g) {
         h(!1)
     }
 };
-avp = BimFish.Viewing.Private;
+avp = BimKing.Viewing.Private;
 avp.Autocam.ViewCube = function (d, g, h, c) {
     function b(a, b) {
         var c = {};
@@ -4804,7 +4804,7 @@ avp.Autocam.ViewCube = function (d, g, h, c) {
         fa = !0;
         Q = 200;
         a.viewScale = 3.5 * Q;
-        var d = THREE.LinearFilter, b = BimFish.Viewing.Private.getResourceUrl, l = c || "res/textures/",
+        var d = THREE.LinearFilter, b = BimKing.Viewing.Private.getResourceUrl, l = c || "res/textures/",
             g = (new THREE.DDSLoader).load(b(l + "VCcrossRGBA8small.dds"));
         g.minFilter = g.maxFilter = d;
         l = THREE.ShaderLib.cube;
@@ -5035,8 +5035,8 @@ avp.Autocam.ViewCube = function (d, g, h, c) {
         ia.push(ra(b("res/textures/VCcontextS.png")))
     })()
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.KeyCode = {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.KeyCode = {
     BACKSPACE: 8,
     TAB: 9,
     ENTER: 13,
@@ -5111,12 +5111,12 @@ BimFish.Viewing.KeyCode = {
     SINGLEQUOTE: 222,
     COMMANDMOZ: 224
 };
-BimFish.Viewing.ToolController = function (d, g, h, c, b) {
+BimKing.Viewing.ToolController = function (d, g, h, c, b) {
     function a(a, b) {
         return g.navigation.getUseLeftHandedInput() && 0 === a || m && 1 === a || k && !r && 0 === a && b.ctrlKey
     }
 
-    var f = BimFish.Viewing, l = BimFish.Viewing.Private;
+    var f = BimKing.Viewing, l = BimKing.Viewing.Private;
     this.domElement = g.canvasWrap;
     this.selector = d.selector;
     this.autocam = h;
@@ -5125,7 +5125,7 @@ BimFish.Viewing.ToolController = function (d, g, h, c, b) {
     var k = -1 != navigator.userAgent.search("Mac OS"), m = -1 != navigator.userAgent.search("Firefox"),
         n = -1 !== navigator.userAgent.search("Chrome"), r = -1 !== navigator.userAgent.search("Safari") && !n, p = {},
         q = [], t = !1, v = -1, C = -1, B = !1, H = null, F = void 0, w = !1, u = {}, A = this,
-        D = BimFish.Viewing.KeyCode;
+        D = BimKing.Viewing.KeyCode;
     this.__registerToolByName = function (a, b) {
         p[b] = a
     };
@@ -5185,7 +5185,7 @@ BimFish.Viewing.ToolController = function (d, g, h, c, b) {
             0 === b.count && (b.count++, q.push(b));
             b.activate(a, g);
             f && q.push(f);
-            g.fireEvent({type: BimFish.Viewing.TOOL_CHANGE_EVENT, toolName: a, tool: b, active: !0});
+            g.fireEvent({type: BimKing.Viewing.TOOL_CHANGE_EVENT, toolName: a, tool: b, active: !0});
             d.track({category: "tool_changed", name: a});
             return !0
         }
@@ -5195,7 +5195,7 @@ BimFish.Viewing.ToolController = function (d, g, h, c, b) {
     this.deactivateTool = function (a) {
         if (t) return !1;
         for (var b = q.length; 0 <= --b;) if (q[b].activeName === a) return 1 === p[a].count && q.splice(b, 1), p[a].count--, p[a].deactivate(a), g.fireEvent({
-            type: BimFish.Viewing.TOOL_CHANGE_EVENT,
+            type: BimKing.Viewing.TOOL_CHANGE_EVENT,
             toolName: a,
             tool: q[b],
             active: !1
@@ -5447,8 +5447,8 @@ BimFish.Viewing.ToolController = function (d, g, h, c, b) {
         this.scrollInputEnabled = a
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.ViewingUtilities = function (d, g, h) {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.ViewingUtilities = function (d, g, h) {
     this.autocam = g;
     this.viewerImpl = d;
     var c = h.getCamera(), b = {}, a = {}, f = new function (a) {
@@ -5569,8 +5569,8 @@ BimFish.Viewing.ViewingUtilities = function (d, g, h) {
         return !1
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.DefaultHandler = function (d, g, h) {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.DefaultHandler = function (d, g, h) {
     this.clickConfig = null;
     this.getNames = function () {
         return ["default"]
@@ -5660,9 +5660,9 @@ BimFish.Viewing.DefaultHandler = function (d, g, h) {
         return "press" === c.type ? (c.clientX = c.pointers[0].clientX, c.clientY = c.pointers[0].clientY, d.api.triggerContextMenu(c)) : !1
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.GestureHandler = function (d) {
-    var g = d.navigation, h = ["gestures"], c = this, b = !0, a = !0, f = null, l = BimFish.Viewing.isTouchDevice();
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.GestureHandler = function (d) {
+    var g = d.navigation, h = ["gestures"], c = this, b = !0, a = !0, f = null, l = BimKing.Viewing.isTouchDevice();
     g.setIsTouchDevice(l);
     l && (f = new Hammer.Manager(d.canvasWrap, {
         recognizers: [[Hammer.Pan, {
@@ -5746,8 +5746,8 @@ BimFish.Viewing.GestureHandler = function (d) {
         f && (f.remove(Hammer.Pan), f.remove(Hammer.Pinch), f.remove(Hammer.Rotate), f.off("panstart panmove panend", this.distributeGesture), f.off("pinchstart pinchmove pinchend", this.distributeGesture), f.off("rotatestart rotatemove rotateend", this.distributeGesture))
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.OrbitDollyPanTool = function (d, g) {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.OrbitDollyPanTool = function (d, g) {
     function h(a, b) {
         var c = window.innerWidth, d = window.innerHeight;
         aa.set((a - .5 * c - 0) / (.5 * c), (.5 * d + 0 - b) / (.5 * d), 0);
@@ -6105,12 +6105,12 @@ BimFish.Viewing.OrbitDollyPanTool = function (d, g) {
         this.resetKeys();
         this.interactionEnd(u)
     };
-    g.addEventListener(BimFish.Viewing.ESCAPE_EVENT, function (a) {
+    g.addEventListener(BimKing.Viewing.ESCAPE_EVENT, function (a) {
         c.handleBlur(a)
     })
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.HotGestureTool = function (d) {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.HotGestureTool = function (d) {
     navigator.userAgent.search("Mac OS");
     d.navigation.getCamera();
     var g = ["hottouch"], h = null, c = null, b = !1, a = !1, f = null;
@@ -6188,8 +6188,8 @@ BimFish.Viewing.HotGestureTool = function (d) {
     }
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Private");
-BimFish.Viewing.HotkeyManager = function () {
+BimKingNamespace("BimKing.Viewing.Private");
+BimKing.Viewing.HotkeyManager = function () {
     function d(a, b) {
         return a - b
     }
@@ -6250,12 +6250,12 @@ BimFish.Viewing.HotkeyManager = function () {
             for (c = 0; c < f.length;) b = f[c], !0 === b.onRelease(b.keys.split()) ? f.splice(c, 1) : c++;
             for (c = 0; c < a.length;) b = a[c], !0 === b.onPress(b.keys.split()) ? a.splice(c, 1) : c++;
             return !1
-        }, KEYCODES: BimFish.Viewing.KeyCode
+        }, KEYCODES: BimKing.Viewing.KeyCode
     }
 };
-BimFish.Viewing.theHotkeyManager = new BimFish.Viewing.HotkeyManager;
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.FovTool = function (d) {
+BimKing.Viewing.theHotkeyManager = new BimKing.Viewing.HotkeyManager;
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.FovTool = function (d) {
     var g = d.navigation, h = g.getCamera(), c = ["fov"], b = !1, a = 0, f = null, l = null, k = !1, m = 0, n = -5,
         r = new THREE.Vector3, p = new THREE.Vector3, q = new THREE.Vector3, t = null;
     this.getNames = function () {
@@ -6355,8 +6355,8 @@ BimFish.Viewing.FovTool = function (d) {
         return !1
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.WorldUpTool = function (d, g) {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.WorldUpTool = function (d, g) {
     var h = g.navigation, c = h.getCamera(), b = ["worldup"], a = this, f = function () {
         var a = new THREE.Vector3;
         return function (b, f, c, d) {
@@ -6572,12 +6572,12 @@ BimFish.Viewing.WorldUpTool = function (d, g) {
         return b[0]
     };
     this.activate = function (a) {
-        g.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange);
+        g.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange);
         n = !1
     };
     this.deactivate = function (a) {
         r.end();
-        g.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange);
+        g.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange);
         this.utilities.restorePivot();
         v = null;
         n = k = !1
@@ -6627,11 +6627,11 @@ BimFish.Viewing.WorldUpTool = function (d, g) {
             case "dragend":
                 return v = null, this.handleButtonUp(a, 0);
             case "rotatestart":
-                return g.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange), v = "roll", C = THREE.Math.degToRad(a.rotation), h.getScreenViewport(), !0;
+                return g.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange), v = "roll", C = THREE.Math.degToRad(a.rotation), h.getScreenViewport(), !0;
             case "rotatemove":
                 return C = THREE.Math.degToRad(a.rotation), "roll" === v;
             case "rotateend":
-                g.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange), C = THREE.Math.degToRad(a.rotation), v = null
+                g.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.handleCameraChange), C = THREE.Math.degToRad(a.rotation), v = null
         }
         return !1
     };
@@ -6651,7 +6651,7 @@ BimFish.Viewing.WorldUpTool = function (d, g) {
         k = !0;
         v = null;
         this.controller.setIsLocked(!0);
-        g.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, a.handleCameraChange);
+        g.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, a.handleCameraChange);
         return !0
     };
     this.handleButtonUp = function (b, f) {
@@ -6660,7 +6660,7 @@ BimFish.Viewing.WorldUpTool = function (d, g) {
         k = !1;
         m = !0;
         this.controller.setIsLocked(!1);
-        g.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, a.handleCameraChange);
+        g.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, a.handleCameraChange);
         return !0
     };
     this.handleMouseMove = function (a) {
@@ -6674,8 +6674,8 @@ BimFish.Viewing.WorldUpTool = function (d, g) {
         return !1
     }
 };
-BimFishNamespace("BimFish.Viewing");
-BimFish.Viewing.ToolInterface = function () {
+BimKingNamespace("BimKing.Viewing");
+BimKing.Viewing.ToolInterface = function () {
     this.names = ["unnamed"];
     this.getNames = function () {
         return this.names
@@ -6841,7 +6841,7 @@ BimFish.Viewing.ToolInterface = function () {
         }
     }
 
-    var g = BimFish.Viewing, h = g.Private;
+    var g = BimKing.Viewing, h = g.Private;
     h.Selector = d;
     h.MultiModelSelector = function (c) {
         function b() {
@@ -6948,7 +6948,7 @@ BimFish.Viewing.ToolInterface = function () {
         this.models = []
     }
 
-    var g = BimFish.Viewing, h = g.Private, c = function (b, a) {
+    var g = BimKing.Viewing, h = g.Private, c = function (b, a) {
         this.viewerImpl = b;
         this.model = a;
         this.isolatedNodes = [];
@@ -7101,7 +7101,7 @@ BimFish.Viewing.ToolInterface = function () {
     function d() {
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Private"), h = BimFishNamespace("BimFish.Viewing.Private.DomUtils");
+    var g = BimKingNamespace("BimKing.Viewing.Private"), h = BimKingNamespace("BimKing.Viewing.Private.DomUtils");
     h.DomDispatcher = d;
     d.prototype = {
         constructor: d, apply: function (c) {
@@ -7137,7 +7137,7 @@ BimFish.Viewing.ToolInterface = function () {
     }
 })();
 (function () {
-    BimFish.Viewing.Private.SortedList = function (d) {
+    BimKing.Viewing.Private.SortedList = function (d) {
         function g(a, f, d) {
             f || (f = 0);
             d || (d = b.length);
@@ -7170,7 +7170,7 @@ BimFish.Viewing.ToolInterface = function () {
         }
     }
 })();
-var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
+var av = BimKing.Viewing, avp = BimKing.Viewing.Private,
     LMV_WORKER_URL = avp.LMV_WORKER_URL || "src/workers/MainWorker-web.js",
     ENABLE_INLINE_WORKER = avp.ENABLE_INLINE_WORKER || !1;
 (function () {
@@ -7259,7 +7259,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
         return c
     }
 
-    var h = BimFish.Viewing, c = h.Private, b = function (a, b, f) {
+    var h = BimKing.Viewing, c = h.Private, b = function (a, b, f) {
         this.sharedDbPath = a;
         this.propWorker = null;
         this.eventTarget = f;
@@ -7363,7 +7363,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
     c.PropDbLoader = b
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private, h = d.isNodeJS ? 10 : d.isMobileDevice() ? 2 : 6, c = function (b) {
+    var d = BimKing.Viewing, g = d.Private, h = d.isNodeJS ? 10 : d.isMobileDevice() ? 2 : 6, c = function (b) {
         this.viewer3DImpl = b;
         this.next_pack = 0;
         this.loading = !1;
@@ -7735,7 +7735,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
         this.domainParam = auth && !g.isNodeJS ? "domain\x3d" + encodeURIComponent(window.location.origin) : ""
     }
 
-    var g = BimFish.Viewing, h = g.Private;
+    var g = BimKing.Viewing, h = g.Private;
     d.prototype.dtor = function () {
         this.options = this.svf = null;
         this.parsingWorker && (this.parsingWorker.terminate(), this.parsingWorker = null);
@@ -7980,7 +7980,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
         }
     }
 
-    var g = BimFish.Viewing.Private;
+    var g = BimKing.Viewing.Private;
     d.computeLevelOffset = function (d) {
         for (var c = 1, b = 0, a = 0; 20 > a; a++) {
             c *= 2;
@@ -7990,8 +7990,8 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
         g.logger.log("unexpected leaflet tileSize");
         return 0
     };
-    BimFish.Viewing.Private.LeafletLoader = d;
-    BimFish.Viewing.FileLoaderManager.registerFileLoader("Leaflet", ["jpeg", "jpg", "png"], g.LeafletLoader)
+    BimKing.Viewing.Private.LeafletLoader = d;
+    BimKing.Viewing.FileLoaderManager.registerFileLoader("Leaflet", ["jpeg", "jpg", "png"], g.LeafletLoader)
 })();
 (function () {
     function d(a, b) {
@@ -8010,7 +8010,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
         this.numTriangleGeoms = this.numCirculars = this.numEllipticals = 0
     }
 
-    var g = BimFish.Viewing.Private, h = 2 * Math.PI, c = [0, 1, 3, 0, 3, 2];
+    var g = BimKing.Viewing.Private, h = 2 * Math.PI, c = [0, 1, 3, 0, 3, 2];
     d.prototype.expandStride = function () {
     };
     d.prototype.addToBounds = function (a, b) {
@@ -8211,7 +8211,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private,
 })();
 
 function init_three_triangulator() {
-    BimFish.Viewing.Private.Triangulator || (BimFish.Viewing.Private.Triangulator = function () {
+    BimKing.Viewing.Private.Triangulator || (BimKing.Viewing.Private.Triangulator = function () {
         function d() {
             this.bbox = new THREE.Box2;
             this.right = this.left = null;
@@ -8252,7 +8252,7 @@ function init_three_triangulator() {
             this.processResult(d)
         }
 
-        var b = BimFish.Viewing.Private;
+        var b = BimKing.Viewing.Private;
         g.prototype.splitNode = function (a) {
             if (!(a.bbox.min.y >= a.bbox.max.y || 3 > a.node_edges.length)) {
                 var b = .5 * (a.bbox.min.y + a.bbox.max.y);
@@ -8414,7 +8414,7 @@ function init_three_triangulator() {
 }
 
 function init_three_intersector() {
-    BimFish.Viewing.Private.Intersector || (BimFish.Viewing.Private.Intersector = function () {
+    BimKing.Viewing.Private.Intersector || (BimKing.Viewing.Private.Intersector = function () {
         function d(a, c, f, d, l) {
             var g = b.subVectors(f, c), h = a.normal.dot(g);
             if (1E-10 > Math.abs(h)) return d.copy(c), l.copy(f), 2;
@@ -8461,7 +8461,7 @@ function init_three_intersector() {
             v && H ? p.push(new c(v, H, B, C, F, N, u)) : h.logger.warn("Unexpected one intersection where two were expected")
         }
 
-        var h = BimFish.Viewing.Private, c = BimFish.Viewing.Private.Triangulator.Edge, b = new THREE.Vector3,
+        var h = BimKing.Viewing.Private, c = BimKing.Viewing.Private.Triangulator.Edge, b = new THREE.Vector3,
             a = new THREE.Vector3, f = new THREE.Vector3, l = new THREE.Vector3, k = new THREE.Vector3,
             m = new THREE.Vector3, n = new THREE.Vector3, r = new THREE.Matrix4, p = new THREE.Plane;
         return {
@@ -8560,7 +8560,7 @@ function init_three_intersector() {
         this.recursion_stack = []
     }
 
-    var h = BimFish.Viewing.Private;
+    var h = BimKing.Viewing.Private;
     d.prototype.setLeftChild = function (b, a) {
         this.nodesI[b * this.node_stride + 6] = a
     };
@@ -8893,7 +8893,7 @@ function init_three_intersector() {
     h.BVHBuilder = g
 })();
 (function () {
-    var d = BimFish.Viewing.Private;
+    var d = BimKing.Viewing.Private;
     d.VertexBufferReader = function (d) {
         this.vb = d.vb.buffer;
         this.vbf = new Float32Array(this.vb);
@@ -8962,7 +8962,7 @@ function init_three_intersector() {
         this.areaCullThreshold = this.areaConv = 1
     }
 
-    var g = BimFish.Viewing.Private, h = g.OUTSIDE = 0, c = g.INTERSECTS = 1, b = g.CONTAINS = 2;
+    var g = BimKing.Viewing.Private, h = g.OUTSIDE = 0, c = g.INTERSECTS = 1, b = g.CONTAINS = 2;
     d.prototype.reset = function (a) {
         this.viewProj.multiplyMatrices(a.projectionMatrix, a.matrixWorldInverse);
         this.frustum.setFromMatrix(this.viewProj);
@@ -9033,7 +9033,7 @@ function init_three_intersector() {
     }();
     g.FrustumIntersector = d
 })();
-var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function () {
+var avp = BimKing.Viewing.Private, VBIntersector = avp.VBIntersector = function () {
     function d() {
         a || (a = new THREE.Matrix4, f = new THREE.Ray, l = new THREE.Vector3, k = new THREE.Vector3, m = new THREE.Vector3)
     }
@@ -9157,7 +9157,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         a.prototype.constructor = a
     }
 
-    var g = BimFish.Viewing.Private, h = {}, c = {}, b, a, f = 1;
+    var g = BimKing.Viewing.Private, h = {}, c = {}, b, a, f = 1;
     g.BufferGeometryUtils = {
         meshToGeometry: function (f) {
             var l = f.mesh, m;
@@ -9224,7 +9224,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         this.svf.packFileTotalSize && this.svf.packFileTotalSize - 6 * this.svf.primitiveCount <= g.GPU_MEMORY_LIMIT && d < g.GPU_OBJECT_LIMIT && (this.svf.disableStreaming = !0)
     }
 
-    var g = BimFish.Viewing.Private;
+    var g = BimKing.Viewing.Private;
     d.prototype.getGeometry = function (d) {
         return this.geoms[d]
     };
@@ -9313,7 +9313,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         this.nodeBoxes = c || new Float32Array(6 * this.numNodes)
     }
 
-    var c = BimFish.Viewing.Private;
+    var c = BimKing.Viewing.Private;
     d.prototype.getIndex = function (b) {
         var a = this.dbIdToIndex[b];
         if (a) return a;
@@ -9405,7 +9405,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         this.numOff = this.numHidden = 0
     }
 
-    var g = BimFish.Viewing, h = g.Private;
+    var g = BimKing.Viewing, h = g.Private;
     g.SelectionMode = {LEAF_OBJECT: 0, FIRST_OBJECT: 1, LAST_OBJECT: 2};
     d.prototype.setFlagNode = function (c, b, a) {
         var f = this.nodeAccess.getNodeFlags(c);
@@ -9553,7 +9553,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         this.position = this.quaternion = this.scale = null
     }
 
-    var b = BimFish.Viewing.Private, a = b.MESH_VISIBLE = 1;
+    var b = BimKing.Viewing.Private, a = b.MESH_VISIBLE = 1;
     b.MESH_HIGHLIGHTED = 2;
     var f = b.MESH_HIDE = 4, l = b.MESH_ISLINE = 8, k = b.MESH_MOVED = 16;
     b.MESH_TRAVERSED = 32;
@@ -9894,7 +9894,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         return f
     }
 
-    var c = BimFish.Viewing.Private, b;
+    var c = BimKing.Viewing.Private, b;
     d.prototype.getIndices = function () {
         return Array.isArray(this.indices) ? this.indices[0] : this.indices
     };
@@ -10071,7 +10071,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     c.RenderBatch = d
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private;
+    var d = BimKing.Viewing, g = d.Private;
     g.ModelIteratorLinear = function (h) {
         var c = h.getFragmentList(), b = c.getCount(), a = 0, f = [new Int32Array(b)], l;
         for (l = 0; l < b; l++) f[0][l] = l;
@@ -10131,7 +10131,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Private;
+    var d = BimKing.Viewing.Private;
     d.ModelIteratorBVH = function () {
         function g(a) {
             for (var b = k[a], c = n; c > m && k[l[c - 1]] > b;) l[c] = l[c - 1], c--;
@@ -10226,12 +10226,12 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         return f.distanceToSquared(c)
     }
 
-    var g = BimFish.Viewing.Private, h = function (c, b) {
+    var g = BimKing.Viewing.Private, h = function (c, b) {
         this.timeStamp = c;
         this.mesh = b;
         this.state = 0
     };
-    BimFish.Viewing.Private.ModelIteratorTexQuad = function (c, b) {
+    BimKing.Viewing.Private.ModelIteratorTexQuad = function (c, b) {
         function a(a) {
             var b = I.texHeight >> I.maxLevel - a.level, c = a.y * I.tileSize;
             return a.x * I.tileSize >= I.texWidth >> I.maxLevel - a.level || c >= b
@@ -10490,7 +10490,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
             return T
         }
     };
-    BimFish.Viewing.Private.TexQuadConfig = function () {
+    BimKing.Viewing.Private.TexQuadConfig = function () {
         this.acmSessionId = this.maxLevel = this.tileSize = this.urlPattern = null;
         this.texHeight = this.texWidth = 0;
         this.onRootLoaded = null;
@@ -10729,13 +10729,13 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         }
     }
 
-    var g = BimFish.Viewing, h = g.Private, c = 1;
+    var g = BimKing.Viewing, h = g.Private, c = 1;
     d.prototype = Object.create(g.Model.prototype);
     d.prototype.constructor = d;
     h.RenderModel = d
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private;
+    var d = BimKing.Viewing, g = d.Private;
     g.RenderScene = function () {
         var h = !1, c = !1, b = !d.isMobileDevice(), a = null, f = !1, l = 0, k = [], m = [], n = new THREE.Box3,
             r = new g.FrustumIntersector, p = new THREE.Raycaster, q = 0, t = performance;
@@ -10926,9 +10926,9 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     var g = function (d) {
         return ((1 << 2 * d.level) - 1) / 3 + d.y * (1 << d.level) + d.x
     };
-    BimFish.Viewing.Private.TileCoords = d;
-    BimFish.Viewing.Private.tile2Index = g;
-    BimFish.Viewing.Private.index2Tile = function (h) {
+    BimKing.Viewing.Private.TileCoords = d;
+    BimKing.Viewing.Private.tile2Index = g;
+    BimKing.Viewing.Private.index2Tile = function (h) {
         for (var c = new d(0, 0, 0); g(c) <= h;) c.level++;
         c.level--;
         h -= g(c);
@@ -10939,7 +10939,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private;
+    var d = BimKing.Viewing, g = d.Private;
     g.RenderContext = function () {
         function h() {
             function a(a) {
@@ -10994,7 +10994,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
                 toonShaded: !1,
                 envMapBg: !1,
                 numIdTargets: 1
-            }, Fa, Aa, ra, V, Y = BimFish.Viewing.Shaders;
+            }, Fa, Aa, ra, V, Y = BimKing.Viewing.Shaders;
         this.settings = R;
         this.init = function (a, b, f) {
             Y.init_ShaderChunks(THREE);
@@ -11365,7 +11365,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_FXAAShader = function (g) {
         "undefined" === typeof d.FXAAShader && (d.FXAAShader = {
             uniforms: {
@@ -11378,7 +11378,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_ShaderChunks = function (g) {
         d.PackDepthShaderChunk = "vec4 packDepth( const in float depth ) {\nvec4 enc \x3d vec4(1.0, 255.0, 65025.0, 160581375.0) * depth;\nenc \x3d fract(enc);\nenc -\x3d enc.yzww * vec4(1.0/255.0,1.0/255.0,1.0/255.0,0.0);\nreturn enc;\n}\nfloat unpackDepth( const in vec4 rgba_depth ) {\nreturn dot( rgba_depth, vec4(1.0, 1.0/255.0, 1.0/65025.0, 1.0/160581375.0) );\n}";
         d.TonemapShaderChunk = "float luminance_post(vec3 rgb) {\nreturn dot(rgb, vec3(0.299, 0.587, 0.114));\n}\nfloat luminance_pre(vec3 rgb) {\nreturn dot(rgb, vec3(0.212671, 0.715160, 0.072169));\n}\nvec3 xyz2rgb(vec3 xyz) {\nvec3 R \x3d vec3( 3.240479, -1.537150, -0.498535);\nvec3 G \x3d vec3(-0.969256,  1.875992,  0.041556);\nvec3 B \x3d vec3( 0.055648, -0.204043,  1.057311);\nvec3 rgb;\nrgb.b \x3d dot(xyz, B);\nrgb.g \x3d dot(xyz, G);\nrgb.r \x3d dot(xyz, R);\nreturn rgb;\n}\nvec3 rgb2xyz(vec3 rgb) {\nvec3 X \x3d vec3(0.412453, 0.35758, 0.180423);\nvec3 Y \x3d vec3(0.212671, 0.71516, 0.0721688);\nvec3 Z \x3d vec3(0.0193338, 0.119194, 0.950227);\nvec3 xyz;\nxyz.x \x3d dot(rgb, X);\nxyz.y \x3d dot(rgb, Y);\nxyz.z \x3d dot(rgb, Z);\nreturn xyz;\n}\nvec3 xyz2xyY(vec3 xyz) {\nfloat sum \x3d xyz.x + xyz.y + xyz.z;\nsum \x3d 1.0 / sum;\nvec3 xyY;\nxyY.z \x3d xyz.y;\nxyY.x \x3d xyz.x * sum;\nxyY.y \x3d xyz.y * sum;\nreturn xyY;\n}\nvec3 xyY2xyz(vec3 xyY) {\nfloat x \x3d xyY.x;\nfloat y \x3d xyY.y;\nfloat Y \x3d xyY.z;\nvec3 xyz;\nxyz.y \x3d Y;\nxyz.x \x3d x * (Y / y);\nxyz.z \x3d (1.0 - x - y) * (Y / y);\nreturn xyz;\n}\nfloat toneMapCanon_T(float x)\n{\nfloat xpow \x3d pow(x, 1.60525727);\nfloat tmp \x3d ((1.05542877*4.68037409)*xpow) / (4.68037409*xpow + 1.0);\nreturn clamp(tmp, 0.0, 1.0);\n}\nconst float Shift \x3d 1.0 / 0.18;\nfloat toneMapCanonFilmic_NoGamma(float x) {\nx *\x3d Shift;\nconst float A \x3d 0.2;\nconst float B \x3d 0.34;\nconst float C \x3d 0.002;\nconst float D \x3d 1.68;\nconst float E \x3d 0.0005;\nconst float F \x3d 0.252;\nconst float scale \x3d 1.0/0.833837;\nreturn (((x*(A*x+C*B)+D*E)/(x*(A*x+B)+D*F))-E/F) * scale;\n}\nvec3 toneMapCanonFilmic_WithGamma(vec3 x) {\nx *\x3d Shift;\nconst float A \x3d 0.27;\nconst float B \x3d 0.29;\nconst float C \x3d 0.052;\nconst float D \x3d 0.2;\nconst float F \x3d 0.18;\nconst float scale \x3d 1.0/0.897105;\nreturn (((x*(A*x+C*B))/(x*(A*x+B)+D*F))) * scale;\n}\nvec3 toneMapCanonOGS_WithGamma_WithColorPerserving(vec3 x) {\nvec3 outColor \x3d x.rgb;\noutColor \x3d min(outColor, vec3(3.0));\nfloat inLum \x3d luminance_pre(outColor);\nif (inLum \x3e 0.0) {\nfloat outLum \x3d toneMapCanon_T(inLum);\noutColor \x3d outColor * (outLum / inLum);\noutColor \x3d clamp(outColor, vec3(0.0), vec3(1.0));\n}\nfloat gamma \x3d 1.0/2.2;\noutColor \x3d pow(outColor, vec3(gamma));\nreturn outColor;\n}";
@@ -11406,7 +11406,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_CopyShader = function (g) {
         "undefined" === typeof d.CopyShader && (d.CopyShader = {
             uniforms: {tDiffuse: {type: "t", value: null}},
@@ -11416,7 +11416,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_CelShader = function (g) {
         "undefined" === typeof d.CelShader && (d.CelShader = {
             uniforms: {
@@ -11435,7 +11435,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_BlendShader = function (g) {
         "undefined" === typeof d.BlendShader && (d.BlendShader = {
             uniforms: {
@@ -11460,7 +11460,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders, g = function (d, c) {
+    var d = BimKing.Viewing.Shaders, g = function (d, c) {
         this.textureID = void 0 !== c ? c : "tDiffuse";
         this.uniforms = THREE.UniformsUtils.clone(d.uniforms);
         this.material = new THREE.ShaderMaterial({
@@ -11516,7 +11516,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     d.LmvShaderPass = g
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_SAOShader = function (g) {
         "undefined" === typeof d.SAOShader && (d.SAOShader = {
             uniforms: {
@@ -11543,7 +11543,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_SAOBlurShader = function (g) {
         "undefined" === typeof d.SAOBlurShader && (d.SAOBlurShader = {
             uniforms: {
@@ -11559,7 +11559,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_SAOMinifyShader = function (g) {
         "undefined" === typeof d.SAOMinifyFirstShader && (d.SAOMinifyFirstShader = {
             uniforms: {
@@ -11584,7 +11584,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_FireflyPhongShader = function (g) {
         "undefined" === typeof d.FireflyPhongShader && (d.FireflyPhongShader = {
             uniforms: g.UniformsUtils.merge([g.UniformsLib.common, g.UniformsLib.bump, g.UniformsLib.normalmap, g.UniformsLib.lights, d.CutPlanesUniforms, d.IdUniforms, d.ThemingUniform, {
@@ -11610,7 +11610,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Shaders, h = d.Private;
+    var d = BimKing.Viewing, g = d.Shaders, h = d.Private;
     g.init_FireflyPrismShader = function (c) {
         function b(a) {
             var b = a + "_invert", f = {};
@@ -11740,7 +11740,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
                 envExponentCount: {type: "f", value: 10}
             }]),
             vertexShader: ["varying vec3 vViewPosition;\nvarying vec3 vNormal;\n#if defined(PRISMWOOD) \x26\x26 !defined(NO_UVW)\nvarying vec3 vUvw;\n#endif\n#if MAX_SPOT_LIGHTS \x3e 0 || NUM_CUTPLANES \x3e 0\nvarying vec3 vWorldPosition;\n#endif", f("#define USE_MAP"), "#ifdef USE_MAP\nvarying vec2 vUv;\n#endif\n#ifdef USE_LOGDEPTHBUF\n#ifdef USE_LOGDEPTHBUF_EXT\nvarying float vFragDepth;\n#endif\nuniform float logDepthBufFC;\n#endif\n#ifdef MRT_NORMALS\nvarying float depth;\n#endif", g.PackNormalsShaderChunk, "#if !defined(USE_MAP) \x26\x26 (MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0)\nvarying vec3 vTangent;\nvarying vec3 vBitangent;\nvoid ComputeTangents(vec3 normal, out vec3 u, out vec3 v)\n{\n    float scale \x3d normal.z \x3c 0.0 ? -1.0 : 1.0;\n    vec3 temp \x3d scale * normal;\n    float e    \x3d temp.z;\n    float h    \x3d 1.0/(1.0 + e);\n    float hvx  \x3d h   *  temp.y;\n    float hvxy \x3d hvx * -temp.x;\n    u \x3d vec3(e + hvx * temp.y, hvxy,                -temp.x);\n    v \x3d vec3(hvxy,             e + h * temp.x * temp.x, -temp.y);\n    u *\x3d scale;\n    v *\x3d scale;\n}\n#endif\nvoid main() {\n#ifdef USE_MAP\nvUv \x3d uv;\n#endif\n#if defined(PRISMWOOD) \x26\x26 !defined(NO_UVW)\nvUvw \x3d uvw;\n#endif\n#ifdef UNPACK_NORMALS\nvec3 objectNormal \x3d decodeNormal(normal);\n#else\nvec3 objectNormal \x3d normal;\n#endif\n#ifdef FLIP_SIDED\nobjectNormal \x3d -objectNormal;\n#endif\nvec3 transformedNormal \x3d normalMatrix * objectNormal;\nvNormal \x3d normalize( transformedNormal );\nvec4 mvPosition \x3d modelViewMatrix * vec4( position, 1.0 );\ngl_Position \x3d projectionMatrix * mvPosition;\nvViewPosition \x3d -mvPosition.xyz;\n#if MAX_SPOT_LIGHTS \x3e 0 || NUM_CUTPLANES \x3e 0\nvec4 worldPosition \x3d modelMatrix * vec4( position, 1.0 );\nvWorldPosition \x3d worldPosition.xyz;\n#endif\n#if !defined(USE_MAP) \x26\x26 (MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0)\nvec3 Tu, Tv;\nComputeTangents(vNormal, Tu, Tv);\nvTangent \x3d Tu;\nvBitangent \x3d Tv;\n#endif\n#ifdef USE_LOGDEPTHBUF\nif (projectionMatrix[3][3] \x3d\x3d 0.0) {\ngl_Position.z \x3d log2(max(1.0e-6, gl_Position.w + 1.0)) * logDepthBufFC;\n#ifdef USE_LOGDEPTHBUF_EXT\nvFragDepth \x3d 1.0 + gl_Position.w;\n#else\ngl_Position.z \x3d (gl_Position.z - 1.0) * gl_Position.w;\n#endif\n} else {\n#ifdef USE_LOGDEPTHBUF_EXT\nvFragDepth \x3d 1.0 + vViewPosition.z;\n#else\n#endif\n}\n#endif\n#ifdef MRT_NORMALS\ndepth \x3d mvPosition.z;\n#endif\n}"].join("\n"),
-            fragmentShader: ["//**************************************************************************/\n// Copyright 2015 BimFish, Inc. \n// All rights reserved.\n// \n// This computer source code and related instructions and comments are the \n// unpublished confidential and proprietary information of BimFish, Inc. \n// and are protected under Federal copyright and state trade secret law. \n// They may not be disclosed to, copied or used by any third party without\n// the prior written consent of BimFish, Inc. \n//**************************************************************************/ \n#define PI 3.141592654\n#define RECIPROCAL_PI 0.318309886\n#define RECIPROCAL_2PI 0.159154943\n#define ONE 0.00390625\nuniform vec3 surface_albedo;\nuniform float surface_roughness;\nuniform float surface_anisotropy;\nuniform float surface_rotation;\n#if defined( PRISMOPAQUE )\nuniform vec3 opaque_albedo;\nuniform float opaque_f0;\nuniform vec3 opaque_luminance_modifier;\nuniform float opaque_luminance;\n#elif defined( PRISMMETAL )\nuniform vec3 metal_f0;\n#elif defined( PRISMLAYERED )\nuniform float layered_f0;\nuniform vec3 layered_diffuse;\nuniform float layered_fraction;\nuniform vec3 layered_bottom_f0;\nuniform float layered_roughness;\nuniform float layered_anisotropy;\nuniform float layered_rotation;\n#elif defined( PRISMTRANSPARENT )\nuniform float transparent_ior;\nuniform vec3 transparent_color;\nuniform float transparent_distance;\n#elif defined( PRISMWOOD )\nuniform bool wood_fiber_cosine_enable;\nuniform int wood_fiber_cosine_bands;\nuniform vec4 wood_fiber_cosine_weights;\nuniform vec4 wood_fiber_cosine_frequencies;\nuniform bool wood_fiber_perlin_enable;\nuniform int wood_fiber_perlin_bands;\nuniform vec4 wood_fiber_perlin_weights;\nuniform vec4 wood_fiber_perlin_frequencies;\nuniform float wood_fiber_perlin_scale_z;\nuniform bool wood_growth_perlin_enable;\nuniform int wood_growth_perlin_bands;\nuniform vec4 wood_growth_perlin_weights;\nuniform vec4 wood_growth_perlin_frequencies;\nuniform float wood_latewood_ratio;\nuniform float wood_earlywood_sharpness;\nuniform float wood_latewood_sharpness;\nuniform float wood_ring_thickness;\nuniform bool wood_earlycolor_perlin_enable;\nuniform int wood_earlycolor_perlin_bands;\nuniform vec4 wood_earlycolor_perlin_weights;\nuniform vec4 wood_earlycolor_perlin_frequencies;\nuniform vec3 wood_early_color;\nuniform bool wood_use_manual_late_color;\nuniform vec3 wood_manual_late_color;\nuniform bool wood_latecolor_perlin_enable;\nuniform int wood_latecolor_perlin_bands;\nuniform vec4 wood_latecolor_perlin_weights;\nuniform vec4 wood_latecolor_perlin_frequencies;\nuniform float wood_late_color_power;\nuniform bool wood_diffuse_perlin_enable;\nuniform int wood_diffuse_perlin_bands;\nuniform vec4 wood_diffuse_perlin_weights;\nuniform vec4 wood_diffuse_perlin_frequencies;\nuniform float wood_diffuse_perlin_scale_z;\nuniform bool wood_use_pores;\nuniform int wood_pore_type;\nuniform float wood_pore_radius;\nuniform float wood_pore_cell_dim;\nuniform float wood_pore_color_power;\nuniform float wood_pore_depth;\nuniform bool wood_use_rays;\nuniform float wood_ray_color_power;\nuniform float wood_ray_seg_length_z;\nuniform float wood_ray_num_slices;\nuniform float wood_ray_ellipse_z2x;\nuniform float wood_ray_ellipse_radius_x;\nuniform bool wood_use_latewood_bump;\nuniform float wood_latewood_bump_depth;\nuniform bool wood_use_groove_roughness;\nuniform float wood_groove_roughness;\nuniform float wood_diffuse_lobe_weight;\nuniform sampler2D permutationMap;\nuniform sampler2D gradientMap;\nuniform sampler2D perm2DMap;\nuniform sampler2D permGradMap;\n#endif\nuniform float envExponentMin;\nuniform float envExponentMax;\nuniform float envExponentCount;", g.EnvSamplingShaderChunk, "#if TONEMAP_OUTPUT \x3e 0\nuniform float exposureBias;", g.TonemapShaderChunk, "#endif\n#if MAX_SPOT_LIGHTS \x3e 0 || NUM_CUTPLANES \x3e 0\nvarying vec3 vWorldPosition;\n#endif\n#ifdef USE_LOGDEPTHBUF\nuniform float logDepthBufFC;\n#ifdef USE_LOGDEPTHBUF_EXT\n#extension GL_EXT_frag_depth : enable\nvarying highp float vFragDepth;\n#endif\n#endif", g.IdFragmentDeclaration, g.ThemingFragmentDeclaration, f("#define USE_MAP"), "#ifdef USE_MAP\nvarying vec2 vUv;\n#endif\n#if defined(PRISMWOOD) \x26\x26 !defined(NO_UVW)\nvarying vec3 vUvw;\n#endif", k("surface_albedo_map"), k("surface_roughness_map"), k("surface_cutout_map"), k("surface_anisotropy_map"), k("surface_rotation_map"), k("opaque_albedo_map"), k("opaque_f0_map"), k("opaque_luminance_modifier_map"), k("layered_bottom_f0_map"), k("layered_f0_map"), k("layered_diffuse_map"), k("layered_fraction_map"), k("layered_roughness_map"), k("layered_anisotropy_map"), k("layered_rotation_map"), k("metal_f0_map"), m("surface_normal_map"), m("layered_normal_map"), "vec3 RGBMDecode(in vec4 vRGBM, in float exposure) {\nvec3 ret \x3d vRGBM.rgb * (vRGBM.a * 16.0);\nret *\x3d ret;\nret *\x3d exposure;\nreturn ret;\n}\nvec3 GammaDecode(in vec4 vRGBA, in float exposure) {\nreturn vRGBA.xyz * vRGBA.xyz * exposure;\n}\nfloat SRGBToLinearComponent(float color) {\nfloat result \x3d color;\nif (result\x3c\x3d0.04045)\nresult *\x3d 0.07739938;\nelse\nresult \x3d pow(abs((result+0.055)*0.947867298), 2.4);\nreturn result;\n}\nvec3 SRGBToLinear(vec3 color) {\nvec3 result \x3d color;\nresult.x \x3d SRGBToLinearComponent(result.x);\nresult.y \x3d SRGBToLinearComponent(result.y);\nresult.z \x3d SRGBToLinearComponent(result.z);\nreturn result;\n}\n#if defined( USE_ENVMAP )\nuniform float envMapExposure;\nuniform samplerCube envMap;\n#endif\nfloat averageOfFloat3(in vec3 value)\n{ \n    const float oneThird \x3d 1.0 / 3.0; \n    return dot(value, vec3(oneThird, oneThird, oneThird)); \n} \n#if defined( USE_SURFACE_NORMAL_MAP ) || defined( USE_LAYERED_NORMAL_MAP )\nvec3 heightMapTransform(sampler2D bumpTexture, vec2 uv, mat3 transform, vec2 bumpScale, vec3 T, vec3 B, vec3 N) {\nvec2 st \x3d (transform * vec3(uv, 1.0)).xy;\nmat3 mtxTangent \x3d mat3(T, B, N);\nT \x3d normalize(mtxTangent * (transform * vec3(1.0, 0.0, 0.0)));\nB \x3d normalize(mtxTangent * (transform * vec3(0.0, 1.0, 0.0)));\nconst float oneThird \x3d 1.0 / 3.0;\nvec3 avg \x3d vec3(oneThird, oneThird, oneThird);\nvec2 offset \x3d fwidth(st);\nfloat h0 \x3d dot(texture2D(bumpTexture, st).xyz, avg);\nfloat hx \x3d dot(texture2D(bumpTexture, st + vec2(offset.x, 0.0)).xyz, avg);\nfloat hy \x3d dot(texture2D(bumpTexture, st + vec2(0.0, offset.y)).xyz, avg);\nvec2 diff \x3d vec2(h0 - hx, h0 - hy) / offset;\nreturn normalize(N + (diff.x * T * bumpScale.x + diff.y * B * bumpScale.y));\n}\nvec3 normalMapTransform(sampler2D bumpTexture, vec2 uv, mat3 transform, vec2 bumpScale, vec3 T, vec3 B, vec3 N) {\nvec2 st \x3d (transform * vec3(uv, 1.0)).xy;\nvec3 NMap \x3d  2.0 * texture2D( bumpTexture, st ).xyz - 1.0; \nreturn normalize(bumpScale.x * (NMap.x * T + NMap.y * B) + NMap.z * N);\n}\n#endif\n#if !defined(USE_MAP)\x26\x26 (MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0)\nvarying vec3 vTangent;\nvarying vec3 vBitangent;\n#endif\n#if defined( USE_ENVMAP )\nvec3 sampleReflection(vec3 N, vec3 V, float mipIndex) {\nvec3 dir \x3d (2.0 * dot(V, N)) * N - V;\ndir \x3d adjustLookupVector(mat3(viewMatrixInverse) * dir);\n#ifdef ENV_GAMMA\n#ifdef HAVE_TEXTURE_LOD\nvec4 envTexColor \x3d textureCubeLodEXT( envMap, dir, mipIndex );\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir, mipIndex );\n#endif\nreturn GammaDecode(envTexColor, envMapExposure);\n#elif defined(ENV_RGBM)\n#ifdef HAVE_TEXTURE_LOD\nvec4 envTexColor \x3d textureCubeLodEXT( envMap, dir, mipIndex );\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir, mipIndex );\n#endif\nreturn RGBMDecode(envTexColor, envMapExposure);\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir );\nvec3 cubeColor \x3d envTexColor.xyz;\n#ifdef GAMMA_INPUT\ncubeColor *\x3d cubeColor;\n#endif\nreturn cubeColor;\n#endif\n}\n#endif", g.HatchPatternShaderChunk, "#if defined( USE_ENVMAP ) \x26\x26 defined( USE_IRRADIANCEMAP )\nuniform samplerCube irradianceMap;\nvec3 sampleNormal(vec3 normal) {\nvec3 worldNormal \x3d mat3(viewMatrixInverse) * normal;\nvec4 cubeColor4 \x3d textureCube(irradianceMap, adjustLookupVector(worldNormal));\n#ifdef IRR_GAMMA\nvec3 indirectDiffuse \x3d GammaDecode(cubeColor4, envMapExposure);\n#elif defined(IRR_RGBM)\nvec3 indirectDiffuse \x3d RGBMDecode(cubeColor4, envMapExposure);\n#else\nvec3 indirectDiffuse \x3d cubeColor4.xyz;\n#ifdef GAMMA_INPUT\nindirectDiffuse.xyz *\x3d indirectDiffuse.xyz;\n#endif\n#endif\nreturn indirectDiffuse;}\n#endif\n#if MAX_DIR_LIGHTS \x3e 0\nuniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\nuniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n#endif\n#if MAX_POINT_LIGHTS \x3e 0\nuniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\nuniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\nuniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n#endif\n#if MAX_SPOT_LIGHTS \x3e 0\nuniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\nuniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\nuniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\nuniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\nuniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\nuniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n#endif\nfloat sqr(float x) {return x*x;}\nfloat aSqrd(float maxAlphaSqr, float cosTheta)\n{\n   float tan2 \x3d 1.0/sqr(cosTheta) - 1.0;\n   return maxAlphaSqr * tan2;\n}\nvec3 Fresnel_Schlick(vec3 f0, float cosAngle)\n{\n    float x \x3d 1.0 - cosAngle;\n    float x2 \x3d x * x;\n    float x5 \x3d x * x2 * x2;\n    return f0 + (1.0 - f0) * x5;\n}\nvec3 Fresnel_Rough(vec3 f0, float cosAngle, float alpha)\n{\n    float x \x3d 1.0 - cosAngle;\n    float x2 \x3d x * x;\n    float x5 \x3d x * x2 * x2;\n    vec3 maxReflectance \x3d mix(vec3(1.0), f0, vec3(min(0.7, alpha)) / 0.7);\n    return f0 + (maxReflectance - f0) * x5;\n}\nfloat IORToReflectance(float ior)\n{\n    return sqr((1.0 - ior)/(1.0 + ior));\n}\nvec2 RoughnessToAlpha(float roughness, float anisotropy)\n{\n    vec2 alpha \x3d roughness * vec2(1.0, 1.0 - anisotropy);\n    alpha \x3d alpha * alpha;\n    alpha \x3d clamp(alpha, 0.001, 1.0);\n    return alpha;\n}\nfloat AlphaToPhong(float alpha)\n{\n    return max(0.0, 2.56/alpha - 7.0);\n}\nfloat ExponentToReflMipIndex(float exponent)\n{\n    float targetLog \x3d log2(exponent);\n    float minLog \x3d log2(envExponentMin); \n    float maxLog \x3d log2(envExponentMax); \n    float deltaLog \x3d clamp(targetLog - minLog, 0.0, maxLog - minLog);  \n    float level \x3d clamp((1.0-(deltaLog + 0.5) / envExponentCount), 0.0, 1.0) * 6.0; \n    return level; \n}\n#if defined( PRISMWOOD )\nvec3 NoiseWood(inout float roughness_inout)\n{\n//If the mesh has no uvw, use a const zero vector.\n//This is used by section tool.\n#ifdef NO_UVW\n   vec3 vUvw_uniform \x3d vec3(0.0);\n#else\n   vec3 vUvw_uniform \x3d vUvw;\n#endif\n  lowp float surfaceRoughness_1;\n  surfaceRoughness_1 \x3d surface_roughness;\n  lowp float roughness_2;\n  roughness_2 \x3d surfaceRoughness_1;\n  lowp vec3 diffAlbedo_3;\n  lowp vec3 lateColor_4;\n  lowp vec3 earlyColor_5;\n  lowp float radiusLength_6;\n  lowp vec3 p_7;\n  p_7 \x3d vUvw_uniform;\n  if (wood_fiber_cosine_enable) {\n    lowp vec3 p_8;\n    p_8 \x3d p_7;\n    lowp vec3 tmpvar_9;\n    lowp float weight_10;\n    lowp float radiusShift_11;\n    lowp float tmpvar_12;\n    tmpvar_12 \x3d sqrt(dot (vUvw_uniform.xy, vUvw_uniform.xy));\n    if ((tmpvar_12 \x3c 1e-05)) {\n      tmpvar_9 \x3d p_7;\n    } else {\n      lowp vec2 tmpvar_13;\n      tmpvar_13 \x3d (vUvw_uniform.xy / tmpvar_12);\n      radiusShift_11 \x3d 0.0;\n      if ((0 \x3c wood_fiber_cosine_bands)) {\n        radiusShift_11 \x3d (wood_fiber_cosine_weights.x * cos((\n          (vUvw_uniform.z * 0.1591549)\n         * wood_fiber_cosine_frequencies.x)));\n        if ((1 \x3c wood_fiber_cosine_bands)) {\n          radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.y * cos(\n            ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.y)\n          )));\n          if ((2 \x3c wood_fiber_cosine_bands)) {\n            radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.z * cos(\n              ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.z)\n            )));\n            if ((3 \x3c wood_fiber_cosine_bands)) {\n              radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.w * cos(\n                ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.w)\n              )));\n            };\n          };\n        };\n      };\n      lowp float tmpvar_14;\n      tmpvar_14 \x3d clamp ((tmpvar_12 / 1.5), 0.0, 1.0);\n      weight_10 \x3d tmpvar_14;\n      if ((tmpvar_14 \x3e\x3d 0.5)) {\n        weight_10 \x3d ((tmpvar_14 * tmpvar_14) * (3.0 - (tmpvar_14 + tmpvar_14)));\n      };\n      p_8.xy \x3d (vUvw_uniform.xy + ((tmpvar_13 * radiusShift_11) * weight_10));\n      tmpvar_9 \x3d p_8;\n    };\n    p_7 \x3d tmpvar_9;\n  };\n  if (wood_fiber_perlin_enable) {\n    lowp vec3 p_15;\n    p_15 \x3d p_7;\n    lowp vec3 tmpvar_16;\n    tmpvar_16.xy \x3d p_7.xy;\n    tmpvar_16.z \x3d (p_7.z * wood_fiber_perlin_scale_z);\n    lowp vec3 p_17;\n    p_17 \x3d tmpvar_16;\n    highp int bands_18;\n    bands_18 \x3d wood_fiber_perlin_bands;\n    highp vec4 w_19;\n    w_19 \x3d wood_fiber_perlin_weights;\n    highp vec4 f_20;\n    f_20 \x3d wood_fiber_perlin_frequencies;\n    lowp float noise_22;\n    noise_22 \x3d 0.0;\n    for (int i_21 \x3d 0; i_21 \x3c 4; ++i_21) {\n      if ((i_21 \x3e\x3d bands_18)) {\n        break;\n      };\n      lowp vec3 p_23;\n      highp float f_20_value \x3d i_21 \x3d\x3d 0 ? f_20[0] : i_21 \x3d\x3d 1 ? f_20[1] : i_21 \x3d\x3d 2 ? f_20[2] : f_20[3];\n      p_23 \x3d (p_17 * f_20_value);\n      lowp vec4 AA_24;\n      lowp vec3 modp_25;\n      lowp vec3 tmpvar_26;\n      tmpvar_26 \x3d (vec3(mod (floor(p_23), 256.0)));\n      modp_25.z \x3d tmpvar_26.z;\n      modp_25.xy \x3d (tmpvar_26.xy * 0.00390625);\n      AA_24 \x3d ((texture2D (perm2DMap, modp_25.xy, 0.0) * 255.0) + tmpvar_26.z);\n      AA_24 \x3d ((vec4(mod (floor(AA_24), 256.0))) * 0.00390625);\n      lowp vec2 tmpvar_27;\n      tmpvar_27.y \x3d 0.0;\n      tmpvar_27.x \x3d AA_24.x;\n      lowp vec2 tmpvar_28;\n      tmpvar_28.y \x3d 0.0;\n      tmpvar_28.x \x3d AA_24.y;\n      lowp vec2 tmpvar_29;\n      tmpvar_29.y \x3d 0.0;\n      tmpvar_29.x \x3d AA_24.z;\n      lowp vec2 tmpvar_30;\n      tmpvar_30.y \x3d 0.0;\n      tmpvar_30.x \x3d AA_24.w;\n      lowp vec2 tmpvar_31;\n      tmpvar_31.y \x3d 0.0;\n      tmpvar_31.x \x3d (AA_24.x + 0.00390625);\n      lowp vec2 tmpvar_32;\n      tmpvar_32.y \x3d 0.0;\n      tmpvar_32.x \x3d (AA_24.y + 0.00390625);\n      lowp vec2 tmpvar_33;\n      tmpvar_33.y \x3d 0.0;\n      tmpvar_33.x \x3d (AA_24.z + 0.00390625);\n      lowp vec2 tmpvar_34;\n      tmpvar_34.y \x3d 0.0;\n      tmpvar_34.x \x3d (AA_24.w + 0.00390625);\n      p_23 \x3d (p_23 - floor(p_23));\n      lowp vec3 tmpvar_35;\n      tmpvar_35 \x3d (((p_23 * p_23) * p_23) * ((p_23 *\n        ((p_23 * 6.0) - 15.0)\n      ) + 10.0));\n      highp float w_19_value \x3d i_21 \x3d\x3d 0 ? w_19[0] : i_21 \x3d\x3d 1 ? w_19[1] : i_21 \x3d\x3d 2 ? w_19[2] : w_19[3];\n      noise_22 \x3d (noise_22 + (w_19_value * mix (\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_27, 0.0).xyz * 2.0)\n         - 1.0), p_23), dot ((\n          (texture2D (permGradMap, tmpvar_29, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, 0.0, 0.0))), tmpvar_35.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_28, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, -1.0, 0.0))), dot ((\n          (texture2D (permGradMap, tmpvar_30, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, -1.0, 0.0))), tmpvar_35.x), tmpvar_35.y)\n      ,\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_31, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, 0.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_33, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, 0.0, -1.0))), tmpvar_35.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_32, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, -1.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_34, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, -1.0, -1.0))), tmpvar_35.x), tmpvar_35.y)\n      , tmpvar_35.z)));\n    };\n    p_15.xy \x3d (p_7.xy + noise_22);\n    p_7 \x3d p_15;\n  };\n  lowp float tmpvar_36;\n  tmpvar_36 \x3d sqrt(dot (p_7.xy, p_7.xy));\n  radiusLength_6 \x3d tmpvar_36;\n  if (wood_growth_perlin_enable) {\n    lowp float radiusLength_37;\n    radiusLength_37 \x3d tmpvar_36;\n    lowp float noise_38;\n    noise_38 \x3d 0.0;\n    if ((0 \x3c wood_growth_perlin_bands)) {\n      lowp float p_39;\n      p_39 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.x);\n      lowp float modp_40;\n      modp_40 \x3d (((float(mod (\n        floor(p_39)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_41;\n      tmpvar_41.y \x3d 0.0;\n      tmpvar_41.x \x3d modp_40;\n      lowp vec2 tmpvar_42;\n      tmpvar_42.y \x3d 0.0;\n      tmpvar_42.x \x3d texture2D (permutationMap, tmpvar_41, 0.0).x;\n      lowp vec2 tmpvar_43;\n      tmpvar_43.y \x3d 0.0;\n      tmpvar_43.x \x3d (modp_40 + 0.00390625);\n      lowp vec2 tmpvar_44;\n      tmpvar_44.y \x3d 0.0;\n      tmpvar_44.x \x3d texture2D (permutationMap, tmpvar_43, 0.0).x;\n      p_39 \x3d (p_39 - floor(p_39));\n      noise_38 \x3d (wood_growth_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_42, 0.0).x * 2.0) - 1.0)\n       * p_39), (\n        ((texture2D (gradientMap, tmpvar_44, 0.0).x * 2.0) - 1.0)\n       *\n        (p_39 - 1.0)\n      ), (\n        ((p_39 * p_39) * p_39)\n       *\n        ((p_39 * ((p_39 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_growth_perlin_bands)) {\n        lowp float p_45;\n        p_45 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.y);\n        lowp float modp_46;\n        modp_46 \x3d (((float(mod (\n          floor(p_45)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_47;\n        tmpvar_47.y \x3d 0.0;\n        tmpvar_47.x \x3d modp_46;\n        lowp vec2 tmpvar_48;\n        tmpvar_48.y \x3d 0.0;\n        tmpvar_48.x \x3d texture2D (permutationMap, tmpvar_47, 0.0).x;\n        lowp vec2 tmpvar_49;\n        tmpvar_49.y \x3d 0.0;\n        tmpvar_49.x \x3d (modp_46 + 0.00390625);\n        lowp vec2 tmpvar_50;\n        tmpvar_50.y \x3d 0.0;\n        tmpvar_50.x \x3d texture2D (permutationMap, tmpvar_49, 0.0).x;\n        p_45 \x3d (p_45 - floor(p_45));\n        noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_48, 0.0).x * 2.0) - 1.0) * p_45)\n        ,\n          (((texture2D (gradientMap, tmpvar_50, 0.0).x * 2.0) - 1.0) * (p_45 - 1.0))\n        ,\n          (((p_45 * p_45) * p_45) * ((p_45 * (\n            (p_45 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_growth_perlin_bands)) {\n          lowp float p_51;\n          p_51 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.z);\n          lowp float modp_52;\n          modp_52 \x3d (((float(mod (\n            floor(p_51)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_53;\n          tmpvar_53.y \x3d 0.0;\n          tmpvar_53.x \x3d modp_52;\n          lowp vec2 tmpvar_54;\n          tmpvar_54.y \x3d 0.0;\n          tmpvar_54.x \x3d texture2D (permutationMap, tmpvar_53, 0.0).x;\n          lowp vec2 tmpvar_55;\n          tmpvar_55.y \x3d 0.0;\n          tmpvar_55.x \x3d (modp_52 + 0.00390625);\n          lowp vec2 tmpvar_56;\n          tmpvar_56.y \x3d 0.0;\n          tmpvar_56.x \x3d texture2D (permutationMap, tmpvar_55, 0.0).x;\n          p_51 \x3d (p_51 - floor(p_51));\n          noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_54, 0.0).x * 2.0) - 1.0) * p_51)\n          ,\n            (((texture2D (gradientMap, tmpvar_56, 0.0).x * 2.0) - 1.0) * (p_51 - 1.0))\n          ,\n            (((p_51 * p_51) * p_51) * ((p_51 * (\n              (p_51 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_growth_perlin_bands)) {\n            lowp float p_57;\n            p_57 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.w);\n            lowp float modp_58;\n            modp_58 \x3d (((float(mod (\n              floor(p_57)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_59;\n            tmpvar_59.y \x3d 0.0;\n            tmpvar_59.x \x3d modp_58;\n            lowp vec2 tmpvar_60;\n            tmpvar_60.y \x3d 0.0;\n            tmpvar_60.x \x3d texture2D (permutationMap, tmpvar_59, 0.0).x;\n            lowp vec2 tmpvar_61;\n            tmpvar_61.y \x3d 0.0;\n            tmpvar_61.x \x3d (modp_58 + 0.00390625);\n            lowp vec2 tmpvar_62;\n            tmpvar_62.y \x3d 0.0;\n            tmpvar_62.x \x3d texture2D (permutationMap, tmpvar_61, 0.0).x;\n            p_57 \x3d (p_57 - floor(p_57));\n            noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_60, 0.0).x * 2.0) - 1.0) * p_57)\n            ,\n              (((texture2D (gradientMap, tmpvar_62, 0.0).x * 2.0) - 1.0) * (p_57 - 1.0))\n            ,\n              (((p_57 * p_57) * p_57) * ((p_57 * (\n                (p_57 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    radiusLength_37 \x3d (tmpvar_36 + noise_38);\n    if ((radiusLength_37 \x3c 0.0)) {\n      radiusLength_37 \x3d 0.0;\n    };\n    radiusLength_6 \x3d radiusLength_37;\n  };\n  lowp float earlyWoodRatio_63;\n  highp float tmpvar_64;\n  tmpvar_64 \x3d (1.0 - wood_latewood_ratio);\n  highp float tmpvar_65;\n  tmpvar_65 \x3d (wood_earlywood_sharpness * tmpvar_64);\n  highp float tmpvar_66;\n  tmpvar_66 \x3d (wood_latewood_sharpness * wood_latewood_ratio);\n  highp float tmpvar_67;\n  tmpvar_67 \x3d (tmpvar_64 - tmpvar_65);\n  highp float tmpvar_68;\n  tmpvar_68 \x3d (tmpvar_64 + tmpvar_66);\n  highp float tmpvar_69;\n  tmpvar_69 \x3d (wood_latewood_ratio - tmpvar_66);\n  lowp float tmpvar_70;\n  tmpvar_70 \x3d ((float(mod (radiusLength_6, wood_ring_thickness))) / wood_ring_thickness);\n  earlyWoodRatio_63 \x3d 0.0;\n  if ((tmpvar_70 \x3c\x3d tmpvar_65)) {\n    earlyWoodRatio_63 \x3d 1.0;\n  } else {\n    if ((tmpvar_70 \x3c\x3d tmpvar_64)) {\n      earlyWoodRatio_63 \x3d (1.0 - ((tmpvar_70 - tmpvar_65) / tmpvar_67));\n    } else {\n      if ((tmpvar_70 \x3c\x3d tmpvar_68)) {\n        earlyWoodRatio_63 \x3d 0.0;\n      } else {\n        earlyWoodRatio_63 \x3d ((tmpvar_70 - tmpvar_68) / tmpvar_69);\n      };\n    };\n  };\n  earlyColor_5 \x3d wood_early_color;\n  if (wood_earlycolor_perlin_enable) {\n    lowp float noise_71;\n    noise_71 \x3d 0.0;\n    if ((0 \x3c wood_earlycolor_perlin_bands)) {\n      lowp float p_72;\n      p_72 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.x);\n      lowp float modp_73;\n      modp_73 \x3d (((float(mod (\n        floor(p_72)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_74;\n      tmpvar_74.y \x3d 0.0;\n      tmpvar_74.x \x3d modp_73;\n      lowp vec2 tmpvar_75;\n      tmpvar_75.y \x3d 0.0;\n      tmpvar_75.x \x3d texture2D (permutationMap, tmpvar_74, 0.0).x;\n      lowp vec2 tmpvar_76;\n      tmpvar_76.y \x3d 0.0;\n      tmpvar_76.x \x3d (modp_73 + 0.00390625);\n      lowp vec2 tmpvar_77;\n      tmpvar_77.y \x3d 0.0;\n      tmpvar_77.x \x3d texture2D (permutationMap, tmpvar_76, 0.0).x;\n      p_72 \x3d (p_72 - floor(p_72));\n      noise_71 \x3d (wood_earlycolor_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_75, 0.0).x * 2.0) - 1.0)\n       * p_72), (\n        ((texture2D (gradientMap, tmpvar_77, 0.0).x * 2.0) - 1.0)\n       *\n        (p_72 - 1.0)\n      ), (\n        ((p_72 * p_72) * p_72)\n       *\n        ((p_72 * ((p_72 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_earlycolor_perlin_bands)) {\n        lowp float p_78;\n        p_78 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.y);\n        lowp float modp_79;\n        modp_79 \x3d (((float(mod (\n          floor(p_78)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_80;\n        tmpvar_80.y \x3d 0.0;\n        tmpvar_80.x \x3d modp_79;\n        lowp vec2 tmpvar_81;\n        tmpvar_81.y \x3d 0.0;\n        tmpvar_81.x \x3d texture2D (permutationMap, tmpvar_80, 0.0).x;\n        lowp vec2 tmpvar_82;\n        tmpvar_82.y \x3d 0.0;\n        tmpvar_82.x \x3d (modp_79 + 0.00390625);\n        lowp vec2 tmpvar_83;\n        tmpvar_83.y \x3d 0.0;\n        tmpvar_83.x \x3d texture2D (permutationMap, tmpvar_82, 0.0).x;\n        p_78 \x3d (p_78 - floor(p_78));\n        noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_81, 0.0).x * 2.0) - 1.0) * p_78)\n        ,\n          (((texture2D (gradientMap, tmpvar_83, 0.0).x * 2.0) - 1.0) * (p_78 - 1.0))\n        ,\n          (((p_78 * p_78) * p_78) * ((p_78 * (\n            (p_78 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_earlycolor_perlin_bands)) {\n          lowp float p_84;\n          p_84 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.z);\n          lowp float modp_85;\n          modp_85 \x3d (((float(mod (\n            floor(p_84)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_86;\n          tmpvar_86.y \x3d 0.0;\n          tmpvar_86.x \x3d modp_85;\n          lowp vec2 tmpvar_87;\n          tmpvar_87.y \x3d 0.0;\n          tmpvar_87.x \x3d texture2D (permutationMap, tmpvar_86, 0.0).x;\n          lowp vec2 tmpvar_88;\n          tmpvar_88.y \x3d 0.0;\n          tmpvar_88.x \x3d (modp_85 + 0.00390625);\n          lowp vec2 tmpvar_89;\n          tmpvar_89.y \x3d 0.0;\n          tmpvar_89.x \x3d texture2D (permutationMap, tmpvar_88, 0.0).x;\n          p_84 \x3d (p_84 - floor(p_84));\n          noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_87, 0.0).x * 2.0) - 1.0) * p_84)\n          ,\n            (((texture2D (gradientMap, tmpvar_89, 0.0).x * 2.0) - 1.0) * (p_84 - 1.0))\n          ,\n            (((p_84 * p_84) * p_84) * ((p_84 * (\n              (p_84 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_earlycolor_perlin_bands)) {\n            lowp float p_90;\n            p_90 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.w);\n            lowp float modp_91;\n            modp_91 \x3d (((float(mod (\n              floor(p_90)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_92;\n            tmpvar_92.y \x3d 0.0;\n            tmpvar_92.x \x3d modp_91;\n            lowp vec2 tmpvar_93;\n            tmpvar_93.y \x3d 0.0;\n            tmpvar_93.x \x3d texture2D (permutationMap, tmpvar_92, 0.0).x;\n            lowp vec2 tmpvar_94;\n            tmpvar_94.y \x3d 0.0;\n            tmpvar_94.x \x3d (modp_91 + 0.00390625);\n            lowp vec2 tmpvar_95;\n            tmpvar_95.y \x3d 0.0;\n            tmpvar_95.x \x3d texture2D (permutationMap, tmpvar_94, 0.0).x;\n            p_90 \x3d (p_90 - floor(p_90));\n            noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_93, 0.0).x * 2.0) - 1.0) * p_90)\n            ,\n              (((texture2D (gradientMap, tmpvar_95, 0.0).x * 2.0) - 1.0) * (p_90 - 1.0))\n            ,\n              (((p_90 * p_90) * p_90) * ((p_90 * (\n                (p_90 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    earlyColor_5 \x3d pow (abs(wood_early_color), vec3((1.0 + noise_71)));\n  };\n  if (wood_use_manual_late_color) {\n    lateColor_4 \x3d wood_manual_late_color;\n  } else {\n    lateColor_4 \x3d pow (abs(earlyColor_5), vec3(wood_late_color_power));\n  };\n  if (wood_latecolor_perlin_enable) {\n    lowp float noise_96;\n    noise_96 \x3d 0.0;\n    if ((0 \x3c wood_latecolor_perlin_bands)) {\n      lowp float p_97;\n      p_97 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.x);\n      lowp float modp_98;\n      modp_98 \x3d (((float(mod (\n        floor(p_97)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_99;\n      tmpvar_99.y \x3d 0.0;\n      tmpvar_99.x \x3d modp_98;\n      lowp vec2 tmpvar_100;\n      tmpvar_100.y \x3d 0.0;\n      tmpvar_100.x \x3d texture2D (permutationMap, tmpvar_99, 0.0).x;\n      lowp vec2 tmpvar_101;\n      tmpvar_101.y \x3d 0.0;\n      tmpvar_101.x \x3d (modp_98 + 0.00390625);\n      lowp vec2 tmpvar_102;\n      tmpvar_102.y \x3d 0.0;\n      tmpvar_102.x \x3d texture2D (permutationMap, tmpvar_101, 0.0).x;\n      p_97 \x3d (p_97 - floor(p_97));\n      noise_96 \x3d (wood_latecolor_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_100, 0.0).x * 2.0) - 1.0)\n       * p_97), (\n        ((texture2D (gradientMap, tmpvar_102, 0.0).x * 2.0) - 1.0)\n       *\n        (p_97 - 1.0)\n      ), (\n        ((p_97 * p_97) * p_97)\n       *\n        ((p_97 * ((p_97 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_latecolor_perlin_bands)) {\n        lowp float p_103;\n        p_103 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.y);\n        lowp float modp_104;\n        modp_104 \x3d (((float(mod (\n          floor(p_103)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_105;\n        tmpvar_105.y \x3d 0.0;\n        tmpvar_105.x \x3d modp_104;\n        lowp vec2 tmpvar_106;\n        tmpvar_106.y \x3d 0.0;\n        tmpvar_106.x \x3d texture2D (permutationMap, tmpvar_105, 0.0).x;\n        lowp vec2 tmpvar_107;\n        tmpvar_107.y \x3d 0.0;\n        tmpvar_107.x \x3d (modp_104 + 0.00390625);\n        lowp vec2 tmpvar_108;\n        tmpvar_108.y \x3d 0.0;\n        tmpvar_108.x \x3d texture2D (permutationMap, tmpvar_107, 0.0).x;\n        p_103 \x3d (p_103 - floor(p_103));\n        noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_106, 0.0).x * 2.0) - 1.0) * p_103)\n        ,\n          (((texture2D (gradientMap, tmpvar_108, 0.0).x * 2.0) - 1.0) * (p_103 - 1.0))\n        ,\n          (((p_103 * p_103) * p_103) * ((p_103 * (\n            (p_103 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_latecolor_perlin_bands)) {\n          lowp float p_109;\n          p_109 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.z);\n          lowp float modp_110;\n          modp_110 \x3d (((float(mod (\n            floor(p_109)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_111;\n          tmpvar_111.y \x3d 0.0;\n          tmpvar_111.x \x3d modp_110;\n          lowp vec2 tmpvar_112;\n          tmpvar_112.y \x3d 0.0;\n          tmpvar_112.x \x3d texture2D (permutationMap, tmpvar_111, 0.0).x;\n          lowp vec2 tmpvar_113;\n          tmpvar_113.y \x3d 0.0;\n          tmpvar_113.x \x3d (modp_110 + 0.00390625);\n          lowp vec2 tmpvar_114;\n          tmpvar_114.y \x3d 0.0;\n          tmpvar_114.x \x3d texture2D (permutationMap, tmpvar_113, 0.0).x;\n          p_109 \x3d (p_109 - floor(p_109));\n          noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_112, 0.0).x * 2.0) - 1.0) * p_109)\n          ,\n            (((texture2D (gradientMap, tmpvar_114, 0.0).x * 2.0) - 1.0) * (p_109 - 1.0))\n          ,\n            (((p_109 * p_109) * p_109) * ((p_109 * (\n              (p_109 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_latecolor_perlin_bands)) {\n            lowp float p_115;\n            p_115 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.w);\n            lowp float modp_116;\n            modp_116 \x3d (((float(mod (\n              floor(p_115)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_117;\n            tmpvar_117.y \x3d 0.0;\n            tmpvar_117.x \x3d modp_116;\n            lowp vec2 tmpvar_118;\n            tmpvar_118.y \x3d 0.0;\n            tmpvar_118.x \x3d texture2D (permutationMap, tmpvar_117, 0.0).x;\n            lowp vec2 tmpvar_119;\n            tmpvar_119.y \x3d 0.0;\n            tmpvar_119.x \x3d (modp_116 + 0.00390625);\n            lowp vec2 tmpvar_120;\n            tmpvar_120.y \x3d 0.0;\n            tmpvar_120.x \x3d texture2D (permutationMap, tmpvar_119, 0.0).x;\n            p_115 \x3d (p_115 - floor(p_115));\n            noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_118, 0.0).x * 2.0) - 1.0) * p_115)\n            ,\n              (((texture2D (gradientMap, tmpvar_120, 0.0).x * 2.0) - 1.0) * (p_115 - 1.0))\n            ,\n              (((p_115 * p_115) * p_115) * ((p_115 * (\n                (p_115 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    lateColor_4 \x3d pow (abs(lateColor_4), vec3((1.0 + noise_96)));\n  };\n  lowp vec3 tmpvar_121;\n  tmpvar_121 \x3d ((earlyWoodRatio_63 * earlyColor_5) + ((1.0 - earlyWoodRatio_63) * lateColor_4));\n  diffAlbedo_3 \x3d tmpvar_121;\n  if (wood_diffuse_perlin_enable) {\n    lowp vec3 p_122;\n    p_122.xy \x3d p_7.xy;\n    p_122.z \x3d (p_7.z * wood_diffuse_perlin_scale_z);\n    lowp vec3 p_123;\n    p_123 \x3d p_122;\n    highp int bands_124;\n    bands_124 \x3d wood_diffuse_perlin_bands;\n    highp vec4 w_125;\n    w_125 \x3d wood_diffuse_perlin_weights;\n    highp vec4 f_126;\n    f_126 \x3d wood_diffuse_perlin_frequencies;\n    lowp float noise_128;\n    noise_128 \x3d 0.0;\n    for (int i_127 \x3d 0; i_127 \x3c 4; ++i_127) {\n      if ((i_127 \x3e\x3d bands_124)) {\n        break;\n      };\n      lowp vec3 p_129;\n      highp float f_126_value \x3d i_127 \x3d\x3d 0 ? f_126[0] : i_127 \x3d\x3d 1 ? f_126[1] : i_127 \x3d\x3d 2 ? f_126[2] : f_126[3];\n      p_129 \x3d (p_123 * f_126_value);\n      lowp vec4 AA_130;\n      lowp vec3 modp_131;\n      lowp vec3 tmpvar_132;\n      tmpvar_132 \x3d (vec3(mod (floor(p_129), 256.0)));\n      modp_131.z \x3d tmpvar_132.z;\n      modp_131.xy \x3d (tmpvar_132.xy * 0.00390625);\n      AA_130 \x3d ((texture2D (perm2DMap, modp_131.xy, 0.0) * 255.0) + tmpvar_132.z);\n      AA_130 \x3d ((vec4(mod (floor(AA_130), 256.0))) * 0.00390625);\n      lowp vec2 tmpvar_133;\n      tmpvar_133.y \x3d 0.0;\n      tmpvar_133.x \x3d AA_130.x;\n      lowp vec2 tmpvar_134;\n      tmpvar_134.y \x3d 0.0;\n      tmpvar_134.x \x3d AA_130.y;\n      lowp vec2 tmpvar_135;\n      tmpvar_135.y \x3d 0.0;\n      tmpvar_135.x \x3d AA_130.z;\n      lowp vec2 tmpvar_136;\n      tmpvar_136.y \x3d 0.0;\n      tmpvar_136.x \x3d AA_130.w;\n      lowp vec2 tmpvar_137;\n      tmpvar_137.y \x3d 0.0;\n      tmpvar_137.x \x3d (AA_130.x + 0.00390625);\n      lowp vec2 tmpvar_138;\n      tmpvar_138.y \x3d 0.0;\n      tmpvar_138.x \x3d (AA_130.y + 0.00390625);\n      lowp vec2 tmpvar_139;\n      tmpvar_139.y \x3d 0.0;\n      tmpvar_139.x \x3d (AA_130.z + 0.00390625);\n      lowp vec2 tmpvar_140;\n      tmpvar_140.y \x3d 0.0;\n      tmpvar_140.x \x3d (AA_130.w + 0.00390625);\n      p_129 \x3d (p_129 - floor(p_129));\n      lowp vec3 tmpvar_141;\n      tmpvar_141 \x3d (((p_129 * p_129) * p_129) * ((p_129 *\n        ((p_129 * 6.0) - 15.0)\n      ) + 10.0));\n      highp float w_125_value \x3d i_127 \x3d\x3d 0 ? w_125[0] : i_127 \x3d\x3d 1 ? w_125[1] : i_127 \x3d\x3d 2 ? w_125[2] : w_125[3];\n      noise_128 \x3d (noise_128 + (w_125_value * mix (\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_133, 0.0).xyz * 2.0)\n         - 1.0), p_129), dot ((\n          (texture2D (permGradMap, tmpvar_135, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, 0.0, 0.0))), tmpvar_141.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_134, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, -1.0, 0.0))), dot ((\n          (texture2D (permGradMap, tmpvar_136, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, -1.0, 0.0))), tmpvar_141.x), tmpvar_141.y)\n      ,\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_137, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, 0.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_139, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, 0.0, -1.0))), tmpvar_141.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_138, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, -1.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_140, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, -1.0, -1.0))), tmpvar_141.x), tmpvar_141.y)\n      , tmpvar_141.z)));\n    };\n    diffAlbedo_3 \x3d pow (abs(tmpvar_121), vec3((1.0 + noise_128)));\n  };\n  if (wood_use_pores) {\n    lowp float woodWeight_142;\n    woodWeight_142 \x3d 0.0;\n    if ((wood_pore_type \x3d\x3d 0)) {\n      woodWeight_142 \x3d 1.0;\n    } else {\n      if ((wood_pore_type \x3d\x3d 1)) {\n        woodWeight_142 \x3d earlyWoodRatio_63;\n      } else {\n        if ((wood_pore_type \x3d\x3d 2)) {\n          woodWeight_142 \x3d (1.0 - earlyWoodRatio_63);\n        } else {\n          woodWeight_142 \x3d -1.0;\n        };\n      };\n    };\n    lowp vec3 p_143;\n    p_143 \x3d p_7;\n    lowp float tmpvar_144;\n    lowp float invRsq_146;\n    lowp float weight_147;\n    lowp vec2 right_148;\n    lowp vec2 left_149;\n    if ((woodWeight_142 \x3c 0.0)) {\n      tmpvar_144 \x3d 0.0;\n    } else {\n      lowp float tmpvar_150;\n      tmpvar_150 \x3d (wood_pore_radius * woodWeight_142);\n      left_149 \x3d floor(((p_7.xy - tmpvar_150) / wood_pore_cell_dim));\n      right_148 \x3d floor(((p_7.xy + tmpvar_150) / wood_pore_cell_dim));\n      weight_147 \x3d 0.0;\n      invRsq_146 \x3d (1.0/((tmpvar_150 * tmpvar_150)));\n      for (int j_145 \x3d 0; j_145 \x3c\x3d 4; ++j_145) {\n        if ((j_145 \x3e int((right_148.y - left_149.y)))) {\n          continue;\n        };\n        for (int i_151 \x3d 0; i_151 \x3c\x3d 4; ++i_151) {\n          lowp float impPosY_152;\n          lowp float impPosX_153;\n          if ((i_151 \x3e int((right_148.x - left_149.x)))) {\n            continue;\n          };\n          lowp vec2 tmpvar_154;\n          tmpvar_154.x \x3d (float(i_151) + left_149.x);\n          tmpvar_154.y \x3d (float(j_145) + left_149.y);\n          lowp float tmpvar_155;\n          lowp vec2 k_156;\n          k_156 \x3d ((vec2(mod (tmpvar_154, vec2(256.0, 256.0)))) * 0.00390625);\n          lowp vec2 tmpvar_157;\n          tmpvar_157.y \x3d 0.0;\n          tmpvar_157.x \x3d k_156.x;\n          lowp vec2 tmpvar_158;\n          tmpvar_158.y \x3d 0.0;\n          tmpvar_158.x \x3d (texture2D (permutationMap, tmpvar_157).x + k_156.y);\n          tmpvar_155 \x3d (texture2D (permutationMap, tmpvar_158).x * 255.0);\n          impPosX_153 \x3d ((tmpvar_154.x + (\n            (float(mod (tmpvar_155, 16.0)))\n           * 0.06666667)) * wood_pore_cell_dim);\n          impPosY_152 \x3d ((tmpvar_154.y + (\n            floor((tmpvar_155 / 16.0))\n           * 0.06666667)) * wood_pore_cell_dim);\n          lowp float rsq_159;\n          rsq_159 \x3d (((\n            (p_143.x - impPosX_153)\n           *\n            (p_143.x - impPosX_153)\n          ) + (\n            (p_143.y - impPosY_152)\n           *\n            (p_143.y - impPosY_152)\n          )) * invRsq_146);\n          lowp float tmpvar_160;\n          if ((rsq_159 \x3e\x3d 1.0)) {\n            tmpvar_160 \x3d 0.0;\n          } else {\n            lowp float tmpvar_161;\n            tmpvar_161 \x3d (1.0 - rsq_159);\n            tmpvar_160 \x3d ((tmpvar_161 * tmpvar_161) * tmpvar_161);\n          };\n          weight_147 \x3d (weight_147 + tmpvar_160);\n        };\n      };\n      tmpvar_144 \x3d weight_147;\n    };\n    diffAlbedo_3 \x3d pow (abs(diffAlbedo_3), vec3(((\n      (wood_pore_color_power - 1.0)\n     * tmpvar_144) + 1.0)));\n  };\n  if (wood_use_rays) {\n    lowp vec3 p_162;\n    p_162 \x3d p_7;\n    lowp float radialLength_164;\n    lowp float weight_165;\n    lowp ivec2 arrSegs_166;\n    lowp float sliceIdx_167;\n    lowp int segIdx1_168;\n    lowp int tmpvar_169;\n    tmpvar_169 \x3d int(floor((p_7.z / wood_ray_seg_length_z)));\n    lowp float tmpvar_170;\n    tmpvar_170 \x3d ((p_7.z / wood_ray_seg_length_z) - float(tmpvar_169));\n    segIdx1_168 \x3d (tmpvar_169 - 1);\n    if ((tmpvar_170 \x3e 0.5)) {\n      segIdx1_168 \x3d (tmpvar_169 + 1);\n    };\n    lowp float tmpvar_171;\n    lowp float tmpvar_172;\n    tmpvar_172 \x3d (min (abs(\n      (p_7.y / p_7.x)\n    ), 1.0) / max (abs(\n      (p_7.y / p_7.x)\n    ), 1.0));\n    lowp float tmpvar_173;\n    tmpvar_173 \x3d (tmpvar_172 * tmpvar_172);\n    tmpvar_173 \x3d (((\n      ((((\n        ((((-0.01213232 * tmpvar_173) + 0.05368138) * tmpvar_173) - 0.1173503)\n       * tmpvar_173) + 0.1938925) * tmpvar_173) - 0.3326756)\n     * tmpvar_173) + 0.9999793) * tmpvar_172);\n    tmpvar_173 \x3d (tmpvar_173 + (float(\n      (abs((p_7.y / p_7.x)) \x3e 1.0)\n    ) * (\n      (tmpvar_173 * -2.0)\n     + 1.570796)));\n    tmpvar_171 \x3d (tmpvar_173 * sign((p_7.y / p_7.x)));\n    if ((abs(p_7.x) \x3e (1e-08 * abs(p_7.y)))) {\n      if ((p_7.x \x3c 0.0)) {\n        if ((p_7.y \x3e\x3d 0.0)) {\n          tmpvar_171 +\x3d 3.141593;\n        } else {\n          tmpvar_171 \x3d (tmpvar_171 - 3.141593);\n        };\n      };\n    } else {\n      tmpvar_171 \x3d (sign(p_7.y) * 1.570796);\n    };\n    lowp float tmpvar_174;\n    tmpvar_174 \x3d floor(((\n      (tmpvar_171 + 3.141593)\n     * 0.1591549) * wood_ray_num_slices));\n    sliceIdx_167 \x3d tmpvar_174;\n    if ((tmpvar_174 \x3d\x3d wood_ray_num_slices)) {\n      sliceIdx_167 \x3d (tmpvar_174 - 1.0);\n    };\n    lowp ivec2 tmpvar_175;\n    tmpvar_175.x \x3d tmpvar_169;\n    tmpvar_175.y \x3d segIdx1_168;\n    arrSegs_166 \x3d tmpvar_175;\n    weight_165 \x3d 0.0;\n    radialLength_164 \x3d sqrt(dot (p_7.xy, p_7.xy));\n    for (int seg_163 \x3d 0; seg_163 \x3c 2; ++seg_163) {\n      lowp vec3 p1_176;\n      lowp float rayTheta_177;\n      lowp vec2 tmpvar_178;\n      tmpvar_178.x \x3d sliceIdx_167;\n      lowp int arrSegs_166_value \x3d seg_163 \x3d\x3d 0 ? arrSegs_166[0] : arrSegs_166[1];\n      tmpvar_178.y \x3d float(arrSegs_166_value);\n      lowp float tmpvar_179;\n      lowp vec2 k_180;\n      k_180 \x3d ((vec2(mod (tmpvar_178, vec2(256.0, 256.0)))) * 0.00390625);\n      lowp vec2 tmpvar_181;\n      tmpvar_181.y \x3d 0.0;\n      tmpvar_181.x \x3d k_180.x;\n      lowp vec2 tmpvar_182;\n      tmpvar_182.y \x3d 0.0;\n      tmpvar_182.x \x3d (texture2D (permutationMap, tmpvar_181).x + k_180.y);\n      tmpvar_179 \x3d (texture2D (permutationMap, tmpvar_182).x * 255.0);\n      lowp float tmpvar_183;\n      tmpvar_183 \x3d ((float(mod (tmpvar_179, 16.0))) * 0.06666667);\n      if ((radialLength_164 \x3c (5.0 * tmpvar_183))) {\n        continue;\n      };\n      rayTheta_177 \x3d (((\n        (sliceIdx_167 + tmpvar_183)\n       / wood_ray_num_slices) * 6.283185) - 3.141593);\n      lowp vec3 tmpvar_184;\n      tmpvar_184.z \x3d 0.0;\n      tmpvar_184.x \x3d cos(rayTheta_177);\n      tmpvar_184.y \x3d sin(rayTheta_177);\n      p1_176.xy \x3d p_162.xy;\n      p1_176.z \x3d (p_162.z - ((\n        float(arrSegs_166_value)\n       +\n        ((tmpvar_179 / 16.0) * 0.06666667)\n      ) * wood_ray_seg_length_z));\n      p1_176.z \x3d (p1_176.z / wood_ray_ellipse_z2x);\n      lowp vec3 tmpvar_185;\n      tmpvar_185 \x3d -(p1_176);\n      lowp vec3 tmpvar_186;\n      tmpvar_186 \x3d ((tmpvar_184.yzx * tmpvar_185.zxy) - (tmpvar_184.zxy * tmpvar_185.yzx));\n      lowp float tmpvar_187;\n      tmpvar_187 \x3d (sqrt(dot (tmpvar_186, tmpvar_186)) / sqrt(dot (tmpvar_184, tmpvar_184)));\n      lowp float rsq_188;\n      rsq_188 \x3d ((tmpvar_187 * tmpvar_187) * (1.0/((wood_ray_ellipse_radius_x * wood_ray_ellipse_radius_x))));\n      lowp float tmpvar_189;\n      if ((rsq_188 \x3e\x3d 1.0)) {\n        tmpvar_189 \x3d 0.0;\n      } else {\n        lowp float tmpvar_190;\n        tmpvar_190 \x3d (1.0 - rsq_188);\n        tmpvar_189 \x3d ((tmpvar_190 * tmpvar_190) * tmpvar_190);\n      };\n      weight_165 \x3d (weight_165 + tmpvar_189);\n    };\n    diffAlbedo_3 \x3d pow (abs(diffAlbedo_3), vec3(((\n      (wood_ray_color_power - 1.0)\n     * weight_165) + 1.0)));\n  };\n  if (wood_use_groove_roughness) {\n    roughness_2 \x3d ((earlyWoodRatio_63 * wood_groove_roughness) + ((1.0 - earlyWoodRatio_63) * surface_roughness));\n  };\n  roughness_inout \x3d roughness_2;\n  return diffAlbedo_3;\n}\n#endif\n#if MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\nvec3 DiffuseLobe(vec3 diffuseColor)\n{\nreturn diffuseColor * RECIPROCAL_PI;\n}\nvec3 Rotate(vec3 vec, float angle)\n{\nfloat s \x3d sin(angle);\nfloat c \x3d cos(angle);\nreturn vec3(vec.x * c - vec.y * s, vec.x * s + vec.y * c, vec.z);\n}\nfloat NDF_GGX(float alphaU, float alphaV, vec3 normal)\n{\nfloat nx2 \x3d sqr(normal.x);\nfloat ny2 \x3d sqr(normal.y);\nfloat nz2 \x3d sqr(normal.z);\nfloat scale \x3d 1.0/(alphaU * alphaV * PI);\nreturn scale/sqr(nx2/sqr(alphaU) + ny2/sqr(alphaV) + nz2);\n}\nfloat G1_GGX(float aSqrd)\n{\n    return 2.0 / (1.0 + sqrt(1.0 + aSqrd));\n}\nvec3 MicrofacetLobe(\nvec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH,\nfloat roughness, float anisotropy, float rotation, vec3 reflectance)\n{\nvec2 alpha \x3d RoughnessToAlpha(roughness, anisotropy);\nHlocal \x3d Rotate(Hlocal, rotation);\nvec3 F \x3d Fresnel_Schlick(reflectance, VdotH);\nfloat D \x3d NDF_GGX(alpha.x, alpha.y, Hlocal);\nfloat alpha2 \x3d max(sqr(alpha.x), sqr(alpha.y));\nfloat alpha2NL \x3d aSqrd(alpha2, NdotL);\nfloat alpha2NV \x3d aSqrd(alpha2, NdotV);\nfloat G \x3d G1_GGX(alpha2NL) * G1_GGX(alpha2NV);\nreturn max(F * D * G / (4.0 * NdotL * NdotV), vec3(0.0));\n}\n#if defined( PRISMOPAQUE )\nvec3 BRDF_Opaque(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                 vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation, \n                 float opaqueF0, vec3 opaqueAlbedo)\n{\n    vec3 diffuse \x3d DiffuseLobe(opaqueAlbedo);\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, vec3(opaqueF0));\n    return (specular+diffuse)*NdotL;\n}\n#elif defined( PRISMMETAL )\nvec3 BRDF_Metal(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation, \n                vec3 metalF0)\n{\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, metalF0);\n    return specular*NdotL;\n}\n#elif defined( PRISMLAYERED )\nvec3 BRDF_Layered(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                  vec3 Hlocal2, float N2dotL, float N2dotH, float N2dotV, \n                  vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation,\n                  float layeredF0, vec3 layeredDiffuse, float layeredRoughness, float layeredAnisotropy,\n                  float layeredRotation, vec3 bottom_f0, float layeredFraction)\n{\n    vec3 Fl \x3d Fresnel_Schlick(vec3(layeredF0), NdotL);\n    vec3 Fv \x3d Fresnel_Schlick(vec3(layeredF0), NdotV);\n    vec3 amount \x3d (1.0 - Fl) * (1.0 - Fv);\n    vec3 topSpecular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n        vec3(layeredF0));\n    vec3 topDiffuse \x3d DiffuseLobe(layeredDiffuse);\n    vec3 botSpecular \x3d MicrofacetLobe(\n        Hlocal2, N2dotL, N2dotH, N2dotV, VdotH,\n        layeredRoughness, layeredAnisotropy, layeredRotation,\n        bottom_f0);\n    return topSpecular*NdotL + amount * mix(topDiffuse*NdotL, botSpecular*N2dotL, layeredFraction);\n}\n#elif defined( PRISMTRANSPARENT )\nvec3 BRDF_Transparent(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation)\n{\n    vec3 reflectance \x3d vec3(IORToReflectance(transparent_ior));\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, reflectance);\n    return specular*NdotL;\n}\n#elif defined( PRISMWOOD )\nvec3 BRDF_Wood(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                 vec3 surfaceAlbedo, float surfaceRoughness, vec3 woodDiffuse)\n{\n    vec3 diffuse \x3d DiffuseLobe(woodDiffuse);\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, 0.0, 0.0, vec3(0.04));\n    return (specular+diffuse)*NdotL;\n}\n#endif\n#endif\n#if defined( USE_ENVMAP )\n#if defined( PRISMOPAQUE )\nvec3 Environment_Opaque(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness,\n                        float opaqueF0, vec3 opaqueAlbedo)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(vec3(opaqueF0), NdotV, alpha);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 diffuse \x3d (1.0 - F) * opaqueAlbedo * envIrradiance;\n     vec3 luminanceModifier;", d("opaque_luminance_modifier", "luminanceModifier", !1, !0), "    vec3 emission \x3d luminanceModifier * opaque_luminance;\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F* surfaceAlbedo * envSpecular;\n    return diffuse + specular + emission;\n}\n#elif defined( PRISMMETAL )\nvec3 Environment_Metal(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness, vec3 metalF0)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(metalF0, NdotV, alpha);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n    return specular;\n}\n#elif defined( PRISMLAYERED )\nvec3 Environment_Layered(vec3 N, vec3 V, float NdotV, vec3 N2, float N2dotV, vec3 surfaceAlbedo, float surfaceRoughness,\n                         float layeredF0, vec3 layeredDiffuse, float layeredRoughness, float layeredAnisotropy,\n                         float layeredRotation, vec3 bottom_f0, float layeredFraction)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 F \x3d Fresnel_Schlick(vec3(layeredF0), NdotV);\n    vec3 topSpecular \x3d F * surfaceAlbedo * envSpecular;\n    vec3 amount \x3d (1.0 - F);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 topDiffuse \x3d layeredDiffuse * envIrradiance;\n    alpha \x3d RoughnessToAlpha(layeredRoughness, 0.0).x;\n    exponent \x3d AlphaToPhong(alpha);\n    reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    envSpecular \x3d sampleReflection(N2, V, reflMipIndex);\n    F \x3d Fresnel_Rough(bottom_f0, N2dotV, alpha);\n    vec3 botSpecular \x3d F * envSpecular;\n    return topSpecular + amount * mix(topDiffuse, botSpecular, layeredFraction);\n}\n#elif defined( PRISMTRANSPARENT )\nvec3 Environment_Transparent(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 reflectance \x3d vec3(IORToReflectance(transparent_ior));\n    vec3 F \x3d Fresnel_Rough(reflectance, NdotV, alpha);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 color \x3d 0.5 * (1.0 - F) * transparent_color * envIrradiance;\n    return specular + color;\n}\n#elif defined( PRISMWOOD )\nvec3 Environment_Wood(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness, vec3 woodDiffuse)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(vec3(0.04), NdotV, alpha);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 diffuse \x3d (1.0 - F) * woodDiffuse * envIrradiance;\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n    return diffuse + specular;\n}\n#endif\n#endif\nvarying vec3 vNormal;\nvarying vec3 vViewPosition;", g.CutPlanesShaderChunk, "void main() {\n#if NUM_CUTPLANES \x3e 0\ncheckCutPlanes(vWorldPosition);\n#endif\nvec3 N \x3d normalize(vNormal);\n#if defined( USE_SURFACE_NORMAL_MAP ) || defined( USE_LAYERED_NORMAL_MAP ) || MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\n#ifndef USE_MAP\nvec3 Tu \x3d normalize(vTangent);\nvec3 Tv \x3d normalize(vBitangent);\n#else\nvec3 q0 \x3d dFdx( -vViewPosition );\nvec3 q1 \x3d dFdy( -vViewPosition );\nvec2 st0 \x3d dFdx( vUv );\nvec2 st1 \x3d dFdy( vUv );\nvec3 Tu \x3d normalize(  q0 * st1.t - q1 * st0.t );\nvec3 Tv \x3d normalize( -q0 * st1.s + q1 * st0.s );\n#endif\n#endif\nvec3 V;\nif (projectionMatrix[3][3] \x3d\x3d 0.0) {\nV \x3d normalize( vViewPosition );\n} else {\nV \x3d vec3(0.0, 0.0, 1.0);\n}\nN \x3d faceforward(N, -V, N);\n#if defined(PRISMLAYERED)\nvec3 N2 \x3d N;\n#endif\n#ifndef FLAT_SHADED\nvec3 normal \x3d normalize( vNormal );\n#ifdef DOUBLE_SIDED\nnormal \x3d normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n#endif\n#else\nvec3 fdx \x3d dFdx( vViewPosition );\nvec3 fdy \x3d dFdy( vViewPosition );\nvec3 normal \x3d normalize( cross( fdx, fdy ) );\n#endif\nvec3 geomNormal \x3d normal;\n#if defined( USE_SURFACE_NORMAL_MAP )\nif (surface_normal_map_bumpmapType \x3d\x3d 0)\n     N \x3d heightMapTransform(surface_normal_map, vUv, surface_normal_map_texMatrix, surface_normal_map_bumpScale, Tu, Tv, N);\nelse\n     N \x3d normalMapTransform(surface_normal_map, vUv, surface_normal_map_texMatrix, surface_normal_map_bumpScale, Tu, Tv, N);\n#endif\n#if defined( USE_LAYERED_NORMAL_MAP )\nif (layered_normal_map_bumpmapType \x3d\x3d 0)\n     N2 \x3d heightMapTransform(layered_normal_map, vUv, layered_normal_map_texMatrix, layered_normal_map_bumpScale, Tu, Tv, N2);\nelse\n     N2 \x3d normalMapTransform(layered_normal_map, vUv, layered_normal_map_texMatrix, layered_normal_map_bumpScale, Tu, Tv, N2);\n#endif\nfloat NdotV \x3d dot(N, V);\n#if defined(PRISMLAYERED)\nfloat N2dotV \x3d dot(N2, V);\n#endif\nvec3 surfaceAlbedo;", d("surface_albedo", "surfaceAlbedo", !1, !0), "float surfaceRoughness;", d("surface_roughness", "surfaceRoughness", !0, !1), "float surfaceAnisotropy;", d("surface_anisotropy", "surfaceAnisotropy", !0, !1), "float surfaceRotation;", d("surface_rotation", "surfaceRotation", !0, !1), "#if defined(PRISMOPAQUE)\nfloat opaqueF0;", d("opaque_f0", "opaqueF0", !0, !1), "vec3 opaqueAlbedo;", d("opaque_albedo", "opaqueAlbedo", !1, !0), "#elif defined(PRISMMETAL)\nvec3 metalF0;", d("metal_f0", "metalF0", !1, !0), "#elif defined(PRISMLAYERED)\nfloat layeredF0;", d("layered_f0", "layeredF0", !0, !1), "vec3 layeredDiffuse;", d("layered_diffuse", "layeredDiffuse", !1, !0), "float layeredRoughness;", d("layered_roughness", "layeredRoughness", !0, !1), "float layeredAnisotropy;", d("layered_anisotropy", "layeredAnisotropy", !0, !1), "float layeredRotation;", d("layered_rotation", "layeredRotation", !0, !1), "vec3 bottom_f0;", d("layered_bottom_f0", "bottom_f0", !1, !0), "float layeredFraction;", d("layered_fraction", "layeredFraction", !0, !1), "#elif defined(PRISMWOOD)\nvec3 woodDiffuse \x3d NoiseWood(surfaceRoughness);\n#endif\nvec3 outRadianceLight \x3d vec3(0.0);\n#if MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\nvec3 lightDirection[ MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS ];\nvec3 lightColor[ MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS ];\n#if MAX_DIR_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_DIR_LIGHTS; i ++ ) {\nvec4 lDirection \x3d viewMatrix * vec4( directionalLightDirection[ i ], 0.0 );\nlightDirection[i] \x3d normalize( lDirection.xyz );\nlightColor[i] \x3d SRGBToLinear(directionalLightColor[ i ]);\n}\n#endif\n#if MAX_POINT_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_POINT_LIGHTS; i ++ ) {\nvec4 lPosition \x3d viewMatrix * vec4( pointLightPosition[ i ], 1.0 );\nvec3 lVector \x3d lPosition.xyz + vViewPosition.xyz;\nlightDirection[MAX_DIR_LIGHTS + i] \x3d normalize( lVector );\nfloat lDistance \x3d 1.0;\nif ( pointLightDistance[ i ] \x3e 0.0 )\nlDistance \x3d 1.0 - min( ( length( lVector ) / pointLightDistance[ i ] ), 1.0 );\nlightColor[MAX_DIR_LIGHTS + i] \x3d SRGBToLinear(pointLightColor[ i ]) * lDistance;\n}\n#endif\n#if MAX_SPOT_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_SPOT_LIGHTS; i ++ ) {\nvec4 lPosition \x3d viewMatrix * vec4( spotLightPosition[ i ], 1.0 );\nvec3 lVector \x3d lPosition.xyz + vViewPosition.xyz;\nlightDirection[MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + i] \x3d normalize( lVector );\nfloat lDistance \x3d 1.0;\nif ( spotLightDistance[ i ] \x3e 0.0 )\nlDistance \x3d 1.0 - min( ( length( lVector ) / spotLightDistance[ i ] ), 1.0 );\nfloat spotEffect \x3d dot( spotLightDirection[ i ], normalize( spotLightPosition[ i ] - vWorldPosition ) );\nif ( spotEffect \x3e spotLightAngleCos[ i ] )\nspotEffect \x3d max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 );\nlightColor[MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + i] \x3d SRGBToLinear(spotLightColor[ i ]) * lDistance * spotEffect;\n}\n#endif\nfor( int i \x3d 0; i \x3c MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS; i ++ ) {\nvec3 L \x3d lightDirection[i];\nfloat NdotL \x3d dot(N, L);\nvec3 H \x3d normalize(L + V);\nfloat NdotH \x3d dot(N, H);\nfloat VdotH \x3d dot(V, H);\nfloat Hu \x3d dot(H, Tu);\nfloat Hv \x3d dot(H, Tv);\nvec3 Hlocal \x3d vec3(Hu, Hv, NdotH);\n#if defined(PRISMLAYERED)\nfloat N2dotL \x3d dot(N2, L);\nfloat N2dotH \x3d dot(N2, H);\nvec3 Hlocal2 \x3d vec3(Hu, Hv, N2dotH);\n#endif\nvec3 brdf \x3d lightColor[i] * \n#if defined(PRISMOPAQUE)\n    BRDF_Opaque(Hlocal, NdotL, NdotH, NdotV, VdotH,\n                surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n                opaqueF0, opaqueAlbedo);\n#elif defined(PRISMMETAL)\n    BRDF_Metal(Hlocal, NdotL, NdotH, NdotV, VdotH, \n               surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation, \n               metalF0);\n#elif defined(PRISMLAYERED)\n    BRDF_Layered(Hlocal, NdotL, NdotH, NdotV, VdotH, Hlocal2, N2dotL, N2dotH, N2dotV,\n                 surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n                 layeredF0, layeredDiffuse, layeredRoughness, layeredAnisotropy,\n                 layeredRotation, bottom_f0, layeredFraction);\n#elif defined(PRISMTRANSPARENT)\n    BRDF_Transparent(Hlocal, NdotL, NdotH, NdotV, VdotH, surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation);\n#elif defined(PRISMWOOD)\n    BRDF_Wood(Hlocal, NdotL, NdotH, NdotV, VdotH, surfaceAlbedo, surfaceRoughness, woodDiffuse);\n#endif\noutRadianceLight +\x3d max(vec3(0.0), brdf);\n}\n#endif\nvec3 outRadianceEnv \x3d vec3(0.0);\n#if defined( USE_ENVMAP )\noutRadianceEnv \x3d\n#if defined(PRISMOPAQUE)\n    Environment_Opaque(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness,\n                        opaqueF0, opaqueAlbedo);\n#elif defined(PRISMMETAL)\n    Environment_Metal(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness, metalF0);\n#elif defined(PRISMLAYERED)\n    Environment_Layered(N, V, clamp(NdotV, 0.0, 1.0), N2, clamp(N2dotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness,\n                layeredF0, layeredDiffuse, layeredRoughness, layeredAnisotropy,\n                layeredRotation, bottom_f0, layeredFraction);\n#elif defined(PRISMTRANSPARENT)\n    Environment_Transparent(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness);\n#elif defined(PRISMWOOD)\n    Environment_Wood(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness, woodDiffuse);\n#endif\n#endif\nfloat opacity \x3d 1.0;\nfloat surface_cutout \x3d 1.0;", d("surface_cutout", "surface_cutout", !0, !1), "#if defined( USE_SURFACE_CUTOUT_MAP )\nif(surface_cutout \x3c 0.01) discard;\n#endif\n#if defined(PRISMTRANSPARENT)\nif (transparent_ior \x3d\x3d 1.0 \x26\x26 transparent_color \x3d\x3d vec3(1.0,1.0,1.0))\nopacity \x3d 0.0;\nelse\nopacity \x3d max(0.5, mix(1.0, surfaceRoughness, NdotV));\n#endif\ngl_FragColor \x3d vec4( outRadianceLight + outRadianceEnv, opacity*surface_cutout );\n#if TONEMAP_OUTPUT \x3d\x3d 1\ngl_FragColor.xyz \x3d toneMapCanonOGS_WithGamma_WithColorPerserving(exposureBias * gl_FragColor.xyz);\n#elif TONEMAP_OUTPUT \x3d\x3d 2\ngl_FragColor.xyz \x3d toneMapCanonFilmic_WithGamma(exposureBias * gl_FragColor.xyz);\n#endif", g.ThemingFragmentShaderChunk, g.FinalOutputShaderChunk, "}"].join("\n")
+            fragmentShader: ["//**************************************************************************/\n// Copyright 2015 BimKing, Inc. \n// All rights reserved.\n// \n// This computer source code and related instructions and comments are the \n// unpublished confidential and proprietary information of BimKing, Inc. \n// and are protected under Federal copyright and state trade secret law. \n// They may not be disclosed to, copied or used by any third party without\n// the prior written consent of BimKing, Inc. \n//**************************************************************************/ \n#define PI 3.141592654\n#define RECIPROCAL_PI 0.318309886\n#define RECIPROCAL_2PI 0.159154943\n#define ONE 0.00390625\nuniform vec3 surface_albedo;\nuniform float surface_roughness;\nuniform float surface_anisotropy;\nuniform float surface_rotation;\n#if defined( PRISMOPAQUE )\nuniform vec3 opaque_albedo;\nuniform float opaque_f0;\nuniform vec3 opaque_luminance_modifier;\nuniform float opaque_luminance;\n#elif defined( PRISMMETAL )\nuniform vec3 metal_f0;\n#elif defined( PRISMLAYERED )\nuniform float layered_f0;\nuniform vec3 layered_diffuse;\nuniform float layered_fraction;\nuniform vec3 layered_bottom_f0;\nuniform float layered_roughness;\nuniform float layered_anisotropy;\nuniform float layered_rotation;\n#elif defined( PRISMTRANSPARENT )\nuniform float transparent_ior;\nuniform vec3 transparent_color;\nuniform float transparent_distance;\n#elif defined( PRISMWOOD )\nuniform bool wood_fiber_cosine_enable;\nuniform int wood_fiber_cosine_bands;\nuniform vec4 wood_fiber_cosine_weights;\nuniform vec4 wood_fiber_cosine_frequencies;\nuniform bool wood_fiber_perlin_enable;\nuniform int wood_fiber_perlin_bands;\nuniform vec4 wood_fiber_perlin_weights;\nuniform vec4 wood_fiber_perlin_frequencies;\nuniform float wood_fiber_perlin_scale_z;\nuniform bool wood_growth_perlin_enable;\nuniform int wood_growth_perlin_bands;\nuniform vec4 wood_growth_perlin_weights;\nuniform vec4 wood_growth_perlin_frequencies;\nuniform float wood_latewood_ratio;\nuniform float wood_earlywood_sharpness;\nuniform float wood_latewood_sharpness;\nuniform float wood_ring_thickness;\nuniform bool wood_earlycolor_perlin_enable;\nuniform int wood_earlycolor_perlin_bands;\nuniform vec4 wood_earlycolor_perlin_weights;\nuniform vec4 wood_earlycolor_perlin_frequencies;\nuniform vec3 wood_early_color;\nuniform bool wood_use_manual_late_color;\nuniform vec3 wood_manual_late_color;\nuniform bool wood_latecolor_perlin_enable;\nuniform int wood_latecolor_perlin_bands;\nuniform vec4 wood_latecolor_perlin_weights;\nuniform vec4 wood_latecolor_perlin_frequencies;\nuniform float wood_late_color_power;\nuniform bool wood_diffuse_perlin_enable;\nuniform int wood_diffuse_perlin_bands;\nuniform vec4 wood_diffuse_perlin_weights;\nuniform vec4 wood_diffuse_perlin_frequencies;\nuniform float wood_diffuse_perlin_scale_z;\nuniform bool wood_use_pores;\nuniform int wood_pore_type;\nuniform float wood_pore_radius;\nuniform float wood_pore_cell_dim;\nuniform float wood_pore_color_power;\nuniform float wood_pore_depth;\nuniform bool wood_use_rays;\nuniform float wood_ray_color_power;\nuniform float wood_ray_seg_length_z;\nuniform float wood_ray_num_slices;\nuniform float wood_ray_ellipse_z2x;\nuniform float wood_ray_ellipse_radius_x;\nuniform bool wood_use_latewood_bump;\nuniform float wood_latewood_bump_depth;\nuniform bool wood_use_groove_roughness;\nuniform float wood_groove_roughness;\nuniform float wood_diffuse_lobe_weight;\nuniform sampler2D permutationMap;\nuniform sampler2D gradientMap;\nuniform sampler2D perm2DMap;\nuniform sampler2D permGradMap;\n#endif\nuniform float envExponentMin;\nuniform float envExponentMax;\nuniform float envExponentCount;", g.EnvSamplingShaderChunk, "#if TONEMAP_OUTPUT \x3e 0\nuniform float exposureBias;", g.TonemapShaderChunk, "#endif\n#if MAX_SPOT_LIGHTS \x3e 0 || NUM_CUTPLANES \x3e 0\nvarying vec3 vWorldPosition;\n#endif\n#ifdef USE_LOGDEPTHBUF\nuniform float logDepthBufFC;\n#ifdef USE_LOGDEPTHBUF_EXT\n#extension GL_EXT_frag_depth : enable\nvarying highp float vFragDepth;\n#endif\n#endif", g.IdFragmentDeclaration, g.ThemingFragmentDeclaration, f("#define USE_MAP"), "#ifdef USE_MAP\nvarying vec2 vUv;\n#endif\n#if defined(PRISMWOOD) \x26\x26 !defined(NO_UVW)\nvarying vec3 vUvw;\n#endif", k("surface_albedo_map"), k("surface_roughness_map"), k("surface_cutout_map"), k("surface_anisotropy_map"), k("surface_rotation_map"), k("opaque_albedo_map"), k("opaque_f0_map"), k("opaque_luminance_modifier_map"), k("layered_bottom_f0_map"), k("layered_f0_map"), k("layered_diffuse_map"), k("layered_fraction_map"), k("layered_roughness_map"), k("layered_anisotropy_map"), k("layered_rotation_map"), k("metal_f0_map"), m("surface_normal_map"), m("layered_normal_map"), "vec3 RGBMDecode(in vec4 vRGBM, in float exposure) {\nvec3 ret \x3d vRGBM.rgb * (vRGBM.a * 16.0);\nret *\x3d ret;\nret *\x3d exposure;\nreturn ret;\n}\nvec3 GammaDecode(in vec4 vRGBA, in float exposure) {\nreturn vRGBA.xyz * vRGBA.xyz * exposure;\n}\nfloat SRGBToLinearComponent(float color) {\nfloat result \x3d color;\nif (result\x3c\x3d0.04045)\nresult *\x3d 0.07739938;\nelse\nresult \x3d pow(abs((result+0.055)*0.947867298), 2.4);\nreturn result;\n}\nvec3 SRGBToLinear(vec3 color) {\nvec3 result \x3d color;\nresult.x \x3d SRGBToLinearComponent(result.x);\nresult.y \x3d SRGBToLinearComponent(result.y);\nresult.z \x3d SRGBToLinearComponent(result.z);\nreturn result;\n}\n#if defined( USE_ENVMAP )\nuniform float envMapExposure;\nuniform samplerCube envMap;\n#endif\nfloat averageOfFloat3(in vec3 value)\n{ \n    const float oneThird \x3d 1.0 / 3.0; \n    return dot(value, vec3(oneThird, oneThird, oneThird)); \n} \n#if defined( USE_SURFACE_NORMAL_MAP ) || defined( USE_LAYERED_NORMAL_MAP )\nvec3 heightMapTransform(sampler2D bumpTexture, vec2 uv, mat3 transform, vec2 bumpScale, vec3 T, vec3 B, vec3 N) {\nvec2 st \x3d (transform * vec3(uv, 1.0)).xy;\nmat3 mtxTangent \x3d mat3(T, B, N);\nT \x3d normalize(mtxTangent * (transform * vec3(1.0, 0.0, 0.0)));\nB \x3d normalize(mtxTangent * (transform * vec3(0.0, 1.0, 0.0)));\nconst float oneThird \x3d 1.0 / 3.0;\nvec3 avg \x3d vec3(oneThird, oneThird, oneThird);\nvec2 offset \x3d fwidth(st);\nfloat h0 \x3d dot(texture2D(bumpTexture, st).xyz, avg);\nfloat hx \x3d dot(texture2D(bumpTexture, st + vec2(offset.x, 0.0)).xyz, avg);\nfloat hy \x3d dot(texture2D(bumpTexture, st + vec2(0.0, offset.y)).xyz, avg);\nvec2 diff \x3d vec2(h0 - hx, h0 - hy) / offset;\nreturn normalize(N + (diff.x * T * bumpScale.x + diff.y * B * bumpScale.y));\n}\nvec3 normalMapTransform(sampler2D bumpTexture, vec2 uv, mat3 transform, vec2 bumpScale, vec3 T, vec3 B, vec3 N) {\nvec2 st \x3d (transform * vec3(uv, 1.0)).xy;\nvec3 NMap \x3d  2.0 * texture2D( bumpTexture, st ).xyz - 1.0; \nreturn normalize(bumpScale.x * (NMap.x * T + NMap.y * B) + NMap.z * N);\n}\n#endif\n#if !defined(USE_MAP)\x26\x26 (MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0)\nvarying vec3 vTangent;\nvarying vec3 vBitangent;\n#endif\n#if defined( USE_ENVMAP )\nvec3 sampleReflection(vec3 N, vec3 V, float mipIndex) {\nvec3 dir \x3d (2.0 * dot(V, N)) * N - V;\ndir \x3d adjustLookupVector(mat3(viewMatrixInverse) * dir);\n#ifdef ENV_GAMMA\n#ifdef HAVE_TEXTURE_LOD\nvec4 envTexColor \x3d textureCubeLodEXT( envMap, dir, mipIndex );\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir, mipIndex );\n#endif\nreturn GammaDecode(envTexColor, envMapExposure);\n#elif defined(ENV_RGBM)\n#ifdef HAVE_TEXTURE_LOD\nvec4 envTexColor \x3d textureCubeLodEXT( envMap, dir, mipIndex );\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir, mipIndex );\n#endif\nreturn RGBMDecode(envTexColor, envMapExposure);\n#else\nvec4 envTexColor \x3d textureCube( envMap, dir );\nvec3 cubeColor \x3d envTexColor.xyz;\n#ifdef GAMMA_INPUT\ncubeColor *\x3d cubeColor;\n#endif\nreturn cubeColor;\n#endif\n}\n#endif", g.HatchPatternShaderChunk, "#if defined( USE_ENVMAP ) \x26\x26 defined( USE_IRRADIANCEMAP )\nuniform samplerCube irradianceMap;\nvec3 sampleNormal(vec3 normal) {\nvec3 worldNormal \x3d mat3(viewMatrixInverse) * normal;\nvec4 cubeColor4 \x3d textureCube(irradianceMap, adjustLookupVector(worldNormal));\n#ifdef IRR_GAMMA\nvec3 indirectDiffuse \x3d GammaDecode(cubeColor4, envMapExposure);\n#elif defined(IRR_RGBM)\nvec3 indirectDiffuse \x3d RGBMDecode(cubeColor4, envMapExposure);\n#else\nvec3 indirectDiffuse \x3d cubeColor4.xyz;\n#ifdef GAMMA_INPUT\nindirectDiffuse.xyz *\x3d indirectDiffuse.xyz;\n#endif\n#endif\nreturn indirectDiffuse;}\n#endif\n#if MAX_DIR_LIGHTS \x3e 0\nuniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];\nuniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];\n#endif\n#if MAX_POINT_LIGHTS \x3e 0\nuniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];\nuniform vec3 pointLightPosition[ MAX_POINT_LIGHTS ];\nuniform float pointLightDistance[ MAX_POINT_LIGHTS ];\n#endif\n#if MAX_SPOT_LIGHTS \x3e 0\nuniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];\nuniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];\nuniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];\nuniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];\nuniform float spotLightExponent[ MAX_SPOT_LIGHTS ];\nuniform float spotLightDistance[ MAX_SPOT_LIGHTS ];\n#endif\nfloat sqr(float x) {return x*x;}\nfloat aSqrd(float maxAlphaSqr, float cosTheta)\n{\n   float tan2 \x3d 1.0/sqr(cosTheta) - 1.0;\n   return maxAlphaSqr * tan2;\n}\nvec3 Fresnel_Schlick(vec3 f0, float cosAngle)\n{\n    float x \x3d 1.0 - cosAngle;\n    float x2 \x3d x * x;\n    float x5 \x3d x * x2 * x2;\n    return f0 + (1.0 - f0) * x5;\n}\nvec3 Fresnel_Rough(vec3 f0, float cosAngle, float alpha)\n{\n    float x \x3d 1.0 - cosAngle;\n    float x2 \x3d x * x;\n    float x5 \x3d x * x2 * x2;\n    vec3 maxReflectance \x3d mix(vec3(1.0), f0, vec3(min(0.7, alpha)) / 0.7);\n    return f0 + (maxReflectance - f0) * x5;\n}\nfloat IORToReflectance(float ior)\n{\n    return sqr((1.0 - ior)/(1.0 + ior));\n}\nvec2 RoughnessToAlpha(float roughness, float anisotropy)\n{\n    vec2 alpha \x3d roughness * vec2(1.0, 1.0 - anisotropy);\n    alpha \x3d alpha * alpha;\n    alpha \x3d clamp(alpha, 0.001, 1.0);\n    return alpha;\n}\nfloat AlphaToPhong(float alpha)\n{\n    return max(0.0, 2.56/alpha - 7.0);\n}\nfloat ExponentToReflMipIndex(float exponent)\n{\n    float targetLog \x3d log2(exponent);\n    float minLog \x3d log2(envExponentMin); \n    float maxLog \x3d log2(envExponentMax); \n    float deltaLog \x3d clamp(targetLog - minLog, 0.0, maxLog - minLog);  \n    float level \x3d clamp((1.0-(deltaLog + 0.5) / envExponentCount), 0.0, 1.0) * 6.0; \n    return level; \n}\n#if defined( PRISMWOOD )\nvec3 NoiseWood(inout float roughness_inout)\n{\n//If the mesh has no uvw, use a const zero vector.\n//This is used by section tool.\n#ifdef NO_UVW\n   vec3 vUvw_uniform \x3d vec3(0.0);\n#else\n   vec3 vUvw_uniform \x3d vUvw;\n#endif\n  lowp float surfaceRoughness_1;\n  surfaceRoughness_1 \x3d surface_roughness;\n  lowp float roughness_2;\n  roughness_2 \x3d surfaceRoughness_1;\n  lowp vec3 diffAlbedo_3;\n  lowp vec3 lateColor_4;\n  lowp vec3 earlyColor_5;\n  lowp float radiusLength_6;\n  lowp vec3 p_7;\n  p_7 \x3d vUvw_uniform;\n  if (wood_fiber_cosine_enable) {\n    lowp vec3 p_8;\n    p_8 \x3d p_7;\n    lowp vec3 tmpvar_9;\n    lowp float weight_10;\n    lowp float radiusShift_11;\n    lowp float tmpvar_12;\n    tmpvar_12 \x3d sqrt(dot (vUvw_uniform.xy, vUvw_uniform.xy));\n    if ((tmpvar_12 \x3c 1e-05)) {\n      tmpvar_9 \x3d p_7;\n    } else {\n      lowp vec2 tmpvar_13;\n      tmpvar_13 \x3d (vUvw_uniform.xy / tmpvar_12);\n      radiusShift_11 \x3d 0.0;\n      if ((0 \x3c wood_fiber_cosine_bands)) {\n        radiusShift_11 \x3d (wood_fiber_cosine_weights.x * cos((\n          (vUvw_uniform.z * 0.1591549)\n         * wood_fiber_cosine_frequencies.x)));\n        if ((1 \x3c wood_fiber_cosine_bands)) {\n          radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.y * cos(\n            ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.y)\n          )));\n          if ((2 \x3c wood_fiber_cosine_bands)) {\n            radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.z * cos(\n              ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.z)\n            )));\n            if ((3 \x3c wood_fiber_cosine_bands)) {\n              radiusShift_11 \x3d (radiusShift_11 + (wood_fiber_cosine_weights.w * cos(\n                ((vUvw_uniform.z * 0.1591549) * wood_fiber_cosine_frequencies.w)\n              )));\n            };\n          };\n        };\n      };\n      lowp float tmpvar_14;\n      tmpvar_14 \x3d clamp ((tmpvar_12 / 1.5), 0.0, 1.0);\n      weight_10 \x3d tmpvar_14;\n      if ((tmpvar_14 \x3e\x3d 0.5)) {\n        weight_10 \x3d ((tmpvar_14 * tmpvar_14) * (3.0 - (tmpvar_14 + tmpvar_14)));\n      };\n      p_8.xy \x3d (vUvw_uniform.xy + ((tmpvar_13 * radiusShift_11) * weight_10));\n      tmpvar_9 \x3d p_8;\n    };\n    p_7 \x3d tmpvar_9;\n  };\n  if (wood_fiber_perlin_enable) {\n    lowp vec3 p_15;\n    p_15 \x3d p_7;\n    lowp vec3 tmpvar_16;\n    tmpvar_16.xy \x3d p_7.xy;\n    tmpvar_16.z \x3d (p_7.z * wood_fiber_perlin_scale_z);\n    lowp vec3 p_17;\n    p_17 \x3d tmpvar_16;\n    highp int bands_18;\n    bands_18 \x3d wood_fiber_perlin_bands;\n    highp vec4 w_19;\n    w_19 \x3d wood_fiber_perlin_weights;\n    highp vec4 f_20;\n    f_20 \x3d wood_fiber_perlin_frequencies;\n    lowp float noise_22;\n    noise_22 \x3d 0.0;\n    for (int i_21 \x3d 0; i_21 \x3c 4; ++i_21) {\n      if ((i_21 \x3e\x3d bands_18)) {\n        break;\n      };\n      lowp vec3 p_23;\n      highp float f_20_value \x3d i_21 \x3d\x3d 0 ? f_20[0] : i_21 \x3d\x3d 1 ? f_20[1] : i_21 \x3d\x3d 2 ? f_20[2] : f_20[3];\n      p_23 \x3d (p_17 * f_20_value);\n      lowp vec4 AA_24;\n      lowp vec3 modp_25;\n      lowp vec3 tmpvar_26;\n      tmpvar_26 \x3d (vec3(mod (floor(p_23), 256.0)));\n      modp_25.z \x3d tmpvar_26.z;\n      modp_25.xy \x3d (tmpvar_26.xy * 0.00390625);\n      AA_24 \x3d ((texture2D (perm2DMap, modp_25.xy, 0.0) * 255.0) + tmpvar_26.z);\n      AA_24 \x3d ((vec4(mod (floor(AA_24), 256.0))) * 0.00390625);\n      lowp vec2 tmpvar_27;\n      tmpvar_27.y \x3d 0.0;\n      tmpvar_27.x \x3d AA_24.x;\n      lowp vec2 tmpvar_28;\n      tmpvar_28.y \x3d 0.0;\n      tmpvar_28.x \x3d AA_24.y;\n      lowp vec2 tmpvar_29;\n      tmpvar_29.y \x3d 0.0;\n      tmpvar_29.x \x3d AA_24.z;\n      lowp vec2 tmpvar_30;\n      tmpvar_30.y \x3d 0.0;\n      tmpvar_30.x \x3d AA_24.w;\n      lowp vec2 tmpvar_31;\n      tmpvar_31.y \x3d 0.0;\n      tmpvar_31.x \x3d (AA_24.x + 0.00390625);\n      lowp vec2 tmpvar_32;\n      tmpvar_32.y \x3d 0.0;\n      tmpvar_32.x \x3d (AA_24.y + 0.00390625);\n      lowp vec2 tmpvar_33;\n      tmpvar_33.y \x3d 0.0;\n      tmpvar_33.x \x3d (AA_24.z + 0.00390625);\n      lowp vec2 tmpvar_34;\n      tmpvar_34.y \x3d 0.0;\n      tmpvar_34.x \x3d (AA_24.w + 0.00390625);\n      p_23 \x3d (p_23 - floor(p_23));\n      lowp vec3 tmpvar_35;\n      tmpvar_35 \x3d (((p_23 * p_23) * p_23) * ((p_23 *\n        ((p_23 * 6.0) - 15.0)\n      ) + 10.0));\n      highp float w_19_value \x3d i_21 \x3d\x3d 0 ? w_19[0] : i_21 \x3d\x3d 1 ? w_19[1] : i_21 \x3d\x3d 2 ? w_19[2] : w_19[3];\n      noise_22 \x3d (noise_22 + (w_19_value * mix (\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_27, 0.0).xyz * 2.0)\n         - 1.0), p_23), dot ((\n          (texture2D (permGradMap, tmpvar_29, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, 0.0, 0.0))), tmpvar_35.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_28, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, -1.0, 0.0))), dot ((\n          (texture2D (permGradMap, tmpvar_30, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, -1.0, 0.0))), tmpvar_35.x), tmpvar_35.y)\n      ,\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_31, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, 0.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_33, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, 0.0, -1.0))), tmpvar_35.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_32, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(0.0, -1.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_34, 0.0).xyz * 2.0)\n         - 1.0), (p_23 + vec3(-1.0, -1.0, -1.0))), tmpvar_35.x), tmpvar_35.y)\n      , tmpvar_35.z)));\n    };\n    p_15.xy \x3d (p_7.xy + noise_22);\n    p_7 \x3d p_15;\n  };\n  lowp float tmpvar_36;\n  tmpvar_36 \x3d sqrt(dot (p_7.xy, p_7.xy));\n  radiusLength_6 \x3d tmpvar_36;\n  if (wood_growth_perlin_enable) {\n    lowp float radiusLength_37;\n    radiusLength_37 \x3d tmpvar_36;\n    lowp float noise_38;\n    noise_38 \x3d 0.0;\n    if ((0 \x3c wood_growth_perlin_bands)) {\n      lowp float p_39;\n      p_39 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.x);\n      lowp float modp_40;\n      modp_40 \x3d (((float(mod (\n        floor(p_39)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_41;\n      tmpvar_41.y \x3d 0.0;\n      tmpvar_41.x \x3d modp_40;\n      lowp vec2 tmpvar_42;\n      tmpvar_42.y \x3d 0.0;\n      tmpvar_42.x \x3d texture2D (permutationMap, tmpvar_41, 0.0).x;\n      lowp vec2 tmpvar_43;\n      tmpvar_43.y \x3d 0.0;\n      tmpvar_43.x \x3d (modp_40 + 0.00390625);\n      lowp vec2 tmpvar_44;\n      tmpvar_44.y \x3d 0.0;\n      tmpvar_44.x \x3d texture2D (permutationMap, tmpvar_43, 0.0).x;\n      p_39 \x3d (p_39 - floor(p_39));\n      noise_38 \x3d (wood_growth_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_42, 0.0).x * 2.0) - 1.0)\n       * p_39), (\n        ((texture2D (gradientMap, tmpvar_44, 0.0).x * 2.0) - 1.0)\n       *\n        (p_39 - 1.0)\n      ), (\n        ((p_39 * p_39) * p_39)\n       *\n        ((p_39 * ((p_39 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_growth_perlin_bands)) {\n        lowp float p_45;\n        p_45 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.y);\n        lowp float modp_46;\n        modp_46 \x3d (((float(mod (\n          floor(p_45)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_47;\n        tmpvar_47.y \x3d 0.0;\n        tmpvar_47.x \x3d modp_46;\n        lowp vec2 tmpvar_48;\n        tmpvar_48.y \x3d 0.0;\n        tmpvar_48.x \x3d texture2D (permutationMap, tmpvar_47, 0.0).x;\n        lowp vec2 tmpvar_49;\n        tmpvar_49.y \x3d 0.0;\n        tmpvar_49.x \x3d (modp_46 + 0.00390625);\n        lowp vec2 tmpvar_50;\n        tmpvar_50.y \x3d 0.0;\n        tmpvar_50.x \x3d texture2D (permutationMap, tmpvar_49, 0.0).x;\n        p_45 \x3d (p_45 - floor(p_45));\n        noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_48, 0.0).x * 2.0) - 1.0) * p_45)\n        ,\n          (((texture2D (gradientMap, tmpvar_50, 0.0).x * 2.0) - 1.0) * (p_45 - 1.0))\n        ,\n          (((p_45 * p_45) * p_45) * ((p_45 * (\n            (p_45 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_growth_perlin_bands)) {\n          lowp float p_51;\n          p_51 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.z);\n          lowp float modp_52;\n          modp_52 \x3d (((float(mod (\n            floor(p_51)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_53;\n          tmpvar_53.y \x3d 0.0;\n          tmpvar_53.x \x3d modp_52;\n          lowp vec2 tmpvar_54;\n          tmpvar_54.y \x3d 0.0;\n          tmpvar_54.x \x3d texture2D (permutationMap, tmpvar_53, 0.0).x;\n          lowp vec2 tmpvar_55;\n          tmpvar_55.y \x3d 0.0;\n          tmpvar_55.x \x3d (modp_52 + 0.00390625);\n          lowp vec2 tmpvar_56;\n          tmpvar_56.y \x3d 0.0;\n          tmpvar_56.x \x3d texture2D (permutationMap, tmpvar_55, 0.0).x;\n          p_51 \x3d (p_51 - floor(p_51));\n          noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_54, 0.0).x * 2.0) - 1.0) * p_51)\n          ,\n            (((texture2D (gradientMap, tmpvar_56, 0.0).x * 2.0) - 1.0) * (p_51 - 1.0))\n          ,\n            (((p_51 * p_51) * p_51) * ((p_51 * (\n              (p_51 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_growth_perlin_bands)) {\n            lowp float p_57;\n            p_57 \x3d (tmpvar_36 * wood_growth_perlin_frequencies.w);\n            lowp float modp_58;\n            modp_58 \x3d (((float(mod (\n              floor(p_57)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_59;\n            tmpvar_59.y \x3d 0.0;\n            tmpvar_59.x \x3d modp_58;\n            lowp vec2 tmpvar_60;\n            tmpvar_60.y \x3d 0.0;\n            tmpvar_60.x \x3d texture2D (permutationMap, tmpvar_59, 0.0).x;\n            lowp vec2 tmpvar_61;\n            tmpvar_61.y \x3d 0.0;\n            tmpvar_61.x \x3d (modp_58 + 0.00390625);\n            lowp vec2 tmpvar_62;\n            tmpvar_62.y \x3d 0.0;\n            tmpvar_62.x \x3d texture2D (permutationMap, tmpvar_61, 0.0).x;\n            p_57 \x3d (p_57 - floor(p_57));\n            noise_38 \x3d (noise_38 + (wood_growth_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_60, 0.0).x * 2.0) - 1.0) * p_57)\n            ,\n              (((texture2D (gradientMap, tmpvar_62, 0.0).x * 2.0) - 1.0) * (p_57 - 1.0))\n            ,\n              (((p_57 * p_57) * p_57) * ((p_57 * (\n                (p_57 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    radiusLength_37 \x3d (tmpvar_36 + noise_38);\n    if ((radiusLength_37 \x3c 0.0)) {\n      radiusLength_37 \x3d 0.0;\n    };\n    radiusLength_6 \x3d radiusLength_37;\n  };\n  lowp float earlyWoodRatio_63;\n  highp float tmpvar_64;\n  tmpvar_64 \x3d (1.0 - wood_latewood_ratio);\n  highp float tmpvar_65;\n  tmpvar_65 \x3d (wood_earlywood_sharpness * tmpvar_64);\n  highp float tmpvar_66;\n  tmpvar_66 \x3d (wood_latewood_sharpness * wood_latewood_ratio);\n  highp float tmpvar_67;\n  tmpvar_67 \x3d (tmpvar_64 - tmpvar_65);\n  highp float tmpvar_68;\n  tmpvar_68 \x3d (tmpvar_64 + tmpvar_66);\n  highp float tmpvar_69;\n  tmpvar_69 \x3d (wood_latewood_ratio - tmpvar_66);\n  lowp float tmpvar_70;\n  tmpvar_70 \x3d ((float(mod (radiusLength_6, wood_ring_thickness))) / wood_ring_thickness);\n  earlyWoodRatio_63 \x3d 0.0;\n  if ((tmpvar_70 \x3c\x3d tmpvar_65)) {\n    earlyWoodRatio_63 \x3d 1.0;\n  } else {\n    if ((tmpvar_70 \x3c\x3d tmpvar_64)) {\n      earlyWoodRatio_63 \x3d (1.0 - ((tmpvar_70 - tmpvar_65) / tmpvar_67));\n    } else {\n      if ((tmpvar_70 \x3c\x3d tmpvar_68)) {\n        earlyWoodRatio_63 \x3d 0.0;\n      } else {\n        earlyWoodRatio_63 \x3d ((tmpvar_70 - tmpvar_68) / tmpvar_69);\n      };\n    };\n  };\n  earlyColor_5 \x3d wood_early_color;\n  if (wood_earlycolor_perlin_enable) {\n    lowp float noise_71;\n    noise_71 \x3d 0.0;\n    if ((0 \x3c wood_earlycolor_perlin_bands)) {\n      lowp float p_72;\n      p_72 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.x);\n      lowp float modp_73;\n      modp_73 \x3d (((float(mod (\n        floor(p_72)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_74;\n      tmpvar_74.y \x3d 0.0;\n      tmpvar_74.x \x3d modp_73;\n      lowp vec2 tmpvar_75;\n      tmpvar_75.y \x3d 0.0;\n      tmpvar_75.x \x3d texture2D (permutationMap, tmpvar_74, 0.0).x;\n      lowp vec2 tmpvar_76;\n      tmpvar_76.y \x3d 0.0;\n      tmpvar_76.x \x3d (modp_73 + 0.00390625);\n      lowp vec2 tmpvar_77;\n      tmpvar_77.y \x3d 0.0;\n      tmpvar_77.x \x3d texture2D (permutationMap, tmpvar_76, 0.0).x;\n      p_72 \x3d (p_72 - floor(p_72));\n      noise_71 \x3d (wood_earlycolor_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_75, 0.0).x * 2.0) - 1.0)\n       * p_72), (\n        ((texture2D (gradientMap, tmpvar_77, 0.0).x * 2.0) - 1.0)\n       *\n        (p_72 - 1.0)\n      ), (\n        ((p_72 * p_72) * p_72)\n       *\n        ((p_72 * ((p_72 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_earlycolor_perlin_bands)) {\n        lowp float p_78;\n        p_78 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.y);\n        lowp float modp_79;\n        modp_79 \x3d (((float(mod (\n          floor(p_78)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_80;\n        tmpvar_80.y \x3d 0.0;\n        tmpvar_80.x \x3d modp_79;\n        lowp vec2 tmpvar_81;\n        tmpvar_81.y \x3d 0.0;\n        tmpvar_81.x \x3d texture2D (permutationMap, tmpvar_80, 0.0).x;\n        lowp vec2 tmpvar_82;\n        tmpvar_82.y \x3d 0.0;\n        tmpvar_82.x \x3d (modp_79 + 0.00390625);\n        lowp vec2 tmpvar_83;\n        tmpvar_83.y \x3d 0.0;\n        tmpvar_83.x \x3d texture2D (permutationMap, tmpvar_82, 0.0).x;\n        p_78 \x3d (p_78 - floor(p_78));\n        noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_81, 0.0).x * 2.0) - 1.0) * p_78)\n        ,\n          (((texture2D (gradientMap, tmpvar_83, 0.0).x * 2.0) - 1.0) * (p_78 - 1.0))\n        ,\n          (((p_78 * p_78) * p_78) * ((p_78 * (\n            (p_78 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_earlycolor_perlin_bands)) {\n          lowp float p_84;\n          p_84 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.z);\n          lowp float modp_85;\n          modp_85 \x3d (((float(mod (\n            floor(p_84)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_86;\n          tmpvar_86.y \x3d 0.0;\n          tmpvar_86.x \x3d modp_85;\n          lowp vec2 tmpvar_87;\n          tmpvar_87.y \x3d 0.0;\n          tmpvar_87.x \x3d texture2D (permutationMap, tmpvar_86, 0.0).x;\n          lowp vec2 tmpvar_88;\n          tmpvar_88.y \x3d 0.0;\n          tmpvar_88.x \x3d (modp_85 + 0.00390625);\n          lowp vec2 tmpvar_89;\n          tmpvar_89.y \x3d 0.0;\n          tmpvar_89.x \x3d texture2D (permutationMap, tmpvar_88, 0.0).x;\n          p_84 \x3d (p_84 - floor(p_84));\n          noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_87, 0.0).x * 2.0) - 1.0) * p_84)\n          ,\n            (((texture2D (gradientMap, tmpvar_89, 0.0).x * 2.0) - 1.0) * (p_84 - 1.0))\n          ,\n            (((p_84 * p_84) * p_84) * ((p_84 * (\n              (p_84 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_earlycolor_perlin_bands)) {\n            lowp float p_90;\n            p_90 \x3d (radiusLength_6 * wood_earlycolor_perlin_frequencies.w);\n            lowp float modp_91;\n            modp_91 \x3d (((float(mod (\n              floor(p_90)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_92;\n            tmpvar_92.y \x3d 0.0;\n            tmpvar_92.x \x3d modp_91;\n            lowp vec2 tmpvar_93;\n            tmpvar_93.y \x3d 0.0;\n            tmpvar_93.x \x3d texture2D (permutationMap, tmpvar_92, 0.0).x;\n            lowp vec2 tmpvar_94;\n            tmpvar_94.y \x3d 0.0;\n            tmpvar_94.x \x3d (modp_91 + 0.00390625);\n            lowp vec2 tmpvar_95;\n            tmpvar_95.y \x3d 0.0;\n            tmpvar_95.x \x3d texture2D (permutationMap, tmpvar_94, 0.0).x;\n            p_90 \x3d (p_90 - floor(p_90));\n            noise_71 \x3d (noise_71 + (wood_earlycolor_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_93, 0.0).x * 2.0) - 1.0) * p_90)\n            ,\n              (((texture2D (gradientMap, tmpvar_95, 0.0).x * 2.0) - 1.0) * (p_90 - 1.0))\n            ,\n              (((p_90 * p_90) * p_90) * ((p_90 * (\n                (p_90 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    earlyColor_5 \x3d pow (abs(wood_early_color), vec3((1.0 + noise_71)));\n  };\n  if (wood_use_manual_late_color) {\n    lateColor_4 \x3d wood_manual_late_color;\n  } else {\n    lateColor_4 \x3d pow (abs(earlyColor_5), vec3(wood_late_color_power));\n  };\n  if (wood_latecolor_perlin_enable) {\n    lowp float noise_96;\n    noise_96 \x3d 0.0;\n    if ((0 \x3c wood_latecolor_perlin_bands)) {\n      lowp float p_97;\n      p_97 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.x);\n      lowp float modp_98;\n      modp_98 \x3d (((float(mod (\n        floor(p_97)\n      , 256.0))) + 256.0) * 0.00390625);\n      lowp vec2 tmpvar_99;\n      tmpvar_99.y \x3d 0.0;\n      tmpvar_99.x \x3d modp_98;\n      lowp vec2 tmpvar_100;\n      tmpvar_100.y \x3d 0.0;\n      tmpvar_100.x \x3d texture2D (permutationMap, tmpvar_99, 0.0).x;\n      lowp vec2 tmpvar_101;\n      tmpvar_101.y \x3d 0.0;\n      tmpvar_101.x \x3d (modp_98 + 0.00390625);\n      lowp vec2 tmpvar_102;\n      tmpvar_102.y \x3d 0.0;\n      tmpvar_102.x \x3d texture2D (permutationMap, tmpvar_101, 0.0).x;\n      p_97 \x3d (p_97 - floor(p_97));\n      noise_96 \x3d (wood_latecolor_perlin_weights.x * mix ((\n        ((texture2D (gradientMap, tmpvar_100, 0.0).x * 2.0) - 1.0)\n       * p_97), (\n        ((texture2D (gradientMap, tmpvar_102, 0.0).x * 2.0) - 1.0)\n       *\n        (p_97 - 1.0)\n      ), (\n        ((p_97 * p_97) * p_97)\n       *\n        ((p_97 * ((p_97 * 6.0) - 15.0)) + 10.0)\n      )));\n      if ((1 \x3c wood_latecolor_perlin_bands)) {\n        lowp float p_103;\n        p_103 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.y);\n        lowp float modp_104;\n        modp_104 \x3d (((float(mod (\n          floor(p_103)\n        , 256.0))) + 256.0) * 0.00390625);\n        lowp vec2 tmpvar_105;\n        tmpvar_105.y \x3d 0.0;\n        tmpvar_105.x \x3d modp_104;\n        lowp vec2 tmpvar_106;\n        tmpvar_106.y \x3d 0.0;\n        tmpvar_106.x \x3d texture2D (permutationMap, tmpvar_105, 0.0).x;\n        lowp vec2 tmpvar_107;\n        tmpvar_107.y \x3d 0.0;\n        tmpvar_107.x \x3d (modp_104 + 0.00390625);\n        lowp vec2 tmpvar_108;\n        tmpvar_108.y \x3d 0.0;\n        tmpvar_108.x \x3d texture2D (permutationMap, tmpvar_107, 0.0).x;\n        p_103 \x3d (p_103 - floor(p_103));\n        noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.y * mix (\n          (((texture2D (gradientMap, tmpvar_106, 0.0).x * 2.0) - 1.0) * p_103)\n        ,\n          (((texture2D (gradientMap, tmpvar_108, 0.0).x * 2.0) - 1.0) * (p_103 - 1.0))\n        ,\n          (((p_103 * p_103) * p_103) * ((p_103 * (\n            (p_103 * 6.0)\n           - 15.0)) + 10.0))\n        )));\n        if ((2 \x3c wood_latecolor_perlin_bands)) {\n          lowp float p_109;\n          p_109 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.z);\n          lowp float modp_110;\n          modp_110 \x3d (((float(mod (\n            floor(p_109)\n          , 256.0))) + 256.0) * 0.00390625);\n          lowp vec2 tmpvar_111;\n          tmpvar_111.y \x3d 0.0;\n          tmpvar_111.x \x3d modp_110;\n          lowp vec2 tmpvar_112;\n          tmpvar_112.y \x3d 0.0;\n          tmpvar_112.x \x3d texture2D (permutationMap, tmpvar_111, 0.0).x;\n          lowp vec2 tmpvar_113;\n          tmpvar_113.y \x3d 0.0;\n          tmpvar_113.x \x3d (modp_110 + 0.00390625);\n          lowp vec2 tmpvar_114;\n          tmpvar_114.y \x3d 0.0;\n          tmpvar_114.x \x3d texture2D (permutationMap, tmpvar_113, 0.0).x;\n          p_109 \x3d (p_109 - floor(p_109));\n          noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.z * mix (\n            (((texture2D (gradientMap, tmpvar_112, 0.0).x * 2.0) - 1.0) * p_109)\n          ,\n            (((texture2D (gradientMap, tmpvar_114, 0.0).x * 2.0) - 1.0) * (p_109 - 1.0))\n          ,\n            (((p_109 * p_109) * p_109) * ((p_109 * (\n              (p_109 * 6.0)\n             - 15.0)) + 10.0))\n          )));\n          if ((3 \x3c wood_latecolor_perlin_bands)) {\n            lowp float p_115;\n            p_115 \x3d (radiusLength_6 * wood_latecolor_perlin_frequencies.w);\n            lowp float modp_116;\n            modp_116 \x3d (((float(mod (\n              floor(p_115)\n            , 256.0))) + 256.0) * 0.00390625);\n            lowp vec2 tmpvar_117;\n            tmpvar_117.y \x3d 0.0;\n            tmpvar_117.x \x3d modp_116;\n            lowp vec2 tmpvar_118;\n            tmpvar_118.y \x3d 0.0;\n            tmpvar_118.x \x3d texture2D (permutationMap, tmpvar_117, 0.0).x;\n            lowp vec2 tmpvar_119;\n            tmpvar_119.y \x3d 0.0;\n            tmpvar_119.x \x3d (modp_116 + 0.00390625);\n            lowp vec2 tmpvar_120;\n            tmpvar_120.y \x3d 0.0;\n            tmpvar_120.x \x3d texture2D (permutationMap, tmpvar_119, 0.0).x;\n            p_115 \x3d (p_115 - floor(p_115));\n            noise_96 \x3d (noise_96 + (wood_latecolor_perlin_weights.w * mix (\n              (((texture2D (gradientMap, tmpvar_118, 0.0).x * 2.0) - 1.0) * p_115)\n            ,\n              (((texture2D (gradientMap, tmpvar_120, 0.0).x * 2.0) - 1.0) * (p_115 - 1.0))\n            ,\n              (((p_115 * p_115) * p_115) * ((p_115 * (\n                (p_115 * 6.0)\n               - 15.0)) + 10.0))\n            )));\n          };\n        };\n      };\n    };\n    lateColor_4 \x3d pow (abs(lateColor_4), vec3((1.0 + noise_96)));\n  };\n  lowp vec3 tmpvar_121;\n  tmpvar_121 \x3d ((earlyWoodRatio_63 * earlyColor_5) + ((1.0 - earlyWoodRatio_63) * lateColor_4));\n  diffAlbedo_3 \x3d tmpvar_121;\n  if (wood_diffuse_perlin_enable) {\n    lowp vec3 p_122;\n    p_122.xy \x3d p_7.xy;\n    p_122.z \x3d (p_7.z * wood_diffuse_perlin_scale_z);\n    lowp vec3 p_123;\n    p_123 \x3d p_122;\n    highp int bands_124;\n    bands_124 \x3d wood_diffuse_perlin_bands;\n    highp vec4 w_125;\n    w_125 \x3d wood_diffuse_perlin_weights;\n    highp vec4 f_126;\n    f_126 \x3d wood_diffuse_perlin_frequencies;\n    lowp float noise_128;\n    noise_128 \x3d 0.0;\n    for (int i_127 \x3d 0; i_127 \x3c 4; ++i_127) {\n      if ((i_127 \x3e\x3d bands_124)) {\n        break;\n      };\n      lowp vec3 p_129;\n      highp float f_126_value \x3d i_127 \x3d\x3d 0 ? f_126[0] : i_127 \x3d\x3d 1 ? f_126[1] : i_127 \x3d\x3d 2 ? f_126[2] : f_126[3];\n      p_129 \x3d (p_123 * f_126_value);\n      lowp vec4 AA_130;\n      lowp vec3 modp_131;\n      lowp vec3 tmpvar_132;\n      tmpvar_132 \x3d (vec3(mod (floor(p_129), 256.0)));\n      modp_131.z \x3d tmpvar_132.z;\n      modp_131.xy \x3d (tmpvar_132.xy * 0.00390625);\n      AA_130 \x3d ((texture2D (perm2DMap, modp_131.xy, 0.0) * 255.0) + tmpvar_132.z);\n      AA_130 \x3d ((vec4(mod (floor(AA_130), 256.0))) * 0.00390625);\n      lowp vec2 tmpvar_133;\n      tmpvar_133.y \x3d 0.0;\n      tmpvar_133.x \x3d AA_130.x;\n      lowp vec2 tmpvar_134;\n      tmpvar_134.y \x3d 0.0;\n      tmpvar_134.x \x3d AA_130.y;\n      lowp vec2 tmpvar_135;\n      tmpvar_135.y \x3d 0.0;\n      tmpvar_135.x \x3d AA_130.z;\n      lowp vec2 tmpvar_136;\n      tmpvar_136.y \x3d 0.0;\n      tmpvar_136.x \x3d AA_130.w;\n      lowp vec2 tmpvar_137;\n      tmpvar_137.y \x3d 0.0;\n      tmpvar_137.x \x3d (AA_130.x + 0.00390625);\n      lowp vec2 tmpvar_138;\n      tmpvar_138.y \x3d 0.0;\n      tmpvar_138.x \x3d (AA_130.y + 0.00390625);\n      lowp vec2 tmpvar_139;\n      tmpvar_139.y \x3d 0.0;\n      tmpvar_139.x \x3d (AA_130.z + 0.00390625);\n      lowp vec2 tmpvar_140;\n      tmpvar_140.y \x3d 0.0;\n      tmpvar_140.x \x3d (AA_130.w + 0.00390625);\n      p_129 \x3d (p_129 - floor(p_129));\n      lowp vec3 tmpvar_141;\n      tmpvar_141 \x3d (((p_129 * p_129) * p_129) * ((p_129 *\n        ((p_129 * 6.0) - 15.0)\n      ) + 10.0));\n      highp float w_125_value \x3d i_127 \x3d\x3d 0 ? w_125[0] : i_127 \x3d\x3d 1 ? w_125[1] : i_127 \x3d\x3d 2 ? w_125[2] : w_125[3];\n      noise_128 \x3d (noise_128 + (w_125_value * mix (\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_133, 0.0).xyz * 2.0)\n         - 1.0), p_129), dot ((\n          (texture2D (permGradMap, tmpvar_135, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, 0.0, 0.0))), tmpvar_141.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_134, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, -1.0, 0.0))), dot ((\n          (texture2D (permGradMap, tmpvar_136, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, -1.0, 0.0))), tmpvar_141.x), tmpvar_141.y)\n      ,\n        mix (mix (dot ((\n          (texture2D (permGradMap, tmpvar_137, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, 0.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_139, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, 0.0, -1.0))), tmpvar_141.x), mix (dot ((\n          (texture2D (permGradMap, tmpvar_138, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(0.0, -1.0, -1.0))), dot ((\n          (texture2D (permGradMap, tmpvar_140, 0.0).xyz * 2.0)\n         - 1.0), (p_129 + vec3(-1.0, -1.0, -1.0))), tmpvar_141.x), tmpvar_141.y)\n      , tmpvar_141.z)));\n    };\n    diffAlbedo_3 \x3d pow (abs(tmpvar_121), vec3((1.0 + noise_128)));\n  };\n  if (wood_use_pores) {\n    lowp float woodWeight_142;\n    woodWeight_142 \x3d 0.0;\n    if ((wood_pore_type \x3d\x3d 0)) {\n      woodWeight_142 \x3d 1.0;\n    } else {\n      if ((wood_pore_type \x3d\x3d 1)) {\n        woodWeight_142 \x3d earlyWoodRatio_63;\n      } else {\n        if ((wood_pore_type \x3d\x3d 2)) {\n          woodWeight_142 \x3d (1.0 - earlyWoodRatio_63);\n        } else {\n          woodWeight_142 \x3d -1.0;\n        };\n      };\n    };\n    lowp vec3 p_143;\n    p_143 \x3d p_7;\n    lowp float tmpvar_144;\n    lowp float invRsq_146;\n    lowp float weight_147;\n    lowp vec2 right_148;\n    lowp vec2 left_149;\n    if ((woodWeight_142 \x3c 0.0)) {\n      tmpvar_144 \x3d 0.0;\n    } else {\n      lowp float tmpvar_150;\n      tmpvar_150 \x3d (wood_pore_radius * woodWeight_142);\n      left_149 \x3d floor(((p_7.xy - tmpvar_150) / wood_pore_cell_dim));\n      right_148 \x3d floor(((p_7.xy + tmpvar_150) / wood_pore_cell_dim));\n      weight_147 \x3d 0.0;\n      invRsq_146 \x3d (1.0/((tmpvar_150 * tmpvar_150)));\n      for (int j_145 \x3d 0; j_145 \x3c\x3d 4; ++j_145) {\n        if ((j_145 \x3e int((right_148.y - left_149.y)))) {\n          continue;\n        };\n        for (int i_151 \x3d 0; i_151 \x3c\x3d 4; ++i_151) {\n          lowp float impPosY_152;\n          lowp float impPosX_153;\n          if ((i_151 \x3e int((right_148.x - left_149.x)))) {\n            continue;\n          };\n          lowp vec2 tmpvar_154;\n          tmpvar_154.x \x3d (float(i_151) + left_149.x);\n          tmpvar_154.y \x3d (float(j_145) + left_149.y);\n          lowp float tmpvar_155;\n          lowp vec2 k_156;\n          k_156 \x3d ((vec2(mod (tmpvar_154, vec2(256.0, 256.0)))) * 0.00390625);\n          lowp vec2 tmpvar_157;\n          tmpvar_157.y \x3d 0.0;\n          tmpvar_157.x \x3d k_156.x;\n          lowp vec2 tmpvar_158;\n          tmpvar_158.y \x3d 0.0;\n          tmpvar_158.x \x3d (texture2D (permutationMap, tmpvar_157).x + k_156.y);\n          tmpvar_155 \x3d (texture2D (permutationMap, tmpvar_158).x * 255.0);\n          impPosX_153 \x3d ((tmpvar_154.x + (\n            (float(mod (tmpvar_155, 16.0)))\n           * 0.06666667)) * wood_pore_cell_dim);\n          impPosY_152 \x3d ((tmpvar_154.y + (\n            floor((tmpvar_155 / 16.0))\n           * 0.06666667)) * wood_pore_cell_dim);\n          lowp float rsq_159;\n          rsq_159 \x3d (((\n            (p_143.x - impPosX_153)\n           *\n            (p_143.x - impPosX_153)\n          ) + (\n            (p_143.y - impPosY_152)\n           *\n            (p_143.y - impPosY_152)\n          )) * invRsq_146);\n          lowp float tmpvar_160;\n          if ((rsq_159 \x3e\x3d 1.0)) {\n            tmpvar_160 \x3d 0.0;\n          } else {\n            lowp float tmpvar_161;\n            tmpvar_161 \x3d (1.0 - rsq_159);\n            tmpvar_160 \x3d ((tmpvar_161 * tmpvar_161) * tmpvar_161);\n          };\n          weight_147 \x3d (weight_147 + tmpvar_160);\n        };\n      };\n      tmpvar_144 \x3d weight_147;\n    };\n    diffAlbedo_3 \x3d pow (abs(diffAlbedo_3), vec3(((\n      (wood_pore_color_power - 1.0)\n     * tmpvar_144) + 1.0)));\n  };\n  if (wood_use_rays) {\n    lowp vec3 p_162;\n    p_162 \x3d p_7;\n    lowp float radialLength_164;\n    lowp float weight_165;\n    lowp ivec2 arrSegs_166;\n    lowp float sliceIdx_167;\n    lowp int segIdx1_168;\n    lowp int tmpvar_169;\n    tmpvar_169 \x3d int(floor((p_7.z / wood_ray_seg_length_z)));\n    lowp float tmpvar_170;\n    tmpvar_170 \x3d ((p_7.z / wood_ray_seg_length_z) - float(tmpvar_169));\n    segIdx1_168 \x3d (tmpvar_169 - 1);\n    if ((tmpvar_170 \x3e 0.5)) {\n      segIdx1_168 \x3d (tmpvar_169 + 1);\n    };\n    lowp float tmpvar_171;\n    lowp float tmpvar_172;\n    tmpvar_172 \x3d (min (abs(\n      (p_7.y / p_7.x)\n    ), 1.0) / max (abs(\n      (p_7.y / p_7.x)\n    ), 1.0));\n    lowp float tmpvar_173;\n    tmpvar_173 \x3d (tmpvar_172 * tmpvar_172);\n    tmpvar_173 \x3d (((\n      ((((\n        ((((-0.01213232 * tmpvar_173) + 0.05368138) * tmpvar_173) - 0.1173503)\n       * tmpvar_173) + 0.1938925) * tmpvar_173) - 0.3326756)\n     * tmpvar_173) + 0.9999793) * tmpvar_172);\n    tmpvar_173 \x3d (tmpvar_173 + (float(\n      (abs((p_7.y / p_7.x)) \x3e 1.0)\n    ) * (\n      (tmpvar_173 * -2.0)\n     + 1.570796)));\n    tmpvar_171 \x3d (tmpvar_173 * sign((p_7.y / p_7.x)));\n    if ((abs(p_7.x) \x3e (1e-08 * abs(p_7.y)))) {\n      if ((p_7.x \x3c 0.0)) {\n        if ((p_7.y \x3e\x3d 0.0)) {\n          tmpvar_171 +\x3d 3.141593;\n        } else {\n          tmpvar_171 \x3d (tmpvar_171 - 3.141593);\n        };\n      };\n    } else {\n      tmpvar_171 \x3d (sign(p_7.y) * 1.570796);\n    };\n    lowp float tmpvar_174;\n    tmpvar_174 \x3d floor(((\n      (tmpvar_171 + 3.141593)\n     * 0.1591549) * wood_ray_num_slices));\n    sliceIdx_167 \x3d tmpvar_174;\n    if ((tmpvar_174 \x3d\x3d wood_ray_num_slices)) {\n      sliceIdx_167 \x3d (tmpvar_174 - 1.0);\n    };\n    lowp ivec2 tmpvar_175;\n    tmpvar_175.x \x3d tmpvar_169;\n    tmpvar_175.y \x3d segIdx1_168;\n    arrSegs_166 \x3d tmpvar_175;\n    weight_165 \x3d 0.0;\n    radialLength_164 \x3d sqrt(dot (p_7.xy, p_7.xy));\n    for (int seg_163 \x3d 0; seg_163 \x3c 2; ++seg_163) {\n      lowp vec3 p1_176;\n      lowp float rayTheta_177;\n      lowp vec2 tmpvar_178;\n      tmpvar_178.x \x3d sliceIdx_167;\n      lowp int arrSegs_166_value \x3d seg_163 \x3d\x3d 0 ? arrSegs_166[0] : arrSegs_166[1];\n      tmpvar_178.y \x3d float(arrSegs_166_value);\n      lowp float tmpvar_179;\n      lowp vec2 k_180;\n      k_180 \x3d ((vec2(mod (tmpvar_178, vec2(256.0, 256.0)))) * 0.00390625);\n      lowp vec2 tmpvar_181;\n      tmpvar_181.y \x3d 0.0;\n      tmpvar_181.x \x3d k_180.x;\n      lowp vec2 tmpvar_182;\n      tmpvar_182.y \x3d 0.0;\n      tmpvar_182.x \x3d (texture2D (permutationMap, tmpvar_181).x + k_180.y);\n      tmpvar_179 \x3d (texture2D (permutationMap, tmpvar_182).x * 255.0);\n      lowp float tmpvar_183;\n      tmpvar_183 \x3d ((float(mod (tmpvar_179, 16.0))) * 0.06666667);\n      if ((radialLength_164 \x3c (5.0 * tmpvar_183))) {\n        continue;\n      };\n      rayTheta_177 \x3d (((\n        (sliceIdx_167 + tmpvar_183)\n       / wood_ray_num_slices) * 6.283185) - 3.141593);\n      lowp vec3 tmpvar_184;\n      tmpvar_184.z \x3d 0.0;\n      tmpvar_184.x \x3d cos(rayTheta_177);\n      tmpvar_184.y \x3d sin(rayTheta_177);\n      p1_176.xy \x3d p_162.xy;\n      p1_176.z \x3d (p_162.z - ((\n        float(arrSegs_166_value)\n       +\n        ((tmpvar_179 / 16.0) * 0.06666667)\n      ) * wood_ray_seg_length_z));\n      p1_176.z \x3d (p1_176.z / wood_ray_ellipse_z2x);\n      lowp vec3 tmpvar_185;\n      tmpvar_185 \x3d -(p1_176);\n      lowp vec3 tmpvar_186;\n      tmpvar_186 \x3d ((tmpvar_184.yzx * tmpvar_185.zxy) - (tmpvar_184.zxy * tmpvar_185.yzx));\n      lowp float tmpvar_187;\n      tmpvar_187 \x3d (sqrt(dot (tmpvar_186, tmpvar_186)) / sqrt(dot (tmpvar_184, tmpvar_184)));\n      lowp float rsq_188;\n      rsq_188 \x3d ((tmpvar_187 * tmpvar_187) * (1.0/((wood_ray_ellipse_radius_x * wood_ray_ellipse_radius_x))));\n      lowp float tmpvar_189;\n      if ((rsq_188 \x3e\x3d 1.0)) {\n        tmpvar_189 \x3d 0.0;\n      } else {\n        lowp float tmpvar_190;\n        tmpvar_190 \x3d (1.0 - rsq_188);\n        tmpvar_189 \x3d ((tmpvar_190 * tmpvar_190) * tmpvar_190);\n      };\n      weight_165 \x3d (weight_165 + tmpvar_189);\n    };\n    diffAlbedo_3 \x3d pow (abs(diffAlbedo_3), vec3(((\n      (wood_ray_color_power - 1.0)\n     * weight_165) + 1.0)));\n  };\n  if (wood_use_groove_roughness) {\n    roughness_2 \x3d ((earlyWoodRatio_63 * wood_groove_roughness) + ((1.0 - earlyWoodRatio_63) * surface_roughness));\n  };\n  roughness_inout \x3d roughness_2;\n  return diffAlbedo_3;\n}\n#endif\n#if MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\nvec3 DiffuseLobe(vec3 diffuseColor)\n{\nreturn diffuseColor * RECIPROCAL_PI;\n}\nvec3 Rotate(vec3 vec, float angle)\n{\nfloat s \x3d sin(angle);\nfloat c \x3d cos(angle);\nreturn vec3(vec.x * c - vec.y * s, vec.x * s + vec.y * c, vec.z);\n}\nfloat NDF_GGX(float alphaU, float alphaV, vec3 normal)\n{\nfloat nx2 \x3d sqr(normal.x);\nfloat ny2 \x3d sqr(normal.y);\nfloat nz2 \x3d sqr(normal.z);\nfloat scale \x3d 1.0/(alphaU * alphaV * PI);\nreturn scale/sqr(nx2/sqr(alphaU) + ny2/sqr(alphaV) + nz2);\n}\nfloat G1_GGX(float aSqrd)\n{\n    return 2.0 / (1.0 + sqrt(1.0 + aSqrd));\n}\nvec3 MicrofacetLobe(\nvec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH,\nfloat roughness, float anisotropy, float rotation, vec3 reflectance)\n{\nvec2 alpha \x3d RoughnessToAlpha(roughness, anisotropy);\nHlocal \x3d Rotate(Hlocal, rotation);\nvec3 F \x3d Fresnel_Schlick(reflectance, VdotH);\nfloat D \x3d NDF_GGX(alpha.x, alpha.y, Hlocal);\nfloat alpha2 \x3d max(sqr(alpha.x), sqr(alpha.y));\nfloat alpha2NL \x3d aSqrd(alpha2, NdotL);\nfloat alpha2NV \x3d aSqrd(alpha2, NdotV);\nfloat G \x3d G1_GGX(alpha2NL) * G1_GGX(alpha2NV);\nreturn max(F * D * G / (4.0 * NdotL * NdotV), vec3(0.0));\n}\n#if defined( PRISMOPAQUE )\nvec3 BRDF_Opaque(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                 vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation, \n                 float opaqueF0, vec3 opaqueAlbedo)\n{\n    vec3 diffuse \x3d DiffuseLobe(opaqueAlbedo);\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, vec3(opaqueF0));\n    return (specular+diffuse)*NdotL;\n}\n#elif defined( PRISMMETAL )\nvec3 BRDF_Metal(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation, \n                vec3 metalF0)\n{\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, metalF0);\n    return specular*NdotL;\n}\n#elif defined( PRISMLAYERED )\nvec3 BRDF_Layered(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                  vec3 Hlocal2, float N2dotL, float N2dotH, float N2dotV, \n                  vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation,\n                  float layeredF0, vec3 layeredDiffuse, float layeredRoughness, float layeredAnisotropy,\n                  float layeredRotation, vec3 bottom_f0, float layeredFraction)\n{\n    vec3 Fl \x3d Fresnel_Schlick(vec3(layeredF0), NdotL);\n    vec3 Fv \x3d Fresnel_Schlick(vec3(layeredF0), NdotV);\n    vec3 amount \x3d (1.0 - Fl) * (1.0 - Fv);\n    vec3 topSpecular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n        vec3(layeredF0));\n    vec3 topDiffuse \x3d DiffuseLobe(layeredDiffuse);\n    vec3 botSpecular \x3d MicrofacetLobe(\n        Hlocal2, N2dotL, N2dotH, N2dotV, VdotH,\n        layeredRoughness, layeredAnisotropy, layeredRotation,\n        bottom_f0);\n    return topSpecular*NdotL + amount * mix(topDiffuse*NdotL, botSpecular*N2dotL, layeredFraction);\n}\n#elif defined( PRISMTRANSPARENT )\nvec3 BRDF_Transparent(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                vec3 surfaceAlbedo, float surfaceRoughness, float surfaceAnisotropy, float surfaceRotation)\n{\n    vec3 reflectance \x3d vec3(IORToReflectance(transparent_ior));\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, surfaceAnisotropy, surfaceRotation, reflectance);\n    return specular*NdotL;\n}\n#elif defined( PRISMWOOD )\nvec3 BRDF_Wood(vec3 Hlocal, float NdotL, float NdotH, float NdotV, float VdotH, \n                 vec3 surfaceAlbedo, float surfaceRoughness, vec3 woodDiffuse)\n{\n    vec3 diffuse \x3d DiffuseLobe(woodDiffuse);\n    vec3 specular \x3d surfaceAlbedo * MicrofacetLobe(\n        Hlocal, NdotL, NdotH, NdotV, VdotH,\n        surfaceRoughness, 0.0, 0.0, vec3(0.04));\n    return (specular+diffuse)*NdotL;\n}\n#endif\n#endif\n#if defined( USE_ENVMAP )\n#if defined( PRISMOPAQUE )\nvec3 Environment_Opaque(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness,\n                        float opaqueF0, vec3 opaqueAlbedo)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(vec3(opaqueF0), NdotV, alpha);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 diffuse \x3d (1.0 - F) * opaqueAlbedo * envIrradiance;\n     vec3 luminanceModifier;", d("opaque_luminance_modifier", "luminanceModifier", !1, !0), "    vec3 emission \x3d luminanceModifier * opaque_luminance;\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F* surfaceAlbedo * envSpecular;\n    return diffuse + specular + emission;\n}\n#elif defined( PRISMMETAL )\nvec3 Environment_Metal(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness, vec3 metalF0)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(metalF0, NdotV, alpha);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n    return specular;\n}\n#elif defined( PRISMLAYERED )\nvec3 Environment_Layered(vec3 N, vec3 V, float NdotV, vec3 N2, float N2dotV, vec3 surfaceAlbedo, float surfaceRoughness,\n                         float layeredF0, vec3 layeredDiffuse, float layeredRoughness, float layeredAnisotropy,\n                         float layeredRotation, vec3 bottom_f0, float layeredFraction)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 F \x3d Fresnel_Schlick(vec3(layeredF0), NdotV);\n    vec3 topSpecular \x3d F * surfaceAlbedo * envSpecular;\n    vec3 amount \x3d (1.0 - F);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 topDiffuse \x3d layeredDiffuse * envIrradiance;\n    alpha \x3d RoughnessToAlpha(layeredRoughness, 0.0).x;\n    exponent \x3d AlphaToPhong(alpha);\n    reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    envSpecular \x3d sampleReflection(N2, V, reflMipIndex);\n    F \x3d Fresnel_Rough(bottom_f0, N2dotV, alpha);\n    vec3 botSpecular \x3d F * envSpecular;\n    return topSpecular + amount * mix(topDiffuse, botSpecular, layeredFraction);\n}\n#elif defined( PRISMTRANSPARENT )\nvec3 Environment_Transparent(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 reflectance \x3d vec3(IORToReflectance(transparent_ior));\n    vec3 F \x3d Fresnel_Rough(reflectance, NdotV, alpha);\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 color \x3d 0.5 * (1.0 - F) * transparent_color * envIrradiance;\n    return specular + color;\n}\n#elif defined( PRISMWOOD )\nvec3 Environment_Wood(vec3 N, vec3 V, float NdotV, vec3 surfaceAlbedo, float surfaceRoughness, vec3 woodDiffuse)\n{\n    float alpha \x3d RoughnessToAlpha(surfaceRoughness, 0.0).x;\n    float exponent \x3d AlphaToPhong(alpha);\n    float reflMipIndex \x3d ExponentToReflMipIndex(exponent);\n    vec3 F \x3d Fresnel_Rough(vec3(0.04), NdotV, alpha);\n#if defined( USE_IRRADIANCEMAP )\n    vec3 envIrradiance \x3d sampleNormal(N);\n#else\n    vec3 envIrradiance \x3d vec3(1.0);\n#endif\n    vec3 diffuse \x3d (1.0 - F) * woodDiffuse * envIrradiance;\n    vec3 envSpecular \x3d sampleReflection(N, V, reflMipIndex);\n    vec3 specular \x3d F * surfaceAlbedo * envSpecular;\n    return diffuse + specular;\n}\n#endif\n#endif\nvarying vec3 vNormal;\nvarying vec3 vViewPosition;", g.CutPlanesShaderChunk, "void main() {\n#if NUM_CUTPLANES \x3e 0\ncheckCutPlanes(vWorldPosition);\n#endif\nvec3 N \x3d normalize(vNormal);\n#if defined( USE_SURFACE_NORMAL_MAP ) || defined( USE_LAYERED_NORMAL_MAP ) || MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\n#ifndef USE_MAP\nvec3 Tu \x3d normalize(vTangent);\nvec3 Tv \x3d normalize(vBitangent);\n#else\nvec3 q0 \x3d dFdx( -vViewPosition );\nvec3 q1 \x3d dFdy( -vViewPosition );\nvec2 st0 \x3d dFdx( vUv );\nvec2 st1 \x3d dFdy( vUv );\nvec3 Tu \x3d normalize(  q0 * st1.t - q1 * st0.t );\nvec3 Tv \x3d normalize( -q0 * st1.s + q1 * st0.s );\n#endif\n#endif\nvec3 V;\nif (projectionMatrix[3][3] \x3d\x3d 0.0) {\nV \x3d normalize( vViewPosition );\n} else {\nV \x3d vec3(0.0, 0.0, 1.0);\n}\nN \x3d faceforward(N, -V, N);\n#if defined(PRISMLAYERED)\nvec3 N2 \x3d N;\n#endif\n#ifndef FLAT_SHADED\nvec3 normal \x3d normalize( vNormal );\n#ifdef DOUBLE_SIDED\nnormal \x3d normal * ( -1.0 + 2.0 * float( gl_FrontFacing ) );\n#endif\n#else\nvec3 fdx \x3d dFdx( vViewPosition );\nvec3 fdy \x3d dFdy( vViewPosition );\nvec3 normal \x3d normalize( cross( fdx, fdy ) );\n#endif\nvec3 geomNormal \x3d normal;\n#if defined( USE_SURFACE_NORMAL_MAP )\nif (surface_normal_map_bumpmapType \x3d\x3d 0)\n     N \x3d heightMapTransform(surface_normal_map, vUv, surface_normal_map_texMatrix, surface_normal_map_bumpScale, Tu, Tv, N);\nelse\n     N \x3d normalMapTransform(surface_normal_map, vUv, surface_normal_map_texMatrix, surface_normal_map_bumpScale, Tu, Tv, N);\n#endif\n#if defined( USE_LAYERED_NORMAL_MAP )\nif (layered_normal_map_bumpmapType \x3d\x3d 0)\n     N2 \x3d heightMapTransform(layered_normal_map, vUv, layered_normal_map_texMatrix, layered_normal_map_bumpScale, Tu, Tv, N2);\nelse\n     N2 \x3d normalMapTransform(layered_normal_map, vUv, layered_normal_map_texMatrix, layered_normal_map_bumpScale, Tu, Tv, N2);\n#endif\nfloat NdotV \x3d dot(N, V);\n#if defined(PRISMLAYERED)\nfloat N2dotV \x3d dot(N2, V);\n#endif\nvec3 surfaceAlbedo;", d("surface_albedo", "surfaceAlbedo", !1, !0), "float surfaceRoughness;", d("surface_roughness", "surfaceRoughness", !0, !1), "float surfaceAnisotropy;", d("surface_anisotropy", "surfaceAnisotropy", !0, !1), "float surfaceRotation;", d("surface_rotation", "surfaceRotation", !0, !1), "#if defined(PRISMOPAQUE)\nfloat opaqueF0;", d("opaque_f0", "opaqueF0", !0, !1), "vec3 opaqueAlbedo;", d("opaque_albedo", "opaqueAlbedo", !1, !0), "#elif defined(PRISMMETAL)\nvec3 metalF0;", d("metal_f0", "metalF0", !1, !0), "#elif defined(PRISMLAYERED)\nfloat layeredF0;", d("layered_f0", "layeredF0", !0, !1), "vec3 layeredDiffuse;", d("layered_diffuse", "layeredDiffuse", !1, !0), "float layeredRoughness;", d("layered_roughness", "layeredRoughness", !0, !1), "float layeredAnisotropy;", d("layered_anisotropy", "layeredAnisotropy", !0, !1), "float layeredRotation;", d("layered_rotation", "layeredRotation", !0, !1), "vec3 bottom_f0;", d("layered_bottom_f0", "bottom_f0", !1, !0), "float layeredFraction;", d("layered_fraction", "layeredFraction", !0, !1), "#elif defined(PRISMWOOD)\nvec3 woodDiffuse \x3d NoiseWood(surfaceRoughness);\n#endif\nvec3 outRadianceLight \x3d vec3(0.0);\n#if MAX_DIR_LIGHTS \x3e 0 || MAX_POINT_LIGHTS \x3e 0 || MAX_SPOT_LIGHTS \x3e 0\nvec3 lightDirection[ MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS ];\nvec3 lightColor[ MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS ];\n#if MAX_DIR_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_DIR_LIGHTS; i ++ ) {\nvec4 lDirection \x3d viewMatrix * vec4( directionalLightDirection[ i ], 0.0 );\nlightDirection[i] \x3d normalize( lDirection.xyz );\nlightColor[i] \x3d SRGBToLinear(directionalLightColor[ i ]);\n}\n#endif\n#if MAX_POINT_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_POINT_LIGHTS; i ++ ) {\nvec4 lPosition \x3d viewMatrix * vec4( pointLightPosition[ i ], 1.0 );\nvec3 lVector \x3d lPosition.xyz + vViewPosition.xyz;\nlightDirection[MAX_DIR_LIGHTS + i] \x3d normalize( lVector );\nfloat lDistance \x3d 1.0;\nif ( pointLightDistance[ i ] \x3e 0.0 )\nlDistance \x3d 1.0 - min( ( length( lVector ) / pointLightDistance[ i ] ), 1.0 );\nlightColor[MAX_DIR_LIGHTS + i] \x3d SRGBToLinear(pointLightColor[ i ]) * lDistance;\n}\n#endif\n#if MAX_SPOT_LIGHTS \x3e 0\nfor( int i \x3d 0; i \x3c MAX_SPOT_LIGHTS; i ++ ) {\nvec4 lPosition \x3d viewMatrix * vec4( spotLightPosition[ i ], 1.0 );\nvec3 lVector \x3d lPosition.xyz + vViewPosition.xyz;\nlightDirection[MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + i] \x3d normalize( lVector );\nfloat lDistance \x3d 1.0;\nif ( spotLightDistance[ i ] \x3e 0.0 )\nlDistance \x3d 1.0 - min( ( length( lVector ) / spotLightDistance[ i ] ), 1.0 );\nfloat spotEffect \x3d dot( spotLightDirection[ i ], normalize( spotLightPosition[ i ] - vWorldPosition ) );\nif ( spotEffect \x3e spotLightAngleCos[ i ] )\nspotEffect \x3d max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 );\nlightColor[MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + i] \x3d SRGBToLinear(spotLightColor[ i ]) * lDistance * spotEffect;\n}\n#endif\nfor( int i \x3d 0; i \x3c MAX_DIR_LIGHTS + MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS; i ++ ) {\nvec3 L \x3d lightDirection[i];\nfloat NdotL \x3d dot(N, L);\nvec3 H \x3d normalize(L + V);\nfloat NdotH \x3d dot(N, H);\nfloat VdotH \x3d dot(V, H);\nfloat Hu \x3d dot(H, Tu);\nfloat Hv \x3d dot(H, Tv);\nvec3 Hlocal \x3d vec3(Hu, Hv, NdotH);\n#if defined(PRISMLAYERED)\nfloat N2dotL \x3d dot(N2, L);\nfloat N2dotH \x3d dot(N2, H);\nvec3 Hlocal2 \x3d vec3(Hu, Hv, N2dotH);\n#endif\nvec3 brdf \x3d lightColor[i] * \n#if defined(PRISMOPAQUE)\n    BRDF_Opaque(Hlocal, NdotL, NdotH, NdotV, VdotH,\n                surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n                opaqueF0, opaqueAlbedo);\n#elif defined(PRISMMETAL)\n    BRDF_Metal(Hlocal, NdotL, NdotH, NdotV, VdotH, \n               surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation, \n               metalF0);\n#elif defined(PRISMLAYERED)\n    BRDF_Layered(Hlocal, NdotL, NdotH, NdotV, VdotH, Hlocal2, N2dotL, N2dotH, N2dotV,\n                 surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation,\n                 layeredF0, layeredDiffuse, layeredRoughness, layeredAnisotropy,\n                 layeredRotation, bottom_f0, layeredFraction);\n#elif defined(PRISMTRANSPARENT)\n    BRDF_Transparent(Hlocal, NdotL, NdotH, NdotV, VdotH, surfaceAlbedo, surfaceRoughness, surfaceAnisotropy, surfaceRotation);\n#elif defined(PRISMWOOD)\n    BRDF_Wood(Hlocal, NdotL, NdotH, NdotV, VdotH, surfaceAlbedo, surfaceRoughness, woodDiffuse);\n#endif\noutRadianceLight +\x3d max(vec3(0.0), brdf);\n}\n#endif\nvec3 outRadianceEnv \x3d vec3(0.0);\n#if defined( USE_ENVMAP )\noutRadianceEnv \x3d\n#if defined(PRISMOPAQUE)\n    Environment_Opaque(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness,\n                        opaqueF0, opaqueAlbedo);\n#elif defined(PRISMMETAL)\n    Environment_Metal(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness, metalF0);\n#elif defined(PRISMLAYERED)\n    Environment_Layered(N, V, clamp(NdotV, 0.0, 1.0), N2, clamp(N2dotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness,\n                layeredF0, layeredDiffuse, layeredRoughness, layeredAnisotropy,\n                layeredRotation, bottom_f0, layeredFraction);\n#elif defined(PRISMTRANSPARENT)\n    Environment_Transparent(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness);\n#elif defined(PRISMWOOD)\n    Environment_Wood(N, V, clamp(NdotV, 0.0, 1.0), surfaceAlbedo, surfaceRoughness, woodDiffuse);\n#endif\n#endif\nfloat opacity \x3d 1.0;\nfloat surface_cutout \x3d 1.0;", d("surface_cutout", "surface_cutout", !0, !1), "#if defined( USE_SURFACE_CUTOUT_MAP )\nif(surface_cutout \x3c 0.01) discard;\n#endif\n#if defined(PRISMTRANSPARENT)\nif (transparent_ior \x3d\x3d 1.0 \x26\x26 transparent_color \x3d\x3d vec3(1.0,1.0,1.0))\nopacity \x3d 0.0;\nelse\nopacity \x3d max(0.5, mix(1.0, surfaceRoughness, NdotV));\n#endif\ngl_FragColor \x3d vec4( outRadianceLight + outRadianceEnv, opacity*surface_cutout );\n#if TONEMAP_OUTPUT \x3d\x3d 1\ngl_FragColor.xyz \x3d toneMapCanonOGS_WithGamma_WithColorPerserving(exposureBias * gl_FragColor.xyz);\n#elif TONEMAP_OUTPUT \x3d\x3d 2\ngl_FragColor.xyz \x3d toneMapCanonFilmic_WithGamma(exposureBias * gl_FragColor.xyz);\n#endif", g.ThemingFragmentShaderChunk, g.FinalOutputShaderChunk, "}"].join("\n")
         }, c.ShaderLib.prism = g.PrismShader, h.createPrismMaterial = function () {
             var a = new c.ShaderMaterial({
                 uniforms: c.UniformsUtils.clone(g.PrismShader.uniforms),
@@ -11890,7 +11890,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_NormalsShader = function (g) {
         "undefined" === typeof d.NormalsShader && (d.NormalsShader = {
             uniforms: {cutplanes: {type: "v4v", value: []}},
@@ -11900,7 +11900,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_BackgroundShader = function (g) {
         "undefined" === typeof d.BackgroundShader && (d.BackgroundShader = {
             uniforms: {
@@ -11925,7 +11925,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_FireflyBasicShader = function (g) {
         g.ShaderLib.firefly_basic = {
             uniforms: g.UniformsUtils.merge([g.UniformsLib.common, g.UniformsLib.fog, g.UniformsLib.shadowmap, d.CutPlanesUniforms, d.IdUniforms, d.ThemingUniform]),
@@ -11935,7 +11935,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
     }
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_LineShader = function (g) {
         "undefined" === typeof d.LineShader && (d.LineShader = {
             uniforms: {
@@ -11971,7 +11971,7 @@ var avp = BimFish.Viewing.Private, VBIntersector = avp.VBIntersector = function 
         })
     }
 })();
-var avp = BimFish.Viewing.Private, FireflyWebGLShader = function () {
+var avp = BimKing.Viewing.Private, FireflyWebGLShader = function () {
     var d = function (d) {
         d = d.split("\n");
         for (var g = 0; g < d.length; g++) d[g] = g + 1 + ": " + d[g];
@@ -11986,8 +11986,8 @@ var avp = BimFish.Viewing.Private, FireflyWebGLShader = function () {
     }
 }();
 avp.FireflyWebGLShader = FireflyWebGLShader;
-av = BimFish.Viewing;
-avp = BimFish.Viewing.Private;
+av = BimKing.Viewing;
+avp = BimKing.Viewing.Private;
 avp.PrismMaps = "opaque_luminance_modifier surface_albedo surface_roughness surface_anisotropy surface_rotation opaque_f0 opaque_albedo metal_f0 layered_f0 layered_diffuse layered_roughness layered_anisotropy layered_rotation layered_bottom_f0 layered_fraction surface_cutout".split(" ");
 var FireflyWebGLProgram = function () {
     var d = 0, g = function (d, c, b, a, f) {
@@ -12056,7 +12056,7 @@ var FireflyWebGLProgram = function () {
     }
 }();
 avp.FireflyWebGLProgram = FireflyWebGLProgram;
-var av = BimFish.Viewing, avp = av.Private, FireflyWebGLRenderer = function (d) {
+var av = BimKing.Viewing, avp = av.Private, FireflyWebGLRenderer = function (d) {
     function g(a, b) {
         var c = a.vertices.length, f = b.material;
         if (f.attributes) {
@@ -12165,7 +12165,7 @@ var av = BimFish.Viewing, avp = av.Private, FireflyWebGLRenderer = function (d) 
     function p(a, b, c) {
         var f, d;
         if (c || !1 !== a.visible) {
-            if (!(a instanceof THREE.Scene || a instanceof THREE.Group)) if (a instanceof BimFish.Viewing.Private.RenderBatch) a.forEach(b ? n : r); else {
+            if (!(a instanceof THREE.Scene || a instanceof THREE.Group)) if (a instanceof BimKing.Viewing.Private.RenderBatch) a.forEach(b ? n : r); else {
                 void 0 === a.__webglInit && (a.__webglInit = !0, a.addEventListener("removed", tb));
                 f = a.geometry;
                 void 0 !== f && void 0 === f.__webglInit && (f.__webglInit = !0, f.addEventListener("dispose", ub), f instanceof THREE.BufferGeometry || (a instanceof THREE.Mesh ? B(a, f) : a instanceof THREE.Line ? void 0 === f.__webglVertexBuffer && (f.__webglVertexBuffer = z.createBuffer(), f.__webglColorBuffer = z.createBuffer(), f.__webglLineDistanceBuffer = z.createBuffer(), V.info.memory.geometries++, d = f.vertices.length, f.__vertexArray = new Float32Array(3 * d), f.__colorArray = new Float32Array(3 * d), f.__lineDistanceArray = new Float32Array(1 * d), f.__webglLineCount = d, g(f, a), f.verticesNeedUpdate = !0, f.colorsNeedUpdate = !0, f.lineDistancesNeedUpdate = !0) : a instanceof THREE.PointCloud && void 0 === f.__webglVertexBuffer && (f.__webglVertexBuffer = z.createBuffer(), f.__webglColorBuffer = z.createBuffer(), V.info.memory.geometries++, d = f.vertices.length, f.__vertexArray = new Float32Array(3 * d), f.__colorArray = new Float32Array(3 * d), f.__webglPointCount = d, g(f, a), f.verticesNeedUpdate = !0, f.colorsNeedUpdate = !0)));
@@ -13530,7 +13530,7 @@ var av = BimFish.Viewing, avp = av.Private, FireflyWebGLRenderer = function (d) 
             b.worldUpTransform ? ab.multiplyMatrices(b.worldUpTransform, b.matrixWorld) : ab.copy(b.matrixWorld);
             Na.multiplyMatrices(b.projectionMatrix, b.matrixWorldInverse);
             Ka.setFromMatrix(Na);
-            var h = a instanceof BimFish.Viewing.Private.RenderBatch && a.renderImmediate;
+            var h = a instanceof BimKing.Viewing.Private.RenderBatch && a.renderImmediate;
             h || (Aa.length = 0, ra.length = 0, p(a, !0 === V.sortObjects, !0 === a.forceVisible), !0 === V.sortObjects && (Aa.sort(m), ra.sort(k)));
             La && (d && d.length && (ga = d.slice()), N(ga));
             this.setRenderTarget(c);
@@ -13657,7 +13657,7 @@ var av = BimFish.Viewing, avp = av.Private, FireflyWebGLRenderer = function (d) 
 };
 avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
 (function () {
-    var d = BimFish.Viewing.Private, g = new Float32Array(1), h = new Uint32Array(g.buffer), c = new Uint16Array(1),
+    var d = BimKing.Viewing.Private, g = new Float32Array(1), h = new Uint32Array(g.buffer), c = new Uint16Array(1),
         b = new Uint16Array(1);
     d.FloatToHalf = function (a) {
         g[0] = a;
@@ -13718,7 +13718,7 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
         return b
     }
 
-    var g = BimFish.Viewing.Private, h = BimFish.LMVTK;
+    var g = BimKing.Viewing.Private, h = BimKing.LMVTK;
     g.DefaultLightPreset = 1;
     g.DefaultLightPreset2d = 0;
     g.BackgroundPresets = {
@@ -14362,7 +14362,7 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
         d.needsUpdate = !0;
         return d
     }
-})(BimFish.Viewing.Private);
+})(BimKing.Viewing.Private);
 (function () {
     function d(a, b) {
         if (!a || !a.colors) return new THREE.Color(1, 0, 0);
@@ -14424,7 +14424,7 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
         a[f + "_frequencies"] = l
     }
 
-    var m = BimFish.Viewing.Private, n = {
+    var m = BimKing.Viewing.Private, n = {
         MilliMeter: 1E3,
         mm: 1E3,
         8206: 1E3,
@@ -14693,8 +14693,8 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
         return c
     }
 
-    var b = BimFish.Viewing, a = b.Private;
-    BimFish.Viewing.Private.MaterialManager = function (f) {
+    var b = BimKing.Viewing, a = b.Private;
+    BimKing.Viewing.Private.MaterialManager = function (f) {
         function g(a) {
             return -1 != a.indexOf("__lineMaterial__")
         }
@@ -15082,10 +15082,10 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
             delete n[a]
         }
     };
-    BimFish.Viewing.Private.loadTextureWithSecurity = d
+    BimKing.Viewing.Private.loadTextureWithSecurity = d
 })();
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.init_GroundShader = function (g) {
         "undefined" === typeof d.GroundDepthShader && (d.GroundDepthShader = {
             uniforms: {
@@ -15240,7 +15240,7 @@ avp.FireflyWebGLRenderer = FireflyWebGLRenderer;
 })();
 
 function init_GroundReflectionShader() {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     "undefined" === typeof d.GroundReflectionCompShader && (d.GroundReflectionCompShader = {
         uniforms: {
             tDiffuse: {
@@ -15258,7 +15258,7 @@ function init_GroundReflectionShader() {
 }
 
 (function () {
-    var d = BimFish.Viewing.Shaders, g = function (g, c, b, a) {
+    var d = BimKing.Viewing.Shaders, g = function (g, c, b, a) {
         init_GroundReflectionShader();
         var f = g.getContext(), h = c || 512, k = b || 512, m, n, r, p, q, t = !1, v = new THREE.Color(0, 0, 0), C,
             B = !1, H = !1;
@@ -15375,7 +15375,7 @@ function init_GroundReflectionShader() {
 })();
 
 function init_GaussianShader() {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     "undefined" === typeof d.GaussianShader && (d.GaussianShader = {
         uniforms: {
             tDiffuse: {type: "t", value: null},
@@ -15387,7 +15387,7 @@ function init_GaussianShader() {
 }
 
 (function () {
-    var d = BimFish.Viewing.Shaders;
+    var d = BimKing.Viewing.Shaders;
     d.GaussianPass = function (g, h, c, b, a) {
         init_GaussianShader();
         var f = g, l = h;
@@ -15467,7 +15467,7 @@ function init_GaussianShader() {
         return d
     }
 
-    var g = BimFish.Viewing.Private, h = function () {
+    var g = BimKing.Viewing.Private, h = function () {
         this.animations = []
     };
     h.prototype.init = function (a) {
@@ -15730,7 +15730,7 @@ function init_GaussianShader() {
         this.text = "";
         this.state = "hidden";
         this.epsilon = .1;
-        this.viewer.api.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, function (b) {
+        this.viewer.api.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, function (b) {
             g.updateText(a.position, g.text)
         })
     };
@@ -15855,7 +15855,7 @@ function init_GaussianShader() {
     g.AnnotationAnimation = l
 })();
 (function () {
-    var d = BimFish.Viewing.Private, g = function (d, c) {
+    var d = BimKing.Viewing.Private, g = function (d, c) {
         this.animations = [];
         this.viewer = d;
         this.keys = [];
@@ -15865,7 +15865,7 @@ function init_GaussianShader() {
         this.duration = c;
         this.currentTime = 0;
         this.onPlayCallback = null;
-        this.animationHandler = new BimFish.Viewing.Private.AnimationHandler;
+        this.animationHandler = new BimKing.Viewing.Private.AnimationHandler;
         this.areCameraAnimationsPaused = !1;
         this.UPDATE_SCENE = 1;
         this.UPDATE_CAMERA = 2
@@ -15930,7 +15930,7 @@ function init_GaussianShader() {
     g.prototype.pauseCameraAnimations = function () {
         for (var d = 0; d < this.animations.length; d++) {
             var c = this.animations[d];
-            c instanceof BimFish.Viewing.Private.CameraAnimation && c.pause()
+            c instanceof BimKing.Viewing.Private.CameraAnimation && c.pause()
         }
         this.areCameraAnimationsPaused = !this.areCameraAnimationsPaused
     };
@@ -15962,7 +15962,7 @@ function init_GaussianShader() {
     };
     d.KeyFrameAnimator = g
 })();
-var av = BimFish.Viewing, avp = BimFish.Viewing.Private, ENABLE_DEBUG = avp.ENABLE_DEBUG || !1,
+var av = BimKing.Viewing, avp = BimKing.Viewing.Private, ENABLE_DEBUG = avp.ENABLE_DEBUG || !1,
     ENABLE_TRACE = avp.ENABLE_TRACE || !1;
 (function () {
     function d(d, h) {
@@ -16030,7 +16030,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, ENABLE_DEBUG = avp.ENAB
 
         var m = this, n = 1E3 / 15, r = 1E3 / 30, p = 1E3 / 120, q = avp.RENDER_NORMAL, t = -1, v = -1, C = !1, B,
             H = "y", F, w, u, A, D, I, E, G = !1, L = !1, K = !1,
-            J = {type: BimFish.Viewing.PROGRESS_UPDATE_EVENT, percent: 0}, N = !1, P, T = 0, da = 0, Z = 0, aa = 0,
+            J = {type: BimKing.Viewing.PROGRESS_UPDATE_EVENT, percent: 0}, N = !1, P, T = 0, da = 0, Z = 0, aa = 0,
             ea = 1E3 / 60, U = 0, Q = !0, S, M, fa = !1, W, ma = !1, ba = !1;
         d && setInterval(function () {
             Q || 60 > U || m.track({name: "fps", value: Number(m.fps().toFixed(2)), aggregate: "last"})
@@ -16928,8 +16928,8 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, ENABLE_DEBUG = avp.ENAB
     d.prototype.constructor = d;
     avp.Viewer3DImpl = d
 })();
-BimFish.Viewing.Private.ViewerState = function (d) {
-    var g = BimFish.Viewing.Private;
+BimKing.Viewing.Private.ViewerState = function (d) {
+    var g = BimKing.Viewing.Private;
     this.getState = function (h) {
         var c = d.navigation, b = {}, a;
         a = Math.round(4294967295 * Math.random());
@@ -17099,8 +17099,8 @@ BimFish.Viewing.Private.ViewerState = function (d) {
         }
     }
 };
-BimFish.Viewing.Private.ViewerState.prototype.constructor = BimFish.Viewing.Private.ViewerState;
-BimFishNamespace("BimFish.Viewing.i18n");
+BimKing.Viewing.Private.ViewerState.prototype.constructor = BimKing.Viewing.Private.ViewerState;
+BimKingNamespace("BimKing.Viewing.i18n");
 (function () {
     function d(a, b) {
         if (!b || "function" === typeof b) return a;
@@ -17245,7 +17245,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
             var f = I.toLanguages(w.lng);
             "string" === typeof w.preload && (w.preload = [w.preload]);
             for (var d = 0, g = w.preload.length; d < g; d++) for (var h = I.toLanguages(w.preload[d]), l = 0, m = h.length; l < m; l++) 0 > f.indexOf(h[l]) && f.push(h[l]);
-            BimFish.Viewing.i18n.sync.load(f, w, function (a, f) {
+            BimKing.Viewing.i18n.sync.load(f, w, function (a, f) {
                 v = f;
                 F = !0;
                 b && b(c)
@@ -17370,7 +17370,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
         if (c.lng && (h = I.toLanguages(c.lng), !v[h[0]])) {
             var l = w.getAsync;
             w.getAsync = !1;
-            BimFish.Viewing.i18n.sync.load(h, w, function (a, b) {
+            BimKing.Viewing.i18n.sync.load(h, w, function (a, b) {
                 I.extend(v, b);
                 w.getAsync = l
             })
@@ -17596,7 +17596,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
                 };
                 if ("function" == typeof c.customLoad) c.customLoad(b, d.namespaces, c, h); else {
                     var l = a(c.resGetPath, {lng: b.join("+"), ns: d.namespaces.join("+")}),
-                        l = BimFish.Viewing.Private.getResourceUrl(l);
+                        l = BimKing.Viewing.Private.getResourceUrl(l);
                     I.ajax({
                         url: l, success: function (a, b, c) {
                             I.log("loaded: " + l);
@@ -17624,7 +17624,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
                 })
             }
         }, _fetchOne: function (b, c, f, d) {
-            var g = a(f.resGetPath, {lng: b, ns: c}), g = BimFish.Viewing.Private.getResourceUrl(g);
+            var g = a(f.resGetPath, {lng: b, ns: c}), g = BimKing.Viewing.Private.getResourceUrl(g);
             I.ajax({
                 url: g, success: function (a, b, c) {
                     I.log("loaded: " + g);
@@ -18299,57 +18299,57 @@ BimFishNamespace("BimFish.Viewing.i18n");
     });
     var J = function () {
         Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function (a) {
-            var b = [null, a.getAttribute("data-i18n")], c = b[0], b = b[1], f = BimFish.Viewing.i18n.translate(b);
+            var b = [null, a.getAttribute("data-i18n")], c = b[0], b = b[1], f = BimKing.Viewing.i18n.translate(b);
             f ? c ? a.setAttribute(c, f) : a.textContent = f : c ? a.setAttribute(c, b) : a.textContent = b
         })
     };
-    BimFish.Viewing.i18n.init = c;
-    BimFish.Viewing.i18n.setLng = function (a, b, f) {
+    BimKing.Viewing.i18n.init = c;
+    BimKing.Viewing.i18n.setLng = function (a, b, f) {
         "function" === typeof b ? (f = b, b = {}) : b || (b = {});
         b.lng = a;
         return c(b, f)
     };
-    BimFish.Viewing.i18n.preload = function (a, b) {
+    BimKing.Viewing.i18n.preload = function (a, b) {
         "string" === typeof a && (a = [a]);
         for (var f = 0, d = a.length; f < d; f++) 0 > w.preload.indexOf(a[f]) && w.preload.push(a[f]);
         return c(b)
     };
-    BimFish.Viewing.i18n.addResourceBundle = function (a, b, c) {
+    BimKing.Viewing.i18n.addResourceBundle = function (a, b, c) {
         "string" !== typeof b ? (c = b, b = w.ns.defaultNs) : 0 > w.ns.namespaces.indexOf(b) && w.ns.namespaces.push(b);
         v[a] = v[a] || {};
         v[a][b] = v[a][b] || {};
         I.extend(v[a][b], c)
     };
-    BimFish.Viewing.i18n.removeResourceBundle = function (a, b) {
+    BimKing.Viewing.i18n.removeResourceBundle = function (a, b) {
         "string" !== typeof b && (b = w.ns.defaultNs);
         v[a] = v[a] || {};
         v[a][b] = {}
     };
-    BimFish.Viewing.i18n.loadNamespace = function (a, c) {
+    BimKing.Viewing.i18n.loadNamespace = function (a, c) {
         b([a], c)
     };
-    BimFish.Viewing.i18n.loadNamespaces = b;
-    BimFish.Viewing.i18n.localize = J;
-    BimFish.Viewing.i18n.setDefaultNamespace = function (a) {
+    BimKing.Viewing.i18n.loadNamespaces = b;
+    BimKing.Viewing.i18n.localize = J;
+    BimKing.Viewing.i18n.setDefaultNamespace = function (a) {
         w.ns.defaultNs = a
     };
-    BimFish.Viewing.i18n.t = k;
-    BimFish.Viewing.i18n.translate = k;
-    BimFish.Viewing.i18n.exists = l;
-    BimFish.Viewing.i18n.detectLanguage = I.detectLanguage;
-    BimFish.Viewing.i18n.pluralExtensions = G;
-    BimFish.Viewing.i18n.sync = E;
-    BimFish.Viewing.i18n.functions = I;
-    BimFish.Viewing.i18n.lng = function () {
+    BimKing.Viewing.i18n.t = k;
+    BimKing.Viewing.i18n.translate = k;
+    BimKing.Viewing.i18n.exists = l;
+    BimKing.Viewing.i18n.detectLanguage = I.detectLanguage;
+    BimKing.Viewing.i18n.pluralExtensions = G;
+    BimKing.Viewing.i18n.sync = E;
+    BimKing.Viewing.i18n.functions = I;
+    BimKing.Viewing.i18n.lng = function () {
         return C
     };
-    BimFish.Viewing.i18n.addPostProcessor = q;
-    BimFish.Viewing.i18n.options = w;
-    BimFish.Viewing.i18n.setDebugLocString = function () {
+    BimKing.Viewing.i18n.addPostProcessor = q;
+    BimKing.Viewing.i18n.options = w;
+    BimKing.Viewing.i18n.setDebugLocString = function () {
         p = "aaaa";
         J()
     };
-    BimFish.Viewing.i18n.clearDebugLocString = function () {
+    BimKing.Viewing.i18n.clearDebugLocString = function () {
         p = null;
         J()
     }
@@ -18507,7 +18507,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
         return g
     };
     d.prototype.setTitle = function (d, h) {
-        h && h.localizeTitle ? (this.title.setAttribute("data-i18n", d), d = BimFish.Viewing.i18n.translate(d)) : this.title.removeAttribute("data-i18n");
+        h && h.localizeTitle ? (this.title.setAttribute("data-i18n", d), d = BimKing.Viewing.i18n.translate(d)) : this.title.removeAttribute("data-i18n");
         this.title.textContent = d
     };
     d.prototype.createCloseButton = function () {
@@ -18558,10 +18558,10 @@ BimFishNamespace("BimFish.Viewing.i18n");
     d.prototype.getContainerBoundingRect = function () {
         return this.parentContainer.getBoundingClientRect()
     };
-    BimFish.Viewing.UI.DockingPanel = d
+    BimKing.Viewing.UI.DockingPanel = d
 })();
 (function () {
-    var d = BimFish.Viewing.UI, g = BimFish.Viewing.Private, h = function (c, b, a, f) {
+    var d = BimKing.Viewing.UI, g = BimKing.Viewing.Private, h = function (c, b, a, f) {
         d.DockingPanel.call(this, c, b, a, f);
         this.container.classList.add("modelStructurePanel");
         f = f || {};
@@ -18707,7 +18707,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
     h.prototype.removeClass = function (c, b) {
         return null !== this.tree && this.tree.removeClass(c, b)
     };
-    BimFish.Viewing.UI.ModelStructurePanel = h
+    BimKing.Viewing.UI.ModelStructurePanel = h
 })();
 (function () {
     function d(c) {
@@ -18723,7 +18723,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
         }, c)
     }
 
-    var g = BimFish.Viewing.UI, h = function (c, b, a, f) {
+    var g = BimKing.Viewing.UI, h = function (c, b, a, f) {
         g.DockingPanel.call(this, c, b, a, f);
         this.container.classList.add("propertyPanel");
         this.container.dockRight = !0;
@@ -18776,9 +18776,9 @@ BimFishNamespace("BimFish.Viewing.i18n");
             }
         }
         if (0 === a.length + f.length) this.showNoProperties(); else {
-            for (d = 0; d < a.length; d++) g = a[d], h = BimFish.Viewing.Private.formatValueWithUnits(g.displayValue, g.units, g.type), this.addProperty(g.displayName, h, g.displayCategory);
+            for (d = 0; d < a.length; d++) g = a[d], h = BimKing.Viewing.Private.formatValueWithUnits(g.displayValue, g.units, g.type), this.addProperty(g.displayName, h, g.displayCategory);
             a = 0 < a.length;
-            for (d = 0; d < f.length; d++) g = f[d], h = BimFish.Viewing.Private.formatValueWithUnits(g.displayValue, g.units, g.type), this.addProperty(g.displayName, h, a ? "Other" : "", a ? {localizeCategory: !0} : {})
+            for (d = 0; d < f.length; d++) g = f[d], h = BimKing.Viewing.Private.formatValueWithUnits(g.displayValue, g.units, g.type), this.addProperty(g.displayName, h, a ? "Other" : "", a ? {localizeCategory: !0} : {})
         }
     };
     h.prototype.showNoProperties = function () {
@@ -18786,7 +18786,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
         var c = this.tree.myRootContainer, b = document.createElement("div");
         b.className = "noProperties";
         b.setAttribute("data-i18n", "No properties to display");
-        b.textContent = BimFish.Viewing.i18n.translate("No properties to display");
+        b.textContent = BimKing.Viewing.i18n.translate("No properties to display");
         c.appendChild(b)
     };
     h.prototype.showDefaultProperties = function () {
@@ -18840,7 +18840,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
     h.prototype.displayCategory = function (c, b, a) {
         var f = document.createElement("div");
         c = c.name;
-        a && a.localize && (f.setAttribute("data-i18n", c), c = BimFish.Viewing.i18n.translate(c));
+        a && a.localize && (f.setAttribute("data-i18n", c), c = BimKing.Viewing.i18n.translate(c));
         f.textContent = c;
         f.title = c;
         f.className = "categoryName";
@@ -18849,7 +18849,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
     };
     h.prototype.displayProperty = function (c, b, a) {
         var f = document.createElement("div"), g = c.name;
-        a && a.localize && (f.setAttribute("data-i18n", g), g = BimFish.Viewing.i18n.translate(g));
+        a && a.localize && (f.setAttribute("data-i18n", g), g = BimKing.Viewing.i18n.translate(g));
         f.textContent = g;
         f.title = g;
         f.className = "propertyName";
@@ -18890,10 +18890,10 @@ BimFishNamespace("BimFish.Viewing.i18n");
     };
     h.prototype.onPropertyRightClick = function (c, b) {
     };
-    BimFish.Viewing.UI.PropertyPanel = h
+    BimKing.Viewing.UI.PropertyPanel = h
 })();
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.Private, h = function (c) {
+    var d = BimKing.Viewing, g = BimKing.Viewing.Private, h = function (c) {
         this.viewer = c;
         this.menus = [];
         this.open = !1
@@ -18946,7 +18946,7 @@ BimFishNamespace("BimFish.Viewing.i18n");
         var a = document.createElement("div");
         a.className = "menuItem";
         a.setAttribute("data-i18n", b);
-        a.textContent = BimFish.Viewing.i18n.translate(b);
+        a.textContent = BimKing.Viewing.i18n.translate(b);
         c.appendChild(a);
         return a
     };
@@ -18976,10 +18976,10 @@ BimFishNamespace("BimFish.Viewing.i18n");
         }
         return !1
     };
-    BimFish.Viewing.Private.ContextMenu = h
+    BimKing.Viewing.Private.ContextMenu = h
 })();
 (function () {
-    var d = BimFish.Viewing.Private, g = function (g) {
+    var d = BimKing.Viewing.Private, g = function (g) {
         this.viewer = g;
         this.contextMenu = new d.ContextMenu(g)
     };
@@ -18997,9 +18997,9 @@ BimFishNamespace("BimFish.Viewing.i18n");
     g.prototype.buildMenu = function (d, c) {
         return null
     };
-    BimFish.Viewing.UI.ObjectContextMenu = g
+    BimKing.Viewing.UI.ObjectContextMenu = g
 })();
-BimFish.Viewing.Private.Preferences = function (d, g) {
+BimKing.Viewing.Private.Preferences = function (d, g) {
     function h(a, b) {
         if (m) return a = g + a, "undefined" !== typeof b ? localStorage[a] = b : b = localStorage[a], b
     }
@@ -19017,8 +19017,8 @@ BimFish.Viewing.Private.Preferences = function (d, g) {
         }
     }
 
-    g || (g = "BimFish.Viewing.Preferences.");
-    var b = BimFish.Viewing, a = BimFish.Viewing.Private, f = {}, l = {}, k = {}, m = function () {
+    g || (g = "BimKing.Viewing.Preferences.");
+    var b = BimKing.Viewing, a = BimKing.Viewing.Private, f = {}, l = {}, k = {}, m = function () {
         var a = g + "test";
         try {
             var b = window.localStorage;
@@ -19091,8 +19091,8 @@ BimFish.Viewing.Private.Preferences = function (d, g) {
         void 0 !== l[a] && delete l[a]
     }
 };
-BimFishNamespace("BimFish.Viewing.Private");
-BimFish.Viewing.Private.formatValueWithUnits = function (d, g, h, c) {
+BimKingNamespace("BimKing.Viewing.Private");
+BimKing.Viewing.Private.formatValueWithUnits = function (d, g, h, c) {
     function b(a) {
         var b = 0 <= a ? Math.floor(a) : Math.ceil(a);
         return {intPart: b, fracPart: a - b}
@@ -19134,15 +19134,15 @@ BimFish.Viewing.Private.formatValueWithUnits = function (d, g, h, c) {
     }
 
     void 0 === c && (c = 3);
-    if (1 === h) d = BimFish.Viewing.i18n.translate(d ? "Yes" : "No"); else if (24 === h) {
+    if (1 === h) d = BimKing.Viewing.i18n.translate(d ? "Yes" : "No"); else if (24 === h) {
         h = d.split(" ");
         d = [];
-        for (var m = 0; m < h.length; ++m) d.push(BimFish.Viewing.Private.formatValueWithUnits(parseFloat(h[m]), g, 3, c));
+        for (var m = 0; m < h.length; ++m) d.push(BimKing.Viewing.Private.formatValueWithUnits(parseFloat(h[m]), g, 3, c));
         d = d.join(", ")
     } else 2 !== h && 3 !== h || !isNaN(d) ? "ft-and-fractional-in" === g ? d = f(12 * d, c) : "ft-and-fractional-in^2" === g ? d = f(12 * d, c) + " " + String.fromCharCode(178) : "ft-and-decimal-in" === g ? d = k(d, c) : "ft-and-decimal-in^2" === g ? d = k(d, c) + " " + String.fromCharCode(178) : "decimal-in" === g || "in" === g || "inch" === g ? d = a(d, c) + '"' : "decimal-in^2" === g || "in^2" === g || "inch^2" === g ? d = a(d, c) + '" ' + String.fromCharCode(178) : "decimal-ft" === g || "ft" === g || "feet" === g || "foot" === g ? d = a(d, c) + "'" : "decimal-ft^2" === g || "ft^2" === g || "feet^2" === g || "foot^2" === g ? d = a(d, c) + "' " + String.fromCharCode(178) : "fractional-in" === g ? d = f(d, c, !0) : "fractional-in^2" === g ? d = f(d, c, !0) + " " + String.fromCharCode(178) : "m-and-cm" === g ? d = l(d, c) : "m-and-cm^2" === g ? d = l(d, c) + " " + String.fromCharCode(178) : 3 === h && g ? (g = g.replace("^2", String.fromCharCode(178)), g = g.replace("^3", String.fromCharCode(179)), d = a(d, c) + " " + g) : d = g ? d + " " + g : 3 === h ? a(d, c) : d : d = "NaN";
     return d
 };
-BimFish.Viewing.Private.convertUnits = function (d, g, h, c) {
+BimKing.Viewing.Private.convertUnits = function (d, g, h, c) {
     if (d === g) return h;
     var b = 1;
     switch (g) {
@@ -19216,9 +19216,9 @@ BimFish.Viewing.Private.convertUnits = function (d, g, h, c) {
     }
     return "square" === c ? h * Math.pow(b * g, 2) : h * b * g
 };
-BimFishNamespace("BimFish.Viewing.Private");
+BimKingNamespace("BimKing.Viewing.Private");
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.Private;
+    var d = BimKing.Viewing, g = BimKing.Viewing.Private;
     g.OptionSlider = function (g, c, b, a, f) {
         function h(a) {
             a.target != k.stepperElement && (k.stepperElement.value = k.sliderElement.value);
@@ -19392,13 +19392,13 @@ BimFishNamespace("BimFish.Viewing.Private");
     d.prototype.setPercent = function (d) {
         d != this.lastValue && (this.lastValue = d, 99 <= d ? this.bg.style.visibility = "hidden" : (this.bg.style.visibility = "visible", this.fg.style.width = this.widthScale * d * .01 + "px"))
     };
-    BimFish.Viewing.Private.ProgressBar = d
+    BimKing.Viewing.Private.ProgressBar = d
 })();
-BimFishNamespace("BimFish.Viewing.Private");
-BimFish.Viewing.Private.RenderOptionsPanel = function (d) {
-    var g = this, h = BimFish.Viewing.Private, c = BimFish.Viewing.Private;
+BimKingNamespace("BimKing.Viewing.Private");
+BimKing.Viewing.Private.RenderOptionsPanel = function (d) {
+    var g = this, h = BimKing.Viewing.Private, c = BimKing.Viewing.Private;
     this.viewer = d;
-    BimFish.Viewing.UI.DockingPanel.call(this, d.container, "RenderOptionsPanel", "Rendering Options");
+    BimKing.Viewing.UI.DockingPanel.call(this, d.container, "RenderOptionsPanel", "Rendering Options");
     this.table = document.createElement("table");
     this.table.className = "adsk-lmv-tftable";
     this.tbody = document.createElement("tbody");
@@ -19499,38 +19499,38 @@ BimFish.Viewing.Private.RenderOptionsPanel = function (d) {
     this.addEventListener(this.fovAngle, "change", function (a) {
         d.setFOV(parseFloat(g.fovAngle.value))
     });
-    this.addEventListener(this.viewer, BimFish.Viewing.CAMERA_CHANGE_EVENT, function (a) {
+    this.addEventListener(this.viewer, BimKing.Viewing.CAMERA_CHANGE_EVENT, function (a) {
         a = parseFloat(g.fovAngle.value);
         var b = d.getFOV();
         a != b && g.fovAngle.setValue(b)
     });
-    this.addEventListener(this.viewer, BimFish.Viewing.RENDER_OPTION_CHANGED_EVENT, function (a) {
+    this.addEventListener(this.viewer, BimKing.Viewing.RENDER_OPTION_CHANGED_EVENT, function (a) {
         g.syncUI()
     });
     this.addVisibilityListener(function () {
         g.resizeToContent()
     })
 };
-BimFish.Viewing.Private.RenderOptionsPanel.prototype = Object.create(BimFish.Viewing.UI.DockingPanel.prototype);
-BimFish.Viewing.Private.RenderOptionsPanel.prototype.constructor = BimFish.Viewing.Private.RenderOptionsPanel;
-BimFish.Viewing.Private.RenderOptionsPanel.prototype.getContentSize = function () {
+BimKing.Viewing.Private.RenderOptionsPanel.prototype = Object.create(BimKing.Viewing.UI.DockingPanel.prototype);
+BimKing.Viewing.Private.RenderOptionsPanel.prototype.constructor = BimKing.Viewing.Private.RenderOptionsPanel;
+BimKing.Viewing.Private.RenderOptionsPanel.prototype.getContentSize = function () {
     return {height: this.table.clientHeight + 75, width: this.table.clientWidth}
 };
-BimFish.Viewing.Private.RenderOptionsPanel.prototype.updateBgColorIndex = function () {
+BimKing.Viewing.Private.RenderOptionsPanel.prototype.updateBgColorIndex = function () {
     var d = this.viewer.impl, g = d.clearColorTop, d = d.clearColorBottom,
         g = [255 * g.x | 0, 255 * g.y | 0, 255 * g.z | 0, 255 * d.x | 0, 255 * d.y | 0, 255 * d.z | 0], h, c;
-    for (c in BimFish.Viewing.Private.BackgroundPresets) {
-        var d = BimFish.Viewing.Private.BackgroundPresets[c], b;
+    for (c in BimKing.Viewing.Private.BackgroundPresets) {
+        var d = BimKing.Viewing.Private.BackgroundPresets[c], b;
         for (b = 0; 6 > b && d[b] == g[b]; b++) ;
         if (6 == b) {
             h = c;
             break
         }
     }
-    if (!h) for (h = "Custom", c = BimFish.Viewing.Private.BackgroundPresets[h], d = 0; 6 > d; d++) c[d] = g[d];
+    if (!h) for (h = "Custom", c = BimKing.Viewing.Private.BackgroundPresets[h], d = 0; 6 > d; d++) c[d] = g[d];
     this.bgSelect.setSelectedValue(h)
 };
-BimFish.Viewing.Private.RenderOptionsPanel.prototype.syncUI = function () {
+BimKing.Viewing.Private.RenderOptionsPanel.prototype.syncUI = function () {
     var d = this.viewer.impl, g = 0;
     d.dir_light1 && (g = 0 != d.dir_light1.intensity ? Math.log(d.dir_light1.intensity) / Math.log(2) : -1E-20);
     this.whiteScale.setValue(g);
@@ -19552,12 +19552,12 @@ BimFish.Viewing.Private.RenderOptionsPanel.prototype.syncUI = function () {
     this.fovAngle.setValue(this.viewer.getFOV());
     this.celToggle.setValue(d.renderer().settings.toonShaded)
 };
-BimFish.Viewing.Private.RenderOptionsPanel.prototype.uninitialize = function () {
-    BimFish.Viewing.UI.DockingPanel.prototype.uninitialize.call(this);
+BimKing.Viewing.Private.RenderOptionsPanel.prototype.uninitialize = function () {
+    BimKing.Viewing.UI.DockingPanel.prototype.uninitialize.call(this);
     this.viewer = this.fovAngle = this.whiteScale = this.exposureBias = this.toneMapMethod = this.envSelect = this.groundShadowAlpha = this.saoIntensity = this.saoRadius = this.saoToggle = this.bgSelect = this.tbody = this.table = null
 };
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.UI, h = function (c, b, a) {
+    var d = BimKing.Viewing, g = BimKing.Viewing.UI, h = function (c, b, a) {
         this.viewer = c;
         this.layersRoot = this.tree = null;
         this.visibilityImages = {};
@@ -19771,11 +19771,11 @@ BimFish.Viewing.Private.RenderOptionsPanel.prototype.uninitialize = function () 
             a.stopPropagation()
         })
     };
-    BimFish.Viewing.UI.LayersPanel = h
+    BimKing.Viewing.UI.LayersPanel = h
 })();
-BimFishNamespace("BimFish.Viewing.UI");
-BimFish.Viewing.UI.SettingsPanel = function (d, g, h, c) {
-    BimFish.Viewing.UI.DockingPanel.call(this, d, g, h, c);
+BimKingNamespace("BimKing.Viewing.UI");
+BimKing.Viewing.UI.SettingsPanel = function (d, g, h, c) {
+    BimKing.Viewing.UI.DockingPanel.call(this, d, g, h, c);
     this.panelTabs = [];
     this.tabIdToIndex = {};
     this.controls = {};
@@ -19823,13 +19823,13 @@ BimFish.Viewing.UI.SettingsPanel = function (d, g, h, c) {
         return g + "-" + a
     }
 };
-BimFish.Viewing.UI.SettingsPanel.prototype = Object.create(BimFish.Viewing.UI.DockingPanel.prototype);
-BimFish.Viewing.UI.SettingsPanel.prototype.constructor = BimFish.Viewing.UI.SettingsPanel;
-BimFish.Viewing.UI.SettingsPanel.prototype.setVisible = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype = Object.create(BimKing.Viewing.UI.DockingPanel.prototype);
+BimKing.Viewing.UI.SettingsPanel.prototype.constructor = BimKing.Viewing.UI.SettingsPanel;
+BimKing.Viewing.UI.SettingsPanel.prototype.setVisible = function (d) {
     d && (this.container.style.display = "block");
-    BimFish.Viewing.UI.DockingPanel.prototype.setVisible.call(this, d)
+    BimKing.Viewing.UI.DockingPanel.prototype.setVisible.call(this, d)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.addTab = function (d, g, h) {
+BimKing.Viewing.UI.SettingsPanel.prototype.addTab = function (d, g, h) {
     var c = this;
     if (void 0 !== this.tabIdToIndex[d]) return !1;
     var b = h && void 0 !== h.className ? h.className : null, a = h && void 0 !== h.width ? h.width : 200;
@@ -19839,7 +19839,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.addTab = function (d, g, h) {
     f.id = this.expandID(f._id);
     var l = document.createElement("a"), k = document.createElement("span");
     k.setAttribute("data-i18n", g);
-    k.textContent = BimFish.Viewing.i18n.translate(g);
+    k.textContent = BimKing.Viewing.i18n.translate(g);
     l.appendChild(k);
     f.appendChild(l);
     this.tabs.appendChild(f);
@@ -19860,7 +19860,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.addTab = function (d, g, h) {
     a > b && (this.container.style.minWidth = a + "px");
     return !0
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.removeTab = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.removeTab = function (d) {
     d = this.tabIdToIndex[d];
     if (!d) return !1;
     this.panelTabs.splice(d, 1);
@@ -19870,10 +19870,10 @@ BimFish.Viewing.UI.SettingsPanel.prototype.removeTab = function (d) {
     for (var g = 0; g < d; g++) this.tabIdToIndex[this.panelTabs[g]._id] = g;
     return !0
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.hasTab = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.hasTab = function (d) {
     return void 0 !== this.panelTabs[this.tabIdToIndex[d]]
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.selectTab = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.selectTab = function (d) {
     if (this.isTabSelected(d)) return !1;
     for (var g = this.panelTabs.length, h = 0; h < g; h++) {
         var c = this.panelTabs[h], b = document.getElementById(this.expandID(c._id + "-table"));
@@ -19882,23 +19882,23 @@ BimFish.Viewing.UI.SettingsPanel.prototype.selectTab = function (d) {
     this.resizeToContent();
     return !0
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.isTabSelected = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.isTabSelected = function (d) {
     return (d = this.panelTabs[this.tabIdToIndex[d]]) && d.classList.contains("tabselected")
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.addCheckbox = function (d, g, h, c, b) {
+BimKing.Viewing.UI.SettingsPanel.prototype.addCheckbox = function (d, g, h, c, b) {
     if (void 0 === this.tabIdToIndex[d]) return null;
     var a = document.getElementById(this.expandID(d + "-table"));
-    g = new BimFish.Viewing.Private.OptionCheckbox(g, a.tBodies[0], h, b);
+    g = new BimKing.Viewing.Private.OptionCheckbox(g, a.tBodies[0], h, b);
     g.changeListener = function (a) {
         c(a.detail.target.checked)
     };
     this.addEventListener(g, "change", g.changeListener);
     return this.addControl(d, g)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.addSlider = function (d, g, h, c, b, a, f) {
+BimKing.Viewing.UI.SettingsPanel.prototype.addSlider = function (d, g, h, c, b, a, f) {
     if (void 0 === this.tabIdToIndex[d]) return null;
     var l = document.getElementById(this.expandID(d + "-table"));
-    g = new BimFish.Viewing.Private.OptionSlider(g, h, c, l.tBodies[0], f);
+    g = new BimKing.Viewing.Private.OptionSlider(g, h, c, l.tBodies[0], f);
     g.setValue(b);
     g.sliderElement.step = g.stepperElement.step = 1;
     this.addEventListener(g, "change", function (b) {
@@ -19906,16 +19906,16 @@ BimFish.Viewing.UI.SettingsPanel.prototype.addSlider = function (d, g, h, c, b, 
     });
     return this.addControl(d, g)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.addDropDownMenu = function (d, g, h, c, b, a) {
+BimKing.Viewing.UI.SettingsPanel.prototype.addDropDownMenu = function (d, g, h, c, b, a) {
     if (void 0 === this.tabIdToIndex[d]) return null;
     var f = document.getElementById(this.expandID(d + "-table"));
-    g = new BimFish.Viewing.Private.OptionDropDown(g, f.tBodies[0], h, c, a);
+    g = new BimKing.Viewing.Private.OptionDropDown(g, f.tBodies[0], h, c, a);
     this.addEventListener(g, "change", function (a) {
         b(a)
     });
     return this.addControl(d, g)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.addControl = function (d, g, h) {
+BimKing.Viewing.UI.SettingsPanel.prototype.addControl = function (d, g, h) {
     if (void 0 === this.tabIdToIndex[d]) return null;
     if (!g.hasOwnProperty("sliderRow")) {
         var c = h && h.insertAtIndex ? h.insertAtIndex : -1;
@@ -19926,7 +19926,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.addControl = function (d, g, h) {
         if (h) {
             var a = document.createElement("div");
             a.setAttribute("data-i18n", h);
-            a.textContent = BimFish.Viewing.i18n.translate(h);
+            a.textContent = BimKing.Viewing.i18n.translate(h);
             b.appendChild(a);
             b = c.insertCell(1)
         } else b.colSpan = 2;
@@ -19940,16 +19940,16 @@ BimFish.Viewing.UI.SettingsPanel.prototype.addControl = function (d, g, h) {
     this.resizeToContent();
     return h
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.removeCheckbox = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.removeCheckbox = function (d) {
     return this.removeControl(d)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.removeSlider = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.removeSlider = function (d) {
     return this.removeControl(d)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.removeCheckbox = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.removeCheckbox = function (d) {
     return this.removeControl(d)
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.removeControl = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.removeControl = function (d) {
     var g;
     g = "object" == typeof d && d.tbody ? d : this.controls[d];
     if (void 0 === g) return !1;
@@ -19958,10 +19958,10 @@ BimFish.Viewing.UI.SettingsPanel.prototype.removeControl = function (d) {
     this.resizeToContent();
     return !0
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.getControl = function (d) {
+BimKing.Viewing.UI.SettingsPanel.prototype.getControl = function (d) {
     return void 0 !== this.controls[d] ? this.controls[d] : null
 };
-BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
+BimKing.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
     for (var d = this.heightAdjustment, g = this.panelTabs.length > this.panelTabs[0] ? 0 : null, h = 0; h < this.panelTabs.length; h++) {
         var c = this.panelTabs[h];
         if (this.isTabSelected(c._id)) {
@@ -19987,7 +19987,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         b = document.createElement("div");
         b.className = "alertBoxMsg";
         f.appendChild(b);
-        c || (c = BimFish.Viewing.i18n.translate("Error Occurred", {defaultValue: "Error Occurred"}));
+        c || (c = BimKing.Viewing.i18n.translate("Error Occurred", {defaultValue: "Error Occurred"}));
         l = document.createElement("div");
         l.className = "alertBoxTitle";
         l.textContent = c;
@@ -20019,7 +20019,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         }
         a = document.createElement("div");
         a.className = "alertBoxOK";
-        a.textContent = BimFish.Viewing.i18n.translate("OK", {defaultValue: "OK"});
+        a.textContent = BimKing.Viewing.i18n.translate("OK", {defaultValue: "OK"});
         var n = {alertBox: f, container: g};
         a.addEventListener("click", function (a) {
             f.style.visibility = "hidden";
@@ -20043,7 +20043,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         b.appendChild(h);
         for (a = 0; a < c.length; a++) {
             var f = c[a].header;
-            f || (f = BimFish.Viewing.i18n.translate("Error", {defaultValue: "Error"}));
+            f || (f = BimKing.Viewing.i18n.translate("Error", {defaultValue: "Error"}));
             var l = document.createElement("div");
             l.className = "alertBoxTitle errors";
             l.textContent = f;
@@ -20074,7 +20074,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         }
         c = document.createElement("div");
         c.className = "alertBoxOK";
-        c.textContent = BimFish.Viewing.i18n.translate("OK", {defaultValue: "OK"});
+        c.textContent = BimKing.Viewing.i18n.translate("OK", {defaultValue: "OK"});
         var p = {alertBox: b, container: g};
         c.addEventListener("click", function (a) {
             b.style.visibility = "hidden";
@@ -20107,10 +20107,10 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         }
         return !1
     };
-    BimFish.Viewing.Private.AlertBox = d
+    BimKing.Viewing.Private.AlertBox = d
 })();
 (function () {
-    var d = BimFish.Viewing, g = function () {
+    var d = BimKing.Viewing, g = function () {
     };
     g.instances = [];
     g.displayMessage = function (h, c, b, a, f) {
@@ -20148,10 +20148,10 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         }
         return !1
     };
-    BimFish.Viewing.Private.HudMessage = g
+    BimKing.Viewing.Private.HudMessage = g
 })();
 (function () {
-    var d = BimFish.Viewing.UI, g = BimFish.Viewing, h = BimFish.Viewing.Private, c = function () {
+    var d = BimKing.Viewing.UI, g = BimKing.Viewing, h = BimKing.Viewing.Private, c = function () {
     };
     c.prototype.constructor = c;
     c.prototype.isTreeNodeGroup = function (a) {
@@ -20173,7 +20173,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         var f = document.createElement("label");
         b.appendChild(f);
         a = this.getTreeNodeLabel(a);
-        c && c.localize && (f.setAttribute("data-i18n", a), a = BimFish.Viewing.i18n.translate(a));
+        c && c.localize && (f.setAttribute("data-i18n", a), a = BimKing.Viewing.i18n.translate(a));
         f.textContent = a
     };
     c.prototype.onTreeNodeClick = function (a, b, c) {
@@ -20385,7 +20385,7 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
 })();
 (function () {
     var d = function () {
-    }, g = BimFish.Viewing.Private;
+    }, g = BimKing.Viewing.Private;
     d.prototype.constructor = d;
     d.prototype.getNodeId = function (c) {
         throw"getId is not implemented.";
@@ -20506,12 +20506,12 @@ BimFish.Viewing.UI.SettingsPanel.prototype.getContentSize = function () {
         a.myDelegate.hasContent(c) && a.myDelegate.addContent(c, f);
         d.classList.add(a.myDelegate.getNodeClass(c))
     };
-    BimFish.Viewing.Private.BrowserDelegate = d;
-    BimFish.Viewing.Private.Browser = h
+    BimKing.Viewing.Private.BrowserDelegate = d;
+    BimKing.Viewing.Private.Browser = h
 })();
-BimFishNamespace("BimFish.Viewing.Private");
+BimKingNamespace("BimKing.Viewing.Private");
 (function () {
-    var d = BimFish.Viewing.Private;
+    var d = BimKing.Viewing.Private;
     d.WEBGL_HELP_LINK = null;
     d.ErrorInfoData = {
         1: {
@@ -20576,7 +20576,7 @@ BimFishNamespace("BimFish.Viewing.Private");
     };
     d.ErrorHandler.prototype.constructor = d.ErrorHandler;
     d.ErrorHandler.getErrorCode = function (d) {
-        return 403 === d || 401 === d ? BimFish.Viewing.ErrorCodes.NETWORK_ACCESS_DENIED : 404 === d ? BimFish.Viewing.ErrorCodes.NETWORK_FILE_NOT_FOUND : 500 <= d ? BimFish.Viewing.ErrorCodes.NETWORK_SERVER_ERROR : BimFish.Viewing.ErrorCodes.NETWORK_UNHANDLED_RESPONSE_CODE
+        return 403 === d || 401 === d ? BimKing.Viewing.ErrorCodes.NETWORK_ACCESS_DENIED : 404 === d ? BimKing.Viewing.ErrorCodes.NETWORK_FILE_NOT_FOUND : 500 <= d ? BimKing.Viewing.ErrorCodes.NETWORK_SERVER_ERROR : BimKing.Viewing.ErrorCodes.NETWORK_UNHANDLED_RESPONSE_CODE
     };
     d.ErrorHandler.reportError = function (g, h, c, b, a, f) {
         d.ErrorHandler.currentError = null;
@@ -20589,12 +20589,12 @@ BimFishNamespace("BimFish.Viewing.Private");
                 l.defaultValue = a["default-msg"];
                 b = a.img;
                 c = this.parseErrorString(a["globalized-msg"], l);
-                if (h === BimFish.Viewing.ErrorCodes.BROWSER_WEBGL_DISABLED || h === BimFish.Viewing.ErrorCodes.BROWSER_WEBGL_NOT_SUPPORTED) for (h = d.WEBGL_HELP_LINK || "http://www.autodesk.com/a360-browsers", f = 0; f < c.hints.length; f++) -1 !== c.hints[f].indexOf('href\x3d"WEBGL_HELP"') && (c.hints[f] = c.hints[f].replace('href\x3d"WEBGL_HELP"', 'href\x3d"' + h + '"'))
+                if (h === BimKing.Viewing.ErrorCodes.BROWSER_WEBGL_DISABLED || h === BimKing.Viewing.ErrorCodes.BROWSER_WEBGL_NOT_SUPPORTED) for (h = d.WEBGL_HELP_LINK || "http://www.autodesk.com/a360-browsers", f = 0; f < c.hints.length; f++) -1 !== c.hints[f].indexOf('href\x3d"WEBGL_HELP"') && (c.hints[f] = c.hints[f].replace('href\x3d"WEBGL_HELP"', 'href\x3d"' + h + '"'))
             } else b = "img-unsupported", l = {
                 defaultValue: "",
                 interpolationPrefix: "{",
                 interpolationSuffix: "}"
-            }, this.parseArguments(c, l), c = this.parseErrorString(h, l), c.header || (c.header = "warning" === f ? BimFish.Viewing.i18n.translate("header-warning") : "");
+            }, this.parseArguments(c, l), c = this.parseErrorString(h, l), c.header || (c.header = "warning" === f ? BimKing.Viewing.i18n.translate("header-warning") : "");
             d.AlertBox.displayError(g, c.msg, c.header, b, c.hints)
         }
     };
@@ -20610,7 +20610,7 @@ BimFishNamespace("BimFish.Viewing.Private");
             }, b = [], a = 0; a < h.length; a++) if (h[a].code) {
                 this.parseArguments(h[a].message, c);
                 var f = this.parseErrorString(h[a].code, c);
-                f.header || (f.header = "warning" === h[0].type ? BimFish.Viewing.i18n.translate("header-warning", {defaultValue: "Warning"}) : "");
+                f.header || (f.header = "warning" === h[0].type ? BimKing.Viewing.i18n.translate("header-warning", {defaultValue: "Warning"}) : "");
                 b.push(f);
                 d.logger.track({category: "error", code: h[a].code, message: h[a].message}, !0)
             }
@@ -20626,7 +20626,7 @@ BimFishNamespace("BimFish.Viewing.Private");
     d.ErrorHandler.parseErrorString = function (d, h) {
         var c = {msg: null, msgList: null, header: null, hints: null};
         if (!d) return c;
-        var b = BimFish.Viewing.i18n.translate(d, h);
+        var b = BimKing.Viewing.i18n.translate(d, h);
         if (!b) return c;
         -1 != b.indexOf("\x3ctitle\x3e") && (b = b.split("\x3ctitle\x3e")[1].split("\x3c/title\x3e"), c.header = b[0], b = b[1]);
         b && -1 != b.indexOf("\x3cmessage\x3e") ? (b = b.split("\x3cmessage\x3e")[1].split("\x3c/message\x3e"), c.msg = b[0], b = b[1]) : c.msg = b;
@@ -20662,10 +20662,10 @@ BimFishNamespace("BimFish.Viewing.Private");
     d.prototype.restoreState = function (d, h) {
         return !0
     };
-    BimFish.Viewing.Extension = d
+    BimKing.Viewing.Extension = d
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private, h = new function () {
+    var d = BimKing.Viewing, g = d.Private, h = new function () {
         var b = {};
         return {
             registerExtension: function (a, c) {
@@ -20708,11 +20708,11 @@ BimFishNamespace("BimFish.Viewing.Private");
             b.unloadExtension = a.unloadExtension
         }
     };
-    BimFish.Viewing.theExtensionManager = h;
-    BimFish.Viewing.ExtensionMixin = c
+    BimKing.Viewing.theExtensionManager = h;
+    BimKing.Viewing.ExtensionMixin = c
 })();
 (function () {
-    var d = BimFish.Viewing;
+    var d = BimKing.Viewing;
     d.Private.init_UnifiedCamera = function (g) {
         if ("undefined" === typeof d.UnifiedCamera) {
             var h = function (c, b) {
@@ -20822,7 +20822,7 @@ BimFishNamespace("BimFish.Viewing.Private");
     }
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.Private;
+    var d = BimKing.Viewing, g = d.Private;
     d.ESCAPE_EVENT = "escape";
     d.PROGRESS_UPDATE_EVENT = "progress";
     d.FULLSCREEN_MODE_EVENT = "fullScreenMode";
@@ -20887,7 +20887,7 @@ BimFishNamespace("BimFish.Viewing.Private");
         firstPersonToolPopup: !0
     };
     var b = function (a, b) {
-        "undefined" === typeof THREE && g.logger.warn("Initializing LMV without the THREE.js dependency is not supported.", "Call BimFish.Viewing.Initializer() first or preload the dependencies manually.");
+        "undefined" === typeof THREE && g.logger.warn("Initializing LMV without the THREE.js dependency is not supported.", "Call BimKing.Viewing.Initializer() first or preload the dependencies manually.");
         if (a) {
             this.clientContainer = a;
             this.container = document.createElement("div");
@@ -20909,7 +20909,7 @@ BimFishNamespace("BimFish.Viewing.Private");
             this.canvasWrap.appendChild(this.canvas);
             this.container.appendChild(this.canvasWrap);
             this.canvas.viewer = this;
-            this.prefs = new g.Preferences(this, "BimFish.Viewing.Private.GuiViewer3D.SavedSettings.")
+            this.prefs = new g.Preferences(this, "BimKing.Viewing.Private.GuiViewer3D.SavedSettings.")
         }
         this.running = !1;
         this._defaultNavigationTool = this._pushedTool = "";
@@ -20944,7 +20944,7 @@ BimFishNamespace("BimFish.Viewing.Private");
     };
     b.prototype.registerUniversalHotkeys = function () {
         var a = this, b, c, g, h = d.theHotkeyManager.KEYCODES;
-        d.theHotkeyManager.pushHotkeys("BimFish.FitToView", [{
+        d.theHotkeyManager.pushHotkeys("BimKing.FitToView", [{
             keycodes: [h.f], onPress: function () {
                 a.navigation.setRequestFitToView(!0);
                 return !0
@@ -20954,11 +20954,11 @@ BimFishNamespace("BimFish.Viewing.Private");
             a.navigation.setRequestHomeView(!0);
             return !0
         };
-        d.theHotkeyManager.pushHotkeys("BimFish.Home", [{keycodes: [h.h], onPress: b}, {
+        d.theHotkeyManager.pushHotkeys("BimKing.Home", [{keycodes: [h.h], onPress: b}, {
             keycodes: [h.HOME],
             onPress: b
         }]);
-        d.theHotkeyManager.pushHotkeys("BimFish.Escape", [{
+        d.theHotkeyManager.pushHotkeys("BimKing.Escape", [{
             keycodes: [h.ESCAPE], onRelease: function () {
                 if (a.objectContextMenu && a.objectContextMenu.hide()) return !0;
                 a.fireEvent({type: d.ESCAPE_EVENT});
@@ -20972,7 +20972,7 @@ BimFishNamespace("BimFish.Viewing.Private");
         c = function () {
             return a.setActiveNavigationTool(g)
         };
-        d.theHotkeyManager.pushHotkeys("BimFish.Pan", [{
+        d.theHotkeyManager.pushHotkeys("BimKing.Pan", [{
             keycodes: [h.SHIFT],
             onPress: b,
             onRelease: c
@@ -21101,11 +21101,11 @@ BimFishNamespace("BimFish.Viewing.Private");
         this.prefs = this.model = this.loadSpinner = null;
         this.autocam.dtor();
         this.autocamCamera = this.autocam = null;
-        d.theHotkeyManager.popHotkeys("BimFish.FitToView");
-        d.theHotkeyManager.popHotkeys("BimFish.Home");
-        d.theHotkeyManager.popHotkeys("BimFish.Escape");
-        d.theHotkeyManager.popHotkeys("BimFish.Pan");
-        d.theHotkeyManager.popHotkeys("BimFish.Orbit");
+        d.theHotkeyManager.popHotkeys("BimKing.FitToView");
+        d.theHotkeyManager.popHotkeys("BimKing.Home");
+        d.theHotkeyManager.popHotkeys("BimKing.Escape");
+        d.theHotkeyManager.popHotkeys("BimKing.Pan");
+        d.theHotkeyManager.popHotkeys("BimKing.Orbit");
         this.onDefaultContextMenu && (this.container.removeEventListener("contextmenu", this.onDefaultContextMenu, !1), this.onDefaultContextMenu = null);
         this.screenModeDelegate && (this.screenModeDelegate.uninitialize(), this.screenModeDelegate = null);
         this.config = this.clientContainer = null;
@@ -21127,9 +21127,9 @@ BimFishNamespace("BimFish.Viewing.Private");
     };
     b.prototype.loadModel = function (a, b, c, g, h) {
         function f() {
-            if (d.theHotkeyManager) if (k.model.is2d()) d.theHotkeyManager.popHotkeys("BimFish.Orbit"); else {
+            if (d.theHotkeyManager) if (k.model.is2d()) d.theHotkeyManager.popHotkeys("BimKing.Orbit"); else {
                 var a;
-                d.theHotkeyManager.pushHotkeys("BimFish.Orbit", [{
+                d.theHotkeyManager.pushHotkeys("BimKing.Orbit", [{
                     keycodes: [d.theHotkeyManager.KEYCODES.ALT],
                     onPress: function () {
                         a = k.getActiveNavigationTool();
@@ -21627,7 +21627,7 @@ BimFishNamespace("BimFish.Viewing.Private");
         this.contextMenu = a || null
     };
     b.prototype.setDefaultContextMenu = function () {
-        var a = BimFish.Viewing.Extensions;
+        var a = BimKing.Viewing.Extensions;
         return a && a.ViewerObjectContextMenu ? (this.setContextMenu(new a.ViewerObjectContextMenu(this)), !0) : !1
     };
     b.prototype.triggerContextMenu = function (a) {
@@ -21724,9 +21724,9 @@ BimFishNamespace("BimFish.Viewing.Private");
         a.clearThemingColors();
         this.impl.invalidate(!0)
     };
-    BimFish.Viewing.Viewer3D = b
+    BimKing.Viewing.Viewer3D = b
 })();
-av = BimFish.Viewing;
+av = BimKing.Viewing;
 av.ErrorCodes = {
     UNKNOWN_FAILURE: 1,
     BAD_DATA: 2,
@@ -21741,7 +21741,7 @@ av.ErrorCodes = {
     RTC_ERROR: 11
 };
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.Private, h = function (c, b, a) {
+    var d = BimKing.Viewing, g = BimKing.Viewing.Private, h = function (c, b, a) {
         function f(a) {
             if (a) {
                 var b = a.children ? a.children.length : 0, c;
@@ -22062,7 +22062,7 @@ av.ErrorCodes = {
         this.setCamera(d)
     }
 
-    var g = BimFish.Viewing.Private;
+    var g = BimKing.Viewing.Private;
     d.prototype.constructor = d;
     d.prototype.setIs2D = function (d) {
         this.__is2D = !!d
@@ -22159,19 +22159,19 @@ av.ErrorCodes = {
         this.__options.reverseDolly = !!d
     };
     d.prototype.setReverseHorizontalLookDirection = function (d) {
-        this.getIs2D() ? g.logger.warn("BimFish.Viewing.Navigation.setReverseHorizontalLookDirection is not applicable to 2D") : this.__options.reverseHorizontalLookDirection = !!d
+        this.getIs2D() ? g.logger.warn("BimKing.Viewing.Navigation.setReverseHorizontalLookDirection is not applicable to 2D") : this.__options.reverseHorizontalLookDirection = !!d
     };
     d.prototype.setReverseVerticalLookDirection = function (d) {
-        this.getIs2D() ? g.logger.warn("BimFish.Viewing.Navigation.setReverseVerticalLookDirection is not applicable to 2D") : this.__options.reverseVerticalLookDirection = !!d
+        this.getIs2D() ? g.logger.warn("BimKing.Viewing.Navigation.setReverseVerticalLookDirection is not applicable to 2D") : this.__options.reverseVerticalLookDirection = !!d
     };
     d.prototype.getReverseZoomDirection = function () {
         return this.__options.reverseDolly
     };
     d.prototype.getReverseHorizontalLookDirection = function () {
-        return this.getIs2D() ? (g.logger.warn("BimFish.Viewing.Navigation.getReverseHorizontalLookDirection is not applicable to 2D"), !1) : this.__options.reverseHorizontalLookDirection
+        return this.getIs2D() ? (g.logger.warn("BimKing.Viewing.Navigation.getReverseHorizontalLookDirection is not applicable to 2D"), !1) : this.__options.reverseHorizontalLookDirection
     };
     d.prototype.getReverseVerticalLookDirection = function () {
-        return this.getIs2D() ? (g.logger.warn("BimFish.Viewing.Navigation.getReverseVerticalLookDirection is not applicable to 2D"), !1) : this.__options.reverseVerticalLookDirection
+        return this.getIs2D() ? (g.logger.warn("BimKing.Viewing.Navigation.getReverseVerticalLookDirection is not applicable to 2D"), !1) : this.__options.reverseVerticalLookDirection
     };
     d.prototype.setZoomTowardsPivot = function (d) {
         this.__options.dollyToPivot = !!d
@@ -22180,10 +22180,10 @@ av.ErrorCodes = {
         return this.__options.dollyToPivot
     };
     d.prototype.setOrbitPastWorldPoles = function (d) {
-        this.getIs2D() ? g.logger.warn("BimFish.Viewing.Navigation.setOrbitPastWorldPoles is not applicable to 2D") : this.__options.orbitPastPoles = !!d
+        this.getIs2D() ? g.logger.warn("BimKing.Viewing.Navigation.setOrbitPastWorldPoles is not applicable to 2D") : this.__options.orbitPastPoles = !!d
     };
     d.prototype.getOrbitPastWorldPoles = function () {
-        return this.getIs2D() ? (g.logger.warn("BimFish.Viewing.Navigation.orbitPastWorldPoles is not applicable to 2D"), !1) : this.__options.orbitPastPoles
+        return this.getIs2D() ? (g.logger.warn("BimKing.Viewing.Navigation.orbitPastWorldPoles is not applicable to 2D"), !1) : this.__options.orbitPastPoles
     };
     d.prototype.setUsePivotAlways = function (d) {
         this.__options.usePivotAlways = !!d
@@ -22298,7 +22298,7 @@ av.ErrorCodes = {
         }
     };
     d.prototype.toPerspective = function () {
-        if (this.getIs2D()) g.logger.warn("BimFish.Viewing.Navigation.toPerspective is not applicable to 2D"); else {
+        if (this.getIs2D()) g.logger.warn("BimKing.Viewing.Navigation.toPerspective is not applicable to 2D"); else {
             var d = this.getCamera();
             d.isPerspective || (d.toPerspective(), d.dirty = !0)
         }
@@ -22312,7 +22312,7 @@ av.ErrorCodes = {
         c.x > c.y && c.x > c.z ? d.set(0 < d.x ? 1 : -1, 0, 0) : c.y > c.x && c.y > c.z ? d.set(0, 0 < d.y ? 1 : -1, 0) : d.set(0, 0, 0 < d.z ? 1 : -1);
         return d
     };
-    BimFish.Viewing.Navigation = d
+    BimKing.Viewing.Navigation = d
 })();
 (function () {
     function d(b, a) {
@@ -22322,7 +22322,7 @@ av.ErrorCodes = {
         }
     }
 
-    var g = BimFish.Viewing, h = BimFish.Viewing.Private, c = function (b, a) {
+    var g = BimKing.Viewing, h = BimKing.Viewing.Private, c = function (b, a) {
         this.appContainerId = b;
         this.container = document.getElementById(b);
         this.options = a;
@@ -22373,7 +22373,7 @@ av.ErrorCodes = {
         h.logger.track({category: "load_document", urn: 0 == b.indexOf("urn:") ? b.substring(4) : b});
         g.Document.load(b, function (b, c) {
             f.myDocument = b;
-            f.bubble = new BimFish.Viewing.BubbleNode(b.myData);
+            f.bubble = new BimKing.Viewing.BubbleNode(b.myData);
             f.onDocumentLoaded(b, c);
             a && a(b, c)
         }, function (a, b, d, g, h) {
@@ -22409,8 +22409,8 @@ av.ErrorCodes = {
         } else if ("view" === b.type && "3d" === b.role) {
             if (g = b, q = !0, r = this.myDocument.getViewGeometry(b)) n = r.name
         } else if ("geometry" === b.type && "2d" === b.role) {
-            r = BimFish.Viewing.Document.getSubItemsWithProperties(b, {mime: "application/autodesk-f2d"}, !1);
-            n = BimFish.Viewing.Document.getSubItemsWithProperties(b, {role: "leaflet"}, !1);
+            r = BimKing.Viewing.Document.getSubItemsWithProperties(b, {mime: "application/autodesk-f2d"}, !1);
+            n = BimKing.Viewing.Document.getSubItemsWithProperties(b, {role: "leaflet"}, !1);
             if (0 < r.length || 0 < n.length) q = !0;
             n = b.name;
             r = b
@@ -22470,14 +22470,14 @@ av.ErrorCodes = {
     };
     g.ViewingApplication = c
 })();
-BimFishNamespace("BimFish.Viewing.Private");
-BimFish.Viewing.Private.ViewCubeUi = function (d) {
+BimKingNamespace("BimKing.Viewing.Private");
+BimKing.Viewing.Private.ViewCubeUi = function (d) {
     this.viewer = d;
     this.homeViewContainer = this.infoButton = this.viewcube = this.cube = null
 };
-avp = BimFish.Viewing.Private;
-BimFish.Viewing.Private.ViewCubeUi.prototype = {
-    constructor: BimFish.Viewing.UI.ViewCube, create: function () {
+avp = BimKing.Viewing.Private;
+BimKing.Viewing.Private.ViewCubeUi.prototype = {
+    constructor: BimKing.Viewing.UI.ViewCube, create: function () {
     }, initInfoButton: function () {
         if (!(0 < document.getElementsByClassName("infoButton").length)) {
             this.infoButton = document.createElement("div");
@@ -22529,7 +22529,7 @@ BimFish.Viewing.Private.ViewCubeUi.prototype = {
         this.viewer.container.appendChild(f);
         var l = document.createElement("div");
         l.className = "homeViewMenuItem";
-        l.textContent = BimFish.Viewing.i18n.translate("Set current view as Home");
+        l.textContent = BimKing.Viewing.i18n.translate("Set current view as Home");
         f.appendChild(l);
         l.addEventListener("click", function (a) {
             h.setCurrentViewAsHome(!1);
@@ -22537,7 +22537,7 @@ BimFish.Viewing.Private.ViewCubeUi.prototype = {
         });
         l = document.createElement("div");
         l.className = "homeViewMenuItem";
-        l.textContent = BimFish.Viewing.i18n.translate("Focus and set as Home");
+        l.textContent = BimKing.Viewing.i18n.translate("Focus and set as Home");
         f.appendChild(l);
         l.addEventListener("click", function (a) {
             h.setCurrentViewAsHome(!0);
@@ -22545,7 +22545,7 @@ BimFish.Viewing.Private.ViewCubeUi.prototype = {
         });
         l = document.createElement("div");
         l.className = "homeViewMenuItem";
-        l.textContent = BimFish.Viewing.i18n.translate("Reset Home");
+        l.textContent = BimKing.Viewing.i18n.translate("Reset Home");
         f.appendChild(l);
         l.addEventListener("click", function (a) {
             h.resetHome();
@@ -22587,7 +22587,7 @@ BimFish.Viewing.Private.ViewCubeUi.prototype = {
         this.viewer = this.hideHomeViewMenu = this.homeViewContainer = null
     }
 };
-var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.UI, ave = BimFish.Viewing.Extensions,
+var av = BimKing.Viewing, avp = BimKing.Viewing.Private, avu = BimKing.Viewing.UI, ave = BimKing.Viewing.Extensions,
     stringToDOM = avp.stringToDOM = function (d) {
         var g = document.createElement("div");
         g.innerHTML = d;
@@ -22656,8 +22656,8 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.propertygrid && (this.propertygrid.uninitialize(), this.propertygrid = null);
         this.renderoptions && (this.renderoptions.uninitialize(), this.renderoptions = null);
         this.viewerOptionButton && (this.viewerOptionButton = this.show3dOptionsPerformanceTab = this.show3dOptionsNavigationTab = null);
-        av.theHotkeyManager.popHotkeys("BimFish.ROLL");
-        av.theHotkeyManager.popHotkeys("BimFish.FOV");
+        av.theHotkeyManager.popHotkeys("BimKing.ROLL");
+        av.theHotkeyManager.popHotkeys("BimKing.FOV");
         this.removeEventListener(av.RENDER_OPTION_CHANGED_EVENT, this.onRenderOptionChanged);
         this.onRenderOptionChanged = null;
         this.removeEventListener(av.VIEWER_STATE_RESTORED_EVENT, this.onRestoreState);
@@ -22701,7 +22701,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         };
         var b = this.config.disabledExtensions;
         this.initHotkeys(d);
-        this.loadExtension("BimFish.DefaultTools.NavTools", {mode: d.is2d() ? "2d" : "3d"});
+        this.loadExtension("BimKing.DefaultTools.NavTools", {mode: d.is2d() ? "2d" : "3d"});
         this.initModelTools(d);
         avp.ENABLE_DEBUG && this.initDebugTools();
         this.fireEvent({type: av.TOOLBAR_CREATED_EVENT});
@@ -22713,16 +22713,16 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.toolbar.addEventListener(avu.ToolBar.Event.SIZE_CHANGED, this.centerToolBar);
         this.initModality();
         this.resize();
-        d.is2d() ? (c.prefs.useFirstPersonNavigation ? this.unloadExtension("BimFish.FirstPerson") : this.unloadExtension("BimFish.Beeline"), this.setDefaultNavigationTool("pan"), this.setClickToSetCOI(!1, !1), this.displayViewCube(!1, !1), setTimeout(function () {
-            (!b || b && !b.measure) && c.loadExtension("BimFish.Measure", null);
-            (!b || b && !b.hyperlink) && c.loadExtension("BimFish.Hyperlink", null)
+        d.is2d() ? (c.prefs.useFirstPersonNavigation ? this.unloadExtension("BimKing.FirstPerson") : this.unloadExtension("BimKing.Beeline"), this.setDefaultNavigationTool("pan"), this.setClickToSetCOI(!1, !1), this.displayViewCube(!1, !1), setTimeout(function () {
+            (!b || b && !b.measure) && c.loadExtension("BimKing.Measure", null);
+            (!b || b && !b.hyperlink) && c.loadExtension("BimKing.Hyperlink", null)
         }, 1)) : (-1 === this.getDefaultNavigationToolName().indexOf("orbit") && this.setDefaultNavigationTool("orbit"), setTimeout(function () {
-            c.prefs.useFirstPersonNavigation ? c.loadExtension("BimFish.FirstPerson", null) : c.loadExtension("BimFish.Beeline", null);
-            c.loadExtension("BimFish.Viewing.Oculus", null);
-            c.prefs.fusionOrbit && c.loadExtension("BimFish.Viewing.FusionOrbit", null);
-            (!b || b && !b.measure) && c.loadExtension("BimFish.Measure", null);
-            (!b || b && !b.section) && c.loadExtension("BimFish.Section", null);
-            (!b || b && !b.hyperlink) && c.loadExtension("BimFish.Hyperlink", null)
+            c.prefs.useFirstPersonNavigation ? c.loadExtension("BimKing.FirstPerson", null) : c.loadExtension("BimKing.Beeline", null);
+            c.loadExtension("BimKing.Viewing.Oculus", null);
+            c.prefs.fusionOrbit && c.loadExtension("BimKing.Viewing.FusionOrbit", null);
+            (!b || b && !b.measure) && c.loadExtension("BimKing.Measure", null);
+            (!b || b && !b.section) && c.loadExtension("BimKing.Section", null);
+            (!b || b && !b.hyperlink) && c.loadExtension("BimKing.Hyperlink", null)
         }, 1), this.addEventListener(av.GEOMETRY_LOADED_EVENT, this.initViewCube));
         var a = function () {
             c.modelstructure && c.model.getObjectTree(function (a) {
@@ -22782,7 +22782,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
             var m = document.createElement("option");
             m.value = g;
             m.setAttribute("data-i18n", c[g]);
-            m.textContent = BimFish.Viewing.i18n.translate(c[g]);
+            m.textContent = BimKing.Viewing.i18n.translate(c[g]);
             k.add(m)
         }
         c = document.createElement("li");
@@ -22829,7 +22829,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         var g = this, c = av.theHotkeyManager.KEYCODES;
         if (!d.is2d()) {
             var b;
-            av.theHotkeyManager.pushHotkeys("BimFish.FOV", [{
+            av.theHotkeyManager.pushHotkeys("BimKing.FOV", [{
                 keycodes: [c.CONTROL, c.SHIFT], onPress: function () {
                     if (g.toolController.getIsLocked() || !g.navigation.isActionEnabled("fov")) return !1;
                     b = g.getActiveNavigationTool();
@@ -22843,7 +22843,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
             }], {tryUntilSuccess: !0})
         }
         var a;
-        av.theHotkeyManager.pushHotkeys("BimFish.ROLL", [{
+        av.theHotkeyManager.pushHotkeys("BimKing.ROLL", [{
             keycodes: [c.ALT, c.SHIFT], onPress: function () {
                 if (g.toolController.getIsLocked() || !g.navigation.isActionEnabled("roll")) return !1;
                 a = g.getActiveNavigationTool();
@@ -22963,9 +22963,9 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     };
     d.prototype.createViewerOptionsMenu = function (d) {
         function g(a) {
-            if (c.getExtension("BimFish.SideBarUi")) c.fireEvent({
+            if (c.getExtension("BimKing.SideBarUi")) c.fireEvent({
                 type: av.SIDE_BAR_OPEN_EVENT,
-                content: BimFish.SideBarUi.Content.Settings
+                content: BimKing.SideBarUi.Content.Settings
             }); else {
                 var b = c.getSettingsPanel(!0);
                 b.isVisible() && b.isTabSelected(a) ? c.showViewer3dOptions(!1) : (c.showViewer3dOptions(!0), b.selectTab(a))
@@ -23040,7 +23040,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     d.prototype.removeViewerOptionsMenu = function (d) {
         var g = this.viewerOptionButton;
         g.container.removeChild(g.subMenu);
-        "3d" === d && (this.removeEventListener(BimFish.Viewing.RENDER_OPTION_CHANGED_EVENT, this.onRenderOptionChanged), g.envList = null);
+        "3d" === d && (this.removeEventListener(BimKing.Viewing.RENDER_OPTION_CHANGED_EVENT, this.onRenderOptionChanged), g.envList = null);
         g.navigationOption.removeEventListener("touchstart", av.touchStartToClick);
         g.navigationOption.removeEventListener("click", this.show3dOptionsNavigationTab);
         g.navigationOption = null;
@@ -23340,7 +23340,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.addClass("adsk-control")
     }
 
-    var g = BimFish.Viewing;
+    var g = BimKing.Viewing;
     d.Event = {VISIBILITY_CHANGED: "Control.VisibilityChanged", COLLAPSED_CHANGED: "Control.CollapsedChanged"};
     g.EventDispatcher.prototype.apply(d.prototype);
     d.prototype.constructor = d;
@@ -23362,7 +23362,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this._toolTipElement || (this._toolTipElement = document.createElement("div"), this._toolTipElement.id = this._id + "-tooltip", this._toolTipElement.classList.add("adsk-control-tooltip"), this.container.appendChild(this._toolTipElement));
         this._toolTipElement.setAttribute("data-i18n", d);
         this._toolTipElement.setAttribute("tooltipText", d);
-        this._toolTipElement.textContent = BimFish.Viewing.i18n.translate(d, {defaultValue: d});
+        this._toolTipElement.textContent = BimKing.Viewing.i18n.translate(d, {defaultValue: d});
         return !0
     };
     d.prototype.getToolTip = function () {
@@ -23397,7 +23397,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     d.prototype.setDisplay = function (d) {
         this.container.style.display = d
     };
-    BimFish.Viewing.UI.Control = d
+    BimKing.Viewing.UI.Control = d
 })();
 (function () {
     function d(h, c) {
@@ -23410,7 +23410,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         }
     }
 
-    var g = BimFish.Viewing.UI;
+    var g = BimKing.Viewing.UI;
     d.Event = {
         VISIBILITY_CHANGED: g.Control.Event.VISIBILITY_CHANGED,
         COLLAPSED_CHANGED: g.Control.Event.COLLAPSED_CHANGED,
@@ -23472,7 +23472,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         }));
         return c
     };
-    BimFish.Viewing.UI.ControlGroup = d
+    BimKing.Viewing.UI.ControlGroup = d
 })();
 (function () {
     function d(d, c) {
@@ -23481,7 +23481,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.addClass("adsk-toolbar")
     }
 
-    var g = BimFish.Viewing.UI;
+    var g = BimKing.Viewing.UI;
     d.Event = {
         VISIBILITY_CHANGED: g.Control.Event.VISIBILITY_CHANGED,
         COLLAPSED_CHANGED: g.Control.Event.COLLAPSED_CHANGED,
@@ -23491,7 +23491,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     };
     d.prototype = Object.create(g.ControlGroup.prototype);
     d.prototype.constructor = d;
-    BimFish.Viewing.UI.ToolBar = d
+    BimKing.Viewing.UI.ToolBar = d
 })();
 (function () {
     function d(c, b) {
@@ -23514,7 +23514,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.addClass(d.StateToClassMap[this._state])
     }
 
-    var g = BimFish.Viewing, h = BimFish.Viewing.UI;
+    var g = BimKing.Viewing, h = BimKing.Viewing.UI;
     d.Event = {
         VISIBILITY_CHANGED: h.Control.Event.VISIBILITY_CHANGED,
         COLLAPSED_CHANGED: h.Control.Event.COLLAPSED_CHANGED,
@@ -23553,7 +23553,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     };
     d.prototype.onMouseOut = function (c) {
     };
-    BimFish.Viewing.UI.Button = d
+    BimKing.Viewing.UI.Button = d
 })();
 (function () {
     function d(c, b) {
@@ -23588,7 +23588,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         })
     }
 
-    var g = BimFish.Viewing.UI, h = BimFish.Viewing.Private;
+    var g = BimKing.Viewing.UI, h = BimKing.Viewing.Private;
     d.prototype = Object.create(g.Button.prototype);
     d.prototype.constructor = d;
     d.prototype.addControl = function (c) {
@@ -23614,7 +23614,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     d.prototype.restoreDefault = function () {
         this.defaultState && (this.defaultState.tooltip && this.setToolTip(this.defaultState.tooltip), this.defaultState.icon && this.setIcon(this.defaultState.icon), this.onClick = this.defaultState.onClick, this.setState(g.Button.State.INACTIVE))
     };
-    BimFish.Viewing.UI.ComboButton = d
+    BimKing.Viewing.UI.ComboButton = d
 })();
 (function () {
     function d(h, c) {
@@ -23637,7 +23637,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         }
     }
 
-    var g = BimFish.Viewing.UI;
+    var g = BimKing.Viewing.UI;
     d.Event = {
         ACTIVE_BUTTON_CHANGED: "RadioButtonGroup.ActiveButtonChanged",
         VISIBILITY_CHANGED: g.Control.Event.VISIBILITY_CHANGED,
@@ -23658,7 +23658,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     d.prototype.getActiveButton = function () {
         return this._activeButton
     };
-    BimFish.Viewing.UI.RadioButtonGroup = d
+    BimKing.Viewing.UI.RadioButtonGroup = d
 })();
 (function () {
     function d(b, a) {
@@ -23667,8 +23667,8 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         this.container = a
     }
 
-    var g = BimFishNamespace("BimFish.SideBarUi.Content"), h = BimFishNamespace("BimFish.Viewing.Private.DomUtils"),
-        c = BimFish.Viewing;
+    var g = BimKingNamespace("BimKing.SideBarUi.Content"), h = BimKingNamespace("BimKing.Viewing.Private.DomUtils"),
+        c = BimKing.Viewing;
     g.Settings = d;
     g = d.prototype;
     d.IDS = {
@@ -23808,10 +23808,10 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
                 b.setClickToSetCOI(c);
                 break;
             case f.FUSION_ORBIT:
-                c ? b.loadExtension("BimFish.Viewing.FusionOrbit", null) : b.unloadExtension("BimFish.Viewing.FusionOrbit", null);
+                c ? b.loadExtension("BimKing.Viewing.FusionOrbit", null) : b.unloadExtension("BimKing.Viewing.FusionOrbit", null);
                 break;
             case f.FIRST_PERSON_WALK:
-                c ? (b.unloadExtension("BimFish.Beeline", null), b.loadExtension("BimFish.FirstPerson", null)) : (b.unloadExtension("BimFish.FirstPerson", null), b.loadExtension("BimFish.Beeline", null));
+                c ? (b.unloadExtension("BimKing.Beeline", null), b.loadExtension("BimKing.FirstPerson", null)) : (b.unloadExtension("BimKing.FirstPerson", null), b.loadExtension("BimKing.Beeline", null));
             case f.REVERSE_MOUSE_ZOOM:
                 b.setReverseZoomDirection(c);
                 break;
@@ -23878,7 +23878,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         g = document.createElement("button");
         g.className = "lmv-sidebar-menu-button";
         g.setAttribute("data-i18n", "Restore default settings");
-        g.textContent = BimFish.Viewing.i18n.translate("Restore default settings");
+        g.textContent = BimKing.Viewing.i18n.translate("Restore default settings");
         c.appendChild(g);
         b.hookEvent(g, "click", "button", function (b, c) {
             a.prefs.reset(f)
@@ -23888,7 +23888,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         var f = document.createElement("div");
         f.classList.add("lmv-sidebar-menu-heading");
         f.setAttribute("data-i18n", c);
-        f.textContent = BimFish.Viewing.i18n.translate(c);
+        f.textContent = BimKing.Viewing.i18n.translate(c);
         b.appendChild(f);
         c = document.createElement("table");
         c.classList.add("adsk-lmv-tftable");
@@ -23899,7 +23899,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
         return c
     };
     d.renderOption = function (b) {
-        var a = BimFish.Viewing.i18n.translate(b.text);
+        var a = BimKing.Viewing.i18n.translate(b.text);
         return '\x3ctr data-value\x3d"' + b.id + '"\x3e\x3ctd\x3e\x3cdiv data-i18n\x3d"' + b.text + '"\x3e' + a + '\x3c/div\x3e\x3c/td\x3e\x3ctd\x3e\x3cinput type\x3d"checkbox"\x3e\x3c/td\x3e\x3c/tr\x3e'
     };
     d.isChecked = function (b, a) {
@@ -23909,14 +23909,14 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
 })();
 (function () {
     function d(c, b) {
-        BimFish.Viewing.Extension.call(this, c, b);
+        BimKing.Viewing.Extension.call(this, c, b);
         h.DomDispatcher.prototype.apply(this);
         this.currentContent = null
     }
 
-    var g = BimFishNamespace("BimFish.SideBarUi"), h = BimFishNamespace("BimFish.Viewing.Private.DomUtils");
-    BimFishNamespace("BimFish.SideBarUi.Content");
-    d.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    var g = BimKingNamespace("BimKing.SideBarUi"), h = BimKingNamespace("BimKing.Viewing.Private.DomUtils");
+    BimKingNamespace("BimKing.SideBarUi.Content");
+    d.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     d.prototype.constructor = d;
     g.SideBarUi = d;
     g = d.prototype;
@@ -23951,7 +23951,7 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     g.setCloseButton = function (c) {
         c = c || "Close";
         this.domCloseBtn.setAttribute("data-i18n", c);
-        this.domCloseBtn.textContent = BimFish.Viewing.i18n.translate(c)
+        this.domCloseBtn.textContent = BimKing.Viewing.i18n.translate(c)
     };
     g.openSideMenu = function (c) {
         this.domNav || this.createSlidingSideBar(this.viewer.container);
@@ -23970,9 +23970,9 @@ var av = BimFish.Viewing, avp = BimFish.Viewing.Private, avu = BimFish.Viewing.U
     g.closeSideMenu = function () {
         this.domNav.classList.remove("is-active")
     };
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.SideBarUi", d)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.SideBarUi", d)
 })();
-BimFishNamespace("BimFish.Viewing");
+BimKingNamespace("BimKing.Viewing");
 
 function MobileCallbacks() {
     this.ios = window.webkit;
@@ -24098,7 +24098,7 @@ proto.hideLoadingView = function () {
         return this.data.placement
     };
     d.prototype.isMetadata = function () {
-        return !this.data.role || -1 === this.data.role.indexOf("BimFish.CloudPlatform.DesignDescription") && "BimFish.CloudPlatform.PropertyDatabase" !== this.data.role ? !1 : !0
+        return !this.data.role || -1 === this.data.role.indexOf("BimKing.CloudPlatform.DesignDescription") && "BimKing.CloudPlatform.PropertyDatabase" !== this.data.role ? !1 : !0
     };
     d.prototype.findViewableParent = function () {
         for (var d = this; d && !d.isViewable();) d = d.parent;
@@ -24154,9 +24154,9 @@ proto.hideLoadingView = function () {
     d.SHEET_NODE = {role: "2d", type: "geometry"};
     d.GEOMETRY_F2D_NODE = {role: "graphics", mime: "application/autodesk-f2d"};
     d.VIEWABLE_NODE = {role: "viewable"};
-    BimFish.Viewing.BubbleNode = d
+    BimKing.Viewing.BubbleNode = d
 })();
-BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
+BimKing.Viewing.Extensions.ViewerPanelMixin = function () {
     this.getContainerBoundingRect = function () {
         var d = this.parentContainer.getBoundingClientRect(),
             g = {height: 0, width: 0, left: 0, bottom: 0, right: 0, top: 0},
@@ -24173,7 +24173,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
     }
 };
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.UI, h = BimFish.Viewing.Extensions,
+    var d = BimKing.Viewing, g = BimKing.Viewing.UI, h = BimKing.Viewing.Extensions,
         c = {click: {onObject: ["isolate"]}, clickCtrl: {onObject: ["toggleVisibility"]}};
     h.ViewerModelStructurePanel = function (b, a, d) {
         this.viewer = b;
@@ -24327,7 +24327,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
     }
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.UI, h = function (c) {
+    var d = BimKing.Viewing, g = d.UI, h = function (c) {
         this.viewer = c;
         this.currentNodeIds = [];
         this.currentModel = null;
@@ -24415,21 +24415,21 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         g.PropertyPanel.prototype.onCategoryIconClick.call(this, c, b);
         this.resizeToContent()
     };
-    BimFish.Viewing.Extensions.ViewerPropertyPanel = h
+    BimKing.Viewing.Extensions.ViewerPropertyPanel = h
 })();
 (function () {
     var d = function (d) {
         var g = d.container;
-        BimFish.Viewing.UI.LayersPanel.call(this, d, g, g.id + "ViewerLayersPanel");
+        BimKing.Viewing.UI.LayersPanel.call(this, d, g, g.id + "ViewerLayersPanel");
         this.onRestoreStateBinded = this.onRestoreState.bind(this);
-        this.viewer.addEventListener(BimFish.Viewing.VIEWER_STATE_RESTORED_EVENT, this.onRestoreStateBinded)
+        this.viewer.addEventListener(BimKing.Viewing.VIEWER_STATE_RESTORED_EVENT, this.onRestoreStateBinded)
     };
-    d.prototype = Object.create(BimFish.Viewing.UI.LayersPanel.prototype);
+    d.prototype = Object.create(BimKing.Viewing.UI.LayersPanel.prototype);
     d.prototype.constructor = d;
-    BimFish.Viewing.Extensions.ViewerPanelMixin.call(d.prototype);
+    BimKing.Viewing.Extensions.ViewerPanelMixin.call(d.prototype);
     d.prototype.uninitialize = function () {
-        this.onRestoreStateBinded && (this.viewer.removeEventListener(BimFish.Viewing.VIEWER_STATE_RESTORED_EVENT, this.onRestoreStateBinded), this.onRestoreStateBinded = null);
-        BimFish.Viewing.UI.LayersPanel.prototype.uninitialize.call(this)
+        this.onRestoreStateBinded && (this.viewer.removeEventListener(BimKing.Viewing.VIEWER_STATE_RESTORED_EVENT, this.onRestoreStateBinded), this.onRestoreStateBinded = null);
+        BimKing.Viewing.UI.LayersPanel.prototype.uninitialize.call(this)
     };
     d.prototype.onRestoreState = function () {
         this.update()
@@ -24449,10 +24449,10 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
     d.prototype.onTitleDoubleClick = function (d) {
         this.viewer.fitToView()
     };
-    BimFish.Viewing.Extensions.ViewerLayersPanel = d
+    BimKing.Viewing.Extensions.ViewerLayersPanel = d
 })();
 (function () {
-    var d = BimFish.Viewing, g = BimFish.Viewing.Extensions, h = BimFish.Viewing.UI;
+    var d = BimKing.Viewing, g = BimKing.Viewing.Extensions, h = BimKing.Viewing.UI;
     g.ViewerSettingTab = {Navigation: "navigationtab", Performance: "performancetab"};
     var c = function (b, a) {
         this.viewer = b;
@@ -24466,7 +24466,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         this.restoreDiv = document.createElement("div");
         this.restoreDiv.className = "viewer-restore-defaults";
         this.restoreDiv.setAttribute("data-i18n", "Restore default settings");
-        this.restoreDiv.textContent = BimFish.Viewing.i18n.translate("Restore default settings");
+        this.restoreDiv.textContent = BimKing.Viewing.i18n.translate("Restore default settings");
         this.addEventListener(this.restoreDiv, "touchstart", d.touchStartToClick);
         this.addEventListener(this.restoreDiv, "click", function () {
             var c = a.is2d() ? "2d" : "3d";
@@ -24515,9 +24515,9 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         }, "zoomTowardsPivot"), this.addCheckbox(a, "Set pivot with left mouse button", !1, function (a) {
             b.setClickToSetCOI(a)
         }, "clickToSetCOI"), this.addCheckbox(a, "Fusion style orbit", !1, function (a) {
-            a ? b.loadExtension("BimFish.Viewing.FusionOrbit", null) : b.unloadExtension("BimFish.Viewing.FusionOrbit", null)
+            a ? b.loadExtension("BimKing.Viewing.FusionOrbit", null) : b.unloadExtension("BimKing.Viewing.FusionOrbit", null)
         }, "fusionOrbit"), this.addCheckbox(a, "First person walk", !1, function (a) {
-            a ? (b.unloadExtension("BimFish.Beeline", null), b.loadExtension("BimFish.FirstPerson", null)) : (b.unloadExtension("BimFish.FirstPerson", null), b.loadExtension("BimFish.Beeline", null))
+            a ? (b.unloadExtension("BimKing.Beeline", null), b.loadExtension("BimKing.FirstPerson", null)) : (b.unloadExtension("BimKing.FirstPerson", null), b.loadExtension("BimKing.Beeline", null))
         }, "useFirstPersonNavigation"));
         this.addCheckbox(a, "Reverse mouse zoom direction", !1, function (a) {
             b.setReverseZoomDirection(a)
@@ -24574,7 +24574,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         g.ObjectContextMenu.call(this, d)
     }
 
-    var g = BimFish.Viewing.UI;
+    var g = BimKing.Viewing.UI;
     d.prototype = Object.create(g.ObjectContextMenu.prototype);
     d.prototype.constructor = d;
     d.prototype.buildMenu = function (d, c) {
@@ -24623,20 +24623,20 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         });
         return a
     };
-    BimFish.Viewing.Extensions.ViewerObjectContextMenu = d
+    BimKing.Viewing.Extensions.ViewerObjectContextMenu = d
 })();
 (function () {
     function d(d, c) {
-        BimFish.Viewing.Extension.call(this, d, c)
+        BimKing.Viewing.Extension.call(this, d, c)
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Extensions.CAM360");
-    d.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    var g = BimKingNamespace("BimKing.Viewing.Extensions.CAM360");
+    d.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     d.prototype.constructor = d;
     d.prototype.load = function () {
         function d() {
             c.impl.setLightPreset(0, !0);
-            c.removeEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, d)
+            c.removeEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, d)
         }
 
         var c = this.viewer, b = new g.CAMModelStructurePanel(this.viewer, "CAM Model Structure Loading", this.options);
@@ -24644,14 +24644,14 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         c.hideLines(!1);
         c.setGhosting(!1);
         c.setQualityLevel(!1, !0);
-        c.addEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, d);
+        c.addEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, d);
         return !0
     };
     d.prototype.unload = function () {
         this.viewer.setModelStructurePanel(null)
     };
     g.CAM360Extension = d;
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.CAM360", g.CAM360Extension)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.CAM360", g.CAM360Extension)
 })();
 (function () {
     function d(c, b, a) {
@@ -24659,7 +24659,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         this.viewer = c
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Extensions.CAM360"), h = BimFish.Viewing.Extensions;
+    var g = BimKingNamespace("BimKing.Viewing.Extensions.CAM360"), h = BimKing.Viewing.Extensions;
     d.prototype = Object.create(h.ViewerModelStructurePanel.prototype);
     d.prototype.constructor = d;
     d.prototype.sortCamNodes = function (c, b) {
@@ -24714,19 +24714,19 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
     d.prototype.initialize = function () {
         function c(a) {
             b.SetCAMNodeVisible(!1);
-            b.removeEventListener(b.viewer, BimFish.Viewing.GEOMETRY_LOADED_EVENT, c)
+            b.removeEventListener(b.viewer, BimKing.Viewing.GEOMETRY_LOADED_EVENT, c)
         }
 
         h.ViewerModelStructurePanel.prototype.initialize.call(this);
         var b = this;
-        this.viewer.model && this.viewer.model.isLoadDone() || b.addEventListener(b.viewer, BimFish.Viewing.GEOMETRY_LOADED_EVENT, c);
-        b.addEventListener(b.viewer, BimFish.Viewing.SHOW_EVENT, function (a) {
+        this.viewer.model && this.viewer.model.isLoadDone() || b.addEventListener(b.viewer, BimKing.Viewing.GEOMETRY_LOADED_EVENT, c);
+        b.addEventListener(b.viewer, BimKing.Viewing.SHOW_EVENT, function (a) {
             if (a = a.nodeIdArray) for (var c = 0; c < a.length; c++) b.setCamNodeVisibility(a[c])
         });
-        b.addEventListener(b.viewer, BimFish.Viewing.SELECTION_CHANGED_EVENT, function (a) {
+        b.addEventListener(b.viewer, BimKing.Viewing.SELECTION_CHANGED_EVENT, function (a) {
             if (a = a.nodeArray) for (var c = 0; c < a.length; c++) b.HideHightlightCAMNode(a[c])
         });
-        b.addEventListener(b.viewer, BimFish.Viewing.ISOLATE_EVENT, function (a) {
+        b.addEventListener(b.viewer, BimKing.Viewing.ISOLATE_EVENT, function (a) {
             if (a = a.nodeIdArray) if (0 == a.length) b.SetModelVisible(), b.SetCAMNodeVisible(!0); else for (var c = 0; c < a.length; c++) b.setCamNodeVisibility(a[c])
         })
     };
@@ -24813,7 +24813,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         return a = a + (d + ":" + (10 > b ? "0" : "")) + b.toFixed(2)
     }
 
-    var g = BimFish.Viewing, h = g.UI, c = function (b, a) {
+    var g = BimKing.Viewing, h = g.UI, c = function (b, a) {
         g.Extension.call(this, b, a);
         this.viewer = b;
         this.animTools = null;
@@ -24830,16 +24830,16 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         this.onExplodeBinded = this.onExplode.bind(this);
         this.onResizeBinded = this.onResize.bind(this);
         this.onEscapeBinded = this.onEscape.bind(this);
-        b.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
-        b.addEventListener(BimFish.Viewing.EXPLODE_CHANGE_EVENT, this.onExplodeBinded);
-        b.addEventListener(BimFish.Viewing.VIEWER_RESIZE_EVENT, this.onResizeBinded);
-        b.addEventListener(BimFish.Viewing.ESCAPE_EVENT, this.onEscapeBinded);
-        if (b.model && b.model.isObjectTreeCreated()) this.onAnimationReady(); else this.onAnimationReadyBinded = this.onAnimationReady.bind(this), b.addEventListener(BimFish.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded);
+        b.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
+        b.addEventListener(BimKing.Viewing.EXPLODE_CHANGE_EVENT, this.onExplodeBinded);
+        b.addEventListener(BimKing.Viewing.VIEWER_RESIZE_EVENT, this.onResizeBinded);
+        b.addEventListener(BimKing.Viewing.ESCAPE_EVENT, this.onEscapeBinded);
+        if (b.model && b.model.isObjectTreeCreated()) this.onAnimationReady(); else this.onAnimationReadyBinded = this.onAnimationReady.bind(this), b.addEventListener(BimKing.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded);
         return !0
     };
     c.prototype.unload = function () {
         var b = this.viewer;
-        this.onAnimationReadyBinded && (b.removeEventListener(BimFish.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded), this.onAnimationReadyBinded = null);
+        this.onAnimationReadyBinded && (b.removeEventListener(BimKing.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded), this.onAnimationReadyBinded = null);
         this.rewind();
         b.impl.invalidate(!0, !0, !0);
         this.onPlayCallbackBinded = null;
@@ -24908,7 +24908,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
     };
     c.prototype.onAnimationReady = function () {
         var b = this.viewer;
-        this.onAnimationReadyBinded && (b.removeEventListener(BimFish.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded), this.onAnimationReadyBinded = null);
+        this.onAnimationReadyBinded && (b.removeEventListener(BimKing.Viewing.ANIMATION_READY_EVENT, this.onAnimationReadyBinded), this.onAnimationReadyBinded = null);
         if (b.impl.keyFrameAnimator) if (b.toolbar && b.modelTools) this.onToolbarCreated(); else this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this), b.addEventListener(g.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded)
     };
     c.prototype.updateUI = function () {
@@ -25037,7 +25037,7 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         });
         var k = document.createElement("div");
         k.className = "adsk-control-tooltip";
-        k.textContent = BimFish.Viewing.i18n.translate("Click-drag to scrub");
+        k.textContent = BimKing.Viewing.i18n.translate("Click-drag to scrub");
         this.animTools.timeline.container.appendChild(k);
         l.addEventListener("mouseover", function (a) {
             a.target === l && (k.style.visibility = "visible")
@@ -25066,9 +25066,9 @@ BimFish.Viewing.Extensions.ViewerPanelMixin = function () {
         this.animTools.closeButton.addClass("toolbar-animationButton");
         this.animTools.addControl(this.animTools.closeButton)
     };
-    BimFishNamespace("BimFish.Viewing.Extensions.Fusion360");
-    BimFish.Viewing.Extensions.Fusion360.AnimationExtension = c;
-    g.theExtensionManager.registerExtension("BimFish.Fusion360.Animation", c)
+    BimKingNamespace("BimKing.Viewing.Extensions.Fusion360");
+    BimKing.Viewing.Extensions.Fusion360.AnimationExtension = c;
+    g.theExtensionManager.registerExtension("BimKing.Fusion360.Animation", c)
 })();
 
 function init_WarpShader() {
@@ -25087,8 +25087,8 @@ function init_WarpShader() {
     })
 }
 
-BimFishNamespace("BimFish.Viewing.Extensions.Oculus");
-BimFish.Viewing.Extensions.Oculus.StereoRenderContext = function (d) {
+BimKingNamespace("BimKing.Viewing.Extensions.Oculus");
+BimKing.Viewing.Extensions.Oculus.StereoRenderContext = function (d) {
     var g, h, c, b, a, f, l, k, m, n, r = d ? d.useWarp : !0, p = d && d.HMD ? d.HMD : {
         hResolution: 1920,
         vResolution: 1080,
@@ -25123,8 +25123,8 @@ BimFish.Viewing.Extensions.Oculus.StereoRenderContext = function (d) {
         b.init(a, l / 2 * v / k, l * v / k);
         this.settings = c.settings;
         if (r) {
-            m = new BimFish.Viewing.Shaders.LmvShaderPass(WarpShader);
-            n = new BimFish.Viewing.Shaders.LmvShaderPass(WarpShader);
+            m = new BimKing.Viewing.Shaders.LmvShaderPass(WarpShader);
+            n = new BimKing.Viewing.Shaders.LmvShaderPass(WarpShader);
             d = [m, n];
             for (g = 0; 2 > g; g++) d[g].material.blending = THREE.NoBlending, d[g].material.depthWrite = !1, d[g].material.depthTest = !1, d[g].uniforms.hmdWarpParam.value.set(p.distortionK[0], p.distortionK[1], p.distortionK[2], p.distortionK[3]), d[g].uniforms.chromAbParam.value.set(p.chromaAbParameter[0], p.chromaAbParameter[1], p.chromaAbParameter[2], p.chromaAbParameter[3]), d[g].uniforms.scaleIn.value.set(1, 1 / w), d[g].uniforms.scale.value.set(1 / v, 1 * w / v);
             d[0].uniforms.lensCenter.value.copy(q);
@@ -25272,7 +25272,7 @@ BimFish.Viewing.Extensions.Oculus.StereoRenderContext = function (d) {
         return c.getUnitScale()
     }
 };
-BimFishNamespace("BimFish.Viewing.Extensions.Oculus");
+BimKingNamespace("BimKing.Viewing.Extensions.Oculus");
 (function () {
     function d(a) {
         function b() {
@@ -25317,7 +25317,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Oculus");
             d = a.navigation.getCamera();
             b();
             a.model && (u = 1 / a.model.getUnitScale(), A = 1E-4 * a.model.getBoundingBox().size().length());
-            if (navigator.getGamepads || navigator.webkitGetGamepads || navigator.webkitGamepads) T = new BimFish.Viewing.Extensions.GamepadModule(a), T.activate(this.getName())
+            if (navigator.getGamepads || navigator.webkitGetGamepads || navigator.webkitGamepads) T = new BimKing.Viewing.Extensions.GamepadModule(a), T.activate(this.getName())
         };
         this.deactivate = function (a) {
             d = null;
@@ -25470,7 +25470,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Oculus");
         }
     }
 
-    var g = BimFish.Viewing, h = g.Extensions, c = g.Private, b = g.UI, a = h.Oculus, f = null, l = null;
+    var g = BimKing.Viewing, h = g.Extensions, c = g.Private, b = g.UI, a = h.Oculus, f = null, l = null;
     a.Oculus = function (a, b) {
         g.Extension.call(this, a, b);
         this.viewer = a;
@@ -25522,11 +25522,11 @@ BimFishNamespace("BimFish.Viewing.Extensions.Oculus");
         this.toggleOculus(!1);
         return !0
     };
-    g.theExtensionManager.registerExtension("BimFish.Viewing.Oculus", a.Oculus)
+    g.theExtensionManager.registerExtension("BimKing.Viewing.Oculus", a.Oculus)
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
+BimKingNamespace("BimKing.Viewing.Extensions.Collaboration");
 (function () {
-    var d = BimFish.Viewing, g = d.Private, h = d.Extensions.Collaboration;
+    var d = BimKing.Viewing, g = d.Private, h = d.Extensions.Collaboration;
     h.InteractionInterceptor = function (c) {
         this.getNames = function () {
             return ["intercept"]
@@ -25664,11 +25664,11 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         }
     };
     h.ViewTransceiver.prototype.constructor = h.ViewTransceiver;
-    BimFish.Viewing.EventDispatcher.prototype.apply(h.ViewTransceiver.prototype)
+    BimKing.Viewing.EventDispatcher.prototype.apply(h.ViewTransceiver.prototype)
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
+BimKingNamespace("BimKing.Viewing.Extensions.Collaboration");
 (function () {
-    var d = BimFish.Viewing, g = d.Extensions, h = d.Private, c = d.UI, b = g.Collaboration;
+    var d = BimKing.Viewing, g = d.Extensions, h = d.Private, c = d.UI, b = g.Collaboration;
     g.Collaboration.Collaboration = function (a, b) {
         d.Extension.call(this, a, b);
         b && b.rtc && b.rtc.disableRTCToolbarButton && (this.disableRTCToolbarButton = !0)
@@ -25697,7 +25697,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
             b ? (d.model && (b = d.model.getData(), a.viewtx.channelId = b.basePath, a.viewtx.attach(d), a.client.connect(a.viewtx.channelId), a.client.join(a.viewtx.channelId)), d.toolController.activateTool(a.interceptor.getName()), a.collabButton.setState(c.Button.State.ACTIVE), h.logger.track({category: "viewer_rtc_start"})) : (h.logger && a.client.isConnected() && h.logger.track({category: "viewer_rtc_stop"}), a.p2p.hangup(), a.viewtx.detach(d), a.viewtx.channelId = null, a.client.disconnect(), a.panel.reset(), d.toolController.deactivateTool(a.interceptor.getName()), a.collabButton.setState(c.Button.State.INACTIVE))
         });
         d.modelTools.addControl(this.collabButton);
-        BimFish.Viewing.Private.getParameterByName("invited") && (new CollabPromptBox).start(d.container, function () {
+        BimKing.Viewing.Private.getParameterByName("invited") && (new CollabPromptBox).start(d.container, function () {
             a.panel.setVisible(!0, !0)
         }, "Join a Live Review", "Join Review")
     };
@@ -25709,19 +25709,19 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         var a = this.viewer, b = this;
         h.loadDependency("lmv_io", "socket.io-1.3.5.js", function () {
             function c(d) {
-                a.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, c);
+                a.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, c);
                 b.createUI()
             }
 
             b.client = h.MessageClient.GetInstance(b.options ? b.options.messageServerURL : void 0);
             b.socketErrorHandler = function (c) {
-                h.ErrorHandler.reportError(a.container, BimFish.Viewing.ErrorCodes.RTC_ERROR, c.data);
+                h.ErrorHandler.reportError(a.container, BimKing.Viewing.ErrorCodes.RTC_ERROR, c.data);
                 b.close()
             };
             b.client.addEventListener("socketError", b.socketErrorHandler);
             b.presenceChannelId = window.location.host;
             b.client.isConnected();
-            a.modelTools ? b.createUI() : a.addEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, c)
+            a.modelTools ? b.createUI() : a.addEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, c)
         });
         return !0
     };
@@ -25739,9 +25739,9 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         this.collabButton = null;
         return !0
     };
-    d.theExtensionManager.registerExtension("BimFish.Viewing.Collaboration", g.Collaboration.Collaboration)
+    d.theExtensionManager.registerExtension("BimKing.Viewing.Collaboration", g.Collaboration.Collaboration)
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
+BimKingNamespace("BimKing.Viewing.Extensions.Collaboration");
 (function () {
     function d(b, a, c, d) {
         this.viewer = b;
@@ -25768,11 +25768,11 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         this.inviteDiv.style["float"] = "left";
         this.inviteDiv.style.width = "232px";
         this.inviteDiv.setAttribute("data-i18n", "Invite");
-        this.inviteDiv.textContent = BimFish.Viewing.i18n.translate("Invite");
+        this.inviteDiv.textContent = BimKing.Viewing.i18n.translate("Invite");
         this.content.appendChild(this.inviteDiv);
         this.inviteDiv.addEventListener("click", function (a) {
             (new CollabPromptBox).start(b.container, function () {
-                var a = BimFish.Viewing.i18n.translate("Please Join My Live Review");
+                var a = BimKing.Viewing.i18n.translate("Please Join My Live Review");
                 document.location.href = "mailto:?subject\x3d" + a
             }, "Invite Others", "Email Invite", !0)
         });
@@ -25786,7 +25786,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         this.textInput = document.createElement("input");
         this.textInput.type = "text";
         this.textInput.classList.add("textEntry");
-        this.textInput.placeholder = BimFish.Viewing.i18n.translate("Type a message");
+        this.textInput.placeholder = BimKing.Viewing.i18n.translate("Type a message");
         this.chatPanel.appendChild(this.textInput);
         this.content.appendChild(this.chatPanel);
         this.isCameraConnected = !0;
@@ -25816,11 +25816,11 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         })
     }
 
-    var g = BimFish.Viewing, h = g.Private, c = g.Extensions.Collaboration;
-    BimFish.Viewing.startLiveReviewSession = function () {
+    var g = BimKing.Viewing, h = g.Private, c = g.Extensions.Collaboration;
+    BimKing.Viewing.startLiveReviewSession = function () {
         c.Panel && c.Panel.startSession()
     };
-    BimFish.Viewing.endLiveReviewSession = function () {
+    BimKing.Viewing.endLiveReviewSession = function () {
         c.Panel && c.Panel.endSession()
     };
     d.prototype = Object.create(g.UI.DockingPanel.prototype);
@@ -25910,7 +25910,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
         b = document.createElement("div");
         b.classList.add("dockingPanelClose");
         b.innerHTML = "\x26times";
-        b.title = BimFish.Viewing.i18n.translate("End video call");
+        b.title = BimKing.Viewing.i18n.translate("End video call");
         b.onclick = function (b) {
             a.p2p.hangup();
             a.removeVideoPanel()
@@ -25944,13 +25944,13 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
             b.appendChild(f);
             var l = document.createElement("div");
             l.className = "collabBoxTitle";
-            l.textContent = BimFish.Viewing.i18n.translate(c, {defaultValue: c});
+            l.textContent = BimKing.Viewing.i18n.translate(c, {defaultValue: c});
             f.appendChild(l);
             c = document.createElement("span");
             c.className = "collabBoxText";
             l = "Enter your name";
             g && (l = "Review URL");
-            c.textContent = BimFish.Viewing.i18n.translate(l, {defaultValue: l});
+            c.textContent = BimKing.Viewing.i18n.translate(l, {defaultValue: l});
             f.appendChild(c);
             c = document.createElement("span");
             c.className = "collabBoxInputContainer";
@@ -25958,7 +25958,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
             var k = document.createElement("input");
             k.type = "text";
             k.className = "collabBoxInputText";
-            g && (l = window.location.toString(), l = -1 == l.indexOf("?") ? l + "?invited\x3dtrue" : l + "\x26invited\x3dtrue", BimFish.Viewing.Private.docItemId && (l += "\x26itemid\x3d" + BimFish.Viewing.Private.docItemId), k.value = l + "\x26doNotRedirect\x3dtrue");
+            g && (l = window.location.toString(), l = -1 == l.indexOf("?") ? l + "?invited\x3dtrue" : l + "\x26invited\x3dtrue", BimKing.Viewing.Private.docItemId && (l += "\x26itemid\x3d" + BimKing.Viewing.Private.docItemId), k.value = l + "\x26doNotRedirect\x3dtrue");
             c.appendChild(k);
             k.onkeyup = function (c) {
                 13 == c.keyCode && (f.style.visibility = "hidden", b.removeChild(f), h.setUserName(k.value), a())
@@ -25971,7 +25971,7 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
                 b.removeChild(f)
             });
             f.appendChild(c);
-            g ? (c = document.createElement("span"), c.className = "collabBoxText", c.style.marginTop = "0px", l = "Copy and send this URL to invite others", c.textContent = BimFish.Viewing.i18n.translate(l, {defaultValue: l})) : (c = document.createElement("div"), c.className = "collabBoxOK", c.textContent = BimFish.Viewing.i18n.translate(d, {defaultValue: d}), c.addEventListener("click", function (c) {
+            g ? (c = document.createElement("span"), c.className = "collabBoxText", c.style.marginTop = "0px", l = "Copy and send this URL to invite others", c.textContent = BimKing.Viewing.i18n.translate(l, {defaultValue: l})) : (c = document.createElement("div"), c.className = "collabBoxOK", c.textContent = BimKing.Viewing.i18n.translate(d, {defaultValue: d}), c.addEventListener("click", function (c) {
                 f.style.visibility = "hidden";
                 b.removeChild(f);
                 "" !== k.value.trim() && h.setUserName(k.value);
@@ -25987,21 +25987,21 @@ BimFishNamespace("BimFish.Viewing.Extensions.Collaboration");
     c.CollabPromptBox = CollabPromptBox
 })();
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Beeline");
-BimFish.Viewing.Extensions.Beeline.BeelineExtension = function (d, g) {
-    BimFish.Viewing.Extension.call(this, d, g)
+BimKingNamespace("BimKing.Viewing.Extensions.Beeline");
+BimKing.Viewing.Extensions.Beeline.BeelineExtension = function (d, g) {
+    BimKing.Viewing.Extension.call(this, d, g)
 };
-BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype = Object.create(BimFish.Viewing.Extension.prototype);
-BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.constructor = BimFish.Viewing.Extensions.Beeline.BeelineExtension;
-BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.load = function () {
-    var d = this, g = this.viewer, h = BimFish.Viewing.UI;
-    this.tool = new BimFish.Viewing.Extensions.Beeline.BeelineTool(g.impl, g);
+BimKing.Viewing.Extensions.Beeline.BeelineExtension.prototype = Object.create(BimKing.Viewing.Extension.prototype);
+BimKing.Viewing.Extensions.Beeline.BeelineExtension.prototype.constructor = BimKing.Viewing.Extensions.Beeline.BeelineExtension;
+BimKing.Viewing.Extensions.Beeline.BeelineExtension.prototype.load = function () {
+    var d = this, g = this.viewer, h = BimKing.Viewing.UI;
+    this.tool = new BimKing.Viewing.Extensions.Beeline.BeelineTool(g.impl, g);
     g.toolController.registerTool(this.tool);
     this.createUI();
     var c;
-    this.HOTKEYS_ID = "BimFish.Beeline.Hotkeys";
-    BimFish.Viewing.theHotkeyManager.pushHotkeys(this.HOTKEYS_ID, [{
-        keycodes: [BimFish.Viewing.theHotkeyManager.KEYCODES.CONTROL, BimFish.Viewing.theHotkeyManager.KEYCODES.ALT],
+    this.HOTKEYS_ID = "BimKing.Beeline.Hotkeys";
+    BimKing.Viewing.theHotkeyManager.pushHotkeys(this.HOTKEYS_ID, [{
+        keycodes: [BimKing.Viewing.theHotkeyManager.KEYCODES.CONTROL, BimKing.Viewing.theHotkeyManager.KEYCODES.ALT],
         onPress: function () {
             c = g.getActiveNavigationTool();
             g.setActiveNavigationTool(d.tool.getName());
@@ -26015,13 +26015,13 @@ BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.load = function ()
     this.onToolChanged = function (b) {
         -1 !== b.toolName.indexOf("beeline") && d.beelineButton && d.beelineButton.setState(b.active ? h.Button.State.ACTIVE : h.Button.State.INACTIVE)
     };
-    g.addEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+    g.addEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
     return !0
 };
-BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.createUI = function () {
+BimKing.Viewing.Extensions.Beeline.BeelineExtension.prototype.createUI = function () {
     var d = this.viewer;
     if (d.getToolbar && d.getSettingsPanel) {
-        var g = d.getToolbar(!0), h = BimFish.Viewing.UI, g = g.getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID),
+        var g = d.getToolbar(!0), h = BimKing.Viewing.UI, g = g.getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID),
             c = new h.Button("toolbar-beelineTool");
         c.setToolTip("Walk to");
         c.setIcon("adsk-icon-walk");
@@ -26033,8 +26033,8 @@ BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.createUI = functio
         var b = g.getControl("toolbar-cameraSubmenuTool");
         b ? g.addControl(this.beelineButton, {index: g.indexOf(b.getId())}) : g.addControl(this.beelineButton);
         var a = this, f = function () {
-            d.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, f);
-            var b = BimFish.Viewing.Extensions.ViewerSettingTab.Navigation, c = d.getSettingsPanel(!0);
+            d.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, f);
+            var b = BimKing.Viewing.Extensions.ViewerSettingTab.Navigation, c = d.getSettingsPanel(!0);
             a.viewerOption_LookHorId = c.addCheckbox(b, "Reverse horizontal look direction", !1, function (a) {
                 d.setReverseHorizontalLookDirection(a)
             }, "reverseHorizontalLookDirection");
@@ -26042,17 +26042,17 @@ BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.createUI = functio
                 d.setReverseVerticalLookDirection(a)
             }, "reverseVerticalLookDirection")
         };
-        this.viewer.getSettingsPanel(!1) ? f() : this.viewer.addEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, f)
+        this.viewer.getSettingsPanel(!1) ? f() : this.viewer.addEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, f)
     }
 };
-BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.unload = function () {
+BimKing.Viewing.Extensions.Beeline.BeelineExtension.prototype.unload = function () {
     var d = this.viewer;
-    d.removeEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+    d.removeEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
     this.onToolChanged = void 0;
-    BimFish.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
+    BimKing.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
     if (this.beelineButton) {
         var g = d.getToolbar(!1);
-        g && g.getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.beelineButton.getId());
+        g && g.getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.beelineButton.getId());
         this.beelineButton = null
     }
     d.getSettingsPanel && (d.getSettingsPanel(!1).removeCheckbox(this.viewerOption_LookHorId), d.getSettingsPanel(!1).removeCheckbox(this.viewerOption_LookVertId));
@@ -26061,10 +26061,10 @@ BimFish.Viewing.Extensions.Beeline.BeelineExtension.prototype.unload = function 
     this.tool = null;
     return !0
 };
-BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Beeline", BimFish.Viewing.Extensions.Beeline.BeelineExtension);
-BimFishNamespace("BimFish.Viewing.Extensions.Beeline");
-avp = BimFish.Viewing.Private;
-BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
+BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Beeline", BimKing.Viewing.Extensions.Beeline.BeelineExtension);
+BimKingNamespace("BimKing.Viewing.Extensions.Beeline");
+avp = BimKing.Viewing.Private;
+BimKing.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
     function h() {
         f.revertToStartState()
     }
@@ -26114,12 +26114,12 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
     };
     this.activate = function (a) {
         t = 0;
-        g.addEventListener(BimFish.Viewing.FULLSCREEN_MODE_EVENT, h);
+        g.addEventListener(BimKing.Viewing.FULLSCREEN_MODE_EVENT, h);
         k.userLookSpeed = .8;
         this.showHUDMessage(!0)
     };
     this.deactivate = function () {
-        g.removeEventListener(BimFish.Viewing.FULLSCREEN_MODE_EVENT, h);
+        g.removeEventListener(BimKing.Viewing.FULLSCREEN_MODE_EVENT, h);
         this.revertToStartState();
         this.showHUDMessage(!1)
     };
@@ -26209,7 +26209,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         }
     };
     this.handleGesture = function (a) {
-        BimFish.Viewing.Private.HudMessage.dismiss();
+        BimKing.Viewing.Private.HudMessage.dismiss();
         switch (a.type) {
             case "dragstart":
                 return E = "drag", this.handleButtonDown(a, 0);
@@ -26221,7 +26221,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         return !1
     };
     this.handleButtonDown = function (a, b) {
-        BimFish.Viewing.Private.HudMessage.dismiss();
+        BimKing.Viewing.Private.HudMessage.dismiss();
         t += 1 << b;
         return 0 === b ? (D.x = A.x = a.canvasX, D.y = A.y = a.canvasY, !0) : !1
     };
@@ -26230,7 +26230,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         return 0 === b ? !0 : !1
     };
     this.handleSingleClick = function (a, b) {
-        BimFish.Viewing.Private.HudMessage.dismiss();
+        BimKing.Viewing.Private.HudMessage.dismiss();
         if (0 === b) {
             var c = {x: a.normalizedX, y: a.normalizedY};
             switch (p) {
@@ -26265,7 +26265,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         return !1
     };
     this.showOrthoWarningMessage = function () {
-        BimFish.Viewing.Private.HudMessage.displayMessage(l, {
+        BimKing.Viewing.Private.HudMessage.displayMessage(l, {
             msgTitleKey: "Orthographic View Set",
             messageKey: "The view is set to Orthographic Beeline",
             messageDefaultValue: "The view is set to Orthographic. Using this tool will switch to Perspective."
@@ -26273,7 +26273,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         })
     };
     this.showFocalWarningMessage = function () {
-        BimFish.Viewing.Private.HudMessage.displayMessage(l, {
+        BimKing.Viewing.Private.HudMessage.displayMessage(l, {
             msgTitleKey: "Long Focal Length View Set",
             messageKey: "The view is set to a long focal length",
             messageDefaultValue: "This view has a long focal length. Using this tool will set a short focal length."
@@ -26284,13 +26284,13 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         if (g.toolController.getActiveToolName() === r[0] || g.toolController.getActiveToolName() === r[1]) {
             a = (a = m.getCamera()) && !a.isPerspective;
             var b = 28 < m.getFocalLength();
-            a ? f.showOrthoWarningMessage() : b ? f.showFocalWarningMessage() : BimFish.Viewing.Private.HudMessage.dismiss()
+            a ? f.showOrthoWarningMessage() : b ? f.showFocalWarningMessage() : BimKing.Viewing.Private.HudMessage.dismiss()
         }
     };
     this.showHUDMessage = function (a) {
         var b = m.getCamera(), b = b && !b.isPerspective, c = 28 < m.getFocalLength();
-        a && b ? f.showOrthoWarningMessage() : a && c ? f.showFocalWarningMessage() : BimFish.Viewing.Private.HudMessage.dismiss();
-        a ? g.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, f.watchCamera) : g.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, f.watchCamera)
+        a && b ? f.showOrthoWarningMessage() : a && c ? f.showFocalWarningMessage() : BimKing.Viewing.Private.HudMessage.dismiss();
+        a ? g.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, f.watchCamera) : g.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, f.watchCamera)
     }
 };
 (function () {
@@ -26301,7 +26301,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         }
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Extensions.DefaultTools"), h = BimFish.Viewing, c = h.UI,
+    var g = BimKingNamespace("BimKing.Viewing.Extensions.DefaultTools"), h = BimKing.Viewing, c = h.UI,
         b = function (a, b) {
             h.Extension.call(this, a, b)
         };
@@ -26433,7 +26433,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         b = c.insertRow(-1);
         c = b.insertCell(0);
         c.setAttribute("data-i18n", "Focal Length");
-        c.textContent = BimFish.Viewing.i18n.translate("Focal Length");
+        c.textContent = BimKing.Viewing.i18n.translate("Focal Length");
         c = b.insertCell(1);
         c.textContent = "";
         c.style.width = "4em";
@@ -26501,13 +26501,13 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         return !0
     };
     g.NavToolsExtension = b;
-    h.theExtensionManager.registerExtension("BimFish.DefaultTools.NavTools", b)
+    h.theExtensionManager.registerExtension("BimKing.DefaultTools.NavTools", b)
 })();
 (function () {
-    var d = BimFishNamespace("BimFish.Viewing.Extensions.Measure"), g = BimFish.Viewing, h = g.UI, c = function (b, a) {
-        BimFish.Viewing.Extension.call(this, b, a)
+    var d = BimKingNamespace("BimKing.Viewing.Extensions.Measure"), g = BimKing.Viewing, h = g.UI, c = function (b, a) {
+        BimKing.Viewing.Extension.call(this, b, a)
     };
-    c.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    c.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     c.prototype.constructor = c;
     c.prototype.onToolbarCreated = function () {
         this.viewer.removeEventListener(g.TOOLBAR_CREATED_EVENT, this.bindedOnToolbarCreated);
@@ -26516,7 +26516,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
     };
     c.prototype.load = function () {
         var b = this, a = this.viewer;
-        this.escapeHotkeyId = "BimFish.Measure.Hotkeys.Escape";
+        this.escapeHotkeyId = "BimKing.Measure.Hotkeys.Escape";
         if (!a.toolController) return !1;
         this.tool = new d.MeasureTool(a, {
             onCloseCallback: function (a) {
@@ -26574,7 +26574,7 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
     c.prototype.enableMeasureTool = function (b) {
         var a = this.viewer.toolController, c = this.tool.isActive();
         this.viewer.impl.disableRollover(b);
-        return b && !c ? (a.activateTool("measure"), this.measureToolButton && this.measureToolButton.setState(BimFish.Viewing.UI.Button.State.ACTIVE), !0) : !b && c ? (a.deactivateTool("measure"), this.measureToolButton && this.measureToolButton.setState(BimFish.Viewing.UI.Button.State.INACTIVE), !0) : !1
+        return b && !c ? (a.activateTool("measure"), this.measureToolButton && this.measureToolButton.setState(BimKing.Viewing.UI.Button.State.ACTIVE), !0) : !b && c ? (a.deactivateTool("measure"), this.measureToolButton && this.measureToolButton.setState(BimKing.Viewing.UI.Button.State.INACTIVE), !0) : !1
     };
     c.prototype.createUI = function () {
         var b = this, a = this.viewer;
@@ -26611,10 +26611,10 @@ BimFish.Viewing.Extensions.Beeline.BeelineTool = function (d, g) {
         g.theHotkeyManager.popHotkeys(this.escapeHotkeyId)
     };
     d.MeasureExtension = c;
-    g.theExtensionManager.registerExtension("BimFish.Measure", c)
+    g.theExtensionManager.registerExtension("BimKing.Measure", c)
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.Measure");
-BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
+BimKingNamespace("BimKing.Viewing.Extensions.Measure");
+BimKing.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
     function h() {
         u.updateLabelPositions()
     }
@@ -26836,19 +26836,19 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
             var b = 0;
             a = a.clone().vertices;
             for (var c = 0; c < a.length; c += 2) f.model.is2d() && f.model.pageToModel(a[c], a[c + 1], T), b += a[c].distanceTo(a[c + 1]);
-            b = BimFish.Viewing.Private.convertUnits(f.model.getUnitString(), C, b);
-            return BimFish.Viewing.Private.formatValueWithUnits(b, C, 3, B)
+            b = BimKing.Viewing.Private.convertUnits(f.model.getUnitString(), C, b);
+            return BimKing.Viewing.Private.formatValueWithUnits(b, C, 3, B)
         };
         this.getCircularArcRadius = function (a) {
             var b = a.radius;
-            if (b) return f.model.is2d() && (b = a.center.clone(), a = a.vertices[0].clone(), f.model.pageToModel(b, a, T), b = b.distanceTo(a)), b = BimFish.Viewing.Private.convertUnits(f.model.getUnitString(), C, b), BimFish.Viewing.Private.formatValueWithUnits(b, C, 3, B)
+            if (b) return f.model.is2d() && (b = a.center.clone(), a = a.vertices[0].clone(), f.model.pageToModel(b, a, T), b = b.distanceTo(a)), b = BimKing.Viewing.Private.convertUnits(f.model.getUnitString(), C, b), BimKing.Viewing.Private.formatValueWithUnits(b, C, 3, B)
         };
         this.getFaceArea = function (a) {
             var b = 0;
             a = a.vertices;
             for (var c = new THREE.Vector3, d = new THREE.Vector3, g = 0; g < a.length; g += 3) c.subVectors(a[g + 1], a[g]), d.subVectors(a[g + 2], a[g]), b += c.length() * d.length() * Math.sin(c.angleTo(d)) / 2;
-            b = BimFish.Viewing.Private.convertUnits(f.model.getUnitString(), C, b, "square");
-            return C ? BimFish.Viewing.Private.formatValueWithUnits(b, C + "^2", 3, B) : BimFish.Viewing.Private.formatValueWithUnits(b, null, 3, B)
+            b = BimKing.Viewing.Private.convertUnits(f.model.getUnitString(), C, b, "square");
+            return C ? BimKing.Viewing.Private.formatValueWithUnits(b, C + "^2", 3, B) : BimKing.Viewing.Private.formatValueWithUnits(b, null, 3, B)
         };
         this.updateLabels = function () {
             t === SNAP_EDGE ? G.first.label.children[0].textContent = this.getEdgeLength(m) : t === SNAP_FACE && (I.first.label.children[0].textContent = this.getFaceArea(m));
@@ -27496,10 +27496,10 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
     var a = this, f = d, l = ["measure"], k = !1, m = null, n = null, r = !1, p = 0, q = !1, t = null, v = null, C = "",
         B = 3, H = {}, F = 0, w = !1, u = null, A = null, D = null, I = null, E = null, G = null, L = null, K = null,
         J = null, N = null, P = null, T = null, da = null,
-        Z = BimFish.Viewing.Private.GuiViewer3D && d instanceof BimFish.Viewing.Private.GuiViewer3D;
+        Z = BimKing.Viewing.Private.GuiViewer3D && d instanceof BimKing.Viewing.Private.GuiViewer3D;
     this.register = function () {
-        Z && !A && (A = new BimFish.Viewing.Extensions.Measure.MeasurePanel(a, f, "measure-panel", "Measure", g), f.addPanel(A));
-        D || (D = new BimFish.Viewing.Extensions.Measure.Snapper(d), f.toolController.registerTool(D))
+        Z && !A && (A = new BimKing.Viewing.Extensions.Measure.MeasurePanel(a, f, "measure-panel", "Measure", g), f.addPanel(A));
+        D || (D = new BimKing.Viewing.Extensions.Measure.Snapper(d), f.toolController.registerTool(D))
     };
     this.deregister = function () {
         this.deactivate();
@@ -27530,8 +27530,8 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
         A && (A.setVisible(!0), A.updatePanel(), f.model && f.model.is2d() && A.isolate.setVisibility(!1), C ? A.disableUnitOption(0) : A.disableUnitOption());
         f.clearSelection();
         f.toolController.activateTool("snapper");
-        f.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, h);
-        f.addEventListener(BimFish.Viewing.RESET_EVENT, c)
+        f.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, h);
+        f.addEventListener(BimKing.Viewing.RESET_EVENT, c)
     };
     this.deactivate = function () {
         k = !1;
@@ -27542,8 +27542,8 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
         H = {};
         A && (A.setVisible(!1), A.updatePanel());
         D && D.isActive() && f.toolController.deactivateTool("snapper");
-        f.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, h);
-        f.removeEventListener(BimFish.Viewing.RESET_EVENT, c)
+        f.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, h);
+        f.removeEventListener(BimKing.Viewing.RESET_EVENT, c)
     };
     this.update = function () {
         return !1
@@ -27561,10 +27561,10 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
         B !== a && (B = a, u && u.updateDistance())
     };
     this.getDistance = function (a) {
-        if (f.model && f.model.isLoadDone()) return a = BimFish.Viewing.Private.convertUnits(f.model.getUnitString(), C, H[a] || 0), BimFish.Viewing.Private.formatValueWithUnits(a, C, 3, B)
+        if (f.model && f.model.isLoadDone()) return a = BimKing.Viewing.Private.convertUnits(f.model.getUnitString(), C, H[a] || 0), BimKing.Viewing.Private.formatValueWithUnits(a, C, 3, B)
     };
     this.getAngle = function () {
-        return BimFish.Viewing.Private.formatValueWithUnits(F, String.fromCharCode(176), 3, B)
+        return BimKing.Viewing.Private.formatValueWithUnits(F, String.fromCharCode(176), 3, B)
     };
     this.getMeasurement = function (a, b) {
         C = a || C;
@@ -27731,8 +27731,8 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
     }
 };
 (function () {
-    var d = BimFishNamespace("BimFish.Viewing.Extensions.Measure"), g = BimFish.Viewing, h = BimFish.Viewing.Extensions,
-        c = BimFish.Viewing.Private, b = BimFish.Viewing.UI, a = function (a, d, h, m, n) {
+    var d = BimKingNamespace("BimKing.Viewing.Extensions.Measure"), g = BimKing.Viewing, h = BimKing.Viewing.Extensions,
+        c = BimKing.Viewing.Private, b = BimKing.Viewing.UI, a = function (a, d, h, m, n) {
             b.DockingPanel.call(this, d.container, h, m, n);
             this.kPanelExpandedHeight = 310;
             this.kPanelCollapsedHeight = 35;
@@ -28118,10 +28118,10 @@ BimFish.Viewing.Extensions.Measure.MeasureTool = function (d, g) {
     };
     d.MeasurePanel = a
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.Measure");
+BimKingNamespace("BimKing.Viewing.Extensions.Measure");
 var SNAP_VERTEX = 0, SNAP_EDGE = 1, SNAP_FACE = 2, SNAP_CIRCULARARC = 3, SNAP_CURVEDEDGE = 4, SNAP_CURVEDFACE = 5,
     SNAP_PRECISION = .001;
-BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
+BimKing.Viewing.Extensions.Measure.Snapper = function (d) {
     function g(a, b) {
         this.viewer = a;
         this.snapper = b;
@@ -28488,7 +28488,7 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
             if ("undefined" !== typeof f) if (Array.isArray(f) || (f = [f]), p = c, b = this.setDetectRadius(c), null == d.model.getFragmentList()) v = !0, r = SNAP_VERTEX, m = c, this.drawPoint(m); else {
                 for (var h = new g(d, this), l = 0; l < f.length; ++l) {
                     var n = d.impl.getRenderProxy(d.model, f[l]);
-                    (new BimFish.Viewing.Private.VertexBufferReader(n.geometry)).enumGeomsForObject(a.dbId, h)
+                    (new BimKing.Viewing.Private.VertexBufferReader(n.geometry)).enumGeomsForObject(a.dbId, h)
                 }
                 if (h.circularArc) {
                     if (C = h.vpIdCircular, null === F || F === C) c.distanceTo(h.circularArc.vertices[0]) < b ? (m = h.circularArc.vertices[0], this.drawPoint(m), r = SNAP_VERTEX) : c.distanceTo(h.circularArc.vertices[h.circularArc.vertices.length - 1]) < b ? (m = h.circularArc.vertices[h.circularArc.vertices.length - 1], this.drawPoint(m), r = SNAP_VERTEX) : (this.lineStripToPieces(h.circularArc), k = h.circularArc, this.drawLine(k), B = h.circularArcCenter, H = h.circularArcRadius, r = SNAP_CIRCULARARC), v = !0
@@ -28673,14 +28673,14 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
     }
 };
 (function () {
-    BimFishNamespace("BimFish.Viewing.Extensions.FirstPerson");
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonTool = function (d) {
-        var g = BimFish.Viewing.Private, h = -1 != navigator.userAgent.search("Mac OS"), c = d.navigation,
+    BimKingNamespace("BimKing.Viewing.Extensions.FirstPerson");
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonTool = function (d) {
+        var g = BimKing.Viewing.Private, h = -1 != navigator.userAgent.search("Mac OS"), c = d.navigation,
             b = d.container, a = c.getCamera(), f = ["firstperson"], l = 0,
-            k = BimFish.Viewing.theHotkeyManager.KEYCODES, m = !1, n = !0, r = !1, p = null, q = new THREE.Clock(!0),
+            k = BimKing.Viewing.theHotkeyManager.KEYCODES, m = !1, n = !0, r = !1, p = null, q = new THREE.Clock(!0),
             t = -1, v = 5E3, C = 1, B = 2, H = 0, F = -1E20, w = -1E20, u = 0, A = 0, D = !1, I = !1, E = !1, G = !1,
             L = !1, K = !1, J = !1, N;
-        if (navigator.getGamepads || navigator.webkitGetGamepads || navigator.webkitGamepads) N = new BimFish.Viewing.Extensions.GamepadModule(d);
+        if (navigator.getGamepads || navigator.webkitGetGamepads || navigator.webkitGamepads) N = new BimKing.Viewing.Extensions.GamepadModule(d);
         this.isActive = function () {
             return m
         };
@@ -28920,9 +28920,9 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
             return a.dirty
         };
         var P = function (a, c, d, f, g) {
-            BimFish.Viewing.Private.HudMessage && (BimFish.Viewing.Private.HudMessage.displayMessage(b, a, d, f, g), 0 < c ? (t = (new Date).getTime(), v = c) : (t = -1, v = 0))
+            BimKing.Viewing.Private.HudMessage && (BimKing.Viewing.Private.HudMessage.displayMessage(b, a, d, f, g), 0 < c ? (t = (new Date).getTime(), v = c) : (t = -1, v = 0))
         }, T = function () {
-            BimFish.Viewing.Private.HudMessage && BimFish.Viewing.Private.HudMessage.dismiss();
+            BimKing.Viewing.Private.HudMessage && BimKing.Viewing.Private.HudMessage.dismiss();
             t = -1
         }, da = function (a) {
             T();
@@ -28954,27 +28954,27 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
     }
 })();
 (function () {
-    BimFishNamespace("BimFish.Viewing.Extensions.FirstPerson");
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension = function (d, g) {
-        BimFish.Viewing.Extension.call(this, d, g)
+    BimKingNamespace("BimKing.Viewing.Extensions.FirstPerson");
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension = function (d, g) {
+        BimKing.Viewing.Extension.call(this, d, g)
     };
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype = Object.create(BimFish.Viewing.Extension.prototype);
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.constructor = BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension;
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.load = function () {
-        var d = this, g = this.viewer, h = BimFish.Viewing.UI;
-        this.tool = new BimFish.Viewing.Extensions.FirstPerson.FirstPersonTool(g);
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype = Object.create(BimKing.Viewing.Extension.prototype);
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.constructor = BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension;
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.load = function () {
+        var d = this, g = this.viewer, h = BimKing.Viewing.UI;
+        this.tool = new BimKing.Viewing.Extensions.FirstPerson.FirstPersonTool(g);
         g.toolController.registerTool(this.tool);
         this.createUI();
         this.onToolChanged = function (c) {
             -1 !== c.toolName.indexOf("firstperson") && d.firstPersonToolButton && d.firstPersonToolButton.setState(c.active ? h.Button.State.ACTIVE : h.Button.State.INACTIVE)
         };
-        g.addEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+        g.addEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
         return !0
     };
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.createUI = function () {
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.createUI = function () {
         var d = this.viewer;
         if (d.getToolbar) {
-            var g = this, h = BimFish.Viewing.UI, c = d.getToolbar(!0).getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID);
+            var g = this, h = BimKing.Viewing.UI, c = d.getToolbar(!0).getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID);
             this.firstPersonToolButton = new h.Button("toolbar-firstPersonTool");
             this.firstPersonToolButton.setToolTip("First person");
             this.firstPersonToolButton.onClick = function (a) {
@@ -28986,14 +28986,14 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
             b ? c.addControl(this.firstPersonToolButton, {index: c.indexOf(b.getId())}) : c.addControl(this.firstPersonToolButton)
         }
     };
-    BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.unload = function () {
+    BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension.prototype.unload = function () {
         var d = this.viewer;
-        d.removeEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+        d.removeEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
         this.onToolChanged = void 0;
-        BimFish.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
+        BimKing.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
         if (this.firstPersonToolButton) {
             var g = d.getToolbar(!1);
-            g && g.getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.firstPersonToolButton.getId());
+            g && g.getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.firstPersonToolButton.getId());
             this.firstPersonToolButton = null
         }
         d.getActiveNavigationTool() == this.tool.getName() && d.setActiveNavigationTool();
@@ -29001,12 +29001,12 @@ BimFish.Viewing.Extensions.Measure.Snapper = function (d) {
         this.tool = null;
         return !0
     };
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.FirstPerson", BimFish.Viewing.Extensions.FirstPerson.FirstPersonExtension)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.FirstPerson", BimKing.Viewing.Extensions.FirstPerson.FirstPersonExtension)
 })();
-BimFishNamespace("BimFish.Viewing.Extensions.VR");
-BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
-    var h = BimFish.Viewing, c = d.navigation, b = d.container, a = c.getCamera(), f = ["vr"], l = !1, k = null, m = !1,
-        n = 0, r = 0, p = BimFish.Viewing.theHotkeyManager.KEYCODES, q = 0, t = !1, v = !1, C = !1, B = !1, H = !1,
+BimKingNamespace("BimKing.Viewing.Extensions.VR");
+BimKing.Viewing.Extensions.VR.VRTool = function (d, g) {
+    var h = BimKing.Viewing, c = d.navigation, b = d.container, a = c.getCamera(), f = ["vr"], l = !1, k = null, m = !1,
+        n = 0, r = 0, p = BimKing.Viewing.theHotkeyManager.KEYCODES, q = 0, t = !1, v = !1, C = !1, B = !1, H = !1,
         F = !1, w = new THREE.Clock(!0), u = -1, A = 5E3, D = 1, I = 16, E = !1, G = 16, L = a.isPerspective, K = null,
         J = null, N = null, P = !1, T = -1, da = !0, Z = null, aa = null, ea = !1, U = new THREE.Vector3(0, 0, 0),
         Q = new THREE.Vector3(0, 0, 0), S = !1;
@@ -29031,7 +29031,7 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
         }, 2E3), window.addEventListener("deviceorientation", ba, !0)), S = "wearality" === (d.config && d.config.useVR ? d.config.useVR : "").toLowerCase(), fa(!0), b = d.utilities.getBoundingBox(!0).size(), D = Math.max(Math.min(Math.min(b.x, b.y), b.z) / 100, 1), this.resetPointerTracking(), d.canvas.focus(), ka(), l = !0)
     };
     this.deactivate = function (a) {
-        l && (l = !1, BimFish.Viewing.Private.HudMessage.dismiss(), u = -1, K && (N && (N.stop(), N = null), K.disconnect(), K = null, J && J.disable()), fa(!1), h.exitFullscreen(), w.stop(), M(!0))
+        l && (l = !1, BimKing.Viewing.Private.HudMessage.dismiss(), u = -1, K && (N && (N.stop(), N = null), K.disconnect(), K = null, J && J.disable()), fa(!1), h.exitFullscreen(), w.stop(), M(!0))
     };
     this.getCursor = function () {
         return "url(data:image/gif;base64,R0lGODlhGAAYAMIDAAQEBH19feDg4P///////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAAQALAAAAAAYABgAAAMqSLrc/jDKSau9OOvN8fjDNghBIITZEABAgHpr+15jeYpgp+987//AICEBADs\x3d), auto"
@@ -29040,7 +29040,7 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
         var b = document.getElementsByClassName("toolbar-menu");
         0 < b.length && "" !== b[0] && (b[0].style.display = a ? "block" : "none")
     }, fa = function (a) {
-        a !== !!k && (console.log("Enable Render Context: " + a), a ? (d.displayViewCube(!1, !1), (L = d.navigation.isPerspective) || d.navigation.toPerspective(), a = !!Z, k = new BimFish.Viewing.Extensions.Oculus.StereoRenderContext(S ? {
+        a !== !!k && (console.log("Enable Render Context: " + a), a ? (d.displayViewCube(!1, !1), (L = d.navigation.isPerspective) || d.navigation.toPerspective(), a = !!Z, k = new BimKing.Viewing.Extensions.Oculus.StereoRenderContext(S ? {
             useWarp: a,
             HMD: {
                 hResolution: 1920,
@@ -29053,7 +29053,7 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
                 distortionK: [1, .22, .24, 0],
                 chromaAbParameter: [.996, -.004, 1.014, 0]
             }
-        } : {useWarp: a}), d.impl.setUserRenderContext(k), d.resize(d.canvas.clientWidth, d.canvas.clientHeight), Z ? h.launchFullscreen(d.impl.canvas, {vrDisplay: Z}) : h.launchFullscreen(d.impl.canvas)) : (k = null, d.impl.setUserRenderContext(null), d.setScreenMode(BimFish.Viewing.ScreenMode.kNormal), d.displayViewCube(d.prefs.get("viewCube"), !1)))
+        } : {useWarp: a}), d.impl.setUserRenderContext(k), d.resize(d.canvas.clientWidth, d.canvas.clientHeight), Z ? h.launchFullscreen(d.impl.canvas, {vrDisplay: Z}) : h.launchFullscreen(d.impl.canvas)) : (k = null, d.impl.setUserRenderContext(null), d.setScreenMode(BimKing.Viewing.ScreenMode.kNormal), d.displayViewCube(d.prefs.get("viewCube"), !1)))
     };
     this.handleSingleTap = function (a) {
         if (K && a.pointers) {
@@ -29197,7 +29197,7 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
     this.update = function (b) {
         if (l) {
             b = w.getDelta();
-            -1 < u && (new Date).getTime() - u > A && (BimFish.Viewing.Private.HudMessage.dismiss(), u = -1);
+            -1 < u && (new Date).getTime() - u > A && (BimKing.Viewing.Private.HudMessage.dismiss(), u = -1);
             var d;
             if (d = !!Z) if (aa) {
                 d = aa.getState();
@@ -29263,8 +29263,8 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
         console.log("VR Supported (DeviceOrientation): Google Goggles, etc.");
         return !0
     }, ca = function (a, c) {
-        BimFish.Viewing.Private.HudMessage.dismiss();
-        BimFish.Viewing.Private.HudMessage.displayMessage(b, a);
+        BimKing.Viewing.Private.HudMessage.dismiss();
+        BimKing.Viewing.Private.HudMessage.displayMessage(b, a);
         u = (new Date).getTime();
         if (!c || 0 >= c) c = 5E3;
         A = c
@@ -29276,7 +29276,7 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
         }, 3E3)
     }, ga = function (a, b) {
         if (!b || 0 >= b) b = 250;
-        var c = BimFish.Viewing.i18n.translate("START Auto Move"), d = BimFish.Viewing.i18n.translate("STOP Auto Move");
+        var c = BimKing.Viewing.i18n.translate("START Auto Move"), d = BimKing.Viewing.i18n.translate("STOP Auto Move");
         ca({
             msgTitleKey: "VR Toggle Move",
             messageKey: "VR Toggle Move",
@@ -29285,26 +29285,26 @@ BimFish.Viewing.Extensions.VR.VRTool = function (d, g) {
     }
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.VR");
-BimFish.Viewing.Extensions.VR.VRExtension = function (d, g) {
-    BimFish.Viewing.Extension.call(this, d, g)
+BimKingNamespace("BimKing.Viewing.Extensions.VR");
+BimKing.Viewing.Extensions.VR.VRExtension = function (d, g) {
+    BimKing.Viewing.Extension.call(this, d, g)
 };
-BimFish.Viewing.Extensions.VR.VRExtension.prototype = Object.create(BimFish.Viewing.Extension.prototype);
-BimFish.Viewing.Extensions.VR.VRExtension.prototype.constructor = BimFish.Viewing.Extensions.VR.VRExtension;
-BimFish.Viewing.Extensions.VR.VRExtension.prototype.load = function () {
-    var d = this, g = this.viewer, h = g.getToolbar(!0), c = BimFish.Viewing.UI;
-    this.tool = new BimFish.Viewing.Extensions.VR.VRTool(g, this);
+BimKing.Viewing.Extensions.VR.VRExtension.prototype = Object.create(BimKing.Viewing.Extension.prototype);
+BimKing.Viewing.Extensions.VR.VRExtension.prototype.constructor = BimKing.Viewing.Extensions.VR.VRExtension;
+BimKing.Viewing.Extensions.VR.VRExtension.prototype.load = function () {
+    var d = this, g = this.viewer, h = g.getToolbar(!0), c = BimKing.Viewing.UI;
+    this.tool = new BimKing.Viewing.Extensions.VR.VRTool(g, this);
     g.toolController.registerTool(this.tool);
     this.createUI(h);
     this.onToolChanged = function (b) {
         -1 !== b.toolName.indexOf("vr") && d.vrToolButton.setState(b.active ? c.Button.State.ACTIVE : c.Button.State.INACTIVE)
     };
-    g.addEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+    g.addEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
     return !0
 };
-BimFish.Viewing.Extensions.VR.VRExtension.prototype.createUI = function (d) {
-    var g = this, h = this.viewer, c = BimFish.Viewing.UI;
-    d = d.getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID);
+BimKing.Viewing.Extensions.VR.VRExtension.prototype.createUI = function (d) {
+    var g = this, h = this.viewer, c = BimKing.Viewing.UI;
+    d = d.getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID);
     this.vrToolButton = new c.Button("toolbar-vrTool");
     this.vrToolButton.setToolTip("Virtual Reality Tool");
     this.vrToolButton.setIcon("toolbar-vrToolButton");
@@ -29315,23 +29315,23 @@ BimFish.Viewing.Extensions.VR.VRExtension.prototype.createUI = function (d) {
     var b = d.getControl("toolbar-cameraSubmenuTool");
     b ? d.addControl(this.vrToolButton, {index: d.indexOf(b.getId())}) : d.addControl(this.vrToolButton)
 };
-BimFish.Viewing.Extensions.VR.VRExtension.prototype.unload = function () {
+BimKing.Viewing.Extensions.VR.VRExtension.prototype.unload = function () {
     var d = this.viewer;
-    d.removeEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
+    d.removeEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChanged);
     this.onToolChanged = void 0;
-    BimFish.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
+    BimKing.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
     var g = d.getToolbar(!1);
-    g && g.getControl(BimFish.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.vrToolButton.getId());
+    g && g.getControl(BimKing.Viewing.TOOLBAR.NAVTOOLSID).removeControl(this.vrToolButton.getId());
     this.vrToolButton = null;
     d.toolController.deregisterTool(this.tool);
     this.tool = null;
     return !0
 };
-BimFish.Viewing.theExtensionManager.registerExtension("BimFish.VR", BimFish.Viewing.Extensions.VR.VRExtension);
+BimKing.Viewing.theExtensionManager.registerExtension("BimKing.VR", BimKing.Viewing.Extensions.VR.VRExtension);
 var testScale;
 (function () {
     function d(a, b) {
-        BimFish.Viewing.Extension.call(this, a, b)
+        BimKing.Viewing.Extension.call(this, a, b)
     }
 
     function g(a) {
@@ -29348,7 +29348,7 @@ var testScale;
             return a
         }
 
-        var g = (new BimFish.Viewing.Private.ViewerState(a)).getState().viewport, h = g.eye, l = g.target, q = g.up,
+        var g = (new BimKing.Viewing.Private.ViewerState(a)).getState().viewport, h = g.eye, l = g.target, q = g.up,
             h = f(h, a), l = f(l, a), h = d(h), l = d(l), q = d(q), l = b([l[0] - h[0], l[1] - h[1], l[2] - h[2]]),
             q = b(q), t;
         t = g.isOrthographic ? g.orthographicHeight * g.aspectRatio : g.fieldOfView * g.aspectRatio * Math.PI / 180;
@@ -29405,7 +29405,7 @@ var testScale;
             return a
         })(f.viewport.eye, a);
         f.viewport.target = [f.viewport.eye[0] + 10 * g[0], f.viewport.eye[1] + 10 * g[1], f.viewport.eye[2] + 10 * g[2]];
-        (new BimFish.Viewing.Private.ViewerState(a)).restoreState(f)
+        (new BimKing.Viewing.Private.ViewerState(a)).restoreState(f)
     }
 
     function c(a) {
@@ -29434,7 +29434,7 @@ var testScale;
         return [b * a, c * a, d * a]
     }
 
-    var a = BimFishNamespace("BimFish.Viewing.Extensions.RaaS"), f = Object.create(BimFish.Viewing.Extension.prototype);
+    var a = BimKingNamespace("BimKing.Viewing.Extensions.RaaS"), f = Object.create(BimKing.Viewing.Extension.prototype);
     f.constructor = d;
     a.RaaS = d;
     var f = d.prototype;
@@ -29458,11 +29458,11 @@ var testScale;
     f.setCameraFromRenderDescriptor = function (a) {
         return h(this.viewer, a)
     };
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.RaaS", d)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.RaaS", d)
 })();
 (function () {
-    BimFishNamespace("BimFish.Viewing.Extensions.FusionOrbit");
-    var d = BimFish.Viewing, g = d.UI, h = d.Extensions.FusionOrbit, c = function (b, a) {
+    BimKingNamespace("BimKing.Viewing.Extensions.FusionOrbit");
+    var d = BimKing.Viewing, g = d.UI, h = d.Extensions.FusionOrbit, c = function (b, a) {
         d.Extension.call(this, b, a)
     };
     c.prototype = Object.create(d.Extension.prototype);
@@ -29514,12 +29514,12 @@ var testScale;
         return !0
     };
     h.FusionOrbitExtension = c;
-    d.theExtensionManager.registerExtension("BimFish.Viewing.FusionOrbit", c)
+    d.theExtensionManager.registerExtension("BimKing.Viewing.FusionOrbit", c)
 })();
-BimFish.Viewing.Extensions.FusionOrbit.html = '\x3cdiv class\x3d"orbit-gizmo noselect"\x3e\n\x3cdiv class\x3d"outside"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"ring"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"layout-hor"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-mid"\x3e\n\x3cdiv class\x3d"layout-ver"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"circle"\x3e\n\x3cdiv class\x3d"crosshair-area"\x3e\n\x3cdiv class\x3d"crosshair-v"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"crosshair-h"\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-ver"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-hor"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e';
-BimFish.Viewing.Extensions.FusionOrbit.FusionOrbitTool = function () {
-    var d = BimFish.Viewing.Private, g = ["fusion orbit", "fusion orbit constrained"], h, c, b, a, f, l,
-        k = BimFish.Viewing.isTouchDevice(), m = !1,
+BimKing.Viewing.Extensions.FusionOrbit.html = '\x3cdiv class\x3d"orbit-gizmo noselect"\x3e\n\x3cdiv class\x3d"outside"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"ring"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"layout-hor"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-mid"\x3e\n\x3cdiv class\x3d"layout-ver"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"circle"\x3e\n\x3cdiv class\x3d"crosshair-area"\x3e\n\x3cdiv class\x3d"crosshair-v"\x3e\x3c/div\x3e\n\x3cdiv class\x3d"crosshair-h"\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-ver"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e\n\x3cdiv class\x3d"layout-hor"\x3e\n\x3cdiv class\x3d"edgemark-area"\x3e\x3cdiv class\x3d"edgemark"\x3e\x3c/div\x3e\x3c/div\x3e\n\x3c/div\x3e\n\x3c/div\x3e';
+BimKing.Viewing.Extensions.FusionOrbit.FusionOrbitTool = function () {
+    var d = BimKing.Viewing.Private, g = ["fusion orbit", "fusion orbit constrained"], h, c, b, a, f, l,
+        k = BimKing.Viewing.isTouchDevice(), m = !1,
         n = {buttons: [], src: void 0, x: 0, y: 0, dx: 0, dy: 0, firstMove: !0, mode: void 0}, r = this;
     this.setViewer = function (a) {
         this.navapi = (this.viewer = a) ? a.navigation : null
@@ -29566,7 +29566,7 @@ BimFish.Viewing.Extensions.FusionOrbit.FusionOrbitTool = function () {
                     h.normalize();
                     g = g.clone().cross(h);
                     l.up.applyAxisAngle(b, 1 * -Math.asin(g.z))
-                } else 0 === n.mode ? (h = .005 * -n.dx, f && (l.up = BimFish.Viewing.Navigation.snapToAxis(l.up.clone())), g = l.up) : 1 === n.mode && (h = .005 * -n.dy, f ? (n.firstMove && (l.up = BimFish.Viewing.Navigation.snapToAxis(l.up.clone())), g = b.clone().cross(l.up).normalize()) : g = a, l.up.applyAxisAngle(g, h)), b = r.navapi.getPivotPoint(), a = l.position.clone().sub(b), a.applyAxisAngle(g, h), l.position.addVectors(b, a), a = l.target.clone().sub(b), a.applyAxisAngle(g, h), l.target.addVectors(b, a);
+                } else 0 === n.mode ? (h = .005 * -n.dx, f && (l.up = BimKing.Viewing.Navigation.snapToAxis(l.up.clone())), g = l.up) : 1 === n.mode && (h = .005 * -n.dy, f ? (n.firstMove && (l.up = BimKing.Viewing.Navigation.snapToAxis(l.up.clone())), g = b.clone().cross(l.up).normalize()) : g = a, l.up.applyAxisAngle(g, h)), b = r.navapi.getPivotPoint(), a = l.position.clone().sub(b), a.applyAxisAngle(g, h), l.position.addVectors(b, a), a = l.target.clone().sub(b), a.applyAxisAngle(g, h), l.target.addVectors(b, a);
                 l.dirty = !0
             }
             n.firstMove = !1
@@ -29591,7 +29591,7 @@ BimFish.Viewing.Extensions.FusionOrbit.FusionOrbitTool = function () {
         r.navapi.setRequestTransition(!0, d, c, l.fov)
     };
     this.register = function () {
-        h = d.stringToDOM(BimFish.Viewing.Extensions.FusionOrbit.html);
+        h = d.stringToDOM(BimKing.Viewing.Extensions.FusionOrbit.html);
         h.style.display = "none";
         this.viewer.canvasWrap.insertBefore(h, this.viewer.canvasWrap.firstChild);
         b = h.querySelector(".ring");
@@ -29692,7 +29692,7 @@ BimFish.Viewing.Extensions.FusionOrbit.FusionOrbitTool = function () {
         b.style.borderWidth = "" + .1 * a + "px"
     }
 };
-BimFishNamespace("BimFish.Viewing.Private.Collaboration");
+BimKingNamespace("BimKing.Viewing.Private.Collaboration");
 (function () {
     function d(a, b, d) {
         function f(b) {
@@ -29715,10 +29715,10 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
                 var b = a.impl.model.getData().bbox.size().length();
                 t *= b;
                 v *= b;
-                a.removeEventListener(BimFish.Viewing.PROGRESS_UPDATE_EVENT, w)
+                a.removeEventListener(BimKing.Viewing.PROGRESS_UPDATE_EVENT, w)
             }
         };
-        a.addEventListener(BimFish.Viewing.MODEL_ROOT_LOADED_EVENT, w);
+        a.addEventListener(BimKing.Viewing.MODEL_ROOT_LOADED_EVENT, w);
         this.getNames = function () {
             return ["joystick"]
         };
@@ -29807,7 +29807,7 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
         }
     }
 
-    var g = BimFish.Viewing, h = g.Extensions, c = g.Private, b = g.UI;
+    var g = BimKing.Viewing, h = g.Extensions, c = g.Private, b = g.UI;
     h.RemoteControl = function (a, b) {
         g.Extension.call(this, a, b);
         this.viewer = a;
@@ -29827,7 +29827,7 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
         };
         this.controlButton.setIcon("adsk-icon-game-controller");
         c.modelTools.addControl(this.controlButton);
-        this.panel = new BimFish.Viewing.UI.DockingPanel(c.container, "remote-panel", "Remote Control");
+        this.panel = new BimKing.Viewing.UI.DockingPanel(c.container, "remote-panel", "Remote Control");
         this.panel.width = 300;
         this.panel.height = 375;
         this.panel.container.style.width = this.panel.width + "px";
@@ -29837,9 +29837,9 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
         this.panel.body = document.createElement("div");
         this.panel.body.classList.add("body");
         this.panel.container.appendChild(this.panel.body);
-        var c = BimFish.Viewing.i18n.translate("Go to this link"),
-            d = BimFish.Viewing.i18n.translate("Scan the QR code with your device"),
-            g = BimFish.Viewing.i18n.translate("or");
+        var c = BimKing.Viewing.i18n.translate("Go to this link"),
+            d = BimKing.Viewing.i18n.translate("Scan the QR code with your device"),
+            g = BimKing.Viewing.i18n.translate("or");
         this.panel.body.innerHTML = ['\x3cp data-i18n\x3d"' + c + '"\x3e' + c + "\x3c/p\x3e", '\x3cp\x3e\x3ca class\x3d"url" target\x3d"_blank" href\x3d"#"\x3eLink\x3c/a\x3e\x3c/p\x3e', '\x3cp data-i18n\x3d"' + g + '"\x3e' + g + "\x3c/p\x3e", '\x3cp data-i18n\x3d"' + d + '"\x3e' + d + "\x3c/p\x3e", '\x3cimg class\x3d"qr-img" src\x3d""\x3e'].join("\n");
         this.panel.link = this.panel.container.querySelector(".url");
         this.panel.code = this.panel.container.querySelector(".code");
@@ -29847,12 +29847,12 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
     };
     h.RemoteControl.prototype.load = function () {
         function a(d) {
-            b.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, a);
+            b.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, a);
             c.createUI()
         }
 
         var b = this.viewer, c = this;
-        b.modelTools && 0 < b.modelTools.getNumberOfControls() ? c.createUI() : b.addEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, a);
+        b.modelTools && 0 < b.modelTools.getNumberOfControls() ? c.createUI() : b.addEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, a);
         return !0
     };
     h.RemoteControl.prototype.unload = function () {
@@ -29912,18 +29912,18 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
         this.viewer.toolController.deactivateTool(this.controllerTool.getName());
         this.removeCrosshair()
     };
-    g.theExtensionManager.registerExtension("BimFish.Viewing.RemoteControl", h.RemoteControl)
+    g.theExtensionManager.registerExtension("BimKing.Viewing.RemoteControl", h.RemoteControl)
 })();
 (function () {
-    BimFishNamespace("BimFish.Viewing.Extensions.GamepadModule");
-    BimFish.Viewing.Extensions.GamepadModule = function (d) {
+    BimKingNamespace("BimKing.Viewing.Extensions.GamepadModule");
+    BimKing.Viewing.Extensions.GamepadModule = function (d) {
         function g() {
             for (var a in E) if (E.hasOwnProperty(a) && n.buttons[a].pressed && .5 != n.buttons[a].value) return m[a] = !0;
             for (a in m) if (m.hasOwnProperty(a) && m[a]) return !0;
             return !(.1 > Math.abs(n.axes[D.LEFT_STICK_X]) && .1 > Math.abs(n.axes[D.LEFT_STICK_Y]) && .1 > Math.abs(n.axes[D.RIGHT_STICK_X]) && .1 > Math.abs(n.axes[D.RIGHT_STICK_Y]))
         }
 
-        var h = BimFish.Viewing.Private, c = d.navigation, b = d.container, a = c.getCamera(), f = 1, l = 0, k = 6,
+        var h = BimKing.Viewing.Private, c = d.navigation, b = d.container, a = c.getCamera(), f = 1, l = 0, k = 6,
             m = {}, n, r, p, q, t, v, C, B = new THREE.Clock(!0), H = {
                 seedURN: !1,
                 objectSet: !0,
@@ -29951,7 +29951,7 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
             var b = d.model.getBoundingBox().size();
             f = Math.max(Math.min(Math.min(b.x, b.y), b.z) / 10, 1E-4);
             n = navigator.getGamepads()[0];
-            q = new BimFish.Viewing.Private.ViewerState(d);
+            q = new BimKing.Viewing.Private.ViewerState(d);
             t = [];
             v = 0;
             u = a;
@@ -29979,7 +29979,7 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
             d && (a = d);
             b = B.getDelta();
             n = navigator.getGamepads()[0];
-            -1 < r && (new Date).getTime() - r > p && (BimFish.Viewing.Private.HudMessage.dismiss(), r = -1);
+            -1 < r && (new Date).getTime() - r > p && (BimKing.Viewing.Private.HudMessage.dismiss(), r = -1);
             if (n && (F = 2 * b * f * k, a.isPerspective || c.toPerspective(), n && g())) {
                 a.dirty = !0;
                 C && (w = a.position.z);
@@ -30100,9 +30100,9 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
             d.getPropertyPanel(!0).setVisible(!d.getPropertyPanel(!0).isVisible())
         }, fa = function () {
             if (C = !C) w = a.position.z;
-            BimFish.Viewing.Private.HudMessage.dismiss();
+            BimKing.Viewing.Private.HudMessage.dismiss();
             r = -1;
-            BimFish.Viewing.Private.HudMessage.displayMessage(b, {
+            BimKing.Viewing.Private.HudMessage.displayMessage(b, {
                 msgTitleKey: "View Orientation Drag Mode Toggled",
                 messageKey: "View Orientation Drag Mode Toggled",
                 messageDefaultValue: C ? "Vertical Lock Mode" : "Fly mode"
@@ -30113,87 +30113,87 @@ BimFishNamespace("BimFish.Viewing.Private.Collaboration");
     }
 })();
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Section");
-BimFish.Viewing.Extensions.Section.SectionExtension = function (d, g) {
-    BimFish.Viewing.Extension.call(this, d, g);
+BimKingNamespace("BimKing.Viewing.Extensions.Section");
+BimKing.Viewing.Extensions.Section.SectionExtension = function (d, g) {
+    BimKing.Viewing.Extension.call(this, d, g);
     this.viewer = d
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype = Object.create(BimFish.Viewing.Extension.prototype);
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.constructor = BimFish.Viewing.Extensions.Section.SectionExtension;
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.load = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype = Object.create(BimKing.Viewing.Extension.prototype);
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.constructor = BimKing.Viewing.Extensions.Section.SectionExtension;
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.load = function () {
     var d = this, g = this.viewer;
-    this.tool = new BimFish.Viewing.Extensions.Section.SectionTool(g);
+    this.tool = new BimKing.Viewing.Extensions.Section.SectionTool(g);
     g.toolController.registerTool(this.tool);
     this.sectionStyle = null;
     this.supportedStyles = ["X", "Y", "Z", "BOX"];
-    if (g.getToolbar) if (g.getToolbar(!0)) this.onToolbarCreated(); else this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this), g.addEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded);
+    if (g.getToolbar) if (g.getToolbar(!0)) this.onToolbarCreated(); else this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this), g.addEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded);
     this.onResetBinded = this.onReset.bind(this);
-    g.addEventListener(BimFish.Viewing.RESET_EVENT, this.onResetBinded);
-    this.HOTKEYS_ID = "BimFish.Section.Hotkeys";
-    BimFish.Viewing.theHotkeyManager.pushHotkeys(this.HOTKEYS_ID, [{
-        keycodes: [BimFish.Viewing.theHotkeyManager.KEYCODES.ESCAPE],
+    g.addEventListener(BimKing.Viewing.RESET_EVENT, this.onResetBinded);
+    this.HOTKEYS_ID = "BimKing.Section.Hotkeys";
+    BimKing.Viewing.theHotkeyManager.pushHotkeys(this.HOTKEYS_ID, [{
+        keycodes: [BimKing.Viewing.theHotkeyManager.KEYCODES.ESCAPE],
         onRelease: function () {
             return d.enableSectionTool(!1)
         }
     }]);
     return !0
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.unload = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.unload = function () {
     var d = this.viewer;
-    BimFish.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
+    BimKing.Viewing.theHotkeyManager.popHotkeys(this.HOTKEYS_ID);
     this.destroyUI();
-    d.removeEventListener(BimFish.Viewing.RESET_EVENT, this.onResetBinded);
+    d.removeEventListener(BimKing.Viewing.RESET_EVENT, this.onResetBinded);
     this.onResetBinded = null;
-    this.onToolbarCreatedBinded && (d.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded), this.onToolbarCreatedBinded = null);
+    this.onToolbarCreatedBinded && (d.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded), this.onToolbarCreatedBinded = null);
     d.toolController.deregisterTool(this.tool);
     this.tool = null;
     return !0
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.isActive = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.isActive = function () {
     return this.tool.isActive()
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.toggle = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.toggle = function () {
     this.isActive() ? this.enableSectionTool(!1) : this.setSectionStyle(this.sectionStyle || "X", !0);
     return this.isActive()
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.getSectionStyle = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.getSectionStyle = function () {
     return this.sectionStyle
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.setSectionStyle = function (d, g) {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.setSectionStyle = function (d, g) {
     if (-1 === this.supportedStyles.indexOf(d)) return !1;
     var h = this.isActive(), c = this.sectionStyle !== d || !g;
     this.sectionStyle = d;
     h && c ? this.tool.setSection(d) : h || (this.enableSectionTool(!0), c ? this.tool.setSection(d) : this.tool.attachControl(!0));
     return !0
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.enableSectionTool = function (d) {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.enableSectionTool = function (d) {
     var g = this.viewer.toolController, h = this.tool.isActive();
-    return d && !h ? (g.activateTool("section"), this.sectionToolButton && this.sectionToolButton.setState(BimFish.Viewing.UI.Button.State.ACTIVE), !0) : !d && h ? (g.deactivateTool("section"), this.sectionToolButton && this.sectionToolButton.setState(BimFish.Viewing.UI.Button.State.INACTIVE), !0) : !1
+    return d && !h ? (g.activateTool("section"), this.sectionToolButton && this.sectionToolButton.setState(BimKing.Viewing.UI.Button.State.ACTIVE), !0) : !d && h ? (g.deactivateTool("section"), this.sectionToolButton && this.sectionToolButton.setState(BimKing.Viewing.UI.Button.State.INACTIVE), !0) : !1
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.onToolbarCreated = function () {
-    this.onToolbarCreatedBinded && (this.viewer.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded), this.onToolbarCreatedBinded = null);
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.onToolbarCreated = function () {
+    this.onToolbarCreatedBinded && (this.viewer.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded), this.onToolbarCreatedBinded = null);
     this.createUI()
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.onReset = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.onReset = function () {
     this.tool.resetSection()
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.createUI = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.createUI = function () {
     var d = this.viewer;
-    this.sectionToolButton = new BimFish.Viewing.UI.ComboButton("toolbar-sectionTool");
+    this.sectionToolButton = new BimKing.Viewing.UI.ComboButton("toolbar-sectionTool");
     this.sectionToolButton.setToolTip("Section analysis");
     this.sectionToolButton.setIcon("adsk-icon-section-analysis");
     this.createSubmenu(this.sectionToolButton);
-    var d = d.getToolbar(!1).getControl(BimFish.Viewing.TOOLBAR.MODELTOOLSID), g = d.getControl("toolbar-resetTool");
+    var d = d.getToolbar(!1).getControl(BimKing.Viewing.TOOLBAR.MODELTOOLSID), g = d.getControl("toolbar-resetTool");
     g ? d.addControl(this.sectionToolButton, {index: d.indexOf(g.getId())}) : d.addControl(this.sectionToolButton, {index: 0})
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.createSubmenu = function (d) {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.createSubmenu = function (d) {
     function g(b, d) {
         return function () {
             var f = b.getState(), g = function () {
                 c.enableSectionTool(!0);
                 !1 === b instanceof a.ComboButton ? c.tool.setSection(d) : c.tool.attachControl(!0)
             };
-            f === a.Button.State.INACTIVE ? (b.setState(a.Button.State.ACTIVE), BimFish.Viewing.isMobileDevice() ? setTimeout(g, 1) : g()) : f === a.Button.State.ACTIVE && (b.setState(a.Button.State.INACTIVE), c.enableSectionTool(!1));
+            f === a.Button.State.INACTIVE ? (b.setState(a.Button.State.ACTIVE), BimKing.Viewing.isMobileDevice() ? setTimeout(g, 1) : g()) : f === a.Button.State.ACTIVE && (b.setState(a.Button.State.INACTIVE), c.enableSectionTool(!1));
             c.sectionStyle = d
         }
     }
@@ -30210,10 +30210,10 @@ BimFish.Viewing.Extensions.Section.SectionExtension.prototype.createSubmenu = fu
         a(p, d, 1E-4) ? c.sectionYButton.setIcon("adsk-icon-plane-x") : a(p, g, 1E-4) ? c.sectionYButton.setIcon("adsk-icon-plane-z") : c.sectionYButton.setIcon("adsk-icon-plane-y");
         a(r, f, 1E-4) ? c.sectionXButton.setIcon("adsk-icon-plane-y") : a(r, g, 1E-4) ? c.sectionXButton.setIcon("adsk-icon-plane-z") : c.sectionXButton.setIcon("adsk-icon-plane-x");
         a(q, d, 1E-4) ? c.sectionZButton.setIcon("adsk-icon-plane-x") : a(q, f, 1E-4) ? c.sectionZButton.setIcon("adsk-icon-plane-y") : c.sectionZButton.setIcon("adsk-icon-plane-z");
-        b.removeEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, h)
+        b.removeEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, h)
     }
 
-    var c = this, b = this.viewer, a = BimFish.Viewing.UI,
+    var c = this, b = this.viewer, a = BimKing.Viewing.UI,
         f = this.sectionXButton = new a.Button("toolbar-sectionTool-x");
     f.setToolTip("Add X plane");
     f.setIcon("adsk-icon-plane-x");
@@ -30234,21 +30234,21 @@ BimFish.Viewing.Extensions.Section.SectionExtension.prototype.createSubmenu = fu
     f.setIcon("adsk-icon-box");
     f.onClick = g(f, "BOX");
     d.addControl(f);
-    b.addEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, h)
+    b.addEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, h)
 };
-BimFish.Viewing.Extensions.Section.SectionExtension.prototype.destroyUI = function () {
+BimKing.Viewing.Extensions.Section.SectionExtension.prototype.destroyUI = function () {
     var d = this.viewer.getToolbar(!1);
-    if (d && (d = d.getControl(BimFish.Viewing.TOOLBAR.MODELTOOLSID)) && this.sectionToolButton) {
+    if (d && (d = d.getControl(BimKing.Viewing.TOOLBAR.MODELTOOLSID)) && this.sectionToolButton) {
         var g = d.getControl("toolbar-inspectSubMenu");
         g ? g.removeControl(this.sectionToolButton.getId()) : d.removeControl(this.sectionToolButton.getId());
         this.sectionToolButton = null
     }
 };
-BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Section", BimFish.Viewing.Extensions.Section.SectionExtension);
-BimFishNamespace("BimFish.Viewing.Extensions.Section");
-BimFish.Viewing.Extensions.Section.tintColor = {r: 1, g: 1, b: 0};
-BimFish.Viewing.Extensions.Section.tintIntensity = .2;
-BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
+BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Section", BimKing.Viewing.Extensions.Section.SectionExtension);
+BimKingNamespace("BimKing.Viewing.Extensions.Section");
+BimKing.Viewing.Extensions.Section.tintColor = {r: 1, g: 1, b: 0};
+BimKing.Viewing.Extensions.Section.tintIntensity = .2;
+BimKing.Viewing.Extensions.Section.SectionTool = function (d, g) {
     function h() {
         t.invalidate(!1, !1, !0)
     }
@@ -30274,7 +30274,7 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
         b.add(c);
         var d = new THREE.Object3D;
         b.add(d);
-        var f = BimFish.Viewing.Private, g = f.Intersector.makePlaneBasis(a), h = (new THREE.Matrix4).getInverse(g),
+        var f = BimKing.Viewing.Private, g = f.Intersector.makePlaneBasis(a), h = (new THREE.Matrix4).getInverse(g),
             b = t.matman().create2DMaterial(null, {skipCircles: !0, skipEllipticals: !0}, !1, !1),
             k = t.matman().findMaterial(null, b);
         k.transparent = !0;
@@ -30346,8 +30346,8 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
                                 q.hatchPattern = !0;
                                 q.needsUpdate = !0;
                                 q.hatchParams = new THREE.Vector2(Math.tan((p.material.id + 2) * Math.PI * .125), 10);
-                                q.hatchTintColor = BimFish.Viewing.Extensions.Section.tintColor;
-                                q.hatchTintIntensity = BimFish.Viewing.Extensions.Section.tintIntensity;
+                                q.hatchTintColor = BimKing.Viewing.Extensions.Section.tintColor;
+                                q.hatchTintIntensity = BimKing.Viewing.Extensions.Section.tintIntensity;
                                 null != q.prismType && (q.defines = {}, q.defines[q.prismType.toUpperCase()] = "", "PrismWood" == q.prismType && (q.defines.NO_UVW = ""));
                                 q = new THREE.Mesh(v, q);
                                 q.matrix.copy(h);
@@ -30386,7 +30386,7 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
         d = a.projectPoint(b.center());
         f.position.copy(d);
         f.quaternion.multiply(c);
-        for (var c = BimFish.Viewing.Private.LightPresets[t.currentLightPreset()].bgColorGradient, c = new THREE.LineBasicMaterial({
+        for (var c = BimKing.Viewing.Private.LightPresets[t.currentLightPreset()].bgColorGradient, c = new THREE.LineBasicMaterial({
             color: "rgb(" + (255 - c[0]) + "," + (255 - c[1]) + "," + (255 - c[2]) + ")",
             linewidth: 1,
             depthTest: !1
@@ -30454,7 +30454,7 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
     }
 
     var t = d.impl, v = ["section"], C = !1, B = !1, H = !0, F, w, u = [], A = [], D = [], I = "", E = null, G = !1,
-        L = !0, K = [[0, 1], [1, 3], [3, 2], [2, 0]], J = BimFish.Viewing.Extensions.Section;
+        L = !0, K = [[0, 1], [1, 3], [3, 2], [2, 0]], J = BimKing.Viewing.Extensions.Section;
     init_TransformGizmos();
     init_SectionMesh();
     var N = function () {
@@ -30557,10 +30557,10 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
     };
     this.deregister = function () {
         this.clearSection();
-        G && (t.removeOverlay("gizmo", F), F.removeEventListener("change", h), F = null, t.removeOverlay("gizmo", w), w.removeEventListener("change", h), w = null, t.removeOverlayScene("gizmo"), d.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, c), d.removeEventListener(BimFish.Viewing.ISOLATE_EVENT, b), d.removeEventListener(BimFish.Viewing.HIDE_EVENT, b), d.removeEventListener(BimFish.Viewing.SHOW_EVENT, b), G = !1)
+        G && (t.removeOverlay("gizmo", F), F.removeEventListener("change", h), F = null, t.removeOverlay("gizmo", w), w.removeEventListener("change", h), w = null, t.removeOverlayScene("gizmo"), d.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, c), d.removeEventListener(BimKing.Viewing.ISOLATE_EVENT, b), d.removeEventListener(BimKing.Viewing.HIDE_EVENT, b), d.removeEventListener(BimKing.Viewing.SHOW_EVENT, b), G = !1)
     };
     this.activate = function (a) {
-        G || (F = new THREE.TransformControls(t.camera, t.canvas, "transrotate"), F.addEventListener("change", h), F.setSnap(Math.PI / 2, Math.PI / 36), w = new THREE.TransformControls(t.camera, t.canvas, "translate"), w.addEventListener("change", h), void 0 === t.overlayScenes.gizmo && t.createOverlayScene("gizmo"), t.addOverlay("gizmo", F), t.addOverlay("gizmo", w), d.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, c), d.addEventListener(BimFish.Viewing.ISOLATE_EVENT, b), d.addEventListener(BimFish.Viewing.HIDE_EVENT, b), d.addEventListener(BimFish.Viewing.SHOW_EVENT, b), G = !0);
+        G || (F = new THREE.TransformControls(t.camera, t.canvas, "transrotate"), F.addEventListener("change", h), F.setSnap(Math.PI / 2, Math.PI / 36), w = new THREE.TransformControls(t.camera, t.canvas, "translate"), w.addEventListener("change", h), void 0 === t.overlayScenes.gizmo && t.createOverlayScene("gizmo"), t.addOverlay("gizmo", F), t.addOverlay("gizmo", w), d.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, c), d.addEventListener(BimKing.Viewing.ISOLATE_EVENT, b), d.addEventListener(BimKing.Viewing.HIDE_EVENT, b), d.addEventListener(BimKing.Viewing.SHOW_EVENT, b), G = !0);
         C = !0;
         B = !1;
         L = !0;
@@ -30646,13 +30646,13 @@ BimFish.Viewing.Extensions.Section.SectionTool = function (d, g) {
 };
 
 function init_SectionMesh() {
-    BimFish.Viewing.Extensions.Section.SectionMesh || (BimFish.Viewing.Extensions.Section.SectionMesh = function (d, g, h) {
+    BimKing.Viewing.Extensions.Section.SectionMesh || (BimKing.Viewing.Extensions.Section.SectionMesh = function (d, g, h) {
         THREE.Mesh.call(this, d, g, !1);
         this.plane = h;
         this.planeVec = new THREE.Vector4(h.normal.x, h.normal.y, h.normal.z, h.constant);
         this.connectivity = [];
         this.outlines = []
-    }, BimFish.Viewing.Extensions.Section.SectionMesh.prototype = Object.create(THREE.Mesh.prototype), BimFish.Viewing.Extensions.Section.SectionMesh.prototype.constructor = BimFish.Viewing.Extensions.Section.SectionMesh, BimFish.Viewing.Extensions.Section.SectionMesh.prototype.update = function () {
+    }, BimKing.Viewing.Extensions.Section.SectionMesh.prototype = Object.create(THREE.Mesh.prototype), BimKing.Viewing.Extensions.Section.SectionMesh.prototype.constructor = BimKing.Viewing.Extensions.Section.SectionMesh, BimKing.Viewing.Extensions.Section.SectionMesh.prototype.update = function () {
         this.plane.normal.set(0, 0, 1);
         this.plane.normal.applyQuaternion(this.quaternion);
         var d = this.plane.normal, g = -1 * this.getWorldPosition().dot(d);
@@ -30662,8 +30662,8 @@ function init_SectionMesh() {
 }
 
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Fusion360Sim");
-BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef = function () {
+BimKingNamespace("BimKing.Viewing.Extensions.Fusion360Sim");
+BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef = function () {
     this.studyNode;
     this.constraintsNode = -1;
     this.constraintNodes = [];
@@ -30678,20 +30678,20 @@ BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef = function () {
     this.modalResults = {};
     this.simExt = this.modelStructurePanel = null
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateResult = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateResult = function (d, g) {
     this.resultTypes[g] = d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateResultGroup = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateResultGroup = function (d, g) {
     this.resultGroups[g] = d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateModalResult = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.associateModalResult = function (d, g) {
     var h;
     h = this.modalResults[d];
     null == h && (h = []);
     h.push(g);
     this.modalResults[d] = h
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.reset = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.reset = function () {
     this.constraintsNode = this.studyNode = -1;
     this.constraintNodes = [];
     this.loadsNode = -1;
@@ -30706,16 +30706,16 @@ BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef.prototype.reset = function
     this.modelStructurePanel = null
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Fusion360Sim");
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel = function (d) {
+BimKingNamespace("BimKing.Viewing.Extensions.Fusion360Sim");
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel = function (d) {
     this.viewer = d;
     this.simDef = null;
-    BimFish.Viewing.UI.DockingPanel.call(this, d.container, "Simulation-Panel", "Simulation Results")
+    BimKing.Viewing.UI.DockingPanel.call(this, d.container, "Simulation-Panel", "Simulation Results")
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype = Object.create(BimFish.Viewing.UI.DockingPanel.prototype);
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.constructor = BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel;
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initialize = function () {
-    BimFish.Viewing.UI.DockingPanel.prototype.initialize.call(this);
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype = Object.create(BimKing.Viewing.UI.DockingPanel.prototype);
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.constructor = BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel;
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initialize = function () {
+    BimKing.Viewing.UI.DockingPanel.prototype.initialize.call(this);
     var d = this;
     this.kPanelExpandedHeight = 420;
     this.kPanelCollapsedHeight = 35;
@@ -30798,7 +30798,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initialize = func
     this.tbl.style.top = "310px";
     this.tbl.style.margin = "5px"
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef = function (d) {
     function g(a, b) {
         for (var c = 0; c < a.length; ++c) {
             var d = a[c];
@@ -30817,8 +30817,8 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef 
         c.setTitle(a)
     }, h);
     var b;
-    b = 1 == this.simDef.modalAnalysis ? BimFish.Viewing.i18n.translate("Modal Frequencies") : BimFish.Viewing.i18n.translate("Static Stress");
-    this.rowType ? this.cellTextType2.nodeValue = b : (this.rowType = document.createElement("tr"), this.cellType1 = document.createElement("td"), this.cellTextType1 = document.createTextNode(BimFish.Viewing.i18n.translate("Analysis Type")), this.cellType1.appendChild(this.cellTextType1), this.cellType1.style.width = "180px", this.cellType2 = document.createElement("td"), this.cellTextType2 = document.createTextNode(b), this.cellType2.appendChild(this.cellTextType2), this.rowType.appendChild(this.cellType1), this.rowType.appendChild(this.cellType2), this.tblBody.appendChild(this.rowType), this.rowNodes = document.createElement("tr"), this.cellNodes1 = document.createElement("td"), this.cellTextNodes1 = document.createTextNode(BimFish.Viewing.i18n.translate("Nodes")), this.cellNodes1.appendChild(this.cellTextNodes1), this.cellNodes2 = document.createElement("td"), this.cellTextNodes2 = document.createTextNode("1872"), this.cellNodes2.appendChild(this.cellTextNodes2), this.rowNodes.appendChild(this.cellNodes1), this.rowNodes.appendChild(this.cellNodes2), this.tblBody.appendChild(this.rowNodes), this.rowElements = document.createElement("tr"), this.cellElements1 = document.createElement("td"), this.cellTextElements1 = document.createTextNode(BimFish.Viewing.i18n.translate("Elements")), this.cellElements1.appendChild(this.cellTextElements1), this.cellElements2 = document.createElement("td"), this.cellTextElements2 = document.createTextNode("1084"), this.cellElements2.appendChild(this.cellTextElements2), this.rowElements.appendChild(this.cellElements1), this.rowElements.appendChild(this.cellElements2), this.tblBody.appendChild(this.rowElements), this.rowMin = document.createElement("tr"), this.cellMin1 = document.createElement("td"), this.cellTextMin1 = document.createTextNode(BimFish.Viewing.i18n.translate("Min")), this.cellMin1.appendChild(this.cellTextMin1), this.cellMin2 = document.createElement("td"), this.cellTextMin2 = document.createTextNode("0.000E+02 MPa"), this.cellMin2.appendChild(this.cellTextMin2), this.rowMin.appendChild(this.cellMin1), this.rowMin.appendChild(this.cellMin2), this.tblBody.appendChild(this.rowMin), this.rowMax = document.createElement("tr"), this.cellMax1 = document.createElement("td"), this.cellTextMax1 = document.createTextNode(BimFish.Viewing.i18n.translate("Max")), this.cellMax1.appendChild(this.cellTextMax1), this.cellMax2 = document.createElement("td"), this.cellTextMax2 = document.createTextNode("5.117E+02 MPa"), this.cellMax2.appendChild(this.cellTextMax2), this.rowMax.appendChild(this.cellMax1), this.rowMax.appendChild(this.cellMax2), this.tblBody.appendChild(this.rowMax));
+    b = 1 == this.simDef.modalAnalysis ? BimKing.Viewing.i18n.translate("Modal Frequencies") : BimKing.Viewing.i18n.translate("Static Stress");
+    this.rowType ? this.cellTextType2.nodeValue = b : (this.rowType = document.createElement("tr"), this.cellType1 = document.createElement("td"), this.cellTextType1 = document.createTextNode(BimKing.Viewing.i18n.translate("Analysis Type")), this.cellType1.appendChild(this.cellTextType1), this.cellType1.style.width = "180px", this.cellType2 = document.createElement("td"), this.cellTextType2 = document.createTextNode(b), this.cellType2.appendChild(this.cellTextType2), this.rowType.appendChild(this.cellType1), this.rowType.appendChild(this.cellType2), this.tblBody.appendChild(this.rowType), this.rowNodes = document.createElement("tr"), this.cellNodes1 = document.createElement("td"), this.cellTextNodes1 = document.createTextNode(BimKing.Viewing.i18n.translate("Nodes")), this.cellNodes1.appendChild(this.cellTextNodes1), this.cellNodes2 = document.createElement("td"), this.cellTextNodes2 = document.createTextNode("1872"), this.cellNodes2.appendChild(this.cellTextNodes2), this.rowNodes.appendChild(this.cellNodes1), this.rowNodes.appendChild(this.cellNodes2), this.tblBody.appendChild(this.rowNodes), this.rowElements = document.createElement("tr"), this.cellElements1 = document.createElement("td"), this.cellTextElements1 = document.createTextNode(BimKing.Viewing.i18n.translate("Elements")), this.cellElements1.appendChild(this.cellTextElements1), this.cellElements2 = document.createElement("td"), this.cellTextElements2 = document.createTextNode("1084"), this.cellElements2.appendChild(this.cellTextElements2), this.rowElements.appendChild(this.cellElements1), this.rowElements.appendChild(this.cellElements2), this.tblBody.appendChild(this.rowElements), this.rowMin = document.createElement("tr"), this.cellMin1 = document.createElement("td"), this.cellTextMin1 = document.createTextNode(BimKing.Viewing.i18n.translate("Min")), this.cellMin1.appendChild(this.cellTextMin1), this.cellMin2 = document.createElement("td"), this.cellTextMin2 = document.createTextNode("0.000E+02 MPa"), this.cellMin2.appendChild(this.cellTextMin2), this.rowMin.appendChild(this.cellMin1), this.rowMin.appendChild(this.cellMin2), this.tblBody.appendChild(this.rowMin), this.rowMax = document.createElement("tr"), this.cellMax1 = document.createElement("td"), this.cellTextMax1 = document.createTextNode(BimKing.Viewing.i18n.translate("Max")), this.cellMax1.appendChild(this.cellTextMax1), this.cellMax2 = document.createElement("td"), this.cellTextMax2 = document.createTextNode("5.117E+02 MPa"), this.cellMax2.appendChild(this.cellTextMax2), this.rowMax.appendChild(this.cellMax1), this.rowMax.appendChild(this.cellMax2), this.tblBody.appendChild(this.rowMax));
     this.resultsGroup.options.length = 0;
     if (0 == this.simDef.modalAnalysis) {
         b = Object.keys(d.resultGroups);
@@ -30831,7 +30831,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef 
             f.value = b[a];
             var l = d.resultGroups[b[a]];
             f.setAttribute("data-i18n", l);
-            f.textContent = BimFish.Viewing.i18n.translate(l);
+            f.textContent = BimKing.Viewing.i18n.translate(l);
             this.resultsGroup.add(f)
         }
     } else {
@@ -30840,7 +30840,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef 
             this.setSimObjectsVisibility();
             return
         }
-        for (a = 0; a < b.length; a++) f = document.createElement("option"), f.value = b[a], l = b[a], f.setAttribute("data-i18n", l), f.textContent = BimFish.Viewing.i18n.translate(l), this.resultsGroup.add(f)
+        for (a = 0; a < b.length; a++) f = document.createElement("option"), f.value = b[a], l = b[a], f.setAttribute("data-i18n", l), f.textContent = BimKing.Viewing.i18n.translate(l), this.resultsGroup.add(f)
     }
     1 >= this.resultsGroup.options.length ? (this.resultsGroup.disabled = !0, this.resultsGroup.style.webkitAppearance = "none", this.resultsGroup.style.mozappearance = "none", this.resultsGroup.style.MozAppearance = "none", this.resultsGroup.style.appearance = "none") : (this.resultsGroup.disabled = !1, this.resultsGroup.style.webkitAppearance = "", this.resultsGroup.style.mozappearance = "", this.resultsGroup.style.MozAppearance = "", this.resultsGroup.style.appearance = "");
     c = this;
@@ -30860,7 +30860,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimulationDef 
         c.cellTextNodes2.nodeValue = a
     }, h)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.processNodes = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.processNodes = function (d, g) {
     function h(a, b) {
         for (var c = 0; c < a.length; ++c) {
             var d = a[c];
@@ -30884,26 +30884,26 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.processNodes = fu
     }
 
     function b() {
-        0 < f.length ? c(f.shift(), b) : (BimFish.Viewing.Extensions.Fusion360Sim.$getObjectTree = function () {
+        0 < f.length ? c(f.shift(), b) : (BimKing.Viewing.Extensions.Fusion360Sim.$getObjectTree = function () {
             return l
         }, g(l))
     }
 
     var a = this, f = [], l = this.simDef;
-    l ? l.reset() : l = new BimFish.Viewing.Extensions.Fusion360Sim.SimulationDef;
+    l ? l.reset() : l = new BimKing.Viewing.Extensions.Fusion360Sim.SimulationDef;
     d.enumNodeChildren(d.getRootId(), function (a) {
         f.push(a)
     }, !0);
     b()
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initModel = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initModel = function (d, g) {
     if (this.viewer) {
         var h = this;
         h.processNodes(d, function (c) {
             c.simExt = g;
             h.setSimulationDef(c)
         });
-        h.addEventListener(h.viewer, BimFish.Viewing.ISOLATE_EVENT, function (c) {
+        h.addEventListener(h.viewer, BimKing.Viewing.ISOLATE_EVENT, function (c) {
             -1 != h.simDef.loadsNode && h.hightlightNode(h.simDef.loadsNode, !1);
             -1 != h.simDef.constraintsNode && h.hightlightNode(h.simDef.constraintsNode, !1);
             if (h.simDef.modelNodes && 0 < h.simDef.modelNodes.length) for (var b = 0; b < h.simDef.modelNodes.length; ++b) h.hightlightNode(h.simDef.modelNodes[b], !1);
@@ -30911,14 +30911,14 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.initModel = funct
         })
     }
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.hightlightNode = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.hightlightNode = function (d, g) {
     var h = this.viewer.impl, c = this, b = !1, a = this.viewer.model.getData().instanceTree;
     a && (b = a.getRootId(), b = "number" == typeof d && d === b);
     b && g || c.instanceTree.enumNodeFragments(d, function (a) {
         h.highlightFragment(c.viewer.model, a, g, !0)
     }, !0)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillResultTypes = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillResultTypes = function (d) {
     function g(b, a) {
         for (var c = 0; c < b.length; ++c) {
             var d = b[c];
@@ -30939,7 +30939,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillResultTypes =
                 b.value = a.dbId;
                 a = c.simDef.resultTypes[a.dbId];
                 b.setAttribute("data-i18n", a);
-                b.textContent = BimFish.Viewing.i18n.translate(a);
+                b.textContent = BimKing.Viewing.i18n.translate(a);
                 c.resultTypes.add(b);
                 1 >= c.resultTypes.options.length ? (c.resultTypes.disabled = !0, c.resultTypes.style.webkitAppearance = "none", c.resultTypes.style.mozappearance = "none", c.resultTypes.style.MozAppearance = "none", c.resultTypes.style.appearance = "none") : (c.resultTypes.disabled = !1, c.resultTypes.style.webkitAppearance = "", c.resultTypes.style.mozappearance = "", c.resultTypes.style.MozAppearance = "", c.resultTypes.style.appearance = "")
             }
@@ -30950,7 +30950,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillResultTypes =
         for (var l = 0; l < b.length; l++) c.viewer.getProperties(Number(b[l]), a, h)
     }, h)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillModalResultTypes = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillModalResultTypes = function (d) {
     function g(a, b) {
         for (var c = 0; c < a.length; ++c) {
             var d = a[c];
@@ -30981,46 +30981,46 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.fillModalResultTy
     d = b.simDef.modalResults[a];
     for (var f = 0; f < d.length; f++) b.viewer.getProperties(Number(d[f]), h, c)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.uninitialize = function () {
-    BimFish.Viewing.UI.DockingPanel.prototype.uninitialize.call(this);
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.uninitialize = function () {
+    BimKing.Viewing.UI.DockingPanel.prototype.uninitialize.call(this);
     this.viewer = null
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setTitle = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setTitle = function (d, g) {
     d || (d = "Simulations", g = g || {}, g.localizeTitle = !0);
-    BimFish.Viewing.UI.DockingPanel.prototype.setTitle.call(this, d, g)
+    BimKing.Viewing.UI.DockingPanel.prototype.setTitle.call(this, d, g)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setModelNodesVisible = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setModelNodesVisible = function (d) {
     if (this.simDef.modelNodes && 0 < this.simDef.modelNodes.length) for (var g = 0; g < this.simDef.modelNodes.length; g++) {
         var h = this.simDef.modelNodes[g], c = !1, b = this.viewer.model.getData().instanceTree;
         b && (c = b.getRootId(), c = "number" == typeof h && h === c);
         c || (d ? this.viewer.show(h) : this.viewer.hide(h))
     }
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isModelNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isModelNode = function (d) {
     return this.simDef.modelNodes && 0 != this.simDef.modelNodes.length ? -1 !== this.simDef.modelNodes.indexOf(d) : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setNodeVisibility = function (d, g) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setNodeVisibility = function (d, g) {
     g ? this.viewer.show(d) : this.viewer.hide(d)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimLoadNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimLoadNode = function (d) {
     return this.simDef.loadNodes ? -1 !== this.simDef.loadNodes.indexOf(d) : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimConstraintNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimConstraintNode = function (d) {
     return this.simDef.constraintNodes ? -1 !== this.simDef.constraintNodes.indexOf(d) : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimLoadsNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimLoadsNode = function (d) {
     return -1 == this.simDef.loadsNode ? !1 : this.simDef.loadsNode == d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimConstraintsNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimConstraintsNode = function (d) {
     return -1 == this.simDef.constraintsNode ? !1 : this.simDef.constraintsNode == d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimStudyNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimStudyNode = function (d) {
     return this.simDef.studyNode ? this.simDef.studyNode == d : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimResultsNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.isSimResultsNode = function (d) {
     return this.simDef.resultsNode ? this.simDef.resultsNode == d : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimObjectsVisibility = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimObjectsVisibility = function (d) {
     function g(a, b) {
         for (var c = 0; c < a.length; ++c) {
             var d = a[c];
@@ -31066,93 +31066,93 @@ BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel.prototype.setSimObjectsVisi
     } else this.setModelNodesVisible(!0), this.simDef.simExt.showResultsDlg(!1)
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Fusion360Sim");
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel = function (d, g, h) {
-    BimFish.Viewing.Extensions.ViewerModelStructurePanel.call(this, d.viewer, g, h);
+BimKingNamespace("BimKing.Viewing.Extensions.Fusion360Sim");
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel = function (d, g, h) {
+    BimKing.Viewing.Extensions.ViewerModelStructurePanel.call(this, d.viewer, g, h);
     this.viewer = d.viewer;
     this.ext = d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype = Object.create(BimFish.Viewing.Extensions.ViewerModelStructurePanel.prototype);
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.constructor = BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel;
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.setGallery = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype = Object.create(BimKing.Viewing.Extensions.ViewerModelStructurePanel.prototype);
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.constructor = BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel;
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.setGallery = function (d) {
     this.simGalleryPanel = d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.initialize = function () {
-    BimFish.Viewing.Extensions.ViewerModelStructurePanel.prototype.initialize.call(this)
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.initialize = function () {
+    BimKing.Viewing.Extensions.ViewerModelStructurePanel.prototype.initialize.call(this)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isSimResultsNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isSimResultsNode = function (d) {
     return this.simGalleryPanel && this.simGalleryPanel.simDef && this.simGalleryPanel.simDef.resultsNode ? this.simGalleryPanel.simDef.resultsNode == d : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isSimStudyNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isSimStudyNode = function (d) {
     return this.simGalleryPanel && this.simGalleryPanel.simDef && this.simGalleryPanel.simDef.studyNode ? this.simGalleryPanel.simDef.studyNode == d : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isModelNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.isModelNode = function (d) {
     return this.simGalleryPanel && this.simGalleryPanel.simDef && this.simGalleryPanel.simDef.modelNodes && 0 != this.simGalleryPanel.simDef.modelNodes.length ? -1 !== this.simGalleryPanel.simDef.modelNodes.indexOf(d) : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.shouldInclude = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.shouldInclude = function (d) {
     return this.isSimStudyNode(d) ? !1 : !0
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.onClick = function (d, g) {
-    BimFish.Viewing.Extensions.ViewerModelStructurePanel.prototype.onClick.call(this, d, g);
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.onClick = function (d, g) {
+    BimKing.Viewing.Extensions.ViewerModelStructurePanel.prototype.onClick.call(this, d, g);
     this.simGalleryPanel.setModelNodesVisible(!0);
     this.simGalleryPanel.hightlightNode(d, !0);
     this.simGalleryPanel.simDef.loadsNode && this.viewer.hide(this.simGalleryPanel.simDef.loadsNode);
     this.simGalleryPanel.simDef.constraintsNode && this.viewer.hide(this.simGalleryPanel.simDef.constraintsNode);
     this.simGalleryPanel.simDef.resultsNode && this.viewer.hide(this.simGalleryPanel.simDef.resultsNode)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.expandStudyNode = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel.prototype.expandStudyNode = function () {
     this.simGalleryPanel.simDef.studyNode && this.tree.setCollapsed(this.simGalleryPanel.simDef.studyNode, !1)
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Fusion360Sim");
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel = function (d, g, h) {
-    BimFish.Viewing.Extensions.ViewerModelStructurePanel.call(this, d.viewer, g, h);
+BimKingNamespace("BimKing.Viewing.Extensions.Fusion360Sim");
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel = function (d, g, h) {
+    BimKing.Viewing.Extensions.ViewerModelStructurePanel.call(this, d.viewer, g, h);
     this.viewer = d.viewer;
     this.ext = d;
     this.container.style.left = "350px"
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype = Object.create(BimFish.Viewing.Extensions.ViewerModelStructurePanel.prototype);
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.constructor = BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel;
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.setGallery = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype = Object.create(BimKing.Viewing.Extensions.ViewerModelStructurePanel.prototype);
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.constructor = BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel;
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.setGallery = function (d) {
     this.simGalleryPanel = d
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.isSimResultsNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.isSimResultsNode = function (d) {
     return this.simGalleryPanel && this.simGalleryPanel.simDef && this.simGalleryPanel.simDef.resultsNode ? this.simGalleryPanel.simDef.resultsNode == d : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.isModelNode = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.isModelNode = function (d) {
     return this.simGalleryPanel && this.simGalleryPanel.simDef && this.simGalleryPanel.simDef.modelNodes && 0 != this.simGalleryPanel.simDef.modelNodes.length ? 1 == this.simGalleryPanel.simDef.modelNodes.indexOf(d) : !1
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.shouldInclude = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.shouldInclude = function (d) {
     return this.isSimResultsNode(d) || this.isModelNode(d) ? !1 : !0
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.onClick = function (d, g) {
-    BimFish.Viewing.Extensions.ViewerModelStructurePanel.prototype.onClick.call(this, d, g);
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.onClick = function (d, g) {
+    BimKing.Viewing.Extensions.ViewerModelStructurePanel.prototype.onClick.call(this, d, g);
     this.simGalleryPanel.setSimObjectsVisibility(d)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.expandStudyNode = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel.prototype.expandStudyNode = function () {
     this.simGalleryPanel.simDef.studyNode && this.tree.setCollapsed(this.simGalleryPanel.simDef.studyNode, !1)
 };
 "use strict";
-BimFishNamespace("BimFish.Viewing.Extensions.Fusion360Sim");
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation = function (d, g) {
-    BimFish.Viewing.Extension.call(this, d, g);
+BimKingNamespace("BimKing.Viewing.Extensions.Fusion360Sim");
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation = function (d, g) {
+    BimKing.Viewing.Extension.call(this, d, g);
     this.viewer = d;
     this.simButton = null;
     this.useModelPanel = this.useSetupPanel = !0;
     g && (void 0 !== g.useSetupPanel && (this.useSetupPanel = g.useSetupPanel), void 0 !== g.useModelPanel && (this.useModelPanel = g.useModelPanel))
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype = Object.create(BimFish.Viewing.Extension.prototype);
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.constructor = BimFish.Viewing.Extensions.Fusion360Sim.Simulation;
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.load = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype = Object.create(BimKing.Viewing.Extension.prototype);
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.constructor = BimKing.Viewing.Extensions.Fusion360Sim.Simulation;
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.load = function () {
     var d = this, g = this.viewer;
-    d.galleryPanel = new BimFish.Viewing.Extensions.Fusion360Sim.GalleryPanel(d.viewer);
+    d.galleryPanel = new BimKing.Viewing.Extensions.Fusion360Sim.GalleryPanel(d.viewer);
     d.viewer.addPanel(d.galleryPanel);
-    d.simButton = new BimFish.Viewing.UI.Button("toolbar-simulation");
+    d.simButton = new BimKing.Viewing.UI.Button("toolbar-simulation");
     d.simButton.setToolTip("Simulation Results");
     d.simButton.onClick = function (b) {
         b = d.galleryPanel.isVisible();
         d.galleryPanel.setVisible(!b);
-        d.simButton.setState(b ? BimFish.Viewing.UI.Button.State.INACTIVE : BimFish.Viewing.UI.Button.State.ACTIVE)
+        d.simButton.setState(b ? BimKing.Viewing.UI.Button.State.INACTIVE : BimKing.Viewing.UI.Button.State.ACTIVE)
     };
     d.simButton.setIcon("toolbar-simulationIcon");
     g.settingsTools.addControl(d.simButton, {index: 1});
@@ -31162,7 +31162,7 @@ BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.load = function () 
     this.antialiazing = g.prefs.get("antialiasing");
     this.lightPreset = g.prefs.get("lightPreset");
     var h = function () {
-        g.removeEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, h);
+        g.removeEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, h);
         d.viewer.model.getObjectTree(function (b) {
             d.galleryPanel.initModel(b, d);
             d.useModelPanel && d.initModelBrowser();
@@ -31180,17 +31180,17 @@ BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.load = function () 
         })
     };
     var c = d.viewer.model;
-    c && c.isLoadDone ? (g.addEventListener(BimFish.Viewing.MODEL_ROOT_LOADED_EVENT, this.initIfLoaded), c.getObjectTree(function (b) {
+    c && c.isLoadDone ? (g.addEventListener(BimKing.Viewing.MODEL_ROOT_LOADED_EVENT, this.initIfLoaded), c.getObjectTree(function (b) {
         setTimeout(function () {
             d.galleryPanel.initModel(b, d);
             d.useModelPanel && d.initModelBrowser();
             d.useSetupPanel && d.initSetupPanel()
         }, 100)
-    })) : g.addEventListener(BimFish.Viewing.GEOMETRY_LOADED_EVENT, h);
+    })) : g.addEventListener(BimKing.Viewing.GEOMETRY_LOADED_EVENT, h);
     return !0
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.unload = function () {
-    this.viewer.removeEventListener(BimFish.Viewing.MODEL_ROOT_LOADED_EVENT, this.initIfLoaded);
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.unload = function () {
+    this.viewer.removeEventListener(BimKing.Viewing.MODEL_ROOT_LOADED_EVENT, this.initIfLoaded);
     this.showResultsDlg(!1);
     this.viewer.settingsTools.removeControl(this.simButton);
     this.viewer.removePanel(this.galleryPanel);
@@ -31203,51 +31203,51 @@ BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.unload = function (
     this.simSetupPanel && (this.simSetupPanel.setVisible(!1), this.viewer.removePanel(this.simSetupPanel), this.simSetupPanel.uninitialize());
     return !0
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.initSetupPanel = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.initSetupPanel = function () {
     var d = this;
     setTimeout(function () {
-        d.simSetupButton = new BimFish.Viewing.UI.Button("toolbar-simulation-setup");
+        d.simSetupButton = new BimKing.Viewing.UI.Button("toolbar-simulation-setup");
         d.simSetupButton.setToolTip("Simulation Setup");
         d.simSetupButton.onClick = function (g) {
             g = d.simSetupPanel.isVisible();
             d.simSetupPanel.setVisible(!g);
-            d.simSetupButton.setState(g ? BimFish.Viewing.UI.Button.State.INACTIVE : BimFish.Viewing.UI.Button.State.ACTIVE)
+            d.simSetupButton.setState(g ? BimKing.Viewing.UI.Button.State.INACTIVE : BimKing.Viewing.UI.Button.State.ACTIVE)
         };
         d.simSetupButton.setIcon("toolbar-simulationSetupIcon");
         d.viewer.settingsTools.addControl(d.simSetupButton, {index: 0});
-        d.simSetupPanel = new BimFish.Viewing.Extensions.Fusion360Sim.SimSetupPanel(d, BimFish.Viewing.i18n.translate("Simulation Setup Loading"), d.options);
+        d.simSetupPanel = new BimKing.Viewing.Extensions.Fusion360Sim.SimSetupPanel(d, BimKing.Viewing.i18n.translate("Simulation Setup Loading"), d.options);
         d.simSetupPanel.setGallery(d.galleryPanel);
         d.viewer.addPanel(d.simSetupPanel);
         d.viewer.model && d.viewer.model.getObjectTree(function (g) {
-            d.simSetupPanel.setModel(g, BimFish.Viewing.i18n.translate("Simulation Setup"))
+            d.simSetupPanel.setModel(g, BimKing.Viewing.i18n.translate("Simulation Setup"))
         })
     }, 100)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.initModelBrowser = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.initModelBrowser = function () {
     var d = this;
     setTimeout(function () {
-        d.modelStructurePanel = new BimFish.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel(d, "Simulation Model Structure Loading", d.options);
+        d.modelStructurePanel = new BimKing.Viewing.Extensions.Fusion360Sim.SimModelStructurePanel(d, "Simulation Model Structure Loading", d.options);
         d.viewer.setModelStructurePanel(d.modelStructurePanel);
         d.modelStructurePanel.setGallery(d.galleryPanel)
     }, 100)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.showResultsDlg = function (d) {
-    this.simButton.setState(d ? BimFish.Viewing.UI.Button.State.ACTIVE : BimFish.Viewing.UI.Button.State.INACTIVE);
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.showResultsDlg = function (d) {
+    this.simButton.setState(d ? BimKing.Viewing.UI.Button.State.ACTIVE : BimKing.Viewing.UI.Button.State.INACTIVE);
     this.simButton.setVisible(d);
     this.galleryPanel.setVisible(d)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.applySettings = function (d) {
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.applySettings = function (d) {
     this.viewer.hideLines(!1);
     this.viewer.setGhosting(!1);
     this.viewer.setQualityLevel(!1, !0);
     this.viewer.setLightPreset(4)
 };
-BimFish.Viewing.Extensions.Fusion360Sim.Simulation.prototype.simData = function () {
+BimKing.Viewing.Extensions.Fusion360Sim.Simulation.prototype.simData = function () {
     return this.galleryPanel.simDef
 };
-BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulation", BimFish.Viewing.Extensions.Fusion360Sim.Simulation);
+BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Fusion360.Simulation", BimKing.Viewing.Extensions.Fusion360Sim.Simulation);
 (function () {
-    var d = BimFish.Viewing, g = BimFishNamespace("BimFish.Viewing.Extensions.Hyperlink"), h = function (c, b) {
+    var d = BimKing.Viewing, g = BimKingNamespace("BimKing.Viewing.Extensions.Hyperlink"), h = function (c, b) {
         d.Extension.call(this, c, b);
         this.tool = null
     };
@@ -31266,11 +31266,11 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return !0
     };
     g.HyperlinkExtension = h;
-    d.theExtensionManager.registerExtension("BimFish.Hyperlink", h)
+    d.theExtensionManager.registerExtension("BimKing.Hyperlink", h)
 })();
 (function () {
-    var d = BimFish.Viewing;
-    BimFishNamespace("BimFish.Viewing.Extensions.Hyperlink").HyperlinkTool = function (g) {
+    var d = BimKing.Viewing;
+    BimKingNamespace("BimKing.Viewing.Extensions.Hyperlink").HyperlinkTool = function (g) {
         d.ToolInterface.call(this);
         this.names = ["hyperlink"];
         var h = -1, c = !1, b = {}, a = null, f = function (b, c, d) {
@@ -31352,7 +31352,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return c
     }
 
-    var h = BimFishNamespace("BimFish.Viewing.Comments"), c = BimFish.Viewing.Private, b = d.prototype;
+    var h = BimKingNamespace("BimKing.Viewing.Comments"), c = BimKing.Viewing.Private, b = d.prototype;
     b.destroy = function () {
         this.geometryItem = this.viewer = null
     };
@@ -31485,10 +31485,10 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
             var a = this;
             this.mappingPromise = new Promise(function (b) {
                 a.viewer.model.getExternalIdMapping(function (a) {
-                    c.logger.log("[BimFish.Comment]Successfully fetched external id mapping.");
+                    c.logger.log("[BimKing.Comment]Successfully fetched external id mapping.");
                     b(a)
                 }, function () {
-                    c.logger.error("[BimFish.Comment]Failed to fetch the external id mapping.");
+                    c.logger.error("[BimKing.Comment]Failed to fetch the external id mapping.");
                     b(null)
                 })
             })
@@ -31540,7 +31540,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return window.btoa ? window.btoa(a) : window.Base64.encode(a)
     }
 
-    var a = BimFishNamespace("BimFish.Viewing.Comments"), f = BimFish.Viewing.Private, l = d.prototype;
+    var a = BimKingNamespace("BimKing.Viewing.Comments"), f = BimKing.Viewing.Private, l = d.prototype;
     l.ENV_TABLE = {
         Local: {
             COMMENT: "https://developer-dev.api.autodesk.com/comments/v2/",
@@ -31558,22 +31558,22 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
             COMMENT: "https://developer.api.autodesk.com/comments/v2/",
             OBJECT_STORAGE: "https://developer.api.autodesk.com/oss/v1/"
         },
-        BimFishDevelopment: {
+        BimKingDevelopment: {
             COMMENT: "https://developer-dev.api.autodesk.com/comments/v2/",
             OBJECT_STORAGE: "https://developer-dev.api.autodesk.com/oss/v1/"
         },
-        BimFishStaging: {
+        BimKingStaging: {
             COMMENT: "https://developer-stg.api.autodesk.com/comments/v2/",
             OBJECT_STORAGE: "https://developer-stg.api.autodesk.com/oss/v1/"
         },
-        BimFishProduction: {
+        BimKingProduction: {
             COMMENT: "https://developer.api.autodesk.com/comments/v2/",
             OBJECT_STORAGE: "https://developer.api.autodesk.com/oss/v1/"
         }
     };
     l.init = function (b) {
         b = b || {};
-        this.env = BimFish.Viewing.Private.env;
+        this.env = BimKing.Viewing.Private.env;
         b.fakeServer && (this.fakeRequest = new a.FakeRequest(b));
         var c = this.ENV_TABLE[this.env];
         this.COMMENT_SERVICE_URL = c.COMMENT;
@@ -31666,11 +31666,11 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
 })();
 (function () {
     function d(c, b) {
-        BimFish.Viewing.Extension.call(this, c, b)
+        BimKing.Viewing.Extension.call(this, c, b)
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Comments");
-    d.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    var g = BimKingNamespace("BimKing.Viewing.Comments");
+    d.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
     h.load = function () {
@@ -31711,7 +31711,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.commentService.setToken(c)
     };
     d.prototype.setPathStorage = function (c) {
-        if (!c) throw Error("BimFish.Comments: Invalid path storage");
+        if (!c) throw Error("BimKing.Comments: Invalid path storage");
         this.commentService.setPathStorage(c)
     };
     d.prototype.getComments = function () {
@@ -31741,7 +31741,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     d.prototype.getAttachment = function (c, b, a) {
         return this.commentService.getAttachment(c, b, a)
     };
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Comments", d);
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Comments", d);
     g.CommentsExtension = d
 })();
 (function () {
@@ -31751,7 +31751,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.FAKE_NEXT_ID = 11
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Comments");
+    var g = BimKingNamespace("BimKing.Viewing.Comments");
     d.prototype.createRequest = function (d, c, b, a) {
         var f = this;
         return {
@@ -31820,7 +31820,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     g.FakeRequest = d
 })();
 (function () {
-    var d = BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core.Utils"), g = BimFish.Viewing;
+    var d = BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core.Utils"), g = BimKing.Viewing;
     d.MARKUP_DEFAULT_STROKE_WIDTH_IN_PIXELS = 5;
     d.MARKUP_DEFAULT_FONT_WIDTH_IN_PIXELS = 12;
     d.MARKUP_DEFAULT_HITAREAS_MARGIN_IN_PIXELS = 15;
@@ -32114,7 +32114,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     };
     d.dismissLmvHudMessage = function () {
         try {
-            for (var c = !0; c;) c = BimFish.Viewing.Private.HudMessage.dismiss()
+            for (var c = !0; c;) c = BimKing.Viewing.Private.HudMessage.dismiss()
         } catch (b) {
             console.warn("[CO2]Failed to dismiss LMV HudMessage")
         }
@@ -32408,24 +32408,24 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     }
 })();
 (function () {
-    BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core");
-    BimFish.Viewing.Extensions.Markups.Core.EditAction = function (d, g, h) {
+    BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core");
+    BimKing.Viewing.Extensions.Markups.Core.EditAction = function (d, g, h) {
         this.type = g;
         this.editor = d;
         this.targetId = h;
         this.selectOnExecution = this.addToHistory = !0
     };
-    BimFish.Viewing.Extensions.Markups.Core.EditAction.prototype.execute = function () {
+    BimKing.Viewing.Extensions.Markups.Core.EditAction.prototype.execute = function () {
         this.editor.actionManager.execute(this)
     };
-    BimFish.Viewing.Extensions.Markups.Core.EditAction.prototype.redo = function () {
+    BimKing.Viewing.Extensions.Markups.Core.EditAction.prototype.redo = function () {
     };
-    BimFish.Viewing.Extensions.Markups.Core.EditAction.prototype.undo = function () {
+    BimKing.Viewing.Extensions.Markups.Core.EditAction.prototype.undo = function () {
     };
-    BimFish.Viewing.Extensions.Markups.Core.EditAction.prototype.merge = function (d) {
+    BimKing.Viewing.Extensions.Markups.Core.EditAction.prototype.merge = function (d) {
         return !1
     };
-    BimFish.Viewing.Extensions.Markups.Core.EditAction.prototype.isIdentity = function () {
+    BimKing.Viewing.Extensions.Markups.Core.EditAction.prototype.isIdentity = function () {
         return !1
     }
 })();
@@ -32437,7 +32437,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         h.addTraitEventDispatcher(this)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     g.EVENT_HISTORY_CHANGED = "EVENT_HISTORY_CHANGED";
     var c = d.prototype;
     c.execute = function (b) {
@@ -32506,7 +32506,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.reset()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core.Utils, h = ["-ms-", "-webkit-", "-moz-", "-o-"], c = d.prototype;
+    var g = BimKing.Viewing.Extensions.Markups.Core.Utils, h = ["-ms-", "-webkit-", "-moz-", "-o-"], c = d.prototype;
     c.reset = function () {
         this.attributes = {};
         this.dirty = !1;
@@ -32782,7 +32782,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return a.matches ? a.matches(b) : a.msMatchesSelector ? a.msMatchesSelector(b) : a.mozMatchesSelector ? a.mozMatchesSelector(b) : a.webkitMatchesSelector ? a.webkitMatchesSelector(b) : !1
     }
 
-    var v = BimFish.Viewing.Extensions.Markups.Core, C = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var v = BimKing.Viewing.Extensions.Markups.Core, C = BimKing.Viewing.Extensions.Markups.Core.Utils;
     v.EVENT_EDITFRAME_EDITION_START = "EVENT_EDITFRAME_EDITION_START";
     v.EVENT_EDITFRAME_EDITION_END = "EVENT_EDITFRAME_EDITION_END";
     var B = "rgba(30, 30, 255, 0.30)", H = "gainsboro", F = d.prototype;
@@ -33020,7 +33020,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         h.addTraitEventDispatcher(this)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     g.MARKUP_TYPE_ARROW = "arrow";
     g.MARKUP_TYPE_TEXT = "label";
     g.MARKUP_TYPE_RECTANGLE = "rectangle";
@@ -33239,7 +33239,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33335,7 +33335,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33381,7 +33381,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33498,7 +33498,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33574,7 +33574,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33652,7 +33652,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33793,7 +33793,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -33850,7 +33850,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.bindDomEvents()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.Markup.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34007,8 +34007,8 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     g.MarkupText = d
 })();
 (function () {
-    BimFish.Viewing.Extensions.Markups.Core.MarkupTool = function () {
-        BimFish.Viewing.ToolInterface.call(this);
+    BimKing.Viewing.Extensions.Markups.Core.MarkupTool = function () {
+        BimKing.Viewing.ToolInterface.call(this);
         this.names = ["markups.core"];
         this.panTool = null;
         this.allowNav = !1;
@@ -34034,39 +34034,39 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.handleKeyDown = function (h, c) {
             if (!this.hotkeysEnabled) return !0;
             switch (c) {
-                case BimFish.Viewing.KeyCode.CONTROL:
+                case BimKing.Viewing.KeyCode.CONTROL:
                     d = !0;
                     break;
-                case BimFish.Viewing.KeyCode.SHIFT:
+                case BimKing.Viewing.KeyCode.SHIFT:
                     g = !0;
                     break;
-                case BimFish.Viewing.KeyCode.x:
+                case BimKing.Viewing.KeyCode.x:
                     d && !this.allowNav && this.coreExt.cut();
                     break;
-                case BimFish.Viewing.KeyCode.c:
+                case BimKing.Viewing.KeyCode.c:
                     d && !this.allowNav && this.coreExt.copy();
                     break;
-                case BimFish.Viewing.KeyCode.v:
+                case BimKing.Viewing.KeyCode.v:
                     d && !this.allowNav && this.coreExt.paste();
                     break;
-                case BimFish.Viewing.KeyCode.d:
+                case BimKing.Viewing.KeyCode.d:
                     d && !this.allowNav && (this.coreExt.copy(), this.coreExt.paste());
                     break;
-                case BimFish.Viewing.KeyCode.z:
+                case BimKing.Viewing.KeyCode.z:
                     !d || g || this.allowNav ? d && g && !this.allowNav && this.coreExt.redo() : this.coreExt.undo();
                     break;
-                case BimFish.Viewing.KeyCode.y:
+                case BimKing.Viewing.KeyCode.y:
                     d && !this.allowNav && this.coreExt.redo();
                     break;
-                case BimFish.Viewing.KeyCode.ESCAPE:
+                case BimKing.Viewing.KeyCode.ESCAPE:
                     this.coreExt.onUserCancel();
                     break;
-                case BimFish.Viewing.KeyCode.BACKSPACE:
-                case BimFish.Viewing.KeyCode.DELETE:
+                case BimKing.Viewing.KeyCode.BACKSPACE:
+                case BimKing.Viewing.KeyCode.DELETE:
                     var b = this.coreExt.getSelection();
                     b && this.coreExt.deleteMarkup(b);
                     break;
-                case BimFish.Viewing.KeyCode.F12:
+                case BimKing.Viewing.KeyCode.F12:
                     return !1
             }
             return !0
@@ -34074,10 +34074,10 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.handleKeyUp = function (h, c) {
             if (!this.hotkeysEnabled) return !0;
             switch (c) {
-                case BimFish.Viewing.KeyCode.CONTROL:
+                case BimKing.Viewing.KeyCode.CONTROL:
                     d = !1;
                     break;
-                case BimFish.Viewing.KeyCode.SHIFT:
+                case BimKing.Viewing.KeyCode.SHIFT:
                     g = !1
             }
             return !0
@@ -34119,7 +34119,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
 })();
 (function () {
     function d(a, b) {
-        BimFish.Viewing.Extension.call(this, a, b);
+        BimKing.Viewing.Extension.call(this, a, b);
         this.options = this.options || {};
         this.markups = [];
         this.styles = {};
@@ -34147,9 +34147,9 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         h.addRuleToStyleSheet(c, ".autodesk-markups-extension-core-make-me-bigger:after", 'content:""; position:absolute; top:-10px; bottom:-10px; left:-10px; right:-10px;', 0)
     }
 
-    var g = BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core"),
-        h = BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core.Utils");
-    d.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    var g = BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core"),
+        h = BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core.Utils");
+    d.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     d.prototype.constructor = d;
     g.MarkupsCore = d;
     g.EVENT_ENTER_EDIT_MODE = "EVENT_MARKUP_CORE_ENTER_EDIT_MODE";
@@ -34233,8 +34233,8 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         var a = this.viewer;
         if (!a || !a.model) return !1;
         if (this.duringViewMode || this.duringEditMode) return !0;
-        a.addEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
-        a.addEventListener(BimFish.Viewing.VIEWER_RESIZE_EVENT, this.onViewerResizeBinded);
+        a.addEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
+        a.addEventListener(BimKing.Viewing.VIEWER_RESIZE_EVENT, this.onViewerResizeBinded);
         a.container.appendChild(this.svg);
         this.input.enterViewMode();
         h.hideLmvUi(a);
@@ -34254,8 +34254,8 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         var a = this.viewer;
         if (!a || !this.duringViewMode) return !0;
         if (this.duringEditMode && !this.leaveEditMode()) return !1;
-        a.removeEventListener(BimFish.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
-        a.removeEventListener(BimFish.Viewing.VIEWER_RESIZE_EVENT, this.onViewerResizeBinded);
+        a.removeEventListener(BimKing.Viewing.CAMERA_CHANGE_EVENT, this.onCameraChangeBinded);
+        a.removeEventListener(BimKing.Viewing.VIEWER_RESIZE_EVENT, this.onViewerResizeBinded);
         var b = this.svg;
         b.parentNode && b.parentNode.removeChild(b);
         this.unloadMarkupsAllLayers();
@@ -34350,10 +34350,10 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
             b.disableInteractions(a)
         })
     };
-    BimFish.Viewing.Extensions.Markups.Core.MarkupsCore.prototype.activateTool = function (a) {
-        a ? (this.cachedNavigationTool || (this.cachedNavigationTool = this.viewer.getActiveNavigationTool(), this.viewer.addEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChangeBinded)), this.viewer.setActiveNavigationTool(this.markupTool.getName())) : (this.cachedNavigationTool ? (this.viewer.setActiveNavigationTool(this.cachedNavigationTool), this.cachedNavigationTool = null) : (a = this.viewer.getDefaultNavigationToolName(), this.viewer.setActiveNavigationTool(a)), this.viewer.removeEventListener(BimFish.Viewing.TOOL_CHANGE_EVENT, this.onToolChangeBinded))
+    BimKing.Viewing.Extensions.Markups.Core.MarkupsCore.prototype.activateTool = function (a) {
+        a ? (this.cachedNavigationTool || (this.cachedNavigationTool = this.viewer.getActiveNavigationTool(), this.viewer.addEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChangeBinded)), this.viewer.setActiveNavigationTool(this.markupTool.getName())) : (this.cachedNavigationTool ? (this.viewer.setActiveNavigationTool(this.cachedNavigationTool), this.cachedNavigationTool = null) : (a = this.viewer.getDefaultNavigationToolName(), this.viewer.setActiveNavigationTool(a)), this.viewer.removeEventListener(BimKing.Viewing.TOOL_CHANGE_EVENT, this.onToolChangeBinded))
     };
-    BimFish.Viewing.Extensions.Markups.Core.MarkupsCore.prototype.onToolChange = function (a) {
+    BimKing.Viewing.Extensions.Markups.Core.MarkupsCore.prototype.onToolChange = function (a) {
         if (a.toolName === this.markupTool.getName()) {
             if (a.active) {
                 var b = this.isNavigationAllowed();
@@ -34652,7 +34652,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.removeMarkup(a.markup);
         this.editMode.deleteMarkup()
     };
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Viewing.MarkupsCore", d)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Viewing.MarkupsCore", d)
 })();
 (function () {
     function d(c, b, a, d) {
@@ -34662,7 +34662,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.position = {x: d.x, y: d.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34685,7 +34685,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(k)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34711,7 +34711,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(m)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34738,7 +34738,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(m)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34766,7 +34766,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(n)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34794,7 +34794,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(n)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34822,7 +34822,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(n)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34849,7 +34849,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(m)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34875,7 +34875,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style = h.cloneStyle(m)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -34898,7 +34898,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createArrow = new g.CreateArrow(c, b.id, b.head, b.tail, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34916,7 +34916,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createCircle = new g.CreateCircle(c, b.id, b.position, b.size, b.rotation, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34934,7 +34934,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createCloud = new g.CreateCloud(c, b.id, b.position, b.size, b.rotation, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34952,7 +34952,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createFreehand = new g.CreateFreehand(c, b.id, b.position, b.size, b.rotation, b.locations, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34970,7 +34970,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createPolycloud = new g.CreatePolyline(c, b.id, b.position, b.size, b.rotation, b.locations, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -34988,7 +34988,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createPolyline = new g.CreatePolyline(c, b.id, b.position, b.size, b.rotation, b.locations, b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35001,7 +35001,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     g.DeletePolyline = d
 })();
 (function () {
-    var d = BimFish.Viewing.Extensions.Markups.Core, g = function (c, b) {
+    var d = BimKing.Viewing.Extensions.Markups.Core, g = function (c, b) {
         d.EditAction.call(this, c, "DELETE-RECTANGLE", b.id);
         this.createRectangle = new d.CreateRectangle(c, b.id, b.position, b.size, b.rotation, b.getStyle())
     };
@@ -35025,7 +35025,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         }, b.getText(), b.getStyle())
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35043,7 +35043,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.closed = !0
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = d.prototype;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = d.prototype;
     h.open = function () {
         if (!this.closed) return !1;
         this.closed = !1;
@@ -35108,7 +35108,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldTail = {x: b.tail.x, y: b.tail.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35138,7 +35138,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldSize = {x: b.size.x, y: b.size.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35168,7 +35168,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldSize = {x: b.size.x, y: b.size.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35197,7 +35197,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.locations = h.concat()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35224,7 +35224,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.closed = k
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35251,7 +35251,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.closed = k
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35276,7 +35276,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldPosition = {x: b.position.x, y: b.position.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35306,7 +35306,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldSize = {x: b.size.x, y: b.size.y}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35335,7 +35335,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldRotation = {angle: c}
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35366,7 +35366,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldHeight = b.size.y
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35393,7 +35393,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldStyle = a.getStyle()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var c = d.prototype;
@@ -35418,7 +35418,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.oldText = b.getText()
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditAction.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35440,7 +35440,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         h.addTraitEventDispatcher(this)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils, c = d.prototype;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils, c = d.prototype;
     c.copy = function () {
         var b = this.editor.getSelection();
         b && (this.content = b.clone(), this.pastePosition.x = b.position.x, this.pastePosition.y = b.position.y)
@@ -35491,7 +35491,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         a.clientY = a.pointers[0].clientY
     }
 
-    var c = BimFish.Viewing.Extensions.Markups.Core, b = BimFish.Viewing.Extensions.Markups.Core.Utils, a = d.prototype;
+    var c = BimKing.Viewing.Extensions.Markups.Core, b = BimKing.Viewing.Extensions.Markups.Core.Utils, a = d.prototype;
     a.attachTo = function (a) {
         this.editor && this.detachFrom(this.editor);
         this.editor = a;
@@ -35617,7 +35617,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         h.addTraitEventDispatcher(this)
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core, h = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var g = BimKing.Viewing.Extensions.Markups.Core, h = BimKing.Viewing.Extensions.Markups.Core.Utils;
     g.EVENT_EDITMODE_CREATION_BEGIN = "EVENT_EDITMODE_CREATION_BEGIN";
     g.EVENT_EDITMODE_CREATION_END = "EVENT_EDITMODE_CREATION_END";
     g.EVENT_MARKUP_DESELECT = "EVENT_MARKUP_DESELECT";
@@ -35719,7 +35719,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         g.EditMode.call(this, c, g.MARKUP_TYPE_ARROW, ["stroke-width", "stroke-color", "stroke-opacity"])
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35775,7 +35775,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         g.EditMode.call(this, c, g.MARKUP_TYPE_CIRCLE, ["stroke-width", "stroke-color", "stroke-opacity", "fill-color", "fill-opacity"])
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35818,7 +35818,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         g.EditMode.call(this, c, g.MARKUP_TYPE_CLOUD, ["stroke-width", "stroke-color", "stroke-opacity", "fill-color", "fill-opacity"])
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35862,7 +35862,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.style["stroke-opacity"] = .75
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -35943,7 +35943,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         })
     }
 
-    var h = BimFish.Viewing.Extensions.Markups.Core, c = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var h = BimKing.Viewing.Extensions.Markups.Core, c = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(h.EditMode.prototype);
     d.prototype.constructor = d;
     var b = d.prototype;
@@ -36042,7 +36042,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         })
     }
 
-    var h = BimFish.Viewing.Extensions.Markups.Core, c = BimFish.Viewing.Extensions.Markups.Core.Utils;
+    var h = BimKing.Viewing.Extensions.Markups.Core, c = BimKing.Viewing.Extensions.Markups.Core.Utils;
     d.prototype = Object.create(h.EditMode.prototype);
     d.prototype.constructor = d;
     var b = d.prototype;
@@ -36119,7 +36119,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         g.EditMode.call(this, c, g.MARKUP_TYPE_RECTANGLE, ["stroke-width", "stroke-color", "stroke-opacity", "fill-color", "fill-opacity"])
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -36172,7 +36172,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.creationMethod = this.CREATION_METHOD_CLICK
     }
 
-    var g = BimFish.Viewing.Extensions.Markups.Core;
+    var g = BimKing.Viewing.Extensions.Markups.Core;
     d.prototype = Object.create(g.EditMode.prototype);
     d.prototype.constructor = d;
     var h = d.prototype;
@@ -36272,14 +36272,14 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return a.substr(b)
     }
 
-    var h = BimFish.Viewing.Extensions.Markups.Core, c = BimFish.Viewing.Extensions.Markups.Core.Utils, b = d.prototype;
+    var h = BimKing.Viewing.Extensions.Markups.Core, c = BimKing.Viewing.Extensions.Markups.Core.Utils, b = d.prototype;
     b.destroy = function () {
         this.textArea.removeEventListener("keydown", this.onKeyHandlerBinded);
         this.setInactive()
     };
     b.setActive = function (a, b) {
         if (this.textMarkup !== a) {
-            var c = BimFish.Viewing.i18n.translate("Write Something");
+            var c = BimKing.Viewing.i18n.translate("Write Something");
             this.textArea.setAttribute("placeholder", c);
             this.setInactive();
             this.parentDiv.appendChild(this.textArea);
@@ -36428,19 +36428,19 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
 })();
 (function () {
     function d(a, b) {
-        BimFish.Viewing.Extension.call(this, a, b);
+        BimKing.Viewing.Extension.call(this, a, b);
         this.domEvents = []
     }
 
-    var g = BimFishNamespace("BimFish.Markups.Gui"), h = BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core"),
-        c = BimFishNamespace("BimFish.Viewing.Extensions.Markups.Core.Utils");
-    d.prototype = Object.create(BimFish.Viewing.Extension.prototype);
+    var g = BimKingNamespace("BimKing.Markups.Gui"), h = BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core"),
+        c = BimKingNamespace("BimKing.Viewing.Extensions.Markups.Core.Utils");
+    d.prototype = Object.create(BimKing.Viewing.Extension.prototype);
     d.prototype.constructor = d;
-    var b = d.prototype, a = BimFish.Viewing, f = a.Private;
+    var b = d.prototype, a = BimKing.Viewing, f = a.Private;
     b.load = function () {
-        var b = this.viewer.getExtension("BimFish.Viewing.MarkupsCore");
-        b || (this.viewer.loadExtension("BimFish.Viewing.MarkupsCore"), b = this.viewer.getExtension("BimFish.Viewing.MarkupsCore"));
-        if (!b) return f.logger.warn("Missing dependency:", "BimFish.Viewing.MarkupsCore"), !1;
+        var b = this.viewer.getExtension("BimKing.Viewing.MarkupsCore");
+        b || (this.viewer.loadExtension("BimKing.Viewing.MarkupsCore"), b = this.viewer.getExtension("BimKing.Viewing.MarkupsCore"));
+        if (!b) return f.logger.warn("Missing dependency:", "BimKing.Viewing.MarkupsCore"), !1;
         this.core = b;
         this.viewer.toolbar ? this.createToolbarUI() : (this.bindedOnToolbarCreated = this.onToolbarCreated.bind(this), this.viewer.addEventListener(a.TOOLBAR_CREATED_EVENT, this.bindedOnToolbarCreated));
         this.onEditModeEnterBinded = this.onEditModeEnter.bind(this);
@@ -36471,8 +36471,8 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         this.createToolbarUI()
     };
     b.createToolbarUI = function () {
-        var a = this, b = this.viewer.getToolbar(!0).getControl(BimFish.Viewing.TOOLBAR.MODELTOOLSID);
-        this.markupToolButton = new BimFish.Viewing.UI.Button("toolbar-markupTool");
+        var a = this, b = this.viewer.getToolbar(!0).getControl(BimKing.Viewing.TOOLBAR.MODELTOOLSID);
+        this.markupToolButton = new BimKing.Viewing.UI.Button("toolbar-markupTool");
         this.markupToolButton.setToolTip("Markup");
         this.markupToolButton.setIcon("adsk-icon-markup");
         this.markupToolButton.onClick = function () {
@@ -36684,10 +36684,10 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return g.getStyleDefaultValues(a, this.core)
     };
     g.MarkupsGui = d;
-    BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Viewing.MarkupsGui", d)
+    BimKing.Viewing.theExtensionManager.registerExtension("BimKing.Viewing.MarkupsGui", d)
 })();
 (function () {
-    var d = BimFish.Viewing, g = d.UI, h = BimFishNamespace("BimFish.Viewing.Extensions.Billboard"),
+    var d = BimKing.Viewing, g = d.UI, h = BimKingNamespace("BimKing.Viewing.Extensions.Billboard"),
         c = function (b, a) {
             d.Extension.call(this, b, a)
         };
@@ -36696,7 +36696,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
     c.prototype.load = function () {
         this.tool = new h.BillboardTool(this.viewer);
         this.viewer.toolController.registerTool(this.tool);
-        this.viewer.toolbar ? this.createToolbarUI() : (this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this), this.viewer.addEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded));
+        this.viewer.toolbar ? this.createToolbarUI() : (this.onToolbarCreatedBinded = this.onToolbarCreated.bind(this), this.viewer.addEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded));
         this.viewer.addEventListener(d.CAMERA_CHANGE_EVENT, this.tool.onCameraChange);
         return !0
     };
@@ -36721,7 +36721,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         return !0
     };
     c.prototype.onToolbarCreated = function () {
-        this.viewer.removeEventListener(BimFish.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded);
+        this.viewer.removeEventListener(BimKing.Viewing.TOOLBAR_CREATED_EVENT, this.onToolbarCreatedBinded);
         this.onToolbarCreatedBinded = null;
         this.createToolbarUI()
     };
@@ -36744,10 +36744,10 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
         }
     };
     h.BillboardExtension = c;
-    d.theExtensionManager.registerExtension("BimFish.Billboard", c)
+    d.theExtensionManager.registerExtension("BimKing.Billboard", c)
 })();
 (function () {
-    var d = BimFish.Viewing, g = BimFishNamespace("BimFish.Viewing.Extensions.Billboard");
+    var d = BimKing.Viewing, g = BimKingNamespace("BimKing.Viewing.Extensions.Billboard");
     d.ANNOTATION_CREATED_EVENT = "annotationCreated";
     g.BillboardTool = function (g) {
         d.ToolInterface.call(this);
@@ -36870,7 +36870,7 @@ BimFish.Viewing.theExtensionManager.registerExtension("BimFish.Fusion360.Simulat
             k.appendChild(l);
             this.drawLeadLine(a.intersectPoint, k);
             var l = {message: c.billboard.childNodes[0].value, point3d: a.intersectPoint},
-                m = g.getExtension("BimFish.Comments");
+                m = g.getExtension("BimKing.Comments");
             m.createComment(l).then(function (a) {
                 k.addEventListener("click", h(), !1);
                 k.addEventListener("dblclick", function () {
@@ -37546,14 +37546,14 @@ function init_TransformGizmos() {
             g = new THREE.LineDashedMaterial({color: 0, linewidth: 1, depthTest: !1});
             f.vertices.push(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 1, 0));
             this.centerLine = new THREE.Line(f, g);
-            g = THREE.ImageUtils.loadTexture(BimFish.Viewing.Private.getResourceUrl("res/textures/centerMarker_X.png"));
+            g = THREE.ImageUtils.loadTexture(BimKing.Viewing.Private.getResourceUrl("res/textures/centerMarker_X.png"));
             g.magFilter = g.minFilter = THREE.NearestFilter;
             f = new THREE.CircleGeometry(.1, 32);
             g = new THREE.MeshBasicMaterial({opacity: 1, side: THREE.DoubleSide, transparent: !0, map: g});
             this.centerMark = new THREE.Mesh(f, g);
             this.centerMark.rotation.set(Math.PI / 2, 0, 0);
             this.ticks = {};
-            g = THREE.ImageUtils.loadTexture(BimFish.Viewing.Private.getResourceUrl("res/textures/cardinalPoint.png"));
+            g = THREE.ImageUtils.loadTexture(BimKing.Viewing.Private.getResourceUrl("res/textures/cardinalPoint.png"));
             g.magFilter = g.minFilter = THREE.NearestFilter;
             g = new THREE.MeshBasicMaterial({
                 depthTest: !1,
@@ -38053,7 +38053,7 @@ function init_TransformGizmos() {
     })
 })(this);
 (function () {
-    var d = BimFish.Viewing, g = d.Private, h = d.getGlobal();
+    var d = BimKing.Viewing, g = d.Private, h = d.getGlobal();
     h.auth = null;
     h.VIEWING_URL = void 0;
     h.ACM_SESSION_URL = void 0;
@@ -38069,7 +38069,7 @@ function init_TransformGizmos() {
     h.LMV_THIRD_PARTY_COOKIE = void 0;
     d.HTTP_REQUEST_HEADERS = {};
     h.stderr = function () {
-        console.warn('"stderr" is deprecated; please use "BimFish.Viewing.Private.logger" instead')
+        console.warn('"stderr" is deprecated; please use "BimKing.Viewing.Private.logger" instead')
     };
     g.env = null;
     g.docItemId = null;
@@ -38139,21 +38139,21 @@ function init_TransformGizmos() {
             OSS: b.prod + "/oss/v1",
             LMV: h.prod
         },
-        BimFishDevelopment: {
+        BimKingDevelopment: {
             ROOT: b.dev,
             VIEWING: b.dev + "/viewingservice/v1",
             ACM: b.dev + "/oss-ext/v1/acmsessions",
             OSS: b.dev + "/oss/v1",
             LMV: h.dev
         },
-        BimFishStaging: {
+        BimKingStaging: {
             ROOT: b.stg,
             VIEWING: b.stg + "/viewingservice/v1",
             ACM: b.stg + "/oss-ext/v1/acmsessions",
             OSS: b.stg + "/oss/v1",
             LMV: h.stg
         },
-        BimFishProduction: {
+        BimKingProduction: {
             ROOT: b.prod,
             VIEWING: b.prod + "/viewingservice/v1",
             ACM: b.prod + "/oss-ext/v1/acmsessions",
@@ -38181,21 +38181,21 @@ function init_TransformGizmos() {
             OSS: b.prod + "/oss/v1",
             LMV: h.prod
         },
-        BimFishDevelopmentV2: {
+        BimKingDevelopmentV2: {
             ROOT: b.dev,
             VIEWING: b.dev + "/derivativeservice/v2",
             ACM: b.dev + "/oss-ext/v1/acmsessions",
             OSS: b.dev + "/oss/v1",
             LMV: h.dev
         },
-        BimFishStagingV2: {
+        BimKingStagingV2: {
             ROOT: b.stg,
             VIEWING: b.stg + "/derivativeservice/v2",
             ACM: b.stg + "/oss-ext/v1/acmsessions",
             OSS: b.stg + "/oss/v1",
             LMV: h.stg
         },
-        BimFishProductionV2: {
+        BimKingProductionV2: {
             ROOT: b.prod,
             VIEWING: b.prod + "/derivativeservice/v2",
             ACM: b.prod + "/oss-ext/v1/acmsessions",
@@ -38220,13 +38220,13 @@ function init_TransformGizmos() {
                 b = "Production";
                 break;
             case "developer-dev.api.autodesk.com":
-                b = "BimFishDevelopment";
+                b = "BimKingDevelopment";
                 break;
             case "developer-stg.api.autodesk.com":
-                b = "BimFishStaging";
+                b = "BimKingStaging";
                 break;
             case "developer.api.autodesk.com":
-                b = "BimFishProduction";
+                b = "BimKingProduction";
                 break;
             case "localhost.autodesk.com":
                 b = "Local";
@@ -38238,7 +38238,7 @@ function init_TransformGizmos() {
                 b = "Local";
                 break;
             default:
-                b = "BimFishProduction"
+                b = "BimKingProduction"
         }
         g.ENABLE_TRACE && ("undefined" !== typeof window && console.log("Host name : " + window.location.hostname), console.log("Environment initialized as : " + b));
         g.env = b
@@ -38249,7 +38249,7 @@ function init_TransformGizmos() {
         ACM_SESSION_URL = b.ACM;
         OSS_URL = b.OSS;
         if (!d.isNodeJS) {
-            b = ["BimFish3D.js","firefly.js", "firefly.min.js"];
+            b = ["BimKing3D.js","firefly.js", "firefly.min.js"];
             a && a.hasOwnProperty("libraryName") && b.push(a.libraryName);
             var c, f;
             for (a = 0; a < b.length; a++) {
@@ -38279,7 +38279,7 @@ function init_TransformGizmos() {
         f.onload = b;
         f.onerror = c;
         f.ontimeout = c;
-        0 === g.env.indexOf("BimFish") ? (f.open("POST", "/utility/v1/settoken", !0), f.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), f.withCredentials = !0, f.send("access-token\x3d" + a), d.isIE11 && (g.accessToken = a)) : (a = {oauth: {token: a}}, f.open("POST", VIEWING_URL + "/token", !0), f.setRequestHeader("Content-Type", "application/json"), f.withCredentials = !0, f.send(JSON.stringify(a)))
+        0 === g.env.indexOf("BimKing") ? (f.open("POST", "/utility/v1/settoken", !0), f.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), f.withCredentials = !0, f.send("access-token\x3d" + a), d.isIE11 && (g.accessToken = a)) : (a = {oauth: {token: a}}, f.open("POST", VIEWING_URL + "/token", !0), f.setRequestHeader("Content-Type", "application/json"), f.withCredentials = !0, f.send(JSON.stringify(a)))
     };
     g.refreshRequestHeader = function (a) {
         d.HTTP_REQUEST_HEADERS.Authorization = "Bearer " + a
@@ -38316,7 +38316,7 @@ function init_TransformGizmos() {
         g.logger.initialize({eventCallback: b ? b.eventCallback : void 0});
         if (!(b && b.hasOwnProperty("useADP") && 0 == b.useADP || d.isNodeJS)) {
             var c = function () {
-                if ("undefined" === typeof Adp) g.logger.warn("BimFish Data Platform SDK not found"); else {
+                if ("undefined" === typeof Adp) g.logger.warn("BimKing Data Platform SDK not found"); else {
                     var b;
                     switch (LMV_BUILD_TYPE) {
                         case "Production":
@@ -38402,8 +38402,8 @@ function init_TransformGizmos() {
             debug: !1
         };
         LOCALIZATION_REL_PATH = "res/locales/" + a + "/";
-        BimFish.Viewing.i18n.init(c, function (a) {
-            BimFish.Viewing.i18n.clearDebugLocString();
+        BimKing.Viewing.i18n.init(c, function (a) {
+            BimKing.Viewing.i18n.clearDebugLocString();
             b && b()
         })
     };
@@ -38431,7 +38431,7 @@ function init_TransformGizmos() {
     g.loadDependency = function (a, b, c) {
         "undefined" == typeof window[a] ? (a = document.createElement("SCRIPT"), a.src = 0 < b.indexOf("://") ? b : g.getResourceUrl(b), document.head.appendChild(a), c && (a.onload = c)) : c && c()
     };
-    BimFish.Viewing.Initializer = function (a, b) {
+    BimKing.Viewing.Initializer = function (a, b) {
         d.isNodeJS ? (g.initializeEnvironmentVariable(a), g.initializeServiceEndPoints(a), g.initializeLogger(a), g.initializeAuth(b, a)) : (g.WEBGL_HELP_LINK = a ? a.webGLHelpLink : null, g.initializeEnvironmentVariable(a), g.initializeServiceEndPoints(a), g.initializeLogger(a), g.initializeProtein(), g.initWorkerScript(), g.loadDependency("THREE", "three.min.js", function () {
             THREE.warn = g.logger.warn.bind(g.logger);
             init_three_dds_loader();

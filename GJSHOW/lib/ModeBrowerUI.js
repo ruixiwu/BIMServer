@@ -239,7 +239,7 @@ ModeBrowerUI.prototype.onShowall = function () {
     this.onMakeFun("showAll")
 };
 ModeBrowerUI.prototype.onAllshop = function () {
-    alert("\u52a0\u5165\u8d2d\u7269\u8f66")
+    alert("加入购物车")
 };
 ModeBrowerUI.prototype.getCurSelNodeIds = function (a) {
     a = this.treeObj.getSelectedNodes();

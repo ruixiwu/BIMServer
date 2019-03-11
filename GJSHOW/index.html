@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="lib/style.css">
 	<script src="lib/jquery.min.js"></script>
 	<script src="lib/jquery-ui.min.js"></script>
-	<script src="lib/BimFish3D.js"></script>
+	<script src="lib/BimKing3D.js"></script>
 	<link rel="stylesheet" href="Template/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="Template/bootstrap/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/final/common.css"/>
@@ -51,6 +51,7 @@
 				{
                     ui.getObjectGuid(idList[i],function(GUID) {
                         ui.fitToView(idList[i]);
+                        //ui.fitToView(true);
                     });
 				}
 			}
@@ -62,7 +63,7 @@
                 if(idList==null) return;
                 for(var i=0;i<idList.length;++i)
                 {
-                    ui.getObjectGuid(idList[i],function(GUID) {
+                    ui.getObjectGuid(idList[i],function(GUID) {//GUID是getObjectGuid返回的结果，作为参数传入callback
                         alert(GUID);
                     });
                 }

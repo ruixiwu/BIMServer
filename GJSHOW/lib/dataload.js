@@ -4,25 +4,25 @@ function getGlobal() {
     return "undefined" !== typeof window && null !== window ? window : "undefined" !== typeof self && null !== self ? self : GLOBAL
 }
 
-var BimFishNamespace = function (a) {
+var BimKingNamespace = function (a) {
     var c = getGlobal();
     a = a.split(".");
     for (var h = 0; h < a.length; ++h) c[a[h]] = c[a[h]] || {}, c = c[a[h]];
     return c
 };
-BimFishNamespace("BimFish.Viewing.Private");
-BimFishNamespace("BimFish.Viewing.Extensions");
-BimFishNamespace("BimFish.Viewing.Shaders");
-BimFishNamespace("BimFish.Viewing.UI");
-BimFishNamespace("BimFish.LMVTK");
-BimFish.Viewing.getGlobal = getGlobal;
-BimFish.Viewing.BimFishNamespace = BimFishNamespace;
+BimKingNamespace("BimKing.Viewing.Private");
+BimKingNamespace("BimKing.Viewing.Extensions");
+BimKingNamespace("BimKing.Viewing.Shaders");
+BimKingNamespace("BimKing.Viewing.UI");
+BimKingNamespace("BimKing.LMVTK");
+BimKing.Viewing.getGlobal = getGlobal;
+BimKing.Viewing.BimKingNamespace = BimKingNamespace;
 
 function getGlobal() {
     return "undefined" !== typeof window && null !== window ? window : "undefined" !== typeof self && null !== self ? self : GLOBAL
 }
 
-var av = BimFish.Viewing, avp = av.Private;
+var av = BimKing.Viewing, avp = av.Private;
 av.getGlobal = getGlobal;
 var isBrowser = av.isBrowser = "undefined" !== typeof navigator,
     isIE11 = av.isIE11 = isBrowser && !!navigator.userAgent.match(/Trident\/7\./);
@@ -112,8 +112,8 @@ var rescueFromPolymer = av.rescueFromPolymer = function () {
     var a = getGlobal();
     a.performance || (a.performance = Date)
 })();
-av = BimFish.Viewing;
-avp = BimFish.Viewing.Private;
+av = BimKing.Viewing;
+avp = BimKing.Viewing.Private;
 avp.IS_CONCAT_BUILD = !0;
 avp.BUILD_LMV_WORKER_URL = "lmvworker.js";
 avp.LMV_WORKER_URL = avp.BUILD_LMV_WORKER_URL;
@@ -2071,7 +2071,7 @@ LmvMatrix4.prototype = {
         this.byteLength = b.length
     }
 
-    var c = BimFish.LMVTK;
+    var c = BimKing.LMVTK;
     c.utf8ArrayToString = function (b, a, d) {
         void 0 === a && (a = 0);
         void 0 === d && (d = b.length);
@@ -2209,7 +2209,7 @@ LmvMatrix4.prototype = {
     c.InputStream = a
 })();
 (function () {
-    BimFish.LMVTK.VBUtils = {
+    BimKing.LMVTK.VBUtils = {
         deduceUVRepetition: function (a) {
             for (var c in a.vblayout) if (0 == c.indexOf("uv") && 0 != c.indexOf("uvw")) for (var h = a.vbstride, f = a.vb, e = a.vb.length / h, b = 0, d = a.vblayout[c].offset; b < e; b++, d += h) {
                 var g = f[d], k = f[d + 1];
@@ -2259,7 +2259,7 @@ LmvMatrix4.prototype = {
         this.numTriangleGeoms = this.numCirculars = this.numEllipticals = 0
     }
 
-    var c = BimFish.Viewing.Private, h = 2 * Math.PI, f = [0, 1, 3, 0, 3, 2];
+    var c = BimKing.Viewing.Private, h = 2 * Math.PI, f = [0, 1, 3, 0, 3, 2];
     a.prototype.expandStride = function () {
     };
     a.prototype.addToBounds = function (b, a) {
@@ -2484,7 +2484,7 @@ LmvMatrix4.prototype = {
         a.seek(0)
     }
 
-    var c = BimFish.LMVTK;
+    var c = BimKing.LMVTK;
     a.prototype.readVarint = function () {
         var a, c = 0, e = 0;
         do a = this.stream.getUint8(), c |= (a & 127) << e, e += 7; while (a & 128);
@@ -2662,7 +2662,7 @@ LmvMatrix4.prototype = {
         }
     }
 
-    var c = BimFish.LMVTK, h = new Float32Array(3), f = 1 / Math.PI, e = function (b, a, g) {
+    var c = BimKing.LMVTK, h = new Float32Array(3), f = 1 / Math.PI, e = function (b, a, g) {
         if (g) return null;
         g = {isLines: !0, vertices: null, indices: null, colors: null, normals: null, uvs: [], attrs: []};
         var d, e;
@@ -2720,7 +2720,7 @@ LmvMatrix4.prototype = {
     }
 })();
 (function () {
-    BimFish.LMVTK.readLightDefinition = function (a, c) {
+    BimKing.LMVTK.readLightDefinition = function (a, c) {
         var h = a.seekToEntry(c);
         if (!h || 1 < h.version) return null;
         h = a.stream;
@@ -2738,7 +2738,7 @@ LmvMatrix4.prototype = {
     }
 })();
 (function () {
-    BimFish.LMVTK.readCameraDefinition = function (a, c) {
+    BimKing.LMVTK.readCameraDefinition = function (a, c) {
         var h = a.seekToEntry(c.definition);
         if (!h || 2 < h.version) return null;
         var f = a.stream, e = {
@@ -2772,7 +2772,7 @@ LmvMatrix4.prototype = {
         return b
     }
 
-    var c = BimFish.LMVTK, h = (BimFish.Viewing.isMobileDevice(), null);
+    var c = BimKing.LMVTK, h = (BimKing.Viewing.isMobileDevice(), null);
     c.FragList = function () {
         this.numLoaded = this.length = 0;
         this.topoIndexes = this.mesh2frag = this.fragId2dbId = this.entityIndexes = this.packIds = this.materials = this.transforms = this.boxes = null
@@ -2891,7 +2891,7 @@ LmvMatrix4.prototype = {
     }
 })();
 (function () {
-    BimFish.LMVTK.readInstance = function (a, c, h, f) {
+    BimKing.LMVTK.readInstance = function (a, c, h, f) {
         c = a.seekToEntry(c);
         if (!c || 2 < c.version) return null;
         1 < c.version && a.readU8();
@@ -2918,7 +2918,7 @@ LmvMatrix4.prototype = {
         this.memoryOptimizedMode = !1
     }
 
-    var c = BimFish.Viewing, h = BimFish.LMVTK, f = c.Private;
+    var c = BimKing.Viewing, h = BimKing.LMVTK, f = c.Private;
     c.isMobileDevice();
     var e = c.isMobileDevice() ? 50 : 2E3;
     a.prototype.loadAsyncResource = function (b, a, c, e) {
@@ -3146,7 +3146,7 @@ LmvMatrix4.prototype = {
     h.Package = a
 })();
 (function () {
-    var a = BimFish.LMVTK;
+    var a = BimKing.LMVTK;
     a.PropertyDatabase = function (c) {
         function h(b) {
             b = a.utf8ArrayToString(b, 0, b.length);
@@ -3449,7 +3449,7 @@ LmvMatrix4.prototype = {
         if (a) for (this.manifestAvailable = !0, this.imageId2URI = {}, b = a.assets, a = 0, k = b.length; a < k; ++a) g = b[a], -1 != g.mime.indexOf("image/") && (d = g.id, d = d.substr(0, d.indexOf(".")), this.imageId2URI[d] = e + g.URI), "Autodesk.CloudPlatform.PropertyAttributes" == g.type && this.propertydb.attrs.push(g.URI), "Autodesk.CloudPlatform.PropertyValues" == g.type && this.propertydb.values.push(g.URI), "Autodesk.CloudPlatform.PropertyIDs" == g.type && this.propertydb.ids.push(g.URI), "Autodesk.CloudPlatform.PropertyViewables" == g.type && this.propertydb.viewables.push(g.URI), "Autodesk.CloudPlatform.PropertyOffsets" == g.type && (-1 != g.id.indexOf("rcv") ? this.propertydb.rcv_offsets.push(g.URI) : this.propertydb.offsets.push(g.URI)), "Autodesk.CloudPlatform.PropertyAVs" == g.type && this.propertydb.avs.push(g.URI), "Autodesk.CloudPlatform.PropertyRCVs" == g.type && this.propertydb.rcvs.push(g.URI)
     }
 
-    var c = BimFish.Viewing.Private, h = BimFish.LMVTK, f = {
+    var c = BimKing.Viewing.Private, h = BimKing.LMVTK, f = {
         dt_object: 0,
         dt_void: 1,
         dt_byte: 2,
@@ -4053,7 +4053,7 @@ LmvMatrix4.prototype = {
         this.marker = {frameStart: this.frameStart, frameEnd: this.frameEnd}
     }
 
-    var c = BimFish.LMVTK;
+    var c = BimKing.LMVTK;
     a.prototype.load = function (a) {
         this.data = a;
         this.frameStart = 0;
@@ -4269,7 +4269,7 @@ LmvMatrix4.prototype = {
         }
     }
 
-    var h = BimFish.LMVTK;
+    var h = BimKing.LMVTK;
     a.prototype.boundsCheck = function (a) {
         if (a >= this.byteLength) throw new c(a);
     };
@@ -4352,7 +4352,7 @@ LmvMatrix4.prototype = {
     };
     h.CheckedInputStream = a
 })();
-BimFish.LMVTK.GltfPackage = function () {
+BimKing.LMVTK.GltfPackage = function () {
     function a(a) {
         this.loadedBuffers = {};
         if (a instanceof ArrayBuffer) {
@@ -4402,7 +4402,7 @@ BimFish.LMVTK.GltfPackage = function () {
         this.nextFragId = 0
     }
 
-    for (var c = BimFish.LMVTK, h = new Uint8Array(256), f = 0; 64 > f; f++) h["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt(f)] = f;
+    for (var c = BimKing.LMVTK, h = new Uint8Array(256), f = 0; 64 > f; f++) h["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt(f)] = f;
     a.prototype.loadManifest = function (a) {
         this.manifest = {
             name: "LMV Manifest",
@@ -4666,7 +4666,7 @@ BimFish.LMVTK.GltfPackage = function () {
         this.nodeBoxes = c || new Float32Array(6 * this.numNodes)
     }
 
-    var f = BimFish.Viewing.Private;
+    var f = BimKing.Viewing.Private;
     a.prototype.getIndex = function (a) {
         var b = this.dbIdToIndex[a];
         if (b) return b;
@@ -4784,7 +4784,7 @@ BimFish.LMVTK.GltfPackage = function () {
         this.recursion_stack = []
     }
 
-    var h = BimFish.Viewing.Private;
+    var h = BimKing.Viewing.Private;
     a.prototype.setLeftChild = function (a, b) {
         this.nodesI[a * this.node_stride + 6] = b
     };
@@ -5124,7 +5124,7 @@ BimFish.LMVTK.GltfPackage = function () {
         return b
     }
 
-    var c = BimFish.Viewing.Private, h = BimFish.LMVTK;
+    var c = BimKing.Viewing.Private, h = BimKing.LMVTK;
     c.DefaultLightPreset = 1;
     c.DefaultLightPreset2d = 0;
     c.BackgroundPresets = {
@@ -5536,7 +5536,7 @@ BimFish.LMVTK.GltfPackage = function () {
         c.oss_url = a.oss_url
     }
 
-    var e = BimFish.Viewing, b = e.Private;
+    var e = BimKing.Viewing, b = e.Private;
     b.inWorkerThread = "undefined" !== typeof self && "undefined" === typeof window;
     var d;
     "undefined" !== typeof XMLHttpRequest ? d = XMLHttpRequest : (d = require("xhr2"), d.prototype._restrictedHeaders.cookie = !1);
@@ -5555,7 +5555,7 @@ BimFish.LMVTK.GltfPackage = function () {
         if (0 !== e.indexOf("urn:")) return e;
         c += "/";
         "items" !== d && (e = e.substr(4));
-        return c = "bubbles" === d && 0 == b.env.indexOf("BimFish") ? c + e : c + (d + "/" + e)
+        return c = "bubbles" === d && 0 == b.env.indexOf("BimKing") ? c + e : c + (d + "/" + e)
     };
     g.rawGet = function (a, f, p, m, n, t) {
         function l(a) {
@@ -5696,7 +5696,7 @@ BimFish.LMVTK.GltfPackage = function () {
         }
     }
 
-    var c = BimFish.Viewing, h = BimFish.LMVTK, f = c.Private;
+    var c = BimKing.Viewing, h = BimKing.LMVTK, f = c.Private;
     h.doGeomLoad = function (e) {
         var b = e.worker;
         f.ViewingService.getItem(e, e.url, function (d) {
@@ -5760,7 +5760,7 @@ BimFish.LMVTK.GltfPackage = function () {
         })
     }
 
-    var h = BimFish.Viewing, f = h.Private, e = BimFish.LMVTK;
+    var h = BimKing.Viewing, f = h.Private, e = BimKing.LMVTK;
     e.doLoadSvf = function (b) {
         var d = b.worker;
         d.postMessage({progress: .01});
@@ -5856,7 +5856,7 @@ BimFish.LMVTK.GltfPackage = function () {
         f(c, g)
     }
 
-    var f = BimFish.LMVTK, e = BimFish.Viewing.Private;
+    var f = BimKing.LMVTK, e = BimKing.Viewing.Private;
     f.doAttributeToIdMap = function (b) {
         var c = b.worker;
         a(b, null, function (a) {
@@ -5939,7 +5939,7 @@ BimFish.LMVTK.GltfPackage = function () {
     }
 })();
 (function () {
-    BimFish.LMVTK.doDecompressDelta = function (a) {
+    BimKing.LMVTK.doDecompressDelta = function (a) {
         for (var c = a.worker, h = base64.decode(a.delta), h = h.split("").map(function (a) {
             return a.charCodeAt(0)
         }), h = (new Zlib.Inflate(h)).decompress(), f = "", e = 0; e < h.length; e++) f += String.fromCharCode(h[e]);
@@ -5956,7 +5956,7 @@ BimFish.LMVTK.GltfPackage = function () {
         }
     }
 
-    var c = BimFish.Viewing, h = BimFish.LMVTK;
+    var c = BimKing.Viewing, h = BimKing.LMVTK;
     h.doParseF2D = function (f) {
         var e = f.worker;
         e.postMessage({progress: .01});
@@ -6067,7 +6067,7 @@ BimFish.LMVTK.GltfPackage = function () {
         })
     }
 
-    var h = BimFish.Viewing, f = h.Private, e = BimFish.LMVTK, b = !0;
+    var h = BimKing.Viewing, f = h.Private, e = BimKing.LMVTK, b = !0;
     e.doStreamF2D = function (b) {
         b.worker.postMessage({progress: .01});
         var d, f, l = 0;
@@ -6088,7 +6088,7 @@ BimFish.LMVTK.GltfPackage = function () {
         })
     }
 })();
-av = BimFish.Viewing;
+av = BimKing.Viewing;
 av.ErrorCodes = {
     UNKNOWN_FAILURE: 1,
     BAD_DATA: 2,
@@ -6103,7 +6103,7 @@ av.ErrorCodes = {
     RTC_ERROR: 11
 };
 (function () {
-    var a = BimFish.LMVTK, c = BimFish.Viewing.Private;
+    var a = BimKing.LMVTK, c = BimKing.Viewing.Private;
     c.logger = c.logger || console;
     c.workerMain = function (h) {
         if (h.hasOwnProperty("operation")) {
@@ -6162,12 +6162,12 @@ av.ErrorCodes = {
         }
     }
 })();
-var avp = BimFish.Viewing.Private, ENABLE_OCTM_MG2 = !1,
+var avp = BimKing.Viewing.Private, ENABLE_OCTM_MG2 = !1,
     IS_WORKER = "undefined" !== typeof self && "undefined" === typeof window;
 if (IS_WORKER) {
     var debug$0 = function (a) {
     };
-    avp.IS_CONCAT_BUILD || (importScripts("../BimFishNamespace.js"), importScripts("../compatibility.js"), importScripts("../../thirdparty/three.js/LmvMatrix4.js"), importScripts("../lmvtk/zlib/gunzip.min.js"), importScripts("../lmvtk/zlib/unzip.min.js"), importScripts("../lmvtk/zlib/inflate.min.js"), importScripts("../lmvtk/fusion/base64.js"), ENABLE_OCTM_MG2 && (importScripts("../lmvtk/zlib/inflate.min.js"), importScripts("../lmvtk/svf/octm_mg2.js")), importScripts("../scene/BVHBuilder.js"), importScripts("../scene/InstanceTreeStorage.js"), importScripts("../lmvtk/common/InputStream.js"), importScripts("../lmvtk/common/VbUtils.js"), importScripts("../lmvtk/common/VertexBufferBuilder.js"), importScripts("../lmvtk/svf/PackReader.js"), importScripts("../lmvtk/svf/Geoms.js"), importScripts("../lmvtk/svf/Lights.js"), importScripts("../lmvtk/svf/Cameras.js"), importScripts("../lmvtk/svf/Fragments.js"), importScripts("../lmvtk/svf/Instances.js"), importScripts("../lmvtk/svf/Package.js"), importScripts("../lmvtk/svf/PackReader.js"), importScripts("../lmvtk/common/Propdb.js"), importScripts("../lmvtk/f2d/F2d.js"), importScripts("../lmvtk/f2d/F2dProbe.js"), importScripts("../lmvtk/f2d/CheckedInputStream.js"), importScripts("../net/Xhr.js"), importScripts("GeomWorker.js"), importScripts("SvfWorker.js"), importScripts("PropWorker.js"), importScripts("DecompressWorker.js"), importScripts("F2dParseWorker.js"), importScripts("F2dStreamWorker.js"), importScripts("PopulateCacheWorker.js"), importScripts("../ErrorCodes.js"), importScripts("MainWorker.js"));
+    avp.IS_CONCAT_BUILD || (importScripts("../BimKingNamespace.js"), importScripts("../compatibility.js"), importScripts("../../thirdparty/three.js/LmvMatrix4.js"), importScripts("../lmvtk/zlib/gunzip.min.js"), importScripts("../lmvtk/zlib/unzip.min.js"), importScripts("../lmvtk/zlib/inflate.min.js"), importScripts("../lmvtk/fusion/base64.js"), ENABLE_OCTM_MG2 && (importScripts("../lmvtk/zlib/inflate.min.js"), importScripts("../lmvtk/svf/octm_mg2.js")), importScripts("../scene/BVHBuilder.js"), importScripts("../scene/InstanceTreeStorage.js"), importScripts("../lmvtk/common/InputStream.js"), importScripts("../lmvtk/common/VbUtils.js"), importScripts("../lmvtk/common/VertexBufferBuilder.js"), importScripts("../lmvtk/svf/PackReader.js"), importScripts("../lmvtk/svf/Geoms.js"), importScripts("../lmvtk/svf/Lights.js"), importScripts("../lmvtk/svf/Cameras.js"), importScripts("../lmvtk/svf/Fragments.js"), importScripts("../lmvtk/svf/Instances.js"), importScripts("../lmvtk/svf/Package.js"), importScripts("../lmvtk/svf/PackReader.js"), importScripts("../lmvtk/common/Propdb.js"), importScripts("../lmvtk/f2d/F2d.js"), importScripts("../lmvtk/f2d/F2dProbe.js"), importScripts("../lmvtk/f2d/CheckedInputStream.js"), importScripts("../net/Xhr.js"), importScripts("GeomWorker.js"), importScripts("SvfWorker.js"), importScripts("PropWorker.js"), importScripts("DecompressWorker.js"), importScripts("F2dParseWorker.js"), importScripts("F2dStreamWorker.js"), importScripts("PopulateCacheWorker.js"), importScripts("../ErrorCodes.js"), importScripts("MainWorker.js"));
     self.addEventListener("message", function (a) {
         a = a.data;
         a.worker = self;
@@ -6178,7 +6178,7 @@ if (IS_WORKER) {
     };
     self.debug = debug$0
 }
-BimFish.LMVTK.utf8ArrayToString = function (a, c, h) {
+BimKing.LMVTK.utf8ArrayToString = function (a, c, h) {
     void 0 === c && (c = 0);
     void 0 === h && (h = a.length);
     var f = "", e = c;
